@@ -2,12 +2,12 @@
 
 public class EnemiesInSceneCounter : MonoBehaviour
 {
-    private static int _amountOfEnemies;
-    public static int AmountOfEnemies => _amountOfEnemies;
-
     //А он тут нужен?
-    private static EnemiesInSceneCounter _instance;
     public static EnemiesInSceneCounter Instance => _instance;
+    private static EnemiesInSceneCounter _instance;
+
+    public static int AmountOfEnemies => _amountOfEnemies;
+    private static int _amountOfEnemies;
 
     private void Awake()
     {

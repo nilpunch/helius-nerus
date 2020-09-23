@@ -1,7 +1,10 @@
-﻿[System.Serializable]
+﻿using UnityEngine;
+
+[System.Serializable]
 public class LocalizationItem
 {
-    //Типа скриптабл обжекта
-    public string key;
-    public string value;
+    public string Key => _key;
+    public string Value => _value;
+    [SerializeField] private string _key = "key";
+    [SerializeField] private string _value = "value";
 }

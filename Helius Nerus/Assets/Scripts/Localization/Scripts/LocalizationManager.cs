@@ -5,25 +5,17 @@ using UnityEngine.Networking;
 
 public class LocalizationManager : MonoBehaviour
 {
+    //Синглтон
+    public static LocalizationManager Instance => _instance;
+    private static LocalizationManager _instance;
+
+    public bool IsReady => _isReady;
     //Словарик с ключем-переводом
     private Dictionary<string, string> _localizedText;
-    //Датчик готовности
-    private bool _isReady = false;
     //Если текст не найдет
     private string _missingTextString = "Missing text in translation: ";
-
-    //Синглтон
-    private static LocalizationManager _instance;
-    public static LocalizationManager Instance => _instance;
-
-    //Гетер
-    public bool IsReady
-    {
-        get
-        {
-            return _isReady;
-        }
-    }
+    //Датчик готовности
+    private bool _isReady = false;
 
     //Синглтон
     private void Awake()
@@ -32,7 +24,6 @@ public class LocalizationManager : MonoBehaviour
             _instance = this;
         else
             Destroy(gameObject);
-
         //Он понадобится во всех сценах
         DontDestroyOnLoad(gameObject);
 
@@ -96,10 +87,10 @@ public class LocalizationManager : MonoBehaviour
         }
         //Десериализовали (это какая-то встроенная конверсия, не чипай ее или пиши свою
         LocalizationData localizationData = JsonUtility.FromJson<LocalizationData>(dataAsJson);
-        for (int i = 0; i < localizationData.items.Length; i++)
+        for (int i = 0; i < localizationData.Items.Length; i++)
         {
             //Впихнули элементы массива в словарь, потому что словарь не сериализуется
-            _localizedText.Add(localizationData.items[i].key, localizationData.items[i].value);
+            _localizedText.Add(localizationData.Items[i].Key, localizationData.Items[i].Value);
         }
 
         #if UNITY_EDITOR

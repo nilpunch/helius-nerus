@@ -1,5 +1,6 @@
 ﻿[System.Serializable]
 public class LocalizationData
 {
-    public LocalizationItem[] items;
+    [UnityEngine.SerializeField] private LocalizationItem[] _items = null;
+    public LocalizationItem[] Items => _items;
 }
