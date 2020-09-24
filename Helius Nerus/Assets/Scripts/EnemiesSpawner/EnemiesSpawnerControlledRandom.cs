@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 
-public class EnemiseSpawnerControlledRandom : MonoBehaviour
+[System.Serializable]
+public class EnemiseSpawnerControlledRandom
 {
     [Tooltip("Высота основной полосы спауна")]
     [SerializeField] private float _mainStripHeight = 1.0f; // h2
