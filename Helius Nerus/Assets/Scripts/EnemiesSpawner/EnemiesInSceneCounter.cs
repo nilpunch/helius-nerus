@@ -2,14 +2,14 @@
 
 public class EnemiesInSceneCounter
 {
-	public static int AmountOfEnemies { get; private set; } = 0;
+	public int AmountOfEnemies { get; private set; } = 0;
 
-    public static void IncrementEnemies()
+    public void IncrementEnemies()
     {
         ++AmountOfEnemies;
     }
 
-    public static void DectrementEnemies()
+    public void DectrementEnemies()
     {
         --AmountOfEnemies;
     }
