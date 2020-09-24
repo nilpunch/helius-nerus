@@ -20,61 +20,63 @@ public class EnemiesSpawner : MonoBehaviour
 
 	public event System.Action MoneyRunOut = delegate { };
 
-	private float _timeBforeReceivingMoney = 0.0f;
+	private float _timeBeforeReceivingMoney = 0.0f;
 
 	private int _nextPackIndex;
 	private int _currentMoneySpent = 0;
 
-	// На каждой новой сцене глобальная ссылка будет перезаписываться
 	private void Awake()
 	{
+		// На каждой новой сцене (при гарантии что спаунер 1) глобальная ссылка будет перезаписываться на необходимую
 		InstanceOnScene = this;
 	}
 
 	private void Start()
 	{
-
+		// Сортировка пачек врагов по возрастанию
+		System.Array.Sort(_enemiesPacks, (pack1, pack2) => pack1.Cost - pack2.Cost);
 	}
 
 	private void Update()
 	{
-		_timeBforeReceivingMoney += Time.deltaTime;
-		if (_timeBforeReceivingMoney >= 1.0f)
+		_timeBeforeReceivingMoney += Time.deltaTime;
+		if (_timeBeforeReceivingMoney >= 1.0f)
 		{
-			_money += _moneyPerSecond;
-			_timeBforeReceivingMoney = 0.0f;
-		}
-
-		int spendings = _enemiesPacks[_nextPackIndex].Cost;
-		if (_money > spendings)
-		{
-			if (TrySpendMoney(spendings))
+			if (MoneyLimitNotReached())
 			{
-				SpawnNextPack();
-				SelectNextPack();
+				_money += _moneyPerSecond;
+			}
+			_timeBeforeReceivingMoney = 0.0f;
+
+			int spendings = _enemiesPacks[_nextPackIndex].Cost;
+			if (_money > spendings)
+			{
+				// Пересчитываем деньги
+				_money -= spendings;
+				_currentMoneySpent += spendings;
+				if (MoneyLimitNotReached())
+				{
+					// Обнулить деньги чтобы гарантировать единоразовый вызов события MoneyRunOut()
+					_money = 0;
+					MoneyRunOut.Invoke();
+				}
+				else
+				{
+					SpawnNextPack();
+					SelectNextPack();
+				}
 			}
 		}
 	}
 
-	private bool TrySpendMoney(int amount)
+	private bool MoneyLimitNotReached()
 	{
-		if (_currentMoneySpent > _moneySpendingLimit)
-		{
-			MoneyRunOut.Invoke();
-			return false;
-		}
-		else
-		{
-			_money -= amount;
-			_currentMoneySpent += amount;
-			return true;
-		}
+		return _currentMoneySpent < _moneySpendingLimit;
 	}
 
 	private void SpawnNextPack()
 	{
 		PackOfEnemies nextPack = _enemiesPacks[_nextPackIndex];
-
 		GameObject packGameObject = Instantiate(nextPack.PackPrefab);
 		float screenWidth = Camera.main.orthographicSize / Camera.main.aspect;
 		packGameObject.transform.position = transform.position.With(x: Random.Range(-screenWidth + nextPack.Width, screenWidth - nextPack.Width));
