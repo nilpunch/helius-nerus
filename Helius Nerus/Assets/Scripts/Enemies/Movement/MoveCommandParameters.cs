@@ -5,7 +5,7 @@ using UnityEngine;
 public class MoveCommandParameters : ICommandParameters
 {
 	[SerializeField] private string _commandType = "Down";
-	[SerializeField] private MoveCommandData _moveCommandData;
+	[SerializeField] private MoveCommandData _moveCommandData = null;
 
 	public IEnemyCommand CommandParamsToCommand()
 	{
