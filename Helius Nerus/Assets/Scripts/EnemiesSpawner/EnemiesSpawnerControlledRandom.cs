@@ -13,9 +13,9 @@ public class EnemiseSpawnerControlledRandom
     [Tooltip("Количество врагов, при котором x принимает максимальное значение")]
     [SerializeField] private float _maxEnemiesAmount = 100.0f;
 
-    public float CalculateRandomValue()
+    public float CalculateRandomValue(int amountOfEnemies)
     {
-        float x = (1 - 2 * _mainStripLength) / _maxEnemiesAmount * Mathf.Clamp(EnemiesInSceneCounter.AmountOfEnemies, 0.0f, _maxEnemiesAmount) + _mainStripLength;
+        float x = (1 - 2 * _mainStripLength) / _maxEnemiesAmount * Mathf.Clamp(amountOfEnemies, 0.0f, _maxEnemiesAmount) + _mainStripLength;
         float areaOfFigure = 2 * _mainStripLength * (_mainStripHeight - _secondStripHeight) + _secondStripHeight;
         float rand = Random.Range(0, areaOfFigure);
 

@@ -25,6 +25,8 @@ public class EnemiesSpawner : MonoBehaviour
 	private int _nextPackIndex;
 	private int _currentMoneySpent = 0;
 
+	private EnemiesInSceneCounter _enemiesInSceneCounter = new EnemiesInSceneCounter();
+
 	private void Awake()
 	{
 		// На каждой новой сцене (при гарантии что спаунер 1) глобальная ссылка будет перезаписываться на необходимую
@@ -84,7 +86,7 @@ public class EnemiesSpawner : MonoBehaviour
 
 	private void SelectNextPack()
 	{
-		int nextPackIndex = Mathf.RoundToInt(_controlledRandom.CalculateRandomValue() * _enemiesPacks.Length);
+		int nextPackIndex = Mathf.RoundToInt(_controlledRandom.CalculateRandomValue(_enemiesInSceneCounter.AmountOfEnemies) * _enemiesPacks.Length);
 		_nextPackIndex = nextPackIndex;
 	}
 
