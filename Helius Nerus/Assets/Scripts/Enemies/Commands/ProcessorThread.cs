@@ -44,5 +44,4 @@ public class ProcessorThread<CommandParameters> where CommandParameters : IComma
 			}
 		}
 	}
-
 }

@@ -13,8 +13,8 @@ public class MoveCommandData
 	[Tooltip("Эта команда выполнится один раз?")]
 	[SerializeField] private bool _workOnce = false;
 
-	public float MovementMultiplier => _movementMultiplier;
-	public float TimeScale => _timeScale;
-	public float EndParameter => _endParameter;
-	public bool WorkOnce => _workOnce;
+	public float MovementMultiplier { get => _movementMultiplier; set => _movementMultiplier = value; }
+	public float TimeScale { get => _timeScale; set => _timeScale = value; }
+	public float EndParameter { get => _endParameter; set => _endParameter = value; }
+	public bool WorkOnce { get => _workOnce; set => _workOnce = value; }
 }

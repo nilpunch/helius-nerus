@@ -24,11 +24,17 @@ public class StraightShootWeaponCommand : WeaponCommand
 	public override void Reset()
 	{
 		_timeElapsed = 0.0f;
+		_isShootedOnce = false;
 	}
 
 	public override void Tick(Transform transform)
 	{
 		_timeElapsed += Time.deltaTime;
-		// TODO
+		if (_timeElapsed > CommandData.DelayBeforeShoot && _isShootedOnce == false)
+		{
+			_isShootedOnce = true;
+			CommandData.Position = transform.position;
+			base.Shoot(CommandData);
+		}
 	}
 }

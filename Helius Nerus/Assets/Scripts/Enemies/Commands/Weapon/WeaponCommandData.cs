@@ -27,15 +27,15 @@ public class WeaponCommandData
 	[Tooltip("Эта команда выполнится один раз?")]
 	[SerializeField] private bool _workOnce = false;
 
-	public GameObject BulletPrefab => _bulletPrefab;
-	public float DelayBeforeShoot=> _delayBeforeShoot;
-	public float DelayAfterShoot => _delayAfterShoot;
-	public Vector2 Position => _position;
-	public Vector2 Direction => _direction;
-	public int BulletAmount => _bulletAmount;
-	public float SpreadAngle => _spreadAngleDegrees;
-	public float BulletSpeed => _bulletSpeed;
-	public int BulletDamage => _bulletDamage;
-	public float BulletSize => _bulletSize;
-	public bool WorkOnce => _workOnce;
+	public GameObject BulletPrefab { get => _bulletPrefab; set => _bulletPrefab = value; }
+	public float DelayBeforeShoot { get => _delayBeforeShoot; set => _delayBeforeShoot = value; }
+	public float DelayAfterShoot { get => _delayAfterShoot; set => _delayAfterShoot = value; }
+	public Vector2 Position { get => _position; set => _position = value; }
+	public Vector2 Direction { get => _direction; set => _direction = value; }
+	public int BulletAmount { get => _bulletAmount; set => _bulletAmount = value; }
+	public float SpreadAngle { get => _spreadAngleDegrees; set => _spreadAngleDegrees = value; }
+	public float BulletSpeed { get => _bulletSpeed; set => _bulletSpeed = value; }
+	public int BulletDamage { get => _bulletDamage; set => _bulletDamage = value; }
+	public float BulletSize { get => _bulletSize; set => _bulletSize = value; }
+	public bool WorkOnce { get => _workOnce; set => _workOnce = value; }
 }
