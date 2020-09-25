@@ -6,8 +6,9 @@ public abstract class WeaponCommand : IEnemyCommand
 	protected float _timeDelayBefore = 0.0f;
 	protected float _timeDelayAfter = 0.0f;
 
-	public abstract bool WorkOnce { get; }
+	public bool WorkOnce { get; private set; }
 
 	public abstract void Tick();
 	public abstract bool IsEnded();
+	public abstract void Reset();
 }
