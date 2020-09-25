@@ -6,13 +6,13 @@ using UnityEngine;
 public class ProcessorThread
 {
     [System.Serializable]
-    private struct CommandParametrs
+    private class CommandParametrs
     {
-        [SerializeField] private string _commandType;
-        [SerializeField] private float _movementMultiplier;
-        [SerializeField] private float _timeScale;
-        [SerializeField] private float _endParameter;
-        [SerializeField] private bool _workOnce;
+        [SerializeField] private string _commandType = "Down";
+        [SerializeField] private float _movementMultiplier = 1.0f;
+        [SerializeField] private float _timeScale = 1.0f;
+        [SerializeField] private float _endParameter = 1.0f;
+        [SerializeField] private bool _workOnce = false;
 
         public MovementCommand CommandParamsToCommand()
         {
