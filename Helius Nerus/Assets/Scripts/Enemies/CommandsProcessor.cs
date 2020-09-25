@@ -1,10 +1,9 @@
 ﻿using UnityEngine;
 
 [System.Serializable]
-public class MovementCommandsProcessor
+public class CommandsProcessor<CommandParameters> where CommandParameters : ICommandParameters
 {
-    [SerializeField] private ProcessorThread[] _threads = null;
-
+    [SerializeField] private ProcessorThread<CommandParameters>[] _threads = null;
 
     private Transform _enemyShip = null;
 
