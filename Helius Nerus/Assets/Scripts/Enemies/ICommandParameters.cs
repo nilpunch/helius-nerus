@@ -2,4 +2,3 @@
 {
 	IEnemyCommand CommandParamsToCommand();
 }
-

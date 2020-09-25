@@ -8,7 +8,7 @@ public class WeaponCommandParameters : ICommandParameters
 
 	public IEnemyCommand CommandParamsToCommand()
 	{
-		Type comType = Type.GetType(_commandType + "MovementCommand");
+		Type comType = Type.GetType(_commandType + "WeaponCommand");
 		WeaponCommand instance = (WeaponCommand)Activator.CreateInstance(comType);
 		instance.SetParametrs(_weaponCommandData);
 
