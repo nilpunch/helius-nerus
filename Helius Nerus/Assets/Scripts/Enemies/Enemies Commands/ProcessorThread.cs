@@ -24,7 +24,7 @@ public class ProcessorThread<CommandParameters> where CommandParameters : IComma
 		//_commandParametrs.Clear();
 	}
 
-	public void Tick()
+	public void TickCommand()
 	{
 		if (_commands.Count == 0)
 			return;

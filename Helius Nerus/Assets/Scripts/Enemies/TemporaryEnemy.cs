@@ -13,7 +13,7 @@ public class TemporaryEnemy : MonoBehaviour
 
     private void Update()
     {
-		_moveProcessor.Tick();
-		_weaponProcessor.Tick();
+		_moveProcessor.TickCommandThreads();
+		_weaponProcessor.TickCommandThreads();
     }
 }

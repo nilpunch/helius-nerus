@@ -15,9 +15,9 @@ public class CommandsProcessor<CommandParameters> where CommandParameters : ICom
             _threads[i].Initialize(_enemyShip);
     }
 
-    public void Tick()
+    public void TickCommandThreads()
     {
         for (int i = 0; i < _threads.Length; ++i)
-            _threads[i].Tick();
+            _threads[i].TickCommand();
     }
 }
