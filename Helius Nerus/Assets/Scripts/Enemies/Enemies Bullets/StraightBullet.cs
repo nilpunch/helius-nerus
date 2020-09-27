@@ -4,8 +4,24 @@ using UnityEngine;
 
 public class StraightBullet : MonoBehaviour
 {
-    void Update()
+	[SerializeField] private float LiveTime = 1f;
+	[SerializeField] private float Speed = 4f;
+
+	private Transform _transform;
+
+	private void Start()
+	{
+		_transform = gameObject.transform;
+	}
+
+	void Update()
     {
-		transform.Translate(transform.up * 10f * Time.deltaTime);
+		LiveTime -= Time.deltaTime;
+		if (LiveTime <= 0f)
+		{
+			Destroy(gameObject);
+		}
+
+		_transform.position += _transform.up * Speed * Time.deltaTime;
     }
 }

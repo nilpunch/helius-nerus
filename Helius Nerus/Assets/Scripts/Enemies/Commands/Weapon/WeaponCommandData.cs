@@ -10,7 +10,9 @@ public class WeaponCommandData
 	[SerializeField] private float _delayBeforeShoot = 0.0f;
 	[Tooltip("Задержка после выстрела")]
 	[SerializeField] private float _delayAfterShoot = 0.0f;
-	[Tooltip("Оффсет относительно позиции врага")]
+	[Tooltip("Множитель времени для команды")]
+	[SerializeField] private float _timeScale = 1.0f;
+	[Tooltip("Позиция точки выстрела или оффсет")]
 	[SerializeField] private Vector2 _position = Vector2.zero;
 	[Tooltip("Напрваление выстрела")]
 	[SerializeField] private Vector2 _direction = Vector2.up;
@@ -27,9 +29,33 @@ public class WeaponCommandData
 	[Tooltip("Эта команда выполнится один раз?")]
 	[SerializeField] private bool _workOnce = false;
 
+	private WeaponCommandData _originalData;
+
+	public void StoreData()
+	{
+		_originalData = (WeaponCommandData)this.MemberwiseClone();
+	}
+
+	public void RestoreData()
+	{
+		_bulletPrefab = _originalData._bulletPrefab;
+		_delayBeforeShoot = _originalData._delayBeforeShoot;
+		_delayAfterShoot = _originalData._delayAfterShoot;
+		_timeScale = _originalData._timeScale;
+		_position = _originalData._position;
+		_direction = _originalData._direction;
+		_bulletAmount = _originalData._bulletAmount;
+		_spreadAngleDegrees = _originalData._spreadAngleDegrees;
+		_bulletSpeed = _originalData._bulletSpeed;
+		_bulletDamage = _originalData._bulletDamage;
+		_bulletSize = _originalData._bulletSize;
+		_workOnce = _originalData._workOnce;
+	}
+
 	public GameObject BulletPrefab { get => _bulletPrefab; set => _bulletPrefab = value; }
 	public float DelayBeforeShoot { get => _delayBeforeShoot; set => _delayBeforeShoot = value; }
 	public float DelayAfterShoot { get => _delayAfterShoot; set => _delayAfterShoot = value; }
+	public float TimeScale { get => _timeScale; set => _timeScale = value; }
 	public Vector2 Position { get => _position; set => _position = value; }
 	public Vector2 Direction { get => _direction; set => _direction = value; }
 	public int BulletAmount { get => _bulletAmount; set => _bulletAmount = value; }

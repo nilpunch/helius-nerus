@@ -6,16 +6,6 @@ public class StraightShootWeaponCommand : WeaponCommand
 	private float _timeElapsed = 0.0f;
 	private bool _isShootedOnce = false;
 
-	public StraightShootWeaponCommand()
-	{
-		_timeElapsed = 0.0f;
-	}
-
-	public StraightShootWeaponCommand(WeaponCommandData commandData) : base(commandData)
-	{
-		_timeElapsed = 0.0f;
-	}
-
 	public override bool IsEnded()
 	{
 		return _timeElapsed > CommandData.DelayBeforeShoot + CommandData.DelayAfterShoot;
@@ -25,15 +15,16 @@ public class StraightShootWeaponCommand : WeaponCommand
 	{
 		_timeElapsed = 0.0f;
 		_isShootedOnce = false;
+		CommandData.RestoreData();
 	}
 
 	public override void Tick(Transform transform)
 	{
-		_timeElapsed += Time.deltaTime;
+		_timeElapsed += Time.deltaTime * CommandData.TimeScale;
 		if (_timeElapsed > CommandData.DelayBeforeShoot && _isShootedOnce == false)
 		{
 			_isShootedOnce = true;
-			CommandData.Position = transform.position;
+			CommandData.Position = CommandData.Position + (Vector2)transform.position;
 			base.Shoot(CommandData);
 		}
 	}

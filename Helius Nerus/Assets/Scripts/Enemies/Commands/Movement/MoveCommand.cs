@@ -7,13 +7,6 @@ public abstract class MoveCommand : IEnemyCommand
 
 	public bool WorkOnce => CommandData.WorkOnce;
 
-    public MoveCommand() { }
-
-    public MoveCommand(MoveCommandData commandData)
-    {
-		CommandData = commandData;
-	}
-
     public void SetParametrs(MoveCommandData commandData)
     {
 		CommandData = commandData;

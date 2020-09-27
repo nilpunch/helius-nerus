@@ -6,16 +6,10 @@ public abstract class WeaponCommand : IEnemyCommand
 
 	public bool WorkOnce => CommandData.WorkOnce;
 
-	public WeaponCommand() { }
-
-	public WeaponCommand(WeaponCommandData commandData)
-	{
-		CommandData = commandData;
-	}
-
 	public void SetParametrs(WeaponCommandData commandData)
 	{
 		CommandData = commandData;
+		CommandData.StoreData();
 	}
 
 	public abstract void Tick(Transform transform);
@@ -42,8 +36,7 @@ public abstract class WeaponCommand : IEnemyCommand
 		{
 			GameObject bullet = GameObject.Instantiate(commandData.BulletPrefab);
 			bullet.transform.position = commandData.Position;
-			bullet.transform.localEulerAngles = new Vector3(0f, 0f, Vector2.Angle(Vector2.up, commandData.Direction) + _angleStep * (i - _halfBulletAmount));
-			bullet.SetActive(true);
-		}
+			bullet.transform.localEulerAngles = new Vector3(0f, 0f, Vector2.Angle(Vector2.up, commandData.Direction) + (_angleStep * (i - _halfBulletAmount)));
+		} 
 	}
 }
