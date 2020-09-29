@@ -51,12 +51,11 @@ public class EnemiesSpawner : MonoBehaviour
 			}
 			_timeBeforeReceivingMoney = 0.0f;
 
-			int nextPackCost = _enemiesPacks[_nextPackIndex].Cost;
-			if (_money > nextPackCost)
+			while (_money > _enemiesPacks[_nextPackIndex].Cost)
 			{
 				// Пересчитываем деньги
-				_money -= nextPackCost;
-				_currentMoneySpent += nextPackCost;
+				_money -= _enemiesPacks[_nextPackIndex].Cost;
+				_currentMoneySpent += _enemiesPacks[_nextPackIndex].Cost;
                 SpawnNextPack();
                 SelectNextPack();
                 if (MoneyLimitNotReached() == false)
