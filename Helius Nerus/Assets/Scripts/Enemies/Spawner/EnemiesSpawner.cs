@@ -25,7 +25,6 @@ public class EnemiesSpawner : MonoBehaviour
 	private int _nextPackIndex;
 	private int _currentMoneySpent = 0;
 
-	private EnemiesInSceneCounter _enemiesInSceneCounter = new EnemiesInSceneCounter();
 
 	private void Awake()
 	{
@@ -37,6 +36,8 @@ public class EnemiesSpawner : MonoBehaviour
 	{
 		// Сортировка пачек врагов по возрастанию
 		System.Array.Sort(_enemiesPacks, (pack1, pack2) => pack1.Cost - pack2.Cost);
+
+        SelectNextPack();
 	}
 
 	private void Update()
@@ -50,26 +51,23 @@ public class EnemiesSpawner : MonoBehaviour
 			}
 			_timeBeforeReceivingMoney = 0.0f;
 
-			int spendings = _enemiesPacks[_nextPackIndex].Cost;
-			if (_money > spendings)
+			int nextPackCost = _enemiesPacks[_nextPackIndex].Cost;
+			if (_money > nextPackCost)
 			{
 				// Пересчитываем деньги
-				_money -= spendings;
-				_currentMoneySpent += spendings;
-				if (MoneyLimitNotReached())
+				_money -= nextPackCost;
+				_currentMoneySpent += nextPackCost;
+                SpawnNextPack();
+                SelectNextPack();
+                if (MoneyLimitNotReached() == false)
 				{
 					// Обнулить деньги чтобы гарантировать единоразовый вызов события MoneyRunOut()
 					_money = 0;
 					MoneyRunOut.Invoke();
 				}
-				else
-				{
-					SpawnNextPack();
-					SelectNextPack();
-				}
 			}
 		}
-	}
+    }
 
 	private bool MoneyLimitNotReached()
 	{
@@ -80,14 +78,14 @@ public class EnemiesSpawner : MonoBehaviour
 	{
 		PackOfEnemies nextPack = _enemiesPacks[_nextPackIndex];
 		GameObject packGameObject = Instantiate(nextPack.PackPrefab);
-		float screenWidth = Camera.main.orthographicSize / Camera.main.aspect;
+		float screenWidth = Camera.main.orthographicSize * Camera.main.aspect;
 		packGameObject.transform.position = transform.position.With(x: Random.Range(-screenWidth + nextPack.Width, screenWidth - nextPack.Width));
 	}
 
 	private void SelectNextPack()
 	{
-		int nextPackIndex = Mathf.RoundToInt(_controlledRandom.CalculateRandomValue(_enemiesInSceneCounter.AmountOfEnemies) * _enemiesPacks.Length);
-		_nextPackIndex = nextPackIndex;
+		int nextPackIndex = Mathf.RoundToInt(_controlledRandom.CalculateRandomValue(Game_Temp.Instance.EnemiesCounter.AmountOfEnemies) * (_enemiesPacks.Length - 1));
+        _nextPackIndex = nextPackIndex;
 	}
 
 	//Как-то перевесить на событие?

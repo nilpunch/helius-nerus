@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-public class EnemiesInSceneCounter
+﻿public class EnemiesInSceneCounter
 {
 	public int AmountOfEnemies { get; private set; } = 0;
 

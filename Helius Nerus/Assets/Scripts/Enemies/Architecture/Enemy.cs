@@ -6,11 +6,12 @@ public class Enemy : MonoBehaviour
     [SerializeField] private CommandsProcessor<MoveCommandParameters> _moveProcessor = new CommandsProcessor<MoveCommandParameters>();
     [SerializeField] private CommandsProcessor<WeaponCommandParameters> _weaponProcessor = new CommandsProcessor<WeaponCommandParameters>();
 
-    private void Awake()
+    private void Start()
     {
         _moveProcessor.Initialize(transform);
         _weaponProcessor.Initialize(transform);
         // Increment enemies counter
+        Game_Temp.Instance.EnemiesCounter.IncrementEnemies();
     }
 
     private void Update()
@@ -31,15 +32,16 @@ public class Enemy : MonoBehaviour
     private void OnDestroy()
     {
         // Decrement enemies counter
-        // Delete itself
+        Game_Temp.Instance.EnemiesCounter.DectrementEnemies();
     }
 
     // Тут еще должен быть коллайдер или триггер, но он может быть и на пулях, хз
     // Возможно, что пули будут делать только урон попаданиями, а этот будет делать урон при контакте
 
-    //private void OnCollisionEnter2D(Collision2D collision) // Maybe OnCollisionStay even
-    //{
-    //    if collide with player
-    //      deal _stats.DamageOnContact damage
-    //}
+    private void OnCollisionEnter2D(Collision2D collision) // Maybe OnCollisionStay even
+    {
+        //check for player
+
+        Destroy(gameObject);
+    }
 }
