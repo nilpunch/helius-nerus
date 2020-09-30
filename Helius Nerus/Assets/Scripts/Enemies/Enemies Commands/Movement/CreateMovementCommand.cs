@@ -19,6 +19,7 @@ public class CreateMovementCommand : MonoBehaviour
         }
     }
 
+    // Здесь они инициализировались
     public void Initialize()
     {
         PreCookTypes();
@@ -29,6 +30,7 @@ public class CreateMovementCommand : MonoBehaviour
         return _moveCommandTypes[(int)type];
     }
 
+    // А здесь получались
     public MoveCommand GetCommandByEnum(MoveCommandType type)
     {
         return _moveCommands[(int)type].Clone();

@@ -6,6 +6,7 @@ public class ProcessorThread<CommandParameters> where CommandParameters : IComma
 {
 	[SerializeField] private List<CommandParameters> _commandParametrs = new List<CommandParameters>();
 
+    // тута валялись новые команды
     [SerializeField] private List<MoveCommandType> _commands2 = new List<MoveCommandType>();
 
 	private List<IEnemyCommand> _commands = new List<IEnemyCommand>();

@@ -12,8 +12,9 @@ public class TemporaryEnemy : MonoBehaviour
         _createMovementCommand = new CreateMovementCommand();
         _createMovementCommand.Initialize();
 
-        //_moveProcessor.Initialize(transform);
-        _moveProcessor.InitializeNewWay(transform);
+        _moveProcessor.Initialize(transform);
+        // Здесь была другая тестовая версия
+        //_moveProcessor.InitializeNewWay(transform);
 		_weaponProcessor.Initialize(transform);
 
     }
