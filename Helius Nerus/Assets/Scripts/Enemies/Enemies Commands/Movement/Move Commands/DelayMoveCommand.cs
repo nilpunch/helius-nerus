@@ -4,6 +4,11 @@ class DelayMoveCommand : MoveCommand
 {
 	private float _timeElapsed = 0.0f;
 
+    public DelayMoveCommand()
+    {
+
+    }
+
 	public override bool IsEnded()
 	{
 		return _timeElapsed > CommandData.EndParameter;

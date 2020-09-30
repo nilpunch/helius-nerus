@@ -15,4 +15,9 @@ public abstract class MoveCommand : IEnemyCommand
 	public abstract void Tick(Transform ship);
     public abstract bool IsEnded();
     public abstract void Reset();
+
+    public MoveCommand Clone()
+    {
+        return (MoveCommand)this.MemberwiseClone();
+    }
 }

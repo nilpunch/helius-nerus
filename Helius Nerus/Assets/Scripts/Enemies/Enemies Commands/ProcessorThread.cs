@@ -1,11 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
 public class ProcessorThread<CommandParameters> where CommandParameters : ICommandParameters
 {
 	[SerializeField] private List<CommandParameters> _commandParametrs = new List<CommandParameters>();
+
+    [SerializeField] private List<MoveCommandType> _commands2 = new List<MoveCommandType>();
 
 	private List<IEnemyCommand> _commands = new List<IEnemyCommand>();
 
@@ -24,7 +25,19 @@ public class ProcessorThread<CommandParameters> where CommandParameters : IComma
 		//_commandParametrs.Clear();
 	}
 
-	public void TickCommand()
+    public void InitializeNewWay(Transform transform)
+    {
+        //_transform = transform;
+
+        //for (int i = 0; i < _commands2.Count; ++i)
+        //{
+        //    MoveCommand com = CreateMovementCommand.GetCommandByEnum(_commands2[i]);
+        //    com.SetParametrs(new MoveCommandData(1, 1, 1, false));
+        //    _commands.Add(com);
+        //}
+    }
+
+    public void TickCommand()
 	{
 		if (_commands.Count == 0)
 			return;

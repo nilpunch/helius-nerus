@@ -260,19 +260,7 @@ MonoBehaviour:
           _timeScale: 2
           _endParameter: 1
           _workOnce: 0
-    - _commandParametrs:
-      - _commandType: Vertical
-        _moveCommandData:
-          _movementMultiplier: 2
-          _timeScale: 1
-          _endParameter: 1
-          _workOnce: 1
-      - _commandType: Vertical
-        _moveCommandData:
-          _movementMultiplier: 0.5
-          _timeScale: 1
-          _endParameter: 1
-          _workOnce: 0
+      _commands2: 0200000001000000
   _weaponProcessor:
     _threads:
     - _commandParametrs:
@@ -305,6 +293,7 @@ MonoBehaviour:
           _bulletDamage: 0
           _bulletSize: 0
           _workOnce: 0
+      _commands2: 
 --- !u!65 &592102900
 BoxCollider:
   m_ObjectHideFlags: 0
