@@ -1,4 +1,6 @@
 ﻿public enum MoveCommandType
 {
-    Delay, Horizontal, Vertical
+    Delay,
+	Horizontal,
+	Vertical,
 }

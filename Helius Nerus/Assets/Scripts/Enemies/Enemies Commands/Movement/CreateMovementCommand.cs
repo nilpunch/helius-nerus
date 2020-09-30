@@ -8,10 +8,13 @@ public class CreateMovementCommand : MonoBehaviour
     private List<MoveCommand> _moveCommands = new List<MoveCommand>();
 
 
+
+
     private void PreCookTypes()
     {
         _moveCommandTypes.Clear();
-        foreach (MoveCommandType type in (MoveCommandType[])Enum.GetValues(typeof(MoveCommandType)))
+		_moveCommands.Clear();
+		foreach (MoveCommandType type in (MoveCommandType[])Enum.GetValues(typeof(MoveCommandType)))
         {
             Type ctype = Type.GetType(type.ToString() + "MoveCommand");
             _moveCommandTypes.Add(ctype);

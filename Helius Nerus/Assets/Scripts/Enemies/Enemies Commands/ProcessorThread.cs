@@ -20,7 +20,7 @@ public class ProcessorThread<CommandParameters> where CommandParameters : IComma
 
 		for (int i = 0; i < _commandParametrs.Count; ++i)
 		{
-			_commands.Add(_commandParametrs[i].CommandParamsToCommand());
+			_commands.Add(_commandParametrs[i].CreateCommand());
 		}
 
 		//_commandParametrs.Clear();
