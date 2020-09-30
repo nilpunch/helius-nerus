@@ -17,4 +17,13 @@ public class MoveCommandData
 	public float TimeScale { get => _timeScale; set => _timeScale = value; }
 	public float EndParameter { get => _endParameter; set => _endParameter = value; }
 	public bool WorkOnce { get => _workOnce; set => _workOnce = value; }
+
+    // Ктор
+    public MoveCommandData(float movement, float time, float end, bool work)
+    {
+        _movementMultiplier = movement;
+        _timeScale = time;
+        _endParameter = end;
+        _workOnce = work;
+    }
 }

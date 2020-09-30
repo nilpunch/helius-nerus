@@ -4,7 +4,12 @@ class HorizontalMoveCommand : MoveCommand
 {
 	private float _timeElapsed = 0.0f;
 
-	public override bool IsEnded()
+    public HorizontalMoveCommand()
+    {
+
+    }
+
+    public override bool IsEnded()
 	{
 		return _timeElapsed > CommandData.EndParameter;
 	}

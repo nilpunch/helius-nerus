@@ -16,6 +16,11 @@ public abstract class WeaponCommand : IEnemyCommand
 	public abstract bool IsEnded();
 	public abstract void Reset();
 
+	public WeaponCommand Clone()
+	{
+		return (WeaponCommand)this.MemberwiseClone();
+	}
+
 	public virtual void Shoot(WeaponCommandData commandData)
 	{
 		float _halfBulletAmount = 0f;

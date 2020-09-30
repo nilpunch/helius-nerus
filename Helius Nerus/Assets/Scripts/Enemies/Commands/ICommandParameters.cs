@@ -1,4 +1,4 @@
 ﻿public interface ICommandParameters
 {
-	IEnemyCommand CommandParamsToCommand();
+	IEnemyCommand CreateCommand();
 }

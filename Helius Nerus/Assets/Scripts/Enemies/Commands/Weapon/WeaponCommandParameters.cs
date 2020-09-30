@@ -4,24 +4,13 @@ using UnityEngine;
 [System.Serializable]
 public class WeaponCommandParameters : ICommandParameters
 {
-	[SerializeField] private string _commandType = "Empty";
+	[SerializeField] private WeaponCommandType _shootType = WeaponCommandType.Delay;
 	[SerializeField] private WeaponCommandData _weaponCommandData = null;
 
-	public IEnemyCommand CommandParamsToCommand()
+	public IEnemyCommand CreateCommand()
 	{
-		Type comType = Type.GetType(_commandType + "WeaponCommand");
-		if (comType != null)
-		{
-			WeaponCommand instance = (WeaponCommand)Activator.CreateInstance(comType);
-			instance.SetParametrs(_weaponCommandData);
-			return instance;
-		}
-		else
-		{
-#if UNITY_EDITOR
-			Debug.LogWarning("WeaponCommandParameters handle wrong command type: " + _commandType + "WeaponCommand");
-#endif
-			return new EmptyEnemyCommand();
-		}
+		WeaponCommand instance = CommandsCollection.GetCommandByEnum(_shootType);
+		instance.SetParametrs(_weaponCommandData);
+		return instance;
 	}
 }

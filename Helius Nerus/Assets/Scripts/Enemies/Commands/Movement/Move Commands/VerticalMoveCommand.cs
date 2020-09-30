@@ -4,7 +4,12 @@ public class VerticalMoveCommand : MoveCommand
 {
 	private float _timeElapsed = 0.0f;
 
-	public override bool IsEnded()
+    public VerticalMoveCommand()
+    {
+
+    }
+
+    public override bool IsEnded()
 	{
 		return _timeElapsed > CommandData.EndParameter;
 	}
