@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c62ada46ba70d854093b9c519f7c66c9, type: 3}
+  m_Name: DelaySimple
+  m_EditorClassIdentifier: 
+  _moveType: 0
+  _moveCommandData:
+    _movementMultiplier: 1
+    _timeScale: 1
+    _endParameter: 1
+    _workOnce: 0

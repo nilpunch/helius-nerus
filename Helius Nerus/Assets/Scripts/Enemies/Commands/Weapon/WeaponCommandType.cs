@@ -1,5 +1,5 @@
 ﻿public enum WeaponCommandType
 {
 	Delay,
-	Straight,
+	StraightShoot,
 }

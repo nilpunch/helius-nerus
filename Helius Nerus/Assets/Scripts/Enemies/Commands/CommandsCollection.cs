@@ -39,7 +39,7 @@ public class CommandsCollection : MonoBehaviour
 
 	private void Awake()
 	{
-		if (Instance != null)
+		if (Instance == null)
 		{
 			Instance = this;
 		}
@@ -51,9 +51,9 @@ public class CommandsCollection : MonoBehaviour
 
 		DontDestroyOnLoad(gameObject);
 		PreCookTypes();
-	}
+    }
 
-	private void PreCookTypes()
+    private void PreCookTypes()
     {
         _moveCommandTypes.Clear();
 		_moveCommands.Clear();

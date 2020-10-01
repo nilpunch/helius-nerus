@@ -129,16 +129,12 @@ MonoBehaviour:
   _moveProcessor:
     _threads:
     - _commandParametrs:
-      - _commandType: Vertical
-        _moveCommandData:
-          _movementMultiplier: 1
-          _timeScale: 1
-          _endParameter: 1
-          _workOnce: 0
+      - {fileID: 11400000, guid: 1a0097d3cd5a4294f8a5e9d2a6e73e64, type: 2}
+      _commands2: 
   _weaponProcessor:
     _threads:
     - _commandParametrs:
-      - _commandType: StraightShoot
+      - _shootType: 0
         _weaponCommandData:
           _bulletPrefab: {fileID: 1887077977481458806, guid: 82b08e0786d534342810e3baed98ac60,
             type: 3}
@@ -153,3 +149,4 @@ MonoBehaviour:
           _bulletDamage: 1
           _bulletSize: 1
           _workOnce: 0
+      _commands2: 
