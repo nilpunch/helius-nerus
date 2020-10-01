@@ -26,4 +26,9 @@ public class MoveCommandData
         _endParameter = end;
         _workOnce = work;
     }
+
+    public MoveCommandData Clone()
+    {
+        return (MoveCommandData)this.MemberwiseClone();
+    }
 }

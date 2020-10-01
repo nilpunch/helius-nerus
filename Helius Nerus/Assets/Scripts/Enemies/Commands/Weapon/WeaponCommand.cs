@@ -8,7 +8,7 @@ public abstract class WeaponCommand : IEnemyCommand
 
 	public void SetParametrs(WeaponCommandData commandData)
 	{
-		CommandData = commandData;
+		CommandData = commandData.Clone();
 		CommandData.StoreData();
 	}
 

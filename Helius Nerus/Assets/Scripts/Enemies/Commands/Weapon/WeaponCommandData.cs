@@ -36,6 +36,11 @@ public class WeaponCommandData
 		_originalData = (WeaponCommandData)this.MemberwiseClone();
 	}
 
+    public WeaponCommandData Clone()
+    {
+        return (WeaponCommandData)this.MemberwiseClone();
+    }
+
 	public void RestoreData()
 	{
 		_bulletPrefab = _originalData._bulletPrefab;

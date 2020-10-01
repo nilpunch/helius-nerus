@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(fileName = "MoveCommand", menuName = "ScriptableObjects/Move commands", order = 1)]
+[CreateAssetMenu(fileName = "MoveCommand", menuName = "ScriptableObjects/Move commands", order = 2)]
 public class MoveCommandScriptableObject : ScriptableObject, ICommandParameters
 {
     [SerializeField] private MoveCommandType _moveType = MoveCommandType.Delay;

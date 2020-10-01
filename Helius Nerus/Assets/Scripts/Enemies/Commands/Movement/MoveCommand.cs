@@ -8,7 +8,7 @@ public abstract class MoveCommand : IEnemyCommand
 
     public void SetParametrs(MoveCommandData commandData)
     {
-		CommandData = commandData;
+		CommandData = commandData.Clone();
 	}
 
 	public abstract void Tick(Transform ship);
