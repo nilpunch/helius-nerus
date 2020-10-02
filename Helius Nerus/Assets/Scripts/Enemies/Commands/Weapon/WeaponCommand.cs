@@ -39,7 +39,7 @@ public abstract class WeaponCommand : IEnemyCommand
 
 		for (int i = 0; i < commandData.BulletAmount; ++i)
 		{
-			GameObject bullet = GameObject.Instantiate(commandData.BulletPrefab);
+            GameObject bullet = BulletPoolsContainer.Instance.GetObjectFromPool(commandData.BulletType);
             (bullet.GetComponent(typeof(IBulletMovement)) as IBulletMovement).SpeedMultiplier = commandData.BulletSpeed;
 			bullet.transform.position = commandData.Position;
 			bullet.transform.localEulerAngles = new Vector3(0f, 0f, Vector2.Angle(Vector2.up, commandData.Direction) + (_angleStep * (i - _halfBulletAmount)));

@@ -18,4 +18,10 @@ public class StraightMove : MonoBehaviour, IBulletMovement
     {
         _transform.Translate(Vector3.up * Time.deltaTime * _speedMultiplier, Space.Self);
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        // Нанести урон еще надо
+        BulletPoolsContainer.Instance.ReturnObjectToPool(BulletTypes.StraightMove, gameObject);
+    }
 }

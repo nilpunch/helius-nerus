@@ -4,8 +4,8 @@ using UnityEngine;
 [System.Serializable]
 public class WeaponCommandData
 {
-	[Tooltip("Префаб выпускаемой пули")]
-	[SerializeField] private GameObject _bulletPrefab = null;
+    [Tooltip("Энам с типом выпускаемой пули")]
+    [SerializeField] private BulletTypes _bulletType = BulletTypes.StraightMove;
 	[Tooltip("Задержка перед выстрелом")]
 	[SerializeField] private float _delayBeforeShoot = 0.0f;
 	[Tooltip("Задержка после выстрела")]
@@ -43,7 +43,7 @@ public class WeaponCommandData
 
 	public void RestoreData()
 	{
-		_bulletPrefab = _originalData._bulletPrefab;
+        _bulletType = _originalData._bulletType;
 		_delayBeforeShoot = _originalData._delayBeforeShoot;
 		_delayAfterShoot = _originalData._delayAfterShoot;
 		_timeScale = _originalData._timeScale;
@@ -57,7 +57,7 @@ public class WeaponCommandData
 		_workOnce = _originalData._workOnce;
 	}
 
-	public GameObject BulletPrefab { get => _bulletPrefab; set => _bulletPrefab = value; }
+	public BulletTypes BulletType { get => _bulletType; set => _bulletType = value; }
 	public float DelayBeforeShoot { get => _delayBeforeShoot; set => _delayBeforeShoot = value; }
 	public float DelayAfterShoot { get => _delayAfterShoot; set => _delayAfterShoot = value; }
 	public float TimeScale { get => _timeScale; set => _timeScale = value; }

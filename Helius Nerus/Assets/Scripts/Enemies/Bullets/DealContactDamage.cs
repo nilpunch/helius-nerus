@@ -13,6 +13,6 @@ public class DealContactDamage : MonoBehaviour
     {
         // Deal damage to player
         // Destroy itself
-        Destroy(gameObject);
+        // Destroy(gameObject);
     }
 }
