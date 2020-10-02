@@ -12,6 +12,8 @@ public class Enemy : MonoBehaviour
         _weaponProcessor.Initialize(transform);
         // Increment enemies counter
         Game_Temp.Instance.EnemiesCounter.IncrementEnemies();
+        //For pack shells
+        transform.DetachChildren();
     }
 
     private void Update()

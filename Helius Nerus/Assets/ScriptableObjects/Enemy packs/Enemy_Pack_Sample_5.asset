@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 533494104ea27e74a94d4d21344af462, type: 3}
   m_Name: Enemy_Pack_Sample_5
   m_EditorClassIdentifier: 
-  _packPrefab: {fileID: 8794504984383911516, guid: b5da3a0619b39844cb5a719e231fdc0a,
+  _packPrefab: {fileID: 979086957834440131, guid: 73fc664465705f64f85ccdf31fab940b,
     type: 3}
   _width: 0.5
   _cost: 50
