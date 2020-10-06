@@ -7,9 +7,9 @@ public class EnemiesSpawner : MonoBehaviour
 	[Tooltip("Параметры контроллируемого рандома")]
 	[SerializeField] private EnemiseSpawnerControlledRandom _controlledRandom = null;
 
-	[Tooltip("СО с пачками врагов")]
-	[SerializeField] private PackOfEnemies[] _enemiesPacks = null;
-	[Tooltip("Начальное количество денег")]
+    [Tooltip("СО с new пачками врагов")]
+    [SerializeField] private PackScriptableObject[] _enemiesPacksNew = null;
+    [Tooltip("Начальное количество денег")]
 	[SerializeField] private int _money = 10;
 	[Tooltip("Доход в секунду")]
 	[SerializeField] private int _moneyPerSecond = 10;
@@ -21,21 +21,24 @@ public class EnemiesSpawner : MonoBehaviour
 	public event System.Action MoneyRunOut = delegate { };
 
 	private float _timeBeforeReceivingMoney = 0.0f;
+    private float _screenWidth;
 
 	private int _nextPackIndex;
 	private int _currentMoneySpent = 0;
+    private Transform _transform;
 
 
 	private void Awake()
 	{
 		// На каждой новой сцене (при гарантии что спаунер 1) глобальная ссылка будет перезаписываться на необходимую
 		InstanceOnScene = this;
-	}
+        _transform = transform;
+        _screenWidth = Camera.main.orthographicSize * Camera.main.aspect;
+    }
 
 	private void Start()
 	{
-		// Сортировка пачек врагов по возрастанию
-		System.Array.Sort(_enemiesPacks, (pack1, pack2) => pack1.Cost - pack2.Cost);
+        System.Array.Sort(_enemiesPacksNew, (pack1, pack2) => pack1.Cost - pack2.Cost);
 
         SelectNextPack();
 	}
@@ -51,11 +54,11 @@ public class EnemiesSpawner : MonoBehaviour
 			}
 			_timeBeforeReceivingMoney = 0.0f;
 
-			while (_money > _enemiesPacks[_nextPackIndex].Cost)
+			while (_money > _enemiesPacksNew[_nextPackIndex].Cost)
 			{
 				// Пересчитываем деньги
-				_money -= _enemiesPacks[_nextPackIndex].Cost;
-				_currentMoneySpent += _enemiesPacks[_nextPackIndex].Cost;
+				_money -= _enemiesPacksNew[_nextPackIndex].Cost;
+				_currentMoneySpent += _enemiesPacksNew[_nextPackIndex].Cost;
                 SpawnNextPack();
                 SelectNextPack();
                 if (MoneyLimitNotReached() == false)
@@ -75,15 +78,20 @@ public class EnemiesSpawner : MonoBehaviour
 
 	private void SpawnNextPack()
 	{
-		PackOfEnemies nextPack = _enemiesPacks[_nextPackIndex];
-		GameObject packGameObject = Instantiate(nextPack.PackPrefab);
-		float screenWidth = Camera.main.orthographicSize * Camera.main.aspect;
-		packGameObject.transform.position = transform.position.With(x: Random.Range(-screenWidth + nextPack.Width, screenWidth - nextPack.Width));
+        PackScriptableObject nextNewPack = _enemiesPacksNew[_nextPackIndex];
+        GameObject newEnemy;
+        float randomOffset = Random.Range(-_screenWidth + nextNewPack.Width, _screenWidth - nextNewPack.Width);
+        for (int i = 0; i < nextNewPack.Enemies.Length; ++i)
+        {
+            newEnemy = EnemyPoolContainer.Instance.GetObjectFromPool(nextNewPack.Enemies[i].Type);
+            newEnemy.transform.parent = _transform;
+            newEnemy.transform.localPosition = nextNewPack.Enemies[i].Position + new Vector2(randomOffset, 0);
+        }
 	}
 
 	private void SelectNextPack()
 	{
-		int nextPackIndex = Mathf.RoundToInt(_controlledRandom.CalculateRandomValue(Game_Temp.Instance.EnemiesCounter.AmountOfEnemies) * (_enemiesPacks.Length - 1));
+		int nextPackIndex = Mathf.RoundToInt(_controlledRandom.CalculateRandomValue(Game_Temp.Instance.EnemiesCounter.AmountOfEnemies) * (_enemiesPacksNew.Length - 1));
         _nextPackIndex = nextPackIndex;
 	}
 

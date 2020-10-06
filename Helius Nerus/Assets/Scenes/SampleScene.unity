@@ -426,15 +426,15 @@ MonoBehaviour:
     _secondStripHeight: 0.2
     _mainStripLength: 0.2
     _maxEnemiesAmount: 100
-  _enemiesPacks:
-  - {fileID: 11400000, guid: a9f8eb5a5d52698409cd97e918b01828, type: 2}
-  - {fileID: 11400000, guid: a2af489786f58244693258cc30cbc2a1, type: 2}
-  - {fileID: 11400000, guid: 5eb26f98d55143d4cad8bf6f7eed2a5a, type: 2}
-  - {fileID: 11400000, guid: a2275d2e69c3da941ab57f279f5b769a, type: 2}
-  - {fileID: 11400000, guid: 05a53eb65a347464cadf7ef7b6cb4777, type: 2}
+  _enemiesPacksNew:
+  - {fileID: 11400000, guid: c2a83f7f404e9bd4c94981abdc141d0b, type: 2}
+  - {fileID: 11400000, guid: 2cd4ef7a8fdb2a44c93c87094e7b7489, type: 2}
+  - {fileID: 11400000, guid: 5c564458f61da7e4391d9ef115003882, type: 2}
+  - {fileID: 11400000, guid: 372afe2968d79a749aca188fa1556b8d, type: 2}
+  - {fileID: 11400000, guid: 66d2a420af1598e45941216e3ad83d3e, type: 2}
   _money: 0
-  _moneyPerSecond: 50
-  _moneySpendingLimit: 10000
+  _moneyPerSecond: 10
+  _moneySpendingLimit: 1000
   _playerDamageReward: 100
 --- !u!1 &963876716
 GameObject:
@@ -523,6 +523,53 @@ Transform:
   - {fileID: 851622436}
   m_Father: {fileID: 0}
   m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1160985848
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1160985850}
+  - component: {fileID: 1160985849}
+  m_Layer: 0
+  m_Name: EnemiesPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1160985849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1160985848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90587fb15e838c047aee87b92ca68469, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _enemiesPrefabs:
+  - {fileID: 3270552897385089057, guid: 7f671743707e95542a2291ee04a2de8a, type: 3}
+  - {fileID: 8624614454653179139, guid: 4e3c371813593f045bfea7d808573a09, type: 3}
+  - {fileID: 445486766643980032, guid: f3acc56d64e86524fbb1b36e36ebe1f1, type: 3}
+--- !u!4 &1160985850
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1160985848}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1343424963
 GameObject:

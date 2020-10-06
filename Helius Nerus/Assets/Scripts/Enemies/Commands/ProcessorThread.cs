@@ -6,9 +6,6 @@ public class ProcessorThread<CommandParameters> where CommandParameters : IComma
 {
 	[SerializeField] private List<CommandParameters> _commandParametrs = new List<CommandParameters>();
 
-    // тута валялись новые команды
-    //[SerializeField] private List<MoveCommandType> _commands2 = new List<MoveCommandType>();
-
 	private List<IEnemyCommand> _commands = new List<IEnemyCommand>();
 
 	private int _iterator = 0;
@@ -18,25 +15,14 @@ public class ProcessorThread<CommandParameters> where CommandParameters : IComma
 	{
 		_transform = transform;
 
+        _commands.Clear();
+
 		for (int i = 0; i < _commandParametrs.Count; ++i)
 		{
 			_commands.Add(_commandParametrs[i].CreateCommand());
 		}
-
-		//_commandParametrs.Clear();
 	}
 
-    //public void InitializeNewWay(Transform transform)
-    //{
-    //    //_transform = transform;
-
-    //    //for (int i = 0; i < _commands2.Count; ++i)
-    //    //{
-    //    //    MoveCommand com = CreateMovementCommand.GetCommandByEnum(_commands2[i]);
-    //    //    com.SetParametrs(new MoveCommandData(1, 1, 1, false));
-    //    //    _commands.Add(com);
-    //    //}
-    //}
 
     public void TickCommand()
 	{

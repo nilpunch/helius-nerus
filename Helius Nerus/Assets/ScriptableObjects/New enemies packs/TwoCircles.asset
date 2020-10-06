@@ -9,10 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 533494104ea27e74a94d4d21344af462, type: 3}
-  m_Name: Enemy_Pack_Sample_5
+  m_Script: {fileID: 11500000, guid: 1339e1ece3d2ea24cab4501c79d5527a, type: 3}
+  m_Name: TwoCircles
   m_EditorClassIdentifier: 
-  _packPrefab: {fileID: 979086957834440131, guid: 73fc664465705f64f85ccdf31fab940b,
-    type: 3}
-  _width: 0.5
-  _cost: 50
+  _enemies:
+  - _position: {x: -1, y: 0}
+    _type: 1
+  - _position: {x: 1, y: 0}
+    _type: 1
+  _width: 2.32
+  _cost: 40

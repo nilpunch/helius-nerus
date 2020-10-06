@@ -9,10 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 533494104ea27e74a94d4d21344af462, type: 3}
-  m_Name: Enemy_Pack_Sample_4
+  m_Script: {fileID: 11500000, guid: 1339e1ece3d2ea24cab4501c79d5527a, type: 3}
+  m_Name: ThreeSquares
   m_EditorClassIdentifier: 
-  _packPrefab: {fileID: 4863426037689992060, guid: bd044331cf9b0ab45949ca97abe2b4ef,
-    type: 3}
-  _width: 0.5
-  _cost: 40
+  _enemies:
+  - _position: {x: -1, y: 0}
+    _type: 0
+  - _position: {x: 0, y: 0}
+    _type: 0
+  - _position: {x: 1, y: 0}
+    _type: 0
+  _width: 1.82
+  _cost: 50

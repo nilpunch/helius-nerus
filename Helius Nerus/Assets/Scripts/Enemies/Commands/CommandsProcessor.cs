@@ -15,14 +15,6 @@ public class CommandsProcessor<CommandParameters> where CommandParameters : ICom
             _threads[i].Initialize(_enemyShip);
     }
 
-    //public void InitializeNewWay(Transform enemyShip)
-    //{
-    //    _enemyShip = enemyShip;
-
-    //    for (int i = 0; i < _threads.Length; ++i)
-    //        _threads[i].InitializeNewWay(_enemyShip);
-    //}
-
     public void TickCommandThreads()
     {
         for (int i = 0; i < _threads.Length; ++i)
