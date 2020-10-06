@@ -9,7 +9,7 @@ public class EnemyPoolContainer : MonoBehaviour
         private set;
     }
 
-    [Tooltip("ДОЛЖНЫ ИДТИ В ТОМ ЖЕ ПОРЯДКЕ, ЧТО И ТИПЫ ДВИЖЕНИЙ В ПЕРЕЧИСЛЕНИИ")]
+    [Tooltip("ДОЛЖНЫ ИДТИ В ТОМ ЖЕ ПОРЯДКЕ, ЧТО И ТИПЫ РВАГВО В ПЕРЕЧИСЛЕНИИ")]
     [SerializeField] private GameObject[] _enemiesPrefabs = null;
     private List<EnemyPool> _pools = new List<EnemyPool>();
     private Transform _transform;
