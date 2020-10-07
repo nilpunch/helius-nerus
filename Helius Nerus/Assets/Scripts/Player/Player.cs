@@ -7,6 +7,8 @@ public class Player : MonoBehaviour
 
     [SerializeField] private int _maxHealth = 4;
     [SerializeField] private float _invinsibilityTime = 1.0f;
+    [Tooltip("Список пушек персонажа")]
+    [SerializeField] private PlayerWeapon[] _weapons;
     private int _health = 4;
     private float _invinsibilityLeft = 0.0f;
     private bool _isInvincible = false;

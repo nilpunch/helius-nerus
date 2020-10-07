@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class PlayerBullet : MonoBehaviour, IReturnableToPool
 {
@@ -8,6 +9,8 @@ public class PlayerBullet : MonoBehaviour, IReturnableToPool
     }
     private float _speedMultiplier = 1.0f;
     private Transform _transform = null;
+
+    private List<IPlayerWeaponModifier> _modifiers = new List<IPlayerWeaponModifier>();
 
     private void Awake()
     {
@@ -26,6 +29,10 @@ public class PlayerBullet : MonoBehaviour, IReturnableToPool
         if (enemy != null)
         {
             enemy.TakeDamage(GetComponent<DealContactDamage>().Damage);
+            for (int i = 0; i < _modifiers.Count; ++i)
+            {
+                _modifiers[i].OnHit();
+            }
             // Какое-то условие по прочности
             if (true)
                 ReturnMeToPool();
@@ -34,6 +41,30 @@ public class PlayerBullet : MonoBehaviour, IReturnableToPool
 
     public void ReturnMeToPool()
     {
+        // Temp
+        ClearModifiers();
+        // Temp
+
+        for (int i = 0; i < _modifiers.Count; i++)
+        {
+            IPlayerWeaponModifier modifier = (IPlayerWeaponModifier)_modifiers[i];
+            _modifiers[i].OnDestroy();
+        }
         BulletPoolsContainer.Instance.ReturnObjectToPool(BulletTypes.PlayerBullet, gameObject);
+    }
+
+    public void AddMofifier(IPlayerWeaponModifier modifier)
+    {
+        _modifiers.Add(modifier);
+    }
+
+    public void ClearModifiers()
+    {
+        _modifiers.Clear();
+    }
+
+    public void SetModifiers(List<IPlayerWeaponModifier> modifiers)
+    {
+        _modifiers = modifiers;
     }
 }
