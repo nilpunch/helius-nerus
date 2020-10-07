@@ -34,9 +34,16 @@ public class EnemiesSpawner : MonoBehaviour
 		InstanceOnScene = this;
         _transform = transform;
         _screenWidth = Camera.main.orthographicSize * Camera.main.aspect;
+
+        Player.PlayerTookDamage += PlayerTookDamage;
     }
 
-	private void Start()
+    private void OnDestroy()
+    {
+        Player.PlayerTookDamage -= PlayerTookDamage;
+    }
+
+    private void Start()
 	{
         System.Array.Sort(_enemiesPacksNew, (pack1, pack2) => pack1.Cost - pack2.Cost);
 
