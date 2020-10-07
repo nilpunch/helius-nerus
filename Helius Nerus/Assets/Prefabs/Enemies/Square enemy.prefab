@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3270552897385089068}
   - component: {fileID: 3270552897385089059}
   - component: {fileID: 3270552897385089058}
+  - component: {fileID: -4058706709578365372}
   m_Layer: 8
   m_Name: Square enemy
   m_TagString: Untagged
@@ -123,7 +124,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _stats:
-    _Health: 10
+    _FullHealth: 10
     _pointsForKill: 10
     _damageOnContact: 1
   _moveProcessor:
@@ -134,3 +135,25 @@ MonoBehaviour:
     _threads:
     - _commandParametrs:
       - {fileID: 11400000, guid: 88af342453931c145b9d4bfd6eef3e30, type: 2}
+  _type: 0
+--- !u!50 &-4058706709578365372
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3270552897385089057}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4

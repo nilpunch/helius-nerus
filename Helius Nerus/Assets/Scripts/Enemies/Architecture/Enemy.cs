@@ -7,6 +7,11 @@ public class Enemy : MonoBehaviour
     [SerializeField] private CommandsProcessor<WeaponCommandScriptableObject> _weaponProcessor = new CommandsProcessor<WeaponCommandScriptableObject>();
     [SerializeField] private EnemyTypes _type = EnemyTypes.SquareEnemy;
 
+    private void Awake()
+    {
+        _stats.Reset();
+    }
+
     private void Update()
     {
         _moveProcessor.TickCommandThreads();
@@ -15,10 +20,8 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        if (_stats.TakeDamage(damage))
+        if (_stats.TakeDamage(damage) == true)
         {
-            // Add amount of points _stats.PointsForKill;
-            // Die
             Die();
         }
     }
@@ -44,7 +47,14 @@ public class Enemy : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision) // Maybe OnCollisionStay even
     {
         //check for player
-
-        Destroy(gameObject);
+        Player player = collision.gameObject.GetComponent<Player>();
+        if (player != null)
+        {
+            player.TakeDamage(_stats.DamageOnContact);
+        }
+        else if (collision.gameObject.layer == 12) // Screen end collider
+        {
+            Die();
+        }
     }
 }

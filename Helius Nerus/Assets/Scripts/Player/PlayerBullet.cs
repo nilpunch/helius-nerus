@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class StraightMove : MonoBehaviour, IBulletMovement
+public class PlayerBullet : MonoBehaviour
 {
     public float SpeedMultiplier
     {
@@ -22,12 +22,12 @@ public class StraightMove : MonoBehaviour, IBulletMovement
     private void OnCollisionEnter2D(Collision2D collision)
     {
         // Нанести урон еще надо
-        Player player = collision.gameObject.GetComponent<Player>();
-        if (player != null)
+        Enemy enemy = collision.gameObject.GetComponent<Enemy>();
+        if (enemy != null)
         {
-            player.TakeDamage((int)GetComponent<DealContactDamage>().Damage);
+            enemy.TakeDamage(GetComponent<DealContactDamage>().Damage);
         }
 
-        BulletPoolsContainer.Instance.ReturnObjectToPool(BulletTypes.StraightMove, gameObject);
+        BulletPoolsContainer.Instance.ReturnObjectToPool(BulletTypes.PlayerBullet, gameObject);
     }
 }

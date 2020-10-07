@@ -96,5 +96,6 @@ public class BulletPool
 
 public enum BulletTypes
 {
-    StraightMove
+    StraightMove,
+    PlayerBullet,
 }
