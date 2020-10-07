@@ -1,33 +1,9 @@
 ﻿using UnityEngine;
 
-public class StraightMove : MonoBehaviour, IBulletMovement
+public class StraightMove : BasicEnemyBullet
 {
-    public float SpeedMultiplier
-    {
-        set => _speedMultiplier = value;
-    }
-    private float _speedMultiplier = 1.0f;
-    private Transform _transform = null;
-
-    private void Awake()
-    {
-        _transform = transform;
-    }
-
     private void Update()
     {
         _transform.Translate(Vector3.up * Time.deltaTime * _speedMultiplier, Space.Self);
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        // Нанести урон еще надо
-        Player player = collision.gameObject.GetComponent<Player>();
-        if (player != null)
-        {
-            player.TakeDamage((int)GetComponent<DealContactDamage>().Damage);
-        }
-
-        BulletPoolsContainer.Instance.ReturnObjectToPool(BulletTypes.StraightMove, gameObject);
     }
 }

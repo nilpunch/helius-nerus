@@ -310,6 +310,7 @@ GameObject:
   - component: {fileID: 591710211}
   - component: {fileID: 591710212}
   - component: {fileID: 591710213}
+  - component: {fileID: 591710214}
   m_Layer: 12
   m_Name: ScreenBottom
   m_TagString: Untagged
@@ -378,6 +379,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
+--- !u!114 &591710214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 591710210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d7f83fbf18c031438ee70abee8e6233, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &851622435
 GameObject:
   m_ObjectHideFlags: 0
@@ -682,6 +695,7 @@ GameObject:
   - component: {fileID: 1449895241}
   - component: {fileID: 1449895243}
   - component: {fileID: 1449895242}
+  - component: {fileID: 1449895244}
   m_Layer: 12
   m_Name: ScreenTop
   m_TagString: Untagged
@@ -750,6 +764,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 50, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1449895244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1449895240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d7f83fbf18c031438ee70abee8e6233, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1622790130
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class PlayerBullet : MonoBehaviour
+public class PlayerBullet : MonoBehaviour, IReturnableToPool
 {
     public float SpeedMultiplier
     {
@@ -26,8 +26,14 @@ public class PlayerBullet : MonoBehaviour
         if (enemy != null)
         {
             enemy.TakeDamage(GetComponent<DealContactDamage>().Damage);
+            // Какое-то условие по прочности
+            if (true)
+                ReturnMeToPool();
         }
+    }
 
+    public void ReturnMeToPool()
+    {
         BulletPoolsContainer.Instance.ReturnObjectToPool(BulletTypes.PlayerBullet, gameObject);
     }
 }

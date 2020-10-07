@@ -49,7 +49,7 @@ public class Player : MonoBehaviour
 #endif
     }
 
-    public void TakeDamage(int damage)
+    private void TakeDamage(int damage)
     {
         _health -= damage;
         if (_health <= 0)
@@ -66,5 +66,14 @@ public class Player : MonoBehaviour
     private void OnDestroy()
     {
         PlayerTookDamage -= BecomeInvincible;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        IDealDamageToPlayer dealDamageToPlayer = (collision.gameObject.GetComponent(typeof(IDealDamageToPlayer)) as IDealDamageToPlayer);
+        if (dealDamageToPlayer != null)
+        {
+            TakeDamage(dealDamageToPlayer.GetMyDamage());
+        }
     }
 }

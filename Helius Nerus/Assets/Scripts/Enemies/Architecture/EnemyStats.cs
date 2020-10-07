@@ -10,6 +10,7 @@ public class EnemyStats
     public int DamageOnContact
     {
         get => _damageOnContact;
+        set => _damageOnContact = value;
     }
 
     [Tooltip("Полное количество ХП врага")]

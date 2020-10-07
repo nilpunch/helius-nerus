@@ -1,11 +1,17 @@
 ﻿using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Enemy : MonoBehaviour, IReturnableToPool, IDealDamageToPlayer
 {
     [SerializeField] private EnemyStats _stats = null;
     [SerializeField] private CommandsProcessor<MoveCommandScriptableObject> _moveProcessor = new CommandsProcessor<MoveCommandScriptableObject>();
     [SerializeField] private CommandsProcessor<WeaponCommandScriptableObject> _weaponProcessor = new CommandsProcessor<WeaponCommandScriptableObject>();
     [SerializeField] private EnemyTypes _type = EnemyTypes.SquareEnemy;
+
+    public int Damage
+    {
+        get => _stats.DamageOnContact;
+        set => _stats.DamageOnContact = value;
+    }
 
     private void Awake()
     {
@@ -29,7 +35,7 @@ public class Enemy : MonoBehaviour
     private void Die()
     {
         Game_Temp.Instance.EnemiesCounter.DectrementEnemies();
-        EnemyPoolContainer.Instance.ReturnObjectToPool(_type, gameObject);
+        ReturnMeToPool();
     }
 
     public void Reset()
@@ -40,21 +46,13 @@ public class Enemy : MonoBehaviour
         Game_Temp.Instance.EnemiesCounter.IncrementEnemies();
     }
 
-
-    // Тут еще должен быть коллайдер или триггер, но он может быть и на пулях, хз
-    // Возможно, что пули будут делать только урон попаданиями, а этот будет делать урон при контакте
-
-    private void OnCollisionEnter2D(Collision2D collision) // Maybe OnCollisionStay even
+    public void ReturnMeToPool()
     {
-        //check for player
-        Player player = collision.gameObject.GetComponent<Player>();
-        if (player != null)
-        {
-            player.TakeDamage(_stats.DamageOnContact);
-        }
-        else if (collision.gameObject.layer == 12) // Screen end collider
-        {
-            Die();
-        }
+        EnemyPoolContainer.Instance.ReturnObjectToPool(_type, gameObject);
+    }
+
+    public int GetMyDamage()
+    {
+        return Damage;
     }
 }
