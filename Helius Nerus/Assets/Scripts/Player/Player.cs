@@ -70,7 +70,7 @@ public class Player : MonoBehaviour
         PlayerTookDamage -= BecomeInvincible;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         IDealDamageToPlayer dealDamageToPlayer = (collision.gameObject.GetComponent(typeof(IDealDamageToPlayer)) as IDealDamageToPlayer);
         if (dealDamageToPlayer != null)

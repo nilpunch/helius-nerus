@@ -7,8 +7,13 @@ public class PlayerBullet : MonoBehaviour, IReturnableToPool
     {
         set => _speedMultiplier = value;
     }
+    public int Durability
+    {
+        set => _durability = value;
+    }
     private float _speedMultiplier = 1.0f;
     private Transform _transform = null;
+    private int _durability = 1; 
 
     private List<IPlayerWeaponModifier> _modifiers = new List<IPlayerWeaponModifier>();
 
@@ -22,19 +27,20 @@ public class PlayerBullet : MonoBehaviour, IReturnableToPool
         _transform.Translate(Vector3.up * Time.deltaTime * _speedMultiplier, Space.Self);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         // Нанести урон еще надо
         Enemy enemy = collision.gameObject.GetComponent<Enemy>();
         if (enemy != null)
         {
             enemy.TakeDamage(GetComponent<DealContactDamage>().Damage);
+            --_durability;
             for (int i = 0; i < _modifiers.Count; ++i)
             {
                 _modifiers[i].OnHit();
             }
             // Какое-то условие по прочности
-            if (true)
+            if (_durability <= 0)
                 ReturnMeToPool();
         }
     }
@@ -42,6 +48,7 @@ public class PlayerBullet : MonoBehaviour, IReturnableToPool
     public void ReturnMeToPool()
     {
         // Temp
+        _durability = 1;
         ClearModifiers();
         // Temp
 
