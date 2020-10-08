@@ -2,6 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum MoveCommandType
+{
+	Delay,
+	Horizontal,
+	Vertical,
+}
+
+public enum WeaponCommandType
+{
+	Delay,
+	StraightShoot,
+}
+
 public class CommandsCollection : MonoBehaviour
 {
 	public static CommandsCollection Instance { get; private set; } = null;
