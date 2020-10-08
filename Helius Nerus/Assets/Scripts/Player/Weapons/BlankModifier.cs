@@ -5,19 +5,19 @@
         return (IPlayerWeaponModifier)this.MemberwiseClone();
     }
 
-    public void OnDestroy()
-    {
-    }
+	public void OnDestroy(PlayerBullet playerBullet)
+	{
+	}
 
-    public void OnEnable()
-    {
-    }
+	public void OnEnable(PlayerBullet playerBullet)
+	{
+	}
 
-    public void OnHit()
-    {
-    }
+	public void OnHit(PlayerBullet playerBullet)
+	{
+	}
 
-    public void Tick()
-    {
-    }
+	public void OnTick(PlayerBullet playerBullet)
+	{
+	}
 }

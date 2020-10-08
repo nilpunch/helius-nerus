@@ -53,6 +53,9 @@ public class Player : MonoBehaviour
 
     private void TakeDamage(int damage)
     {
+		if (_isInvincible)
+			return;
+
         _health -= damage;
         if (_health <= 0)
         {

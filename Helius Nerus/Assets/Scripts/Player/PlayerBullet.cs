@@ -24,7 +24,11 @@ public class PlayerBullet : MonoBehaviour, IReturnableToPool
 
     private void Update()
     {
-        _transform.Translate(Vector3.up * Time.deltaTime * _speedMultiplier, Space.Self);
+		for (int i = 0; i < _modifiers.Count; ++i)
+		{
+			_modifiers[i].OnTick(this);
+		}
+		_transform.Translate(Vector3.up * Time.deltaTime * _speedMultiplier, Space.Self);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -37,7 +41,7 @@ public class PlayerBullet : MonoBehaviour, IReturnableToPool
             --_durability;
             for (int i = 0; i < _modifiers.Count; ++i)
             {
-                _modifiers[i].OnHit();
+                _modifiers[i].OnHit(this);
             }
             // Какое-то условие по прочности
             if (_durability <= 0)
@@ -49,25 +53,13 @@ public class PlayerBullet : MonoBehaviour, IReturnableToPool
     {
         // Temp
         _durability = 1;
-        ClearModifiers();
         // Temp
 
         for (int i = 0; i < _modifiers.Count; i++)
         {
-            IPlayerWeaponModifier modifier = (IPlayerWeaponModifier)_modifiers[i];
-            _modifiers[i].OnDestroy();
+            _modifiers[i].OnDestroy(this);
         }
         BulletPoolsContainer.Instance.ReturnObjectToPool(BulletTypes.PlayerBullet, gameObject);
-    }
-
-    public void AddMofifier(IPlayerWeaponModifier modifier)
-    {
-        _modifiers.Add(modifier);
-    }
-
-    public void ClearModifiers()
-    {
-        _modifiers.Clear();
     }
 
     public void SetModifiers(List<IPlayerWeaponModifier> modifiers)

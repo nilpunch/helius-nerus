@@ -1,8 +1,8 @@
 ﻿public interface IPlayerWeaponModifier
 {
-    void OnHit();
-    void OnDestroy();
-    void OnEnable();
-    void Tick();
+    void OnHit(PlayerBullet playerBullet);
+    void OnDestroy(PlayerBullet playerBullet);
+    void OnEnable(PlayerBullet playerBullet);
+    void OnTick(PlayerBullet playerBullet);
     IPlayerWeaponModifier Clone();
 }
