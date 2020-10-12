@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 
-public class Game_Temp : MonoBehaviour
+public class Level : MonoBehaviour
 {
-    public static Game_Temp Instance
+    public static Level Instance
     {
         get => _instance;
     }
@@ -11,7 +11,7 @@ public class Game_Temp : MonoBehaviour
         get => _counter;
     }
     private EnemiesInSceneCounter _counter = new EnemiesInSceneCounter();
-    private static Game_Temp _instance;
+    private static Level _instance;
 
     private void Awake()
     {

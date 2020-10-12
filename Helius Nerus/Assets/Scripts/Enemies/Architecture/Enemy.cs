@@ -34,7 +34,7 @@ public class Enemy : MonoBehaviour, IReturnableToPool, IDealDamageToPlayer
 
     private void Die()
     {
-        Game_Temp.Instance.EnemiesCounter.DectrementEnemies();
+        Level.Instance.EnemiesCounter.DectrementEnemies();
         ReturnMeToPool();
     }
 
@@ -43,7 +43,7 @@ public class Enemy : MonoBehaviour, IReturnableToPool, IDealDamageToPlayer
         _moveProcessor.Initialize(transform);
         _weaponProcessor.Initialize(transform);
         _stats.Reset();
-        Game_Temp.Instance.EnemiesCounter.IncrementEnemies();
+        Level.Instance.EnemiesCounter.IncrementEnemies();
     }
 
     public void ReturnMeToPool()
