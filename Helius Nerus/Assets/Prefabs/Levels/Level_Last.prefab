@@ -159,6 +159,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1008073855740810797}
+  - component: {fileID: 5697314957402582831}
   m_Layer: 0
   m_Name: Boss
   m_TagString: Untagged
@@ -180,6 +181,19 @@ Transform:
   m_Father: {fileID: 1008073856558093948}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5697314957402582831
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1008073855740810796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b6b10558b2747944822b54b707cee6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _boss: {fileID: 0}
 --- !u!1 &1008073855964565727
 GameObject:
   m_ObjectHideFlags: 0
@@ -465,6 +479,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1008073856315960554}
+  - component: {fileID: 5792017655037734693}
   m_Layer: 0
   m_Name: Portal
   m_TagString: Untagged
@@ -486,6 +501,21 @@ Transform:
   m_Father: {fileID: 1008073856558093948}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5792017655037734693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1008073856315960553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d3459c17d90d364fbeb167c4244ef55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _portalPrefab: {fileID: 4669225526803828734, guid: a15f2affa416a2a45932f1bf401addc9,
+    type: 3}
+  _portalOffset: 1
 --- !u!1 &1008073856558093938
 GameObject:
   m_ObjectHideFlags: 0

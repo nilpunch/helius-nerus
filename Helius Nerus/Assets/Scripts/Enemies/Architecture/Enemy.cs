@@ -7,6 +7,8 @@ public class Enemy : MonoBehaviour, IReturnableToPool, IDealDamageToPlayer
     [SerializeField] private CommandsProcessor<WeaponCommandScriptableObject> _weaponProcessor = new CommandsProcessor<WeaponCommandScriptableObject>();
     [SerializeField] private EnemyTypes _type = EnemyTypes.SquareEnemy;
 
+    private bool _isDead = false;
+
     public int Damage
     {
         get => _stats.DamageOnContact;
@@ -26,6 +28,8 @@ public class Enemy : MonoBehaviour, IReturnableToPool, IDealDamageToPlayer
 
     public void TakeDamage(float damage)
     {
+        if (_isDead)
+            return;
         if (_stats.TakeDamage(damage) == true)
         {
             Die();
@@ -34,7 +38,7 @@ public class Enemy : MonoBehaviour, IReturnableToPool, IDealDamageToPlayer
 
     private void Die()
     {
-        Level.Instance.EnemiesCounter.DectrementEnemies();
+        _isDead = true;
         ReturnMeToPool();
     }
 
@@ -43,11 +47,13 @@ public class Enemy : MonoBehaviour, IReturnableToPool, IDealDamageToPlayer
         _moveProcessor.Initialize(transform);
         _weaponProcessor.Initialize(transform);
         _stats.Reset();
+        _isDead = false;
         Level.Instance.EnemiesCounter.IncrementEnemies();
     }
 
     public void ReturnMeToPool()
     {
+        Level.Instance.EnemiesCounter.DectrementEnemies();
         EnemyPoolContainer.Instance.ReturnObjectToPool(_type, gameObject);
     }
 

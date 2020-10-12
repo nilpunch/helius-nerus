@@ -628,8 +628,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _levels:
-  - {fileID: 1008073856558093938, guid: f353dac1da171eb4582740e493f23f46, type: 3}
   - {fileID: 5358465953164640462, guid: c690922b295009b438409344dbb7239d, type: 3}
+  - {fileID: 1008073856558093938, guid: f353dac1da171eb4582740e493f23f46, type: 3}
 --- !u!4 &1626169385
 Transform:
   m_ObjectHideFlags: 0
@@ -898,7 +898,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cfcf21431488fe489642a83fdceaf9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 4
+  _maxHealth: 10
   _invinsibilityTime: 1
   _weapons:
   - {fileID: 1891834127}
