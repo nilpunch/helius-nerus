@@ -18,7 +18,7 @@ public class EnemiesSpawner : MonoBehaviour
 	[Tooltip("Сумма, получаемая за нанесение урона игроку")]
 	[SerializeField] private int _playerDamageReward = 100;
 
-	public event System.Action MoneyRunOut = delegate { };
+	public static event System.Action MoneyRunOut = delegate { };
 
 	private float _timeBeforeReceivingMoney = 0.0f;
     private float _screenWidth;
@@ -98,12 +98,12 @@ public class EnemiesSpawner : MonoBehaviour
 
 	private void SelectNextPack()
 	{
-		int nextPackIndex = Mathf.RoundToInt(_controlledRandom.CalculateRandomValue(Game_Temp.Instance.EnemiesCounter.AmountOfEnemies) * (_enemiesPacksNew.Length - 1));
+		int nextPackIndex = Mathf.RoundToInt(_controlledRandom.CalculateRandomValue(Level.Instance.EnemiesCounter.AmountOfEnemies) * (_enemiesPacksNew.Length - 1));
         _nextPackIndex = nextPackIndex;
 	}
 
 	//Как-то перевесить на событие?
-	public void PlayerTookDamage(Player player)
+	public void PlayerTookDamage()
 	{
 		_money += _playerDamageReward;
 	}
