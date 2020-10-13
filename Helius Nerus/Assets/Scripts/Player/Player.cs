@@ -79,6 +79,19 @@ public class Player : MonoBehaviour
         if (dealDamageToPlayer != null)
         {
             TakeDamage(dealDamageToPlayer.GetMyDamage());
+            return;
         }
+        UpgradeBase upgrade = collision.GetComponent<UpgradeBase>();
+        if (upgrade != null)
+        {
+            upgrade.UpgradeCharacter(this);
+            return;
+        }
+    }
+
+    public void IncrementHealth()
+    {
+        if (_health < _maxHealth)
+            ++_health;
     }
 }

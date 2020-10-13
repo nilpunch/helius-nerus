@@ -12,6 +12,10 @@ public class EnemyStats
         get => _damageOnContact;
         set => _damageOnContact = value;
     }
+    public float DropChance
+    {
+        get => _dropChance;
+    }
 
     [Tooltip("Полное количество ХП врага")]
     [SerializeField] private float _FullHealth = 1.0f;
@@ -19,6 +23,10 @@ public class EnemyStats
     [SerializeField] private int _pointsForKill = 10;
     [Tooltip("Наносимый урон при контакте")]
     [SerializeField] private int _damageOnContact = 1;
+    [Tooltip("Вероятность выпадения апгрейда")]
+    [SerializeField]
+    [Range(0.0f, 1.0f)]
+    private float _dropChance = 0.02f;
 
     private float _health;
 
