@@ -2,38 +2,41 @@
 
 public class EnemiesSpawner : MonoBehaviour
 {
-	public static EnemiesSpawner InstanceOnScene { get; private set; }
+    public static EnemiesSpawner InstanceOnScene { get; private set; }
 
-	[Tooltip("Параметры контроллируемого рандома")]
-	[SerializeField] private EnemiseSpawnerControlledRandom _controlledRandom = null;
+    [Tooltip("Параметры контроллируемого рандома")]
+    [SerializeField] private EnemiseSpawnerControlledRandom _controlledRandom = null;
 
     [Tooltip("СО с new пачками врагов")]
     [SerializeField] private PackScriptableObject[] _enemiesPacksNew = null;
     [Tooltip("Начальное количество денег")]
-	[SerializeField] private int _money = 10;
-	[Tooltip("Доход в секунду")]
-	[SerializeField] private int _moneyPerSecond = 10;
-	[Tooltip("Сумма трат за уровнень")]
-	[SerializeField] private int _moneySpendingLimit = 1000;
-	[Tooltip("Сумма, получаемая за нанесение урона игроку")]
-	[SerializeField] private int _playerDamageReward = 100;
+    [SerializeField] private int _money = 10;
+    [Tooltip("Доход в секунду")]
+    [SerializeField] private int _moneyPerSecond = 10;
+    [Tooltip("Сумма трат за уровнень")]
+    [SerializeField] private int _moneySpendingLimit = 1000;
+    [Tooltip("Сумма, получаемая за нанесение урона игроку")]
+    [SerializeField] private int _playerDamageReward = 100;
 
-	public event System.Action MoneyRunOut = delegate { };
+    public static event System.Action MoneyRunOut = delegate { };
 
-	private float _timeBeforeReceivingMoney = 0.0f;
+    private float _timeBeforeReceivingMoney = 0.0f;
     private float _screenWidth;
 
-	private int _nextPackIndex;
-	private int _currentMoneySpent = 0;
+    private int _nextPackIndex;
+    private int _currentMoneySpent = 0;
     private Transform _transform;
 
 
-	private void Awake()
-	{
-		// На каждой новой сцене (при гарантии что спаунер 1) глобальная ссылка будет перезаписываться на необходимую
-		InstanceOnScene = this;
+    private void Awake()
+    {
+        // На каждой новой сцене (при гарантии что спаунер 1) глобальная ссылка будет перезаписываться на необходимую
+        InstanceOnScene = this;
+        Camera camera = Camera.main;
         _transform = transform;
-        _screenWidth = Camera.main.orthographicSize * Camera.main.aspect;
+        _screenWidth = camera.orthographicSize * camera.aspect;
+
+        _transform.position = new Vector3(0.0f, camera.orthographicSize + 1, 0.0f);
 
         Player.PlayerTookDamage += PlayerTookDamage;
     }
@@ -44,47 +47,53 @@ public class EnemiesSpawner : MonoBehaviour
     }
 
     private void Start()
-	{
+    {
         System.Array.Sort(_enemiesPacksNew, (pack1, pack2) => pack1.Cost - pack2.Cost);
 
         SelectNextPack();
-	}
+    }
 
-	private void Update()
-	{
-		_timeBeforeReceivingMoney += Time.deltaTime;
-		if (_timeBeforeReceivingMoney >= 1.0f)
-		{
-			if (MoneyLimitNotReached())
-			{
-				_money += _moneyPerSecond;
-			}
-			_timeBeforeReceivingMoney = 0.0f;
+    private void Update()
+    {
+        if (MoneyLimitNotReached() == false)
+            return;
+        _timeBeforeReceivingMoney += Time.deltaTime;
+        if (_timeBeforeReceivingMoney >= 1.0f)
+        {
+            if (MoneyLimitNotReached())
+            {
+                _money += _moneyPerSecond;
+            }
+            _timeBeforeReceivingMoney = 0.0f;
 
-			while (_money > _enemiesPacksNew[_nextPackIndex].Cost)
-			{
-				// Пересчитываем деньги
-				_money -= _enemiesPacksNew[_nextPackIndex].Cost;
-				_currentMoneySpent += _enemiesPacksNew[_nextPackIndex].Cost;
+            while (_money > _enemiesPacksNew[_nextPackIndex].Cost)
+            {
+                // Пересчитываем деньги
+                _money -= _enemiesPacksNew[_nextPackIndex].Cost;
+                _currentMoneySpent += _enemiesPacksNew[_nextPackIndex].Cost;
                 SpawnNextPack();
                 SelectNextPack();
                 if (MoneyLimitNotReached() == false)
-				{
-					// Обнулить деньги чтобы гарантировать единоразовый вызов события MoneyRunOut()
-					_money = 0;
-					MoneyRunOut.Invoke();
-				}
-			}
-		}
+                {
+                    // Обнулить деньги чтобы гарантировать единоразовый вызов события MoneyRunOut()
+                    _money = 0;
+#if UNITY_EDITOR
+                    Debug.Log("Money ran out");
+#endif
+                    MoneyRunOut.Invoke();
+                    return;
+                }
+            }
+        }
     }
 
-	private bool MoneyLimitNotReached()
-	{
-		return _currentMoneySpent < _moneySpendingLimit;
-	}
+    private bool MoneyLimitNotReached()
+    {
+        return _currentMoneySpent < _moneySpendingLimit;
+    }
 
-	private void SpawnNextPack()
-	{
+    private void SpawnNextPack()
+    {
         PackScriptableObject nextNewPack = _enemiesPacksNew[_nextPackIndex];
         GameObject newEnemy;
         float randomOffset = Random.Range(-_screenWidth + nextNewPack.Width, _screenWidth - nextNewPack.Width);
@@ -94,17 +103,17 @@ public class EnemiesSpawner : MonoBehaviour
             newEnemy.transform.parent = _transform;
             newEnemy.transform.localPosition = nextNewPack.Enemies[i].Position + new Vector2(randomOffset, 0);
         }
-	}
+    }
 
-	private void SelectNextPack()
-	{
-		int nextPackIndex = Mathf.RoundToInt(_controlledRandom.CalculateRandomValue(Game_Temp.Instance.EnemiesCounter.AmountOfEnemies) * (_enemiesPacksNew.Length - 1));
+    private void SelectNextPack()
+    {
+        int nextPackIndex = Mathf.RoundToInt(_controlledRandom.CalculateRandomValue(Level.Instance.EnemiesCounter.AmountOfEnemies) * (_enemiesPacksNew.Length - 1));
         _nextPackIndex = nextPackIndex;
-	}
+    }
 
-	//Как-то перевесить на событие?
-	public void PlayerTookDamage(Player player)
-	{
-		_money += _playerDamageReward;
-	}
+    //Как-то перевесить на событие?
+    public void PlayerTookDamage()
+    {
+        _money += _playerDamageReward;
+    }
 }
