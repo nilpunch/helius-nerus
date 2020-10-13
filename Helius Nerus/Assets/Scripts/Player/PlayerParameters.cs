@@ -11,9 +11,7 @@ public class PlayerParameters : ScriptableObject
 	[Tooltip("Список пушек персонажа")]
 	[SerializeField] private PlayerWeapon[] _weapons = null;
 
-	private int _currentHelath = 0;
-
-	public int CurrentHelath { get => _currentHelath; set => _currentHelath = value; }
+	public int CurrentHelath { get; set; } = 0;
 	public int MaxHealth { get => _maxHealth; set => _maxHealth = value; }
 	public float InvinsibilityTime { get => _invinsibilityTime; set => _invinsibilityTime = value; }
 	public PlayerWeapon[] Weapons { get => _weapons; set => _weapons = value; }

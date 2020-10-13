@@ -103,7 +103,7 @@ public class EnemiesSpawner : MonoBehaviour
 	}
 
 	//Как-то перевесить на событие?
-	public void PlayerTookDamage()
+	public void PlayerTookDamage(Player player)
 	{
 		_money += _playerDamageReward;
 	}
