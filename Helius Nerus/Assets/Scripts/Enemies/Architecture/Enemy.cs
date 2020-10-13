@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour, IReturnableToPool, IDealDamageToPlayer
     [SerializeField] private EnemyTypes _type = EnemyTypes.SquareEnemy;
 
     private bool _isDead = false;
+    private bool _paused = false;
 
     public int Damage
     {
@@ -18,10 +19,30 @@ public class Enemy : MonoBehaviour, IReturnableToPool, IDealDamageToPlayer
     private void Awake()
     {
         _stats.Reset();
+
+        Pause.GamePaused += Pause_GamePaused;
+        Pause.GameUnpaused += Pause_GameUnpaused;
+    }
+
+    private void OnDestroy()
+    {
+        Pause.GamePaused -= Pause_GamePaused;
+        Pause.GameUnpaused -= Pause_GameUnpaused;
+    }
+
+    private void Pause_GameUnpaused()
+    {
+        _paused = false;
+    }
+    private void Pause_GamePaused()
+    {
+        _paused = true;
     }
 
     private void Update()
     {
+        if (_paused)
+            return;
         _moveProcessor.TickCommandThreads();
         _weaponProcessor.TickCommandThreads();
     }
@@ -39,7 +60,7 @@ public class Enemy : MonoBehaviour, IReturnableToPool, IDealDamageToPlayer
     private void Die()
     {
         _isDead = true;
-        float drop = Random.Range(0.0f, 1.0f);
+        float drop = UnityEngine.Random.Range(0.0f, 1.0f);
         if (drop <= _stats.DropChance)
         {
             UpgrageCollection.Instance.GetRandomUpgrade().transform.position = transform.position;
@@ -53,6 +74,7 @@ public class Enemy : MonoBehaviour, IReturnableToPool, IDealDamageToPlayer
         _weaponProcessor.Initialize(transform);
         _stats.Reset();
         _isDead = false;
+        _paused = false;
         Level.Instance.EnemiesCounter.IncrementEnemies();
     }
 

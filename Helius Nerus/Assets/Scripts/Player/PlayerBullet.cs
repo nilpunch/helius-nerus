@@ -11,19 +11,47 @@ public class PlayerBullet : MonoBehaviour, IReturnableToPool
     {
         set => _durability = value;
     }
+    public float Damage
+    {
+        set => _damage = value;
+    }
+
     private float _speedMultiplier = 1.0f;
     private Transform _transform = null;
-    private int _durability = 1; 
+    private int _durability = 1;
+    private float _damage = 1.0f;
+
+    private bool _paused = false;
 
     private List<IPlayerWeaponModifier> _modifiers = new List<IPlayerWeaponModifier>();
 
     private void Awake()
     {
         _transform = transform;
+
+        Pause.GamePaused += Pause_GamePaused;
+        Pause.GameUnpaused += Pause_GameUnpaused;
+    }
+
+    private void OnDestroy()
+    {
+        Pause.GamePaused -= Pause_GamePaused;
+        Pause.GameUnpaused -= Pause_GameUnpaused;
+    }
+
+    private void Pause_GameUnpaused()
+    {
+        _paused = false;
+    }
+    private void Pause_GamePaused()
+    {
+        _paused = true;
     }
 
     private void Update()
     {
+        if (_paused)
+            return;
 		for (int i = 0; i < _modifiers.Count; ++i)
 		{
 			_modifiers[i].OnTick(this);
@@ -37,7 +65,7 @@ public class PlayerBullet : MonoBehaviour, IReturnableToPool
         Enemy enemy = collision.gameObject.GetComponent<Enemy>();
         if (enemy != null)
         {
-            enemy.TakeDamage(GetComponent<DealContactDamage>().Damage);
+            enemy.TakeDamage(_damage);
             --_durability;
             for (int i = 0; i < _modifiers.Count; ++i)
             {

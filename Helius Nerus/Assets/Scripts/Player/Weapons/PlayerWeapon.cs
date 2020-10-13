@@ -12,13 +12,36 @@ public class PlayerWeapon : MonoBehaviour
 
     private Transform _transform;
 
+    private bool _paused = false;
+
     private void Awake()
     {
         _transform = transform;
+
+        Pause.GamePaused += Pause_GamePaused;
+        Pause.GameUnpaused += Pause_GameUnpaused;
+    }
+
+    private void OnDestroy()
+    {
+        Pause.GamePaused -= Pause_GamePaused;
+        Pause.GameUnpaused -= Pause_GameUnpaused;
+    }
+
+    private void Pause_GameUnpaused()
+    {
+        _paused = false;
+    }
+
+    private void Pause_GamePaused()
+    {
+        _paused = true;
     }
 
     private void Update()
     {
+        if (_paused)
+            return;
         _reloadTime += Time.deltaTime;
         if (_reloadTime >= _parameters.ReloadTime)
         {
@@ -54,6 +77,7 @@ public class PlayerWeapon : MonoBehaviour
             // Temp
 
             pBullet.SpeedMultiplier = _parameters.BulletSpeed;
+            pBullet.Damage = _parameters.BulletDamage;
             bullet.transform.position = _transform.position;
             bullet.transform.position += (Vector3)_parameters.Position;
             bullet.transform.localEulerAngles = new Vector3(0f, 0f, Vector2.Angle(Vector2.up, _parameters.Direction) + (_angleStep * (i - _halfBulletAmount)));

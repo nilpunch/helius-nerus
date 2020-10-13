@@ -17,10 +17,30 @@ public class BasicEnemyBullet : MonoBehaviour, IBulletMovement, IDealDamageToPla
 
     protected float _speedMultiplier = 1.0f;
     protected Transform _transform = null;
+    protected bool _paused = false;
 
     protected virtual void Awake()
     {
         _transform = transform;
+
+        Pause.GamePaused += Pause_GamePaused;
+        Pause.GameUnpaused += Pause_GameUnpaused;
+    }
+
+    private void OnDestroy()
+    {
+        Pause.GamePaused -= Pause_GamePaused;
+        Pause.GameUnpaused -= Pause_GameUnpaused;
+    }
+
+    private void Pause_GameUnpaused()
+    {
+        _paused = false;
+    }
+
+    private void Pause_GamePaused()
+    {
+        _paused = true;
     }
 
     public void ReturnMeToPool()

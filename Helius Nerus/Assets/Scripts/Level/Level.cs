@@ -10,8 +10,14 @@ public class Level : MonoBehaviour
     {
         get => _counter;
     }
+    public Pause Pause
+    {
+        get => _pause;
+    }
+
     private EnemiesInSceneCounter _counter = new EnemiesInSceneCounter();
     private static Level _instance;
+    private Pause _pause = new Pause();
 
     private void Awake()
     {

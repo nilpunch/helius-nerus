@@ -21,6 +21,7 @@ public class Player : MonoBehaviour
     private bool _isInvincible = false;
 
     private Rigidbody2D _rigidbody = null;
+    private bool _paused;
 
     private void Awake()
     {
@@ -29,10 +30,31 @@ public class Player : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody2D>();
 
         _playerParameters.CurrentHealth = _playerParameters.MaxHealth;
-    } 
+
+        Pause.GamePaused += Pause_GamePaused;
+        Pause.GameUnpaused += Pause_GameUnpaused;
+    }
+
+    private void OnDestroy()
+    {
+        Pause.GamePaused -= Pause_GamePaused;
+        Pause.GameUnpaused -= Pause_GameUnpaused;
+    }
+
+    private void Pause_GameUnpaused()
+    {
+        _paused = false;
+    }
+
+    private void Pause_GamePaused()
+    {
+        _paused = true;
+    }
 
     private void Update()
     {
+        if (_paused)
+            return;
         if (_isInvincible)
         {
             _invinsibilityLeft -= Time.deltaTime;
