@@ -127,7 +127,6 @@ MonoBehaviour:
     _FullHealth: 1
     _pointsForKill: 10
     _damageOnContact: 1
-    _dropChance: 0.02
   _moveProcessor:
     _threads:
     - _commandParametrs:

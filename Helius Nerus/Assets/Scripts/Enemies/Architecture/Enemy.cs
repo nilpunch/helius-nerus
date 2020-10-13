@@ -40,7 +40,7 @@ public class Enemy : MonoBehaviour, IReturnableToPool, IDealDamageToPlayer
     {
         _isDead = true;
         float drop = Random.Range(0.0f, 1.0f);
-        if (drop <= _stats.DropChance)
+        if (drop > _stats.DropChance)
         {
             UpgrageCollection.Instance.GetRandomUpgrade().transform.position = transform.position;
         }
