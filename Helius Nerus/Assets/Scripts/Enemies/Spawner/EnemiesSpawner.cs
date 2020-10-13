@@ -35,20 +35,17 @@ public class EnemiesSpawner : MonoBehaviour
         _transform = transform;
         _screenWidth = Camera.main.orthographicSize * Camera.main.aspect;
 
-        Player.PlayerTookDamage += PlayerTookDamage;
+        Player.PlayerTookDamage += Player_PlayerTookDamage;
+
+        System.Array.Sort(_enemiesPacksNew, (pack1, pack2) => pack1.Cost - pack2.Cost);
+
+        SelectNextPack();
     }
 
     private void OnDestroy()
     {
-        Player.PlayerTookDamage -= PlayerTookDamage;
+        Player.PlayerTookDamage -= Player_PlayerTookDamage;
     }
-
-    private void Start()
-	{
-        System.Array.Sort(_enemiesPacksNew, (pack1, pack2) => pack1.Cost - pack2.Cost);
-
-        SelectNextPack();
-	}
 
 	private void Update()
 	{
@@ -78,6 +75,11 @@ public class EnemiesSpawner : MonoBehaviour
 		}
     }
 
+    private void Player_PlayerTookDamage(Player obj)
+    {
+        _money += _playerDamageReward;
+    }
+
 	private bool MoneyLimitNotReached()
 	{
 		return _currentMoneySpent < _moneySpendingLimit;
@@ -100,11 +102,5 @@ public class EnemiesSpawner : MonoBehaviour
 	{
 		int nextPackIndex = Mathf.RoundToInt(_controlledRandom.CalculateRandomValue(Level.Instance.EnemiesCounter.AmountOfEnemies) * (_enemiesPacksNew.Length - 1));
         _nextPackIndex = nextPackIndex;
-	}
-
-	//Как-то перевесить на событие?
-	public void PlayerTookDamage()
-	{
-		_money += _playerDamageReward;
 	}
 }

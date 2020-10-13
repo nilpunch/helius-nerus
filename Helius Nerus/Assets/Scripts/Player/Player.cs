@@ -3,13 +3,20 @@
 [RequireComponent(typeof(Rigidbody2D))]
 public class Player : MonoBehaviour
 {
-    public static event System.Action PlayerTookDamage = delegate { };
+    public static event System.Action<Player> PlayerTookDamage = delegate { };
+    public static event System.Action<Player> PlayerBeforeDie = delegate { };
+    public static event System.Action<Player> PlayerDie = delegate { };
+    public static event System.Action<Player> PlayerResurrection = delegate { };
 
-    [SerializeField] private int _maxHealth = 4;
-    [SerializeField] private float _invinsibilityTime = 1.0f;
-    [Tooltip("Список пушек персонажа")]
+    public PlayerParameters PlayerParameters
+    {
+        get => _playerParameters;
+    }
+
+    [SerializeField] private PlayerParameters _playerParametersSO = null;
     [SerializeField] private PlayerWeapon[] _weapons;
-    private int _health = 4;
+
+    private PlayerParameters _playerParameters = null;
     private float _invinsibilityLeft = 0.0f;
     private bool _isInvincible = false;
 
@@ -17,12 +24,12 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
+        _playerParameters = _playerParametersSO.Clone();
+
         _rigidbody = GetComponent<Rigidbody2D>();
 
-        PlayerTookDamage += BecomeInvincible;
-
-        _health = _maxHealth;
-    }
+        _playerParameters.CurrentHealth = _playerParameters.MaxHealth;
+    } 
 
     private void Update()
     {
@@ -42,7 +49,7 @@ public class Player : MonoBehaviour
 
     private void BecomeInvincible()
     {
-        _invinsibilityLeft = _invinsibilityTime;
+        _invinsibilityLeft = _playerParameters.InvinsibilityTime;
         _isInvincible = true;
         _rigidbody.simulated = false; // Disable rigidbody (collider), so player is not able to take damej
                                       // For demonstration purposes
@@ -53,24 +60,30 @@ public class Player : MonoBehaviour
 
     private void TakeDamage(int damage)
     {
-		if (_isInvincible)
-			return;
+        if (_isInvincible)
+            return;
 
-        _health -= damage;
-        if (_health <= 0)
+        if (damage >= 0)
         {
-            // die script
-            Destroy(gameObject);
+            _playerParameters.CurrentHealth -= damage;
+            PlayerTookDamage.Invoke(this);
+            BecomeInvincible();
         }
-        else
-        {
-            PlayerTookDamage.Invoke();
-        }
-    }
 
-    private void OnDestroy()
-    {
-        PlayerTookDamage -= BecomeInvincible;
+        if (_playerParameters.CurrentHealth <= 0)
+        {
+            PlayerBeforeDie.Invoke(this);
+
+            if (_playerParameters.CurrentHealth <= 0)
+            {
+                PlayerDie.Invoke(this);
+                Destroy(gameObject);
+            }
+            else
+            {
+                PlayerResurrection.Invoke(this);
+            }
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -91,7 +104,7 @@ public class Player : MonoBehaviour
 
     public void IncrementHealth()
     {
-        if (_health < _maxHealth)
-            ++_health;
+        if (_playerParameters.CurrentHealth < _playerParameters.MaxHealth)
+            _playerParameters.CurrentHealth++;
     }
 }
