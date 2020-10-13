@@ -3,5 +3,6 @@
     public override void UpgradeCharacter(Player player)
     {
         player.IncrementHealth();
+        Destroy(gameObject);
     }
 }
