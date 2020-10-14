@@ -69,60 +69,44 @@ public class Player : MonoBehaviour
 		}
 	}
 
-    private void TakeDamage(int damage)
-    {
-        if (_rigidbody2D.simulated == false)
-            return;
+	public void TakeDamage(int damage)
+	{
+		if (_rigidbody2D.simulated == false)
+			return;
 
-        if (damage >= 0)
-        {
-            _playerParameters.CurrentHealth -= damage;
-            PlayerHelathChanged.Invoke(this);
-        }
+		if (damage >= 0)
+		{
+			_playerParameters.CurrentHealth -= damage;
+			PlayerHelathChanged.Invoke(this);
+		}
 
-        if (_playerParameters.CurrentHealth <= 0)
-        {
-            PlayerBeforeDie.Invoke(this);
+		if (_playerParameters.CurrentHealth <= 0)
+		{
+			PlayerBeforeDie.Invoke(this);
 
-            if (_playerParameters.CurrentHealth <= 0)
-            {
-                PlayerDie.Invoke(this);
-                Destroy(gameObject);
-            }
-            else
-            {
+			if (_playerParameters.CurrentHealth <= 0)
+			{
+				PlayerDie.Invoke(this);
+				Destroy(gameObject);
+			}
+			else
+			{
 				PlayerTookDamage.Invoke(this);
-                PlayerResurrection.Invoke(this);
+				PlayerResurrection.Invoke(this);
 			}
 		}
 		else
 		{
 			PlayerTookDamage.Invoke(this);
 		}
-    }
+	}
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        IDealDamageToPlayer dealDamageToPlayer = (collision.gameObject.GetComponent(typeof(IDealDamageToPlayer)) as IDealDamageToPlayer);
-        if (dealDamageToPlayer != null)
-        {
-            TakeDamage(dealDamageToPlayer.GetMyDamage());
-            return;
-        }
-        UpgradeBase upgrade = collision.GetComponent<UpgradeBase>();
-        if (upgrade != null)
-        {
-            upgrade.UpgradeCharacter(this);
-            return;
-        }
-    }
-
-    public void IncrementHealth()
-    {
-        if (_playerParameters.CurrentHealth < _playerParameters.MaxHealth)
+	public void IncrementHealth()
+	{
+		if (_playerParameters.CurrentHealth < _playerParameters.MaxHealth)
 		{
-            _playerParameters.CurrentHealth++;
+			_playerParameters.CurrentHealth++;
 			PlayerHelathChanged.Invoke(this);
 		}
-    }
+	}
 }
