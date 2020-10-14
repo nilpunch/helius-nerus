@@ -13,12 +13,12 @@ class InvincibilityArtifact : IPlayerArtifact
 
 	public void OnDrop(Player player)
 	{
-		Player.PlayerTakeDamage -= Player_PlayerTakeDamage;
+		Player.PlayerTookDamage -= Player_PlayerTakeDamage;
 	}
 
 	public void OnPick(Player player)
 	{
-		Player.PlayerTakeDamage += Player_PlayerTakeDamage;
+		Player.PlayerTookDamage += Player_PlayerTakeDamage;
 	}
 
 	private void Player_PlayerTakeDamage(Player player)

@@ -5,7 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public static event System.Action<Player> PlayerHelathChanged = delegate { };
-    public static event System.Action<Player> PlayerTakeDamage = delegate { };
+    public static event System.Action<Player> PlayerTookDamage = delegate { };
     public static event System.Action<Player> PlayerBeforeDie = delegate { };
     public static event System.Action<Player> PlayerDie = delegate { };
     public static event System.Action<Player> PlayerResurrection = delegate { };
@@ -91,13 +91,13 @@ public class Player : MonoBehaviour
             }
             else
             {
-				PlayerTakeDamage.Invoke(this);
+				PlayerTookDamage.Invoke(this);
                 PlayerResurrection.Invoke(this);
 			}
 		}
 		else
 		{
-			PlayerTakeDamage.Invoke(this);
+			PlayerTookDamage.Invoke(this);
 		}
     }
 
