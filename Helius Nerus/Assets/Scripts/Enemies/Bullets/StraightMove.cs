@@ -4,8 +4,9 @@ public class StraightMove : BasicEnemyBullet
 {
     private void Update()
     {
-        if (_paused)
+        if (Pause.Paused)
             return;
+
         _transform.Translate(Vector3.up * Time.deltaTime * _speedMultiplier, Space.Self);
     }
 }

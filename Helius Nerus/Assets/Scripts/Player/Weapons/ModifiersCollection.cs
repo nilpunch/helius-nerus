@@ -2,6 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum ModifierType
+{
+	BlankModifier,
+}
+
 public class ModifiersCollection : MonoBehaviour
 {
     public static ModifiersCollection Instance { get; private set; } = null;
@@ -56,9 +61,4 @@ public class ModifiersCollection : MonoBehaviour
             _modifiers.Add((IPlayerWeaponModifier)Activator.CreateInstance(ctype));
         }
     }
-}
-
-public enum ModifierType
-{
-    BlankModifier,
 }

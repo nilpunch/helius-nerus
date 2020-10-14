@@ -20,17 +20,11 @@ public class PlayerWeaponsParametrs : ScriptableObject
     [Tooltip("Размер пули")]
     [SerializeField] private float _bulletSize = 1f;
 
-    private BulletTypes _myType = BulletTypes.PlayerBullet;
-
     public PlayerWeaponsParametrs Clone()
     {
         return (PlayerWeaponsParametrs)this.MemberwiseClone();
     }
 
-    public BulletTypes Type
-    {
-        get => _myType;
-    }
     public Vector2 Position { get => _position; set => _position = value; }
     public Vector2 Direction { get => _direction; set => _direction = value; }
     public float ReloadTime { get => _reloadTime; set => _reloadTime = value; }

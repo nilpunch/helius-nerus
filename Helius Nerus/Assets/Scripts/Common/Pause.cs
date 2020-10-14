@@ -3,14 +3,17 @@
     public static event System.Action GamePaused = delegate { };
     public static event System.Action GameUnpaused = delegate { };
 
+	public static bool Paused { get; private set; } = false;
 
-    public void PauseGame()
+    static public void PauseGame()
     {
-        GamePaused.Invoke();
+		Paused = true;
+		GamePaused.Invoke();
     }
 
-    public void UnauseGame()
-    { 
-        GameUnpaused.Invoke();
+    static public void UnauseGame()
+    {
+		Paused = false;
+		GameUnpaused.Invoke();
     }
 }

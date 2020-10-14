@@ -14,4 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxHealth: 4
   _invinsibilityTime: 1
-  _weapons: []
+  _bombsAmount: 1
+  _maxBombs: 2
+  _bombRadius: 2

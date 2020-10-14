@@ -3,45 +3,31 @@ using UnityEngine;
 
 public class PlayerWeapon : MonoBehaviour
 {
-    [Tooltip("СО свойств пушки стартовых")]
-    [SerializeField] private PlayerWeaponsParametrs _parameters;
+	public PlayerWeaponsParametrs WeaponParameters
+	{
+		get => _parameters;
+	}
 
-    private float _reloadTime = 0.0f;
+	[Tooltip("СО свойств пушки стартовых")]
+    [SerializeField] private PlayerWeaponsParametrs _parametersSO = null;
 
     private List<IPlayerWeaponModifier> _modifiers = new List<IPlayerWeaponModifier>();
-
+	private PlayerWeaponsParametrs _parameters;
     private Transform _transform;
 
-    private bool _paused = false;
+	private float _reloadTime = 0.0f;
 
-    private void Awake()
-    {
-        _transform = transform;
-
-        Pause.GamePaused += Pause_GamePaused;
-        Pause.GameUnpaused += Pause_GameUnpaused;
-    }
-
-    private void OnDestroy()
-    {
-        Pause.GamePaused -= Pause_GamePaused;
-        Pause.GameUnpaused -= Pause_GameUnpaused;
-    }
-
-    private void Pause_GameUnpaused()
-    {
-        _paused = false;
-    }
-
-    private void Pause_GamePaused()
-    {
-        _paused = true;
-    }
+	private void Awake()
+	{
+		_parameters = _parametersSO.Clone();
+		_transform = transform;
+	}
 
     private void Update()
     {
-        if (_paused)
+        if (Pause.Paused)
             return;
+
         _reloadTime += Time.deltaTime;
         if (_reloadTime >= _parameters.ReloadTime)
         {
@@ -68,13 +54,11 @@ public class PlayerWeapon : MonoBehaviour
 
         for (int i = 0; i < _parameters.BulletAmount; ++i)
         {
-            GameObject bullet = BulletPoolsContainer.Instance.GetObjectFromPool(_parameters.Type);
+            GameObject bullet = BulletPoolsContainer.Instance.GetObjectFromPool(BulletTypes.PlayerBullet);
 
             PlayerBullet pBullet = bullet.GetComponent<PlayerBullet>();
-            // Temp
-            //if (_modifiers != null)
-                pBullet.SetModifiers(_modifiers);
-            // Temp
+  
+            pBullet.SetModifiers(_modifiers);
 
             pBullet.SpeedMultiplier = _parameters.BulletSpeed;
             pBullet.Damage = _parameters.BulletDamage;
@@ -91,6 +75,6 @@ public class PlayerWeapon : MonoBehaviour
 
     public void SetParametrs(PlayerWeaponsParametrs parameters)
     {
-        _parameters = parameters.Clone();
+		_parameters = parameters.Clone();
     }
 }

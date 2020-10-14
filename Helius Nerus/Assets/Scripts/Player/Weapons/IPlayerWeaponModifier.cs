@@ -2,7 +2,6 @@
 {
     void OnHit(PlayerBullet playerBullet);
     void OnDestroy(PlayerBullet playerBullet);
-    void OnEnable(PlayerBullet playerBullet);
-    void OnTick(PlayerBullet playerBullet);
-    IPlayerWeaponModifier Clone();
+	void OnTick(PlayerBullet playerBullet);
+	IPlayerWeaponModifier Clone();
 }
