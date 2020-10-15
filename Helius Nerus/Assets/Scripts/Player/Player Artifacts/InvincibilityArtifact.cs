@@ -3,8 +3,10 @@ using UnityEngine;
 
 class InvincibilityArtifact : IPlayerArtifact
 {
+	private const float EFFECT_TIME_SCALE = 1.1f;
 	private bool _isInvincible = false;
 	private float _invinsibilityLeft = 0.0f;
+	private float _effectToggleTime = 0.0f;
 
 	public IPlayerArtifact Clone()
 	{
@@ -26,9 +28,10 @@ class InvincibilityArtifact : IPlayerArtifact
 		_invinsibilityLeft = player.PlayerParameters.InvinsibilityTime;
 		player.Rigidbody2D.simulated = false;
 		_isInvincible = true;
-#if UNITY_EDITOR
-		player.GetComponent<SpriteRenderer>().color = Color.blue;
-#endif
+
+		// Setup invincibility effect
+		_effectToggleTime = _invinsibilityLeft / EFFECT_TIME_SCALE;
+		player.GetComponent<SpriteRenderer>().enabled = false;
 	}
 
 	public void OnTick(Player player)
@@ -39,13 +42,22 @@ class InvincibilityArtifact : IPlayerArtifact
 		if (_isInvincible)
 		{
 			_invinsibilityLeft -= Time.deltaTime;
-			if (_invinsibilityLeft <= 0.0f)
+			if (_invinsibilityLeft <= 0.0f) 
 			{
 				_isInvincible = false;
 				player.Rigidbody2D.simulated = true;
-#if UNITY_EDITOR
-				player.GetComponent<SpriteRenderer>().color = Color.white;
-#endif
+
+				// Disable invincibility effect
+				player.GetComponent<SpriteRenderer>().enabled = true;
+			}
+			else 
+			{
+				// Handle invincibility effect
+				if (_invinsibilityLeft < _effectToggleTime)
+				{
+					_effectToggleTime = _invinsibilityLeft / EFFECT_TIME_SCALE;
+					player.GetComponent<SpriteRenderer>().enabled = !player.GetComponent<SpriteRenderer>().enabled;
+				}
 			}
 		}
 	}
