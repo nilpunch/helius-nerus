@@ -4,7 +4,8 @@ using UnityEngine;
 
 public enum ModifierType
 {
-	BlankModifier,
+	StraightMoveModifier,
+	HomingModifier,
 }
 
 public class ModifiersCollection : MonoBehaviour
@@ -18,7 +19,7 @@ public class ModifiersCollection : MonoBehaviour
     {
         return Instance._modifiersTypes[(int)type];
     }
-    public static IPlayerWeaponModifier GetCommandByEnum(ModifierType type)
+    public static IPlayerWeaponModifier GetModifierByEnum(ModifierType type)
     {
         return Instance._modifiers[(int)type].Clone();
     }

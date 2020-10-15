@@ -10,8 +10,9 @@ public class PlayerWeapon : MonoBehaviour
 
 	[Tooltip("СО свойств пушки стартовых")]
     [SerializeField] private PlayerWeaponsParametrs _parametersSO = null;
+	[SerializeField] private ModifierType[] _startModifiers = null;
 
-    private List<IPlayerWeaponModifier> _modifiers = new List<IPlayerWeaponModifier>();
+	private List<IPlayerWeaponModifier> _modifiers = new List<IPlayerWeaponModifier>();
 	private PlayerWeaponsParametrs _parameters;
     private Transform _transform;
 
@@ -21,6 +22,12 @@ public class PlayerWeapon : MonoBehaviour
 	{
 		_parameters = _parametersSO.Clone();
 		_transform = transform;
+
+		foreach (ModifierType modifierType in _startModifiers)
+		{
+			IPlayerWeaponModifier weaponModifier = ModifiersCollection.GetModifierByEnum(modifierType);
+			_modifiers.Add(weaponModifier);
+		}
 	}
 
     private void Update()
@@ -60,8 +67,8 @@ public class PlayerWeapon : MonoBehaviour
   
             pBullet.SetModifiers(_modifiers);
 
-            pBullet.SpeedMultiplier = _parameters.BulletSpeed;
-            pBullet.Damage = _parameters.BulletDamage;
+            pBullet.BulletParameters.SpeedMultiplier = _parameters.BulletSpeed;
+            pBullet.BulletParameters.Damage = _parameters.BulletDamage;
             bullet.transform.position = _transform.position;
             bullet.transform.position += (Vector3)_parameters.Position;
             bullet.transform.localEulerAngles = new Vector3(0f, 0f, Vector2.Angle(Vector2.up, _parameters.Direction) + (_angleStep * (i - _halfBulletAmount)));

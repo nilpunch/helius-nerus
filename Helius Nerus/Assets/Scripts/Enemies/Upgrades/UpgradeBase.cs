@@ -6,6 +6,10 @@ public abstract class UpgradeBase : MonoBehaviour
     {
         get => _weight;
     }
+	public float Amount
+	{
+		get => _amount;
+	}
 
     [Tooltip("Вес для генератора и балансировки")]
     [SerializeField] private int _weight = 0;
