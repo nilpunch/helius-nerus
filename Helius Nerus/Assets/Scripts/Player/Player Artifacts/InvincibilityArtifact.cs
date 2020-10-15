@@ -27,7 +27,7 @@ class InvincibilityArtifact : IPlayerArtifact
 		player.Rigidbody2D.simulated = false;
 		_isInvincible = true;
 #if UNITY_EDITOR
-		player.GetComponent<SpriteRenderer>().color = Color.green;
+		player.GetComponent<SpriteRenderer>().color = Color.blue;
 #endif
 	}
 
@@ -44,7 +44,7 @@ class InvincibilityArtifact : IPlayerArtifact
 				_isInvincible = false;
 				player.Rigidbody2D.simulated = true;
 #if UNITY_EDITOR
-				player.GetComponent<SpriteRenderer>().color = Color.blue;
+				player.GetComponent<SpriteRenderer>().color = Color.white;
 #endif
 			}
 		}
