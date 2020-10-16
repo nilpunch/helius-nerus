@@ -24,9 +24,6 @@ public class LevelBoss : MonoBehaviour
         {
             // counts as dead
             // call method
-#if UNITY_EDITOR
-            Debug.Log("Boss died");
-#endif
             BossDied.Invoke();
             return;
         }

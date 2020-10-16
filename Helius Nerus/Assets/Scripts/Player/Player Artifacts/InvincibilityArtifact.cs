@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 class InvincibilityArtifact : IPlayerArtifact
 {
@@ -7,6 +6,8 @@ class InvincibilityArtifact : IPlayerArtifact
 	private bool _isInvincible = false;
 	private float _invinsibilityLeft = 0.0f;
 	private float _effectToggleTime = 0.0f;
+
+    private SpriteRenderer _renderer;
 
 	public IPlayerArtifact Clone()
 	{
@@ -21,6 +22,8 @@ class InvincibilityArtifact : IPlayerArtifact
 	public void OnPick(Player player)
 	{
 		Player.PlayerTookDamage += Player_PlayerTakeDamage;
+
+        _renderer = player.GetComponent<SpriteRenderer>();
 	}
 
 	private void Player_PlayerTakeDamage(Player player)
@@ -31,7 +34,7 @@ class InvincibilityArtifact : IPlayerArtifact
 
 		// Setup invincibility effect
 		_effectToggleTime = _invinsibilityLeft / EFFECT_TIME_SCALE;
-		player.GetComponent<SpriteRenderer>().enabled = false;
+        _renderer.enabled = false;
 	}
 
 	public void OnTick(Player player)
@@ -47,8 +50,8 @@ class InvincibilityArtifact : IPlayerArtifact
 				_isInvincible = false;
 				player.Rigidbody2D.simulated = true;
 
-				// Disable invincibility effect
-				player.GetComponent<SpriteRenderer>().enabled = true;
+                // Disable invincibility effect
+                _renderer.enabled = true;
 			}
 			else 
 			{
@@ -56,7 +59,7 @@ class InvincibilityArtifact : IPlayerArtifact
 				if (_invinsibilityLeft < _effectToggleTime)
 				{
 					_effectToggleTime = _invinsibilityLeft / EFFECT_TIME_SCALE;
-					player.GetComponent<SpriteRenderer>().enabled = !player.GetComponent<SpriteRenderer>().enabled;
+                    _renderer.enabled = !_renderer.enabled;
 				}
 			}
 		}
