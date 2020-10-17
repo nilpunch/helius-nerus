@@ -72,6 +72,8 @@ public class PlayerWeapon : MonoBehaviour
             bullet.transform.position = _transform.position;
             bullet.transform.position += (Vector3)_parameters.Position;
             bullet.transform.localEulerAngles = new Vector3(0f, 0f, Vector2.Angle(Vector2.up, _parameters.Direction) + (_angleStep * (i - _halfBulletAmount)));
+
+			pBullet.OnShoot();
         }
     }
 

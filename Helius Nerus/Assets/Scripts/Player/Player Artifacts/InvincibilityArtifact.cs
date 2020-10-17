@@ -1,67 +1,55 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 class InvincibilityArtifact : IPlayerArtifact
 {
 	private const float EFFECT_TIME_SCALE = 1.1f;
-	private bool _isInvincible = false;
-	private float _invinsibilityLeft = 0.0f;
-	private float _effectToggleTime = 0.0f;
 
-    private SpriteRenderer _renderer;
+	private SpriteRenderer _renderer;
 
 	public IPlayerArtifact Clone()
 	{
 		return (InvincibilityArtifact)this.MemberwiseClone();
 	}
 
-	public void OnDrop(Player player)
+	public void OnPick()
 	{
-		Player.PlayerTookDamage -= Player_PlayerTakeDamage;
+		Player.PlayerTookDamage += Player_PlayerTookDamage;
+		_renderer = Player.Instance.GetComponent<SpriteRenderer>();
 	}
 
-	public void OnPick(Player player)
+	public void OnDrop()
 	{
-		Player.PlayerTookDamage += Player_PlayerTakeDamage;
-
-        _renderer = player.GetComponent<SpriteRenderer>();
+		Player.PlayerTookDamage -= Player_PlayerTookDamage;
 	}
 
-	private void Player_PlayerTakeDamage(Player player)
+	private void Player_PlayerTookDamage()
 	{
-		_invinsibilityLeft = player.PlayerParameters.InvinsibilityTime;
-		player.Rigidbody2D.simulated = false;
-		_isInvincible = true;
-
-		// Setup invincibility effect
-		_effectToggleTime = _invinsibilityLeft / EFFECT_TIME_SCALE;
-        _renderer.enabled = false;
+		CoroutineProcessor.ProcessArtifact(this);
 	}
 
-	public void OnTick(Player player)
+	public IEnumerator OnProc()
 	{
-		if (Pause.Paused)
-			return;
-
-		if (_isInvincible)
+		float invinsibilityLeft = Player.PlayerParameters.InvinsibilityTime;
+		Player.Rigidbody2D.simulated = false;
+		float effectToggleTime = invinsibilityLeft / EFFECT_TIME_SCALE;
+		_renderer.enabled = false;
+		
+		while (invinsibilityLeft > 0f)
 		{
-			_invinsibilityLeft -= Time.deltaTime;
-			if (_invinsibilityLeft <= 0.0f) 
-			{
-				_isInvincible = false;
-				player.Rigidbody2D.simulated = true;
+			if (Pause.Paused)
+				yield return null;
 
-                // Disable invincibility effect
-                _renderer.enabled = true;
-			}
-			else 
+			invinsibilityLeft -= Time.deltaTime;
+			if (invinsibilityLeft < effectToggleTime)
 			{
-				// Handle invincibility effect
-				if (_invinsibilityLeft < _effectToggleTime)
-				{
-					_effectToggleTime = _invinsibilityLeft / EFFECT_TIME_SCALE;
-                    _renderer.enabled = !_renderer.enabled;
-				}
+				effectToggleTime = invinsibilityLeft / EFFECT_TIME_SCALE;
+				_renderer.enabled = !_renderer.enabled;
 			}
+			yield return null;
 		}
+
+		Player.Rigidbody2D.simulated = true;
+		_renderer.enabled = true;
 	}
 }

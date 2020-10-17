@@ -4,27 +4,29 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Player : MonoBehaviour
 {
-    public static event System.Action<Player> PlayerHelathChanged = delegate { };
-    public static event System.Action<Player> PlayerTookDamage = delegate { };
-    public static event System.Action<Player> PlayerBeforeDie = delegate { };
-    public static event System.Action<Player> PlayerDie = delegate { };
-    public static event System.Action<Player> PlayerResurrection = delegate { };
+	public static Player Instance = null;
 
-	public static event System.Action<Player> PlayerUseBomb = delegate { };
+    public static event System.Action PlayerHelathChanged = delegate { };
+    public static event System.Action PlayerTookDamage = delegate { };
+    public static event System.Action PlayerBeforeDie = delegate { };
+    public static event System.Action PlayerDie = delegate { };
+    public static event System.Action PlayerResurrection = delegate { };
 
-    public PlayerParameters PlayerParameters
+    public static PlayerParameters PlayerParameters
     {
-        get => _playerParameters;
+        get => Instance._playerParameters;
     }
-	public Rigidbody2D Rigidbody2D
+	public static Rigidbody2D Rigidbody2D
 	{
-		get => _rigidbody2D;
+		get => Instance._rigidbody2D;
 	}
-	public PlayerWeapon[] PlayerWeapons
+	public static PlayerWeapon[] PlayerWeapons
 	{
-		get => _weapons;
+		get => Instance._weapons;
 	}
 
+	[SerializeField] private PlayerMovement _playerMovement = null;
+	[Space]
 	[SerializeField] private PlayerParameters _playerParametersSO = null;
     [SerializeField] private PlayerWeapon[] _weapons = null;
 	[SerializeField] private ArtifactType[] _startArtifacts = null;
@@ -36,36 +38,50 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
-        _playerParameters = _playerParametersSO.Clone();
-
+		Instance = this;
         _rigidbody2D = GetComponent<Rigidbody2D>();
+		_playerMovement.Init();
+		RestrartPlayer();
+	}
 
-        _playerParameters.CurrentHealth = _playerParameters.MaxHealth;
+	private void Update()
+	{
+		_playerMovement.Update();
+	}
+
+	private void RestrartPlayer()
+    {
+		_playerParameters = _playerParametersSO.Clone();
+		_playerParameters.CurrentHealth = _playerParameters.MaxHealth;
+
+		for (int i = 0; i < _artifacts.Count; ++i)
+		{
+			_artifacts[i].OnDrop();
+		}
+
+		_artifacts.Clear();
 
 		foreach (ArtifactType artifactType in _startArtifacts)
 		{
 			IPlayerArtifact artifact = ArtifactsCollection.GetArtifactByEnum(artifactType);
-			artifact.OnPick(this);
+			artifact.OnPick();
 			_artifacts.Add(artifact);
 		}
 	}
 
-    private void OnDestroy()
-    {
-		for (int i = 0; i < _artifacts.Count; ++i)
+	private void OnTriggerEnter2D(Collider2D collision)
+	{
+		IDealDamageToPlayer dealDamageToPlayer = (collision.gameObject.GetComponent(typeof(IDealDamageToPlayer)) as IDealDamageToPlayer);
+		if (dealDamageToPlayer != null)
 		{
-			_artifacts[i].OnDrop(this);
+			TakeDamage(dealDamageToPlayer.GetMyDamage());
+			return;
 		}
-	}
-
-    private void Update()
-    {
-        if (Pause.Paused)
-            return;
-
-		for (int i = 0; i < _artifacts.Count; ++i)
+		UpgradeBase upgrade = collision.GetComponent<UpgradeBase>();
+		if (upgrade != null)
 		{
-			_artifacts[i].OnTick(this);
+			upgrade.UpgradeCharacter();
+			return;
 		}
 	}
 
@@ -77,27 +93,27 @@ public class Player : MonoBehaviour
 		if (damage >= 0)
 		{
 			_playerParameters.CurrentHealth -= damage;
-			PlayerHelathChanged.Invoke(this);
+			PlayerHelathChanged.Invoke();
 		}
 
 		if (_playerParameters.CurrentHealth <= 0)
 		{
-			PlayerBeforeDie.Invoke(this);
+			PlayerBeforeDie.Invoke();
 
 			if (_playerParameters.CurrentHealth <= 0)
 			{
-				PlayerDie.Invoke(this);
-				Destroy(gameObject);
+				PlayerDie.Invoke();
+				gameObject.SetActive(false);
 			}
 			else
 			{
-				PlayerTookDamage.Invoke(this);
-				PlayerResurrection.Invoke(this);
+				PlayerTookDamage.Invoke();
+				PlayerResurrection.Invoke();
 			}
 		}
 		else
 		{
-			PlayerTookDamage.Invoke(this);
+			PlayerTookDamage.Invoke();
 		}
 	}
 
@@ -106,7 +122,7 @@ public class Player : MonoBehaviour
 		if (_playerParameters.CurrentHealth < _playerParameters.MaxHealth)
 		{
 			_playerParameters.CurrentHealth++;
-			PlayerHelathChanged.Invoke(this);
+			PlayerHelathChanged.Invoke();
 		}
 	}
 }

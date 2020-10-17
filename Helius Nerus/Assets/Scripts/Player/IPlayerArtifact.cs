@@ -1,7 +1,9 @@
-﻿public interface IPlayerArtifact
+﻿using System.Collections;
+
+public interface IPlayerArtifact
 {
-	void OnPick(Player player);
-	void OnTick(Player player);
-	void OnDrop(Player player);
+	void OnPick();
+	IEnumerator OnProc();
+	void OnDrop();
 	IPlayerArtifact Clone();
 }

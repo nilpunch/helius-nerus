@@ -1,8 +1,8 @@
 ﻿public class UpgradeHP : UpgradeBase
 {
-    public override void UpgradeCharacter(Player player)
+    public override void UpgradeCharacter()
     {
-        player.IncrementHealth();
+        Player.Instance.IncrementHealth();
         Destroy(gameObject);
     }
 }

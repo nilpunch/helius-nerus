@@ -75,7 +75,7 @@ public class EnemiesSpawner : MonoBehaviour
 		}
     }
 
-    private void Player_PlayerTookDamage(Player obj)
+    private void Player_PlayerTookDamage()
     {
         _money += _playerDamageReward;
     }

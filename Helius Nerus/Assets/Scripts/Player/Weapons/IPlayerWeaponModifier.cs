@@ -1,8 +1,10 @@
-﻿public interface IPlayerWeaponModifier
+﻿using System.Collections;
+
+public interface IPlayerWeaponModifier
 {
-	void OnEnable(PlayerBullet playerBullet);
+	void OnShoot(PlayerBullet playerBullet);
 	void OnHit(PlayerBullet playerBullet, Enemy enemy);
     void OnDestroy(PlayerBullet playerBullet);
-	void OnTick(PlayerBullet playerBullet);
+	IEnumerator OnProc(PlayerBullet playerBullet);
 	IPlayerWeaponModifier Clone();
 }

@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class StraightMoveModifier : IPlayerWeaponModifier
@@ -13,16 +12,21 @@ public class StraightMoveModifier : IPlayerWeaponModifier
 	{
 	}
 
-	public void OnEnable(PlayerBullet playerBullet)
+	public void OnShoot(PlayerBullet playerBullet)
 	{
+		CoroutineProcessor.ProcessModifier(this, playerBullet);
 	}
 
 	public void OnHit(PlayerBullet playerBullet, Enemy enemy)
 	{
 	}
 
-	public void OnTick(PlayerBullet playerBullet)
+	public IEnumerator OnProc(PlayerBullet playerBullet)
 	{
-		playerBullet.Transform.Translate(Vector3.up * Time.deltaTime * playerBullet.BulletParameters.SpeedMultiplier, Space.Self);
+		while (playerBullet.gameObject.activeInHierarchy)
+		{
+			playerBullet.Transform.Translate(Vector3.up * Time.deltaTime * playerBullet.BulletParameters.SpeedMultiplier, Space.Self);
+			yield return null;
+		}
 	}
 }

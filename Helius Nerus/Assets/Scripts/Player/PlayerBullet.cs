@@ -23,17 +23,6 @@ public class PlayerBullet : MonoBehaviour, IReturnableToPool
 		_transform = transform;
 	}
 
-	private void Update()
-	{
-		if (Pause.Paused)
-			return;
-
-		for (int i = 0; i < _modifiers.Count; ++i)
-		{
-			_modifiers[i].OnTick(this);
-		}
-	}
-
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
 		// Нанести урон еще надо
@@ -68,5 +57,13 @@ public class PlayerBullet : MonoBehaviour, IReturnableToPool
 	public void SetModifiers(List<IPlayerWeaponModifier> modifiers)
 	{
 		_modifiers = modifiers;
+	}
+
+	public void OnShoot()
+	{
+		for (int i = 0; i < _modifiers.Count; ++i)
+		{
+			_modifiers[i].OnShoot(this);
+		}
 	}
 }

@@ -16,5 +16,5 @@ public abstract class UpgradeBase : MonoBehaviour
     [Tooltip("Изменяемый параметр в количестве (или другой параметре)")]
     [SerializeField] private float _amount = 1.0f;
 
-    public abstract void UpgradeCharacter(Player player);
+    public abstract void UpgradeCharacter();
 }

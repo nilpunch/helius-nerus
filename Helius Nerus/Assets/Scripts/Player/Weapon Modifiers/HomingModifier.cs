@@ -11,21 +11,18 @@ public class HomingModifier : IPlayerWeaponModifier
 
 	public void OnDestroy(PlayerBullet playerBullet)
 	{
-		throw new System.NotImplementedException();
 	}
 
-	public void OnEnable(PlayerBullet playerBullet)
+	public void OnShoot(PlayerBullet playerBullet)
 	{
-		throw new System.NotImplementedException();
 	}
 
 	public void OnHit(PlayerBullet playerBullet, Enemy enemy)
 	{
-		throw new System.NotImplementedException();
 	}
 
-	public void OnTick(PlayerBullet playerBullet)
+	public IEnumerator OnProc(PlayerBullet playerBullet)
 	{
-		throw new System.NotImplementedException();
+		return null;
 	}
 }
