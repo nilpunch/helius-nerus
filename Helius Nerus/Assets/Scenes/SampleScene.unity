@@ -345,6 +345,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11b6ecf31d0cd274e932314646733c0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _parallaxCoefficient: 2
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -1017,12 +1018,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerMovement:
-    Transform: {fileID: 1971274271}
-    MoveParameters: {fileID: 11400000, guid: 53805507f627df3409ef3f0bbd6ec17c, type: 2}
-    MoveInputType: 0
-    MouseMoveSettings: {fileID: 11400000, guid: 1be2ba190cdcefa48a59fc97d1d17ae7,
+    _transform: {fileID: 1971274271}
+    _playerBoundaryOffset: 0
+    _moveParameters: {fileID: 11400000, guid: 53805507f627df3409ef3f0bbd6ec17c, type: 2}
+    _moveInputType: 0
+    _mouseMoveSettings: {fileID: 11400000, guid: 1be2ba190cdcefa48a59fc97d1d17ae7,
       type: 2}
-    KeyboradMoveSettings: {fileID: 11400000, guid: 985673df7ed154c4ca10dbe25f6249df,
+    _keyboradMoveSettings: {fileID: 11400000, guid: 985673df7ed154c4ca10dbe25f6249df,
       type: 2}
   _playerParametersSO: {fileID: 11400000, guid: 8847d6c31c8cc2c44a6030268b244597,
     type: 2}

@@ -15,8 +15,8 @@ public class BGRenderer : MonoBehaviour
 
         _renderer.material.mainTexture = _bgImage;
 
-		float screenHeight = CameraParallaxFollow.GameSize.x;
-		float screenWidth = CameraParallaxFollow.GameSize.y;
+		float screenHeight = ParallaxCamera.ParallaxSize.x;
+		float screenWidth = ParallaxCamera.ParallaxSize.y;
 
 		float bigger = screenWidth > screenHeight ? screenWidth : screenHeight;
         transform.localScale = new Vector3(bigger / 10f, 1.0f, bigger / 10f);

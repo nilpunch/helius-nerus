@@ -17,7 +17,7 @@ public class PlayerMovement
 	private TransformMover _transformMover = null;
 
 	public void Init()
-    {
+	{
 		switch (_moveInputType)
 		{
 		case InputType.Keyboard:
@@ -32,20 +32,18 @@ public class PlayerMovement
 		_transformMover = new TransformMover(_moveInput, _transform, _moveParameters);
 	}
 
-    public void Update()
-    {
+	public void Update()
+	{
 		_moveInput.ReadInput();
+
+		float oldPosition = _transform.position.x;
 		_transformMover.Tick();
 
-		float unclampedPositionX = _transform.position.x;
 		_transform.position = new Vector3(
-			Mathf.Clamp(_transform.position.x, CameraParallaxFollow.GameBoundaryRect.xMin + _playerBoundaryOffset, CameraParallaxFollow.GameBoundaryRect.xMax - _playerBoundaryOffset),
-			Mathf.Clamp(_transform.position.y, CameraParallaxFollow.GameBoundaryRect.yMin + _playerBoundaryOffset, CameraParallaxFollow.GameBoundaryRect.yMax - _playerBoundaryOffset),
+			Mathf.Clamp(_transform.position.x, ParallaxCamera.ParallaxBoundary.xMin + _playerBoundaryOffset, ParallaxCamera.ParallaxBoundary.xMax - _playerBoundaryOffset),
+			Mathf.Clamp(_transform.position.y, ParallaxCamera.ParallaxBoundary.yMin + _playerBoundaryOffset, ParallaxCamera.ParallaxBoundary.yMax - _playerBoundaryOffset),
 			_transform.position.z);
 
-		if (unclampedPositionX == _transform.position.x)
-		{
-			CameraParallaxFollow.CameraTransform.Translate(_transformMover.LastDeltaMovement.x * CameraParallaxFollow.TranslationCoefficient, 0.0f, 0.0f, Space.World);
-		}
+		ParallaxCamera.CameraTransform.Translate((_transform.position.x - oldPosition) * ParallaxCamera.TranslationCoefficient, 0.0f, 0.0f, Space.World);
 	}
 }
