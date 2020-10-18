@@ -15,13 +15,11 @@ public class BGRenderer : MonoBehaviour
 
         _renderer.material.mainTexture = _bgImage;
 
-        //size
-        Camera camera = Camera.main;
-        float screenHeight = camera.orthographicSize;
-        float screenWidth = screenHeight * camera.aspect;
+		float screenHeight = CameraParallaxFollow.GameSize.x;
+		float screenWidth = CameraParallaxFollow.GameSize.y;
 
-        float bigger = screenWidth > screenHeight ? screenWidth : screenHeight;
-        transform.localScale = new Vector3(bigger / 5, 1.0f, bigger / 5);
+		float bigger = screenWidth > screenHeight ? screenWidth : screenHeight;
+        transform.localScale = new Vector3(bigger / 10f, 1.0f, bigger / 10f);
         _renderer.material.mainTexture.wrapMode = TextureWrapMode.Repeat;
     }
 

@@ -2,6 +2,8 @@
 
 public class TransformMover
 {
+	public Vector2 LastDeltaMovement { get; private set; } = Vector2.zero;
+
 	private readonly IMoveInput _moveInput;
 	private readonly Transform _transform;
 	private readonly MoveParameters _moveSettings;
@@ -15,6 +17,7 @@ public class TransformMover
 
 	public void Tick()
 	{
-		_transform.position += (Vector3)_moveInput.Direction * _moveInput.Thrust * _moveSettings.MoveSpeed * Time.deltaTime;
+		LastDeltaMovement = _moveInput.Direction * _moveInput.Thrust * _moveSettings.MoveSpeed * Time.deltaTime;
+		_transform.Translate(LastDeltaMovement, Space.World);
 	}
 }

@@ -16,7 +16,7 @@ MonoBehaviour:
   _direction: {x: 0, y: 1}
   _reloadTime: 0.5
   _bulletAmount: 1
-  _spreadAngleDegrees: 5
+  _spreadAngleDegrees: 25
   _bulletSpeed: 10
   _bulletDamage: 1
   _bulletSize: 1

@@ -6,6 +6,7 @@ public enum ModifierType
 {
 	StraightMoveModifier,
 	HomingModifier,
+	RotationMoveModifier,
 }
 
 public class ModifiersCollection : MonoBehaviour
