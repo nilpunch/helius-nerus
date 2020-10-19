@@ -15,6 +15,7 @@ class InvincibilityArtifact : IPlayerArtifact
 	public void OnPick()
 	{
 		Player.PlayerTookDamage += Player_PlayerTookDamage;
+        // Мне не нравится эта строка. Лучше уже кэшануть и в свойство
 		_renderer = Player.Instance.GetComponent<SpriteRenderer>();
 	}
 

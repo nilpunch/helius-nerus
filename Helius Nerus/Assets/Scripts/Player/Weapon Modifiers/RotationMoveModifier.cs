@@ -27,7 +27,7 @@ class RotationMoveModifier : IPlayerWeaponModifier
 	{
 		float angleIncrement = Random.Range(-MAX_ANGLE_INCREMENT, MAX_ANGLE_INCREMENT);
 
-		while (playerBullet.gameObject.activeInHierarchy)
+		while (playerBullet.gameObject.activeSelf)
 		{
 			playerBullet.Transform.Rotate(0.0f, 0.0f, angleIncrement * Time.deltaTime * playerBullet.BulletParameters.SpeedMultiplier, Space.Self);
 			yield return null;
