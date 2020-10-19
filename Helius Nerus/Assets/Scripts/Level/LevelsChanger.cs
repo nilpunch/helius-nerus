@@ -17,14 +17,14 @@ public class LevelsChanger : MonoBehaviour
 
     private void SpawnNextLevel()
     {
-        if (_current != null)
-            Destroy(_current);
+        //if (_current != null)
+        //    Destroy(_current);
 
         ++_currentLevel;
         if (_currentLevel >= _levels.Length)
             _currentLevel = 0;
 
-        _current = GameObject.Instantiate(_levels[_currentLevel]);
+        _current = Instantiate(_levels[_currentLevel]);
     }
 
     public void ChangeLevel()

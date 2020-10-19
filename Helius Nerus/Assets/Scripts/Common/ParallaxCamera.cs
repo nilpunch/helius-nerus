@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ParallaxCamera : MonoBehaviour
 {
@@ -38,7 +36,6 @@ public class ParallaxCamera : MonoBehaviour
 	[SerializeField] private float _parallaxCoefficient = 1.0f;
 	private float _translationCoefficient;
 	private Transform _cameraTransform;
-	private Camera _cameraMain;
 	private Vector2 _cameraSize;
 	private Vector2 _parallaxSize;
 	private Rect _cameraBoundary;
@@ -48,7 +45,8 @@ public class ParallaxCamera : MonoBehaviour
 	private void Awake()
 	{
 		_sceneInstance = this;
-		_cameraMain = Camera.main;
+        
+		Camera _cameraMain = Camera.main;
 
 		_translationCoefficient = 1f - 1f / _parallaxCoefficient;
 

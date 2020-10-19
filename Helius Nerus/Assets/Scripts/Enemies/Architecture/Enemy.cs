@@ -57,12 +57,12 @@ public class Enemy : MonoBehaviour, IReturnableToPool, IDealDamageToPlayer
         _weaponProcessor.Initialize(transform);
         _stats.Reset();
         _isDead = false;
-        Level.Instance.EnemiesCounter.IncrementEnemies();
+        Level.EnemiesCounter.IncrementEnemies();
     }
 
     public void ReturnMeToPool()
     {
-        Level.Instance.EnemiesCounter.DectrementEnemies();
+        Level.EnemiesCounter.DectrementEnemies();
         EnemyPoolContainer.Instance.ReturnObjectToPool(_type, gameObject);
     }
 

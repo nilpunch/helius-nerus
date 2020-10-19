@@ -1,12 +1,13 @@
 ﻿using UnityEngine;
 
-public class LevelBoss : MonoBehaviour
+[System.Serializable]
+public class LevelBoss
 {
     [SerializeField] private GameObject _boss = null;
 
     public static event System.Action BossDied = delegate { };
 
-    private void Awake()
+    public void Init()
     {
         EnemiesInSceneCounter.LastEnemyDied += EnemiesInSceneCounter_LastEnemyDied;
     }
@@ -29,7 +30,7 @@ public class LevelBoss : MonoBehaviour
         }
     }
 
-    private void OnDestroy()
+    public void Cleanup()
     {
         EnemiesInSceneCounter.LastEnemyDied -= EnemiesInSceneCounter_LastEnemyDied;
     }

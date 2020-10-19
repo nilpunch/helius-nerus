@@ -33,7 +33,8 @@ public class EnemiesSpawner : MonoBehaviour
 		// На каждой новой сцене (при гарантии что спаунер 1) глобальная ссылка будет перезаписываться на необходимую
 		InstanceOnScene = this;
         _transform = transform;
-        _screenWidth = Camera.main.orthographicSize * Camera.main.aspect;
+        _transform.position = new Vector3(0.0f, ParallaxCamera.ParallaxSize.y / 2 + 2, 0.0f);
+        _screenWidth = ParallaxCamera.ParallaxSize.x / 2;
 
         Player.PlayerTookDamage += Player_PlayerTookDamage;
 
@@ -100,7 +101,7 @@ public class EnemiesSpawner : MonoBehaviour
 
 	private void SelectNextPack()
 	{
-		int nextPackIndex = Mathf.RoundToInt(_controlledRandom.CalculateRandomValue(Level.Instance.EnemiesCounter.AmountOfEnemies) * (_enemiesPacksNew.Length - 1));
+		int nextPackIndex = Mathf.RoundToInt(_controlledRandom.CalculateRandomValue(Level.EnemiesCounter.AmountOfEnemies) * (_enemiesPacksNew.Length - 1));
         _nextPackIndex = nextPackIndex;
 	}
 }
