@@ -44,6 +44,6 @@ public class PlayerMovement
 			Mathf.Clamp(_transform.position.y, ParallaxCamera.ParallaxBoundary.yMin + _playerBoundaryOffset, ParallaxCamera.ParallaxBoundary.yMax - _playerBoundaryOffset),
 			_transform.position.z);
 
-		ParallaxCamera.CameraTransform.Translate((_transform.position.x - oldPosition) * ParallaxCamera.TranslationCoefficient, 0.0f, 0.0f, Space.World);
+		ParallaxCamera.CameraTransform.position = ParallaxCamera.CameraTransform.position.With(x: _transform.position.x * ParallaxCamera.TranslationCoefficient);
 	}
 }
