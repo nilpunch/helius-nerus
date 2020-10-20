@@ -9,7 +9,7 @@ public enum ModifierType
 	RotationMoveModifier,
 }
 
-public class ModifiersCollection : MonoBehaviour
+public class ModifiersCollection
 {
     public static ModifiersCollection Instance { get; private set; } = null;
 
@@ -29,7 +29,7 @@ public class ModifiersCollection : MonoBehaviour
         get => _modifiers[(int)type].Clone();
     }
 
-    private void Awake()
+    public void Init()
     {
         if (Instance == null)
         {
@@ -37,11 +37,8 @@ public class ModifiersCollection : MonoBehaviour
         }
         else
         {
-            Destroy(gameObject);
             return;
         }
-
-        DontDestroyOnLoad(gameObject);
         PreCookTypes();
     }
 

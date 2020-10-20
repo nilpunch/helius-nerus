@@ -7,7 +7,7 @@ public enum ArtifactType
 	InvincibilityArtifact,
 }
 
-public class ArtifactsCollection : MonoBehaviour
+public class ArtifactsCollection
 {
 	public static ArtifactsCollection Instance { get; private set; } = null;
 
@@ -27,7 +27,7 @@ public class ArtifactsCollection : MonoBehaviour
 		get => _artifacts[(int)type].Clone();
 	}
 
-	private void Awake()
+	public void Init()
 	{
 		if (Instance == null)
 		{
@@ -35,12 +35,10 @@ public class ArtifactsCollection : MonoBehaviour
 		}
 		else
 		{
-			Destroy(gameObject);
 			return;
 		}
 
-		DontDestroyOnLoad(gameObject);
-		PreCookTypes();
+        PreCookTypes();
 	}
 
 	private void PreCookTypes()

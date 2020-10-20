@@ -4,7 +4,11 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Player : MonoBehaviour
 {
-	public static Player Instance = null;
+	public static Player Instance
+    {
+        get;
+        private set;
+    }
 
     public static event System.Action PlayerHelathChanged = delegate { };
     public static event System.Action PlayerTookDamage = delegate { };
@@ -20,6 +24,10 @@ public class Player : MonoBehaviour
 	{
 		get => Instance._rigidbody2D;
 	}
+    public static SpriteRenderer SpriteRenderer
+    {
+        get => Instance._renderer;
+    }
 	public static PlayerWeapon[] PlayerWeapons
 	{
 		get => Instance._weapons;
@@ -30,11 +38,11 @@ public class Player : MonoBehaviour
 	[SerializeField] private PlayerParameters _playerParametersSO = null;
     [SerializeField] private PlayerWeapon[] _weapons = null;
 	[SerializeField] private ArtifactType[] _startArtifacts = null;
+    [SerializeField] private Rigidbody2D _rigidbody2D = null;
+    [SerializeField] private SpriteRenderer _renderer = null;
 	
 	private List<IPlayerArtifact> _artifacts = new List<IPlayerArtifact>();
-
     private PlayerParameters _playerParameters = null;
-    private Rigidbody2D _rigidbody2D = null;
 
     private void Awake()
     {

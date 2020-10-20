@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 
-public class UpgrageCollection : MonoBehaviour
+[System.Serializable]
+public class UpgrageCollection
 {
     [SerializeField] private UpgradeBase[] _upgrades = null;
 
@@ -12,13 +13,12 @@ public class UpgrageCollection : MonoBehaviour
         private set;
     }
 
-    private void Awake()
+    public void Init()
     {
         if (Instance == null)
             Instance = this;
         else
         {
-            Destroy(gameObject);
             return;
         }
 
@@ -37,9 +37,9 @@ public class UpgrageCollection : MonoBehaviour
             rand -= _upgrades[i].Weight;
             if (rand <= 0)
             {
-                return Instantiate(_upgrades[i].gameObject);
+                return GameObject.Instantiate(_upgrades[i].gameObject);
             }
         }
-        return Instantiate(_upgrades[_upgrades.Length - 1].gameObject);
+        return GameObject.Instantiate(_upgrades[_upgrades.Length - 1].gameObject);
     }
 }

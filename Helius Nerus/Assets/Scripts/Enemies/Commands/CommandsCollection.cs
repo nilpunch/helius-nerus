@@ -15,7 +15,7 @@ public enum WeaponCommandType
 	StraightShoot,
 }
 
-public class CommandsCollection : MonoBehaviour
+public class CommandsCollection
 {
 	public static CommandsCollection Instance { get; private set; } = null;
 
@@ -50,7 +50,7 @@ public class CommandsCollection : MonoBehaviour
 		get => _weaponCommands[(int)type].Clone();
 	}
 
-	private void Awake()
+	public void Init()
 	{
 		if (Instance == null)
 		{
@@ -58,11 +58,9 @@ public class CommandsCollection : MonoBehaviour
 		}
 		else
 		{
-			Destroy(gameObject);
 			return;
 		}
 
-		DontDestroyOnLoad(gameObject);
 		PreCookTypes();
     }
 
