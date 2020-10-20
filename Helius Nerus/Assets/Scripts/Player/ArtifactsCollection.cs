@@ -11,9 +11,11 @@ public class ArtifactsCollection
 {
 	public static ArtifactsCollection Instance { get; private set; } = null;
 
-	private List<Type> _artifactsTypes = new List<Type>();
-	private List<IPlayerArtifact> _artifacts = new List<IPlayerArtifact>();
-
+    public static IPlayerArtifact GetRandomPlayerArtifact()
+    {
+        int rand = UnityEngine.Random.Range(0, Instance._artifacts.Count);
+        return Instance._artifacts[rand].Clone();
+    }
 	public static Type GetTypeByEnum(ArtifactType type)
 	{
 		return Instance._artifactsTypes[(int)type];
@@ -26,6 +28,10 @@ public class ArtifactsCollection
 	{
 		get => _artifacts[(int)type].Clone();
 	}
+
+	private List<Type> _artifactsTypes = new List<Type>();
+	private List<IPlayerArtifact> _artifacts = new List<IPlayerArtifact>();
+
 
 	public void Init()
 	{

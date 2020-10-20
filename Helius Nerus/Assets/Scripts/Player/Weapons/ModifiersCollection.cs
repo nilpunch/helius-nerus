@@ -13,9 +13,11 @@ public class ModifiersCollection
 {
     public static ModifiersCollection Instance { get; private set; } = null;
 
-    private List<Type> _modifiersTypes = new List<Type>();
-    private List<IPlayerWeaponModifier> _modifiers = new List<IPlayerWeaponModifier>();
-
+    public static IPlayerWeaponModifier GetRandomWeaponModifier()
+    {
+        int rand = UnityEngine.Random.Range(0, Instance._modifiers.Count);
+        return Instance._modifiers[rand].Clone();
+    }
     public static Type GetTypeByEnum(ModifierType type)
     {
         return Instance._modifiersTypes[(int)type];
@@ -28,6 +30,9 @@ public class ModifiersCollection
     {
         get => _modifiers[(int)type].Clone();
     }
+
+    private List<Type> _modifiersTypes = new List<Type>();
+    private List<IPlayerWeaponModifier> _modifiers = new List<IPlayerWeaponModifier>();
 
     public void Init()
     {

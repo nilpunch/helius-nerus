@@ -87,4 +87,11 @@ public class PlayerWeapon : MonoBehaviour
     {
 		_parameters = parameters.Clone();
     }
+
+    public void ApplyPair(ArtifactUpgradePair pair)
+    {
+        _parameters.ApplyModifier(pair.WeaponsParametrs);
+        if (pair.IsWeaponMod)
+            _modifiers.Add(pair.WeaponModifier);
+    }
 }

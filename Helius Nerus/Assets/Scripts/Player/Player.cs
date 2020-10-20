@@ -133,4 +133,14 @@ public class Player : MonoBehaviour
 			PlayerHelathChanged.Invoke();
 		}
 	}
+
+    public void AddArtifact(ArtifactUpgradePair pair)
+    {
+        if (pair.IsShipMod)
+        {
+            IPlayerArtifact artifact = pair.Artifact.Clone();
+            _artifacts.Add(artifact);
+            artifact.OnPick();
+        }
+    }
 }

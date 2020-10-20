@@ -9,6 +9,8 @@ public class PlayerWeaponsParametrs : ScriptableObject
     [SerializeField] private Vector2 _direction = Vector2.up;
     [Tooltip("Время перезарядки пули")]
     [SerializeField] private float _reloadTime = 1f;
+    [Tooltip("Кап перезарядки пули")]
+    [SerializeField] private float _reloadTimeCap = 0.2f;
     [Tooltip("Количество выпускаемых за раз пуль")]
     [SerializeField] private int _bulletAmount = 1;
     [Tooltip("Конус выстрела в градусах")]
@@ -19,6 +21,19 @@ public class PlayerWeaponsParametrs : ScriptableObject
     [SerializeField] private float _bulletDamage = 1;
     [Tooltip("Размер пули")]
     [SerializeField] private float _bulletSize = 1f;
+
+    public PlayerWeaponsParametrs(float reloadTime, int bulletAmount, float spreadAngle, float bulletSize, float bulletDamage, float bulletSpeed)
+    {
+        _position = Vector2.zero;
+        _direction = Vector2.up;
+        _reloadTime = reloadTime;
+        _reloadTimeCap = 0.2f;
+        _bulletAmount = bulletAmount;
+        _spreadAngleDegrees = spreadAngle;
+        _bulletDamage = bulletDamage;
+        _bulletSize = bulletSize;
+        _bulletSpeed = bulletSpeed;
+    }
 
     public PlayerWeaponsParametrs Clone()
     {
@@ -33,4 +48,18 @@ public class PlayerWeaponsParametrs : ScriptableObject
     public float BulletSpeed { get => _bulletSpeed; set => _bulletSpeed = value; }
     public float BulletDamage { get => _bulletDamage; set => _bulletDamage = value; }
     public float BulletSize { get => _bulletSize; set => _bulletSize = value; }
+
+    public void ApplyModifier(PlayerWeaponsParametrs mod)
+    {
+        _reloadTime -= mod._reloadTime;
+        if (_reloadTime < _reloadTimeCap)
+            _reloadTime = _reloadTimeCap;
+
+        _bulletAmount += mod._bulletAmount;
+
+        _spreadAngleDegrees += mod._spreadAngleDegrees;
+        _bulletSpeed += mod._bulletSpeed;
+        _bulletSize += mod._bulletSize;
+        _bulletDamage += mod._bulletDamage;
+    }
 }
