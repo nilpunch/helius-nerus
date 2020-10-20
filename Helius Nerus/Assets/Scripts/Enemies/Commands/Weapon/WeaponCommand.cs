@@ -42,6 +42,7 @@ public abstract class WeaponCommand : IEnemyCommand
             GameObject bullet = BulletPoolsContainer.Instance.GetObjectFromPool(commandData.BulletType);
             (bullet.GetComponent(typeof(IBulletMovement)) as IBulletMovement).SpeedMultiplier = commandData.BulletSpeed;
 			bullet.transform.position = commandData.Position;
+            bullet.transform.localScale = commandData.BulletSize * Vector3.one;
 			bullet.transform.localEulerAngles = new Vector3(0f, 0f, Vector2.Angle(Vector2.up, commandData.Direction) + (_angleStep * (i - _halfBulletAmount)));
 		} 
 	}

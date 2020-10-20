@@ -19,4 +19,4 @@ MonoBehaviour:
   _spreadAngleDegrees: 5
   _bulletSpeed: 5
   _bulletDamage: 0.5
-  _bulletSize: 0.8
+  _bulletSize: 0.3
