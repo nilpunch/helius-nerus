@@ -59,11 +59,11 @@ public class PlayerBullet : MonoBehaviour, IReturnableToPool
 		_modifiers = modifiers;
 	}
 
-	public void OnShoot()
+	public void OnBulletEnable()
 	{
 		for (int i = 0; i < _modifiers.Count; ++i)
 		{
-			_modifiers[i].OnShoot(this);
+			_modifiers[i].OnBulletEnable(this);
 		}
 	}
 }

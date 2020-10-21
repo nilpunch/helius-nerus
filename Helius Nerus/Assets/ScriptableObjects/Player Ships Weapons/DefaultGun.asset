@@ -10,13 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6963be36625386844a6f1cc66307676b, type: 3}
-  m_Name: Machinegun
+  m_Name: DefaultGun
   m_EditorClassIdentifier: 
   _position: {x: 0, y: 0}
   _direction: {x: 0, y: 1}
-  _reloadTime: 0.25
+  _bulletsPerSec: 2
   _bulletAmount: 1
-  _spreadAngleDegrees: 5
-  _bulletSpeed: 5
-  _bulletDamage: 0.5
+  _spreadAngleDegrees: 30
+  _bulletSpeed: 8
+  _bulletDamage: 1
+  _damageMult: 1
   _bulletSize: 0.3
