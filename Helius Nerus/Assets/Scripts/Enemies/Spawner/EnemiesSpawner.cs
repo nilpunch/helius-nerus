@@ -50,6 +50,8 @@ public class EnemiesSpawner : MonoBehaviour
 
 	private void Update()
 	{
+        if (Pause.Paused)
+            return;
 		_timeBeforeReceivingMoney += Time.deltaTime;
 		if (_timeBeforeReceivingMoney >= 1.0f)
 		{

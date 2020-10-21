@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class CoroutineProcessor : MonoBehaviour
 {
@@ -13,6 +14,11 @@ public class CoroutineProcessor : MonoBehaviour
 	{
 		Instance.StartCoroutine(modifier.OnProc(playerBullet));
 	}
+
+    public static void LaunchCoroutine(IEnumerator coroutine)
+    {
+        Instance.StartCoroutine(coroutine);
+    }
 
 	private void Awake()
 	{

@@ -29,7 +29,12 @@ class RotationMoveModifier : IPlayerWeaponModifier
 
 		while (playerBullet.gameObject.activeSelf)
 		{
-			playerBullet.Transform.Rotate(0.0f, 0.0f, angleIncrement * Time.deltaTime * playerBullet.BulletParameters.SpeedMultiplier, Space.Self);
+            if (Pause.Paused)
+            {
+                yield return null;
+                continue;
+            }
+            playerBullet.Transform.Rotate(0.0f, 0.0f, angleIncrement * Time.deltaTime * playerBullet.BulletParameters.SpeedMultiplier, Space.Self);
 			yield return null;
 		}
 	}

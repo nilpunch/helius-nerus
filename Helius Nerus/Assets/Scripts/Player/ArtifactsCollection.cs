@@ -11,11 +11,6 @@ public class ArtifactsCollection
 {
 	public static ArtifactsCollection Instance { get; private set; } = null;
 
-    public static IPlayerArtifact GetRandomPlayerArtifact()
-    {
-        int rand = UnityEngine.Random.Range(0, Instance._artifacts.Count);
-        return Instance._artifacts[rand].Clone();
-    }
 	public static Type GetTypeByEnum(ArtifactType type)
 	{
 		return Instance._artifactsTypes[(int)type];

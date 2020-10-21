@@ -10,9 +10,9 @@ public class Level : MonoBehaviour
     [SerializeField] private WallsPlacer _wallsPlacer = null;
     [SerializeField] private LevelBoss _levelBoss = null;
     [SerializeField] private LevelPortal _levelPortal = null;
+    [SerializeField] private Pause _pause = null;
     private EnemiesInSceneCounter _counter = new EnemiesInSceneCounter();
     private static Level _instance;
-    private Pause _pause = new Pause();
 
     private void Awake()
     {
@@ -24,6 +24,7 @@ public class Level : MonoBehaviour
         _wallsPlacer.Init();
         _levelBoss.Init();
         _levelPortal.Init();
+        _pause.Init();
     }
 
     private void OnDestroy()
@@ -32,4 +33,20 @@ public class Level : MonoBehaviour
         _levelPortal.Cleanup();
     }
 
+#if UNITY_EDITOR
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            if (Pause.Paused == false)
+            {
+                Pause.PauseGame();
+            }
+            else
+            {
+                Pause.UnauseGame();
+            }
+        }
+    }
+#endif
 }

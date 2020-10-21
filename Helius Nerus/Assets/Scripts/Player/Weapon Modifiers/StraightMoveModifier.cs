@@ -25,7 +25,12 @@ public class StraightMoveModifier : IPlayerWeaponModifier
 	{
 		while (playerBullet.gameObject.activeInHierarchy)
 		{
-			playerBullet.Transform.Translate(Vector3.up * Time.deltaTime * playerBullet.BulletParameters.SpeedMultiplier, Space.Self);
+            if (Pause.Paused)
+            {
+                yield return null;
+                continue;
+            }
+            playerBullet.Transform.Translate(Vector3.up * Time.deltaTime * playerBullet.BulletParameters.SpeedMultiplier, Space.Self);
 			yield return null;
 		}
 	}

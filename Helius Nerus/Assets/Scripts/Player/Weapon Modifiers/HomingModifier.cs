@@ -1,6 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
 public class HomingModifier : IPlayerWeaponModifier
 {
@@ -23,6 +21,6 @@ public class HomingModifier : IPlayerWeaponModifier
 
 	public IEnumerator OnProc(PlayerBullet playerBullet)
 	{
-		return null;
+        yield break;
 	}
 }

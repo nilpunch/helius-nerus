@@ -91,7 +91,6 @@ public class PlayerWeapon : MonoBehaviour
     public void ApplyPair(ArtifactUpgradePair pair)
     {
         _parameters.ApplyModifier(pair.WeaponsParametrs);
-        if (pair.IsWeaponMod)
-            _modifiers.Add(pair.WeaponModifier);
+        _modifiers.Add(pair.WeaponModifier);
     }
 }
