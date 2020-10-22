@@ -32,7 +32,7 @@ class InvincibilityArtifact : IPlayerArtifact
 	public IEnumerator OnProc()
 	{
 		float invinsibilityLeft = Player.PlayerParameters.InvinsibilityTime;
-		Player.CollideWithDamageDealer = false;
+		Player.Rigidbody2D.simulated = false;
 		float effectToggleTime = invinsibilityLeft / EFFECT_TIME_SCALE;
 		_renderer.enabled = false;
 		
@@ -50,7 +50,7 @@ class InvincibilityArtifact : IPlayerArtifact
 			yield return null;
 		}
 
-		Player.CollideWithDamageDealer = true;
+		Player.Rigidbody2D.simulated = true;
 		_renderer.enabled = true;
 	}
 }

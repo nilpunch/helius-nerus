@@ -12,7 +12,7 @@ public class PlayerBullet : MonoBehaviour, IReturnableToPool
 	{
 		get => _transform;
 	}
-	public Dictionary<ModifierType, int> ModifiersProcCount
+	public HashSet<ModifierType> ProcedModifiers
 	{
 		get => _procedModifiers;
 	}
@@ -22,11 +22,13 @@ public class PlayerBullet : MonoBehaviour, IReturnableToPool
 	}
 	public bool CollideWithEnemies { get; set; } = true;
 
+	[SerializeField] private Collider2D _collider2D = null;
+
 	private PlayerBulletParameters _bulletParameters = new PlayerBulletParameters();
 	private Transform _transform = null;
 
 	private List<IPlayerWeaponModifier> _modifiers = new List<IPlayerWeaponModifier>();
-	private Dictionary<ModifierType, int> _procedModifiers = new Dictionary<ModifierType, int>();
+	private HashSet<ModifierType> _procedModifiers = new HashSet<ModifierType>();
 
 	private void Awake()
 	{
@@ -47,21 +49,19 @@ public class PlayerBullet : MonoBehaviour, IReturnableToPool
 			}
 			// Какое-то условие по прочности
 			if (BulletParameters.Durability <= 0)
-			{
-				for (int i = 0; i < _modifiers.Count; i++)
-				{
-					_modifiers[i].OnBulletDestroy(this);
-				}
 				ReturnMeToPool();
-			}
 		}
 	}
 
 	public void ReturnMeToPool()
 	{
 		BulletParameters.Durability = 1;
-		CollideWithEnemies = false;
 		_procedModifiers.Clear();
+
+		for (int i = 0; i < _modifiers.Count; i++)
+		{
+			_modifiers[i].OnDestroy(this);
+		}
 		BulletPoolsContainer.Instance.ReturnObjectToPool(BulletTypes.PlayerBullet, gameObject);
 	}
 
@@ -76,6 +76,5 @@ public class PlayerBullet : MonoBehaviour, IReturnableToPool
 		{
 			_modifiers[i].OnBulletEnable(this);
 		}
-		CollideWithEnemies = true;
 	}
 }

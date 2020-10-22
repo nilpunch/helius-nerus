@@ -146,10 +146,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5c564458f61da7e4391d9ef115003882, type: 2}
   - {fileID: 11400000, guid: 66d2a420af1598e45941216e3ad83d3e, type: 2}
   - {fileID: 11400000, guid: 372afe2968d79a749aca188fa1556b8d, type: 2}
-  _money: 10
+  _money: 0
   _moneyPerSecond: 10
   _moneySpendingLimit: 1000
-  _playerDamageReward: 20
+  _playerDamageReward: 100
 --- !u!1 &1008073855964565727
 GameObject:
   m_ObjectHideFlags: 0

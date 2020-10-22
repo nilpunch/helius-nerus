@@ -5,37 +5,32 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
 	public static Player Instance
-	{
-		get;
-		private set;
-	}
+    {
+        get;
+        private set;
+    }
 
-	public static event System.Action PlayerHelathChanged = delegate { };
-	public static event System.Action PlayerTookDamage = delegate { };
-	public static event System.Action PlayerBeforeDie = delegate { };
-	public static event System.Action PlayerDie = delegate { };
-	public static event System.Action PlayerResurrection = delegate { };
+    public static event System.Action PlayerHelathChanged = delegate { };
+    public static event System.Action PlayerTookDamage = delegate { };
+    public static event System.Action PlayerBeforeDie = delegate { };
+    public static event System.Action PlayerDie = delegate { };
+    public static event System.Action PlayerResurrection = delegate { };
 
-	public static PlayerParameters PlayerParameters
-	{
-		get => Instance._playerParameters;
-	}
+    public static PlayerParameters PlayerParameters
+    {
+        get => Instance._playerParameters;
+    }
 	public static Rigidbody2D Rigidbody2D
 	{
 		get => Instance._rigidbody2D;
 	}
-	public static SpriteRenderer SpriteRenderer
-	{
-		get => Instance._renderer;
-	}
+    public static SpriteRenderer SpriteRenderer
+    {
+        get => Instance._renderer;
+    }
 	public static PlayerWeapon[] PlayerWeapons
 	{
 		get => Instance._weapons;
-	}
-	public static bool CollideWithDamageDealer
-	{
-		get => Instance._collideWithDamageDealer;
-		set => Instance._collideWithDamageDealer = value;
 	}
 
 	[SerializeField] private PlayerMovement _playerMovement = null;
@@ -45,9 +40,7 @@ public class Player : MonoBehaviour
 	[SerializeField] private ArtifactType[] _startArtifacts = null;
     [SerializeField] private Rigidbody2D _rigidbody2D = null;
     [SerializeField] private SpriteRenderer _renderer = null;
-
-	private bool _collideWithDamageDealer = true;
-
+	
 	private List<IPlayerArtifact> _artifacts = new List<IPlayerArtifact>();
     private PlayerParameters _playerParameters = null;
 
@@ -87,7 +80,7 @@ public class Player : MonoBehaviour
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
 		IDealDamageToPlayer dealDamageToPlayer = (collision.gameObject.GetComponent(typeof(IDealDamageToPlayer)) as IDealDamageToPlayer);
-		if (dealDamageToPlayer != null && _collideWithDamageDealer)
+		if (dealDamageToPlayer != null)
 		{
 			TakeDamage(dealDamageToPlayer.GetMyDamage());
 			return;

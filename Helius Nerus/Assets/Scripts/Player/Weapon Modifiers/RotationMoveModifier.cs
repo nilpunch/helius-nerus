@@ -10,7 +10,7 @@ class RotationMoveModifier : IPlayerWeaponModifier
 		return (RotationMoveModifier)MemberwiseClone();
 	}
 
-	public void OnBulletDestroy(PlayerBullet playerBullet)
+	public void OnDestroy(PlayerBullet playerBullet)
 	{
 	}
 
