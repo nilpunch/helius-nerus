@@ -11,7 +11,7 @@ public class HomingModifier : IPlayerWeaponModifier
 	{
 	}
 
-	public void OnShoot(PlayerBullet playerBullet)
+	public void OnBulletEnable(PlayerBullet playerBullet)
 	{
 	}
 
@@ -22,5 +22,17 @@ public class HomingModifier : IPlayerWeaponModifier
 	public IEnumerator OnProc(PlayerBullet playerBullet)
 	{
         yield break;
+	}
+
+	public void OnPick(PlayerWeapon playerWeapon)
+	{
+	}
+
+	public void OnDrop(PlayerWeapon playerWeapon)
+	{
+	}
+
+	public void OnWeaponShoot(PlayerWeapon playerBullet)
+	{
 	}
 }

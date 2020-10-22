@@ -10,13 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6963be36625386844a6f1cc66307676b, type: 3}
-  m_Name: AutomaticRifle
+  m_Name: SpreadGun
   m_EditorClassIdentifier: 
   _position: {x: 0, y: 0}
   _direction: {x: 0, y: 1}
-  _reloadTime: 0.5
-  _bulletAmount: 1
-  _spreadAngleDegrees: 25
-  _bulletSpeed: 10
+  _bulletsPerSec: 1
+  _bulletAmount: 5
+  _spreadAngleDegrees: 45
+  _bulletSpeed: 5
   _bulletDamage: 1
-  _bulletSize: 0.3
+  _damageMult: 0.2
+  _bulletSize: 0.4

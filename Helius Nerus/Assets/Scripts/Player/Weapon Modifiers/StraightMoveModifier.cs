@@ -12,7 +12,7 @@ public class StraightMoveModifier : IPlayerWeaponModifier
 	{
 	}
 
-	public void OnShoot(PlayerBullet playerBullet)
+	public void OnBulletEnable(PlayerBullet playerBullet)
 	{
 		CoroutineProcessor.ProcessModifier(this, playerBullet);
 	}
@@ -23,7 +23,7 @@ public class StraightMoveModifier : IPlayerWeaponModifier
 
 	public IEnumerator OnProc(PlayerBullet playerBullet)
 	{
-		while (playerBullet.gameObject.activeInHierarchy)
+		while (playerBullet.gameObject.activeSelf)
 		{
             if (Pause.Paused)
             {
@@ -33,5 +33,17 @@ public class StraightMoveModifier : IPlayerWeaponModifier
             playerBullet.Transform.Translate(Vector3.up * Time.deltaTime * playerBullet.BulletParameters.SpeedMultiplier, Space.Self);
 			yield return null;
 		}
+	}
+
+	public void OnPick(PlayerWeapon playerWeapon)
+	{
+	}
+
+	public void OnDrop(PlayerWeapon playerWeapon)
+	{
+	}
+
+	public void OnWeaponShoot(PlayerWeapon playerBullet)
+	{
 	}
 }

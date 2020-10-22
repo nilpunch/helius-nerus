@@ -36,7 +36,7 @@ public class PlayerWeapon : MonoBehaviour
             return;
 
         _reloadTime += Time.deltaTime;
-        if (_reloadTime >= _parameters.ReloadTime)
+        if (_reloadTime >= 1f / _parameters.BPS)
         {
             _reloadTime = 0.0f;
             Shoot();
@@ -61,26 +61,30 @@ public class PlayerWeapon : MonoBehaviour
 
         for (int i = 0; i < _parameters.BulletAmount; ++i)
         {
-            GameObject bullet = BulletPoolsContainer.Instance.GetObjectFromPool(BulletTypes.PlayerBullet);
-
-            PlayerBullet pBullet = bullet.GetComponent<PlayerBullet>();
+			PlayerBullet pBullet = BulletPoolsContainer.Instance.GetObjectFromPool(BulletTypes.PlayerBullet).GetComponent<PlayerBullet>();
   
             pBullet.SetModifiers(_modifiers);
 
             pBullet.BulletParameters.SpeedMultiplier = _parameters.BulletSpeed;
-            pBullet.BulletParameters.Damage = _parameters.BulletDamage;
-            bullet.transform.position = _transform.position;
-            bullet.transform.position += (Vector3)_parameters.Position;
-            bullet.transform.localScale = Vector3.one * _parameters.BulletSize;
-            bullet.transform.localEulerAngles = new Vector3(0f, 0f, Vector2.Angle(Vector2.up, _parameters.Direction) + (_angleStep * (i - _halfBulletAmount)));
+            pBullet.BulletParameters.Damage = _parameters.BulletDamage * _parameters.DamageMult;
+			pBullet.Transform.position = _transform.position;
+			pBullet.Transform.position += (Vector3)_parameters.Position;
+			pBullet.Transform.localScale = Vector3.one * _parameters.BulletSize;
+			pBullet.Transform.localEulerAngles = new Vector3(0f, 0f, Vector2.Angle(Vector2.up, _parameters.Direction) + (_angleStep * (i - _halfBulletAmount)));
 
-			pBullet.OnShoot();
+			pBullet.OnBulletEnable();
         }
+
+		for (int i = 0; i < _modifiers.Count; ++i)
+		{
+			_modifiers[i].OnWeaponShoot(this);
+		}
     }
 
     public void AddModifier(IPlayerWeaponModifier modifier)
     {
-        _modifiers.Add(modifier);
+		modifier.OnPick(this);
+		_modifiers.Add(modifier);
     }
 
     public void SetParametrs(PlayerWeaponsParametrs parameters)

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 
 public class PlayerBullet : MonoBehaviour, IReturnableToPool
@@ -7,16 +8,27 @@ public class PlayerBullet : MonoBehaviour, IReturnableToPool
 	{
 		get => _bulletParameters;
 	}
-
 	public Transform Transform
 	{
 		get => _transform;
 	}
+	public HashSet<ModifierType> ProcedModifiers
+	{
+		get => _procedModifiers;
+	}
+	public List<IPlayerWeaponModifier> Modifiers
+	{
+		get => _modifiers;
+	}
+	public bool CollideWithEnemies { get; set; } = true;
+
+	[SerializeField] private Collider2D _collider2D = null;
 
 	private PlayerBulletParameters _bulletParameters = new PlayerBulletParameters();
 	private Transform _transform = null;
 
 	private List<IPlayerWeaponModifier> _modifiers = new List<IPlayerWeaponModifier>();
+	private HashSet<ModifierType> _procedModifiers = new HashSet<ModifierType>();
 
 	private void Awake()
 	{
@@ -27,7 +39,7 @@ public class PlayerBullet : MonoBehaviour, IReturnableToPool
 	{
 		// Нанести урон еще надо
 		Enemy enemy = collision.gameObject.GetComponent<Enemy>();
-		if (enemy != null)
+		if (enemy != null && CollideWithEnemies)
 		{
 			enemy.TakeDamage(BulletParameters.Damage);
 			BulletParameters.Durability -= 1;
@@ -43,9 +55,8 @@ public class PlayerBullet : MonoBehaviour, IReturnableToPool
 
 	public void ReturnMeToPool()
 	{
-		// Temp
 		BulletParameters.Durability = 1;
-		// Temp
+		_procedModifiers.Clear();
 
 		for (int i = 0; i < _modifiers.Count; i++)
 		{
@@ -59,11 +70,11 @@ public class PlayerBullet : MonoBehaviour, IReturnableToPool
 		_modifiers = modifiers;
 	}
 
-	public void OnShoot()
+	public void OnBulletEnable()
 	{
 		for (int i = 0; i < _modifiers.Count; ++i)
 		{
-			_modifiers[i].OnShoot(this);
+			_modifiers[i].OnBulletEnable(this);
 		}
 	}
 }

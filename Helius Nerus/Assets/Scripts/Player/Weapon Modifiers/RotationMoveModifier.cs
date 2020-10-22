@@ -3,7 +3,7 @@ using UnityEngine;
 
 class RotationMoveModifier : IPlayerWeaponModifier
 {
-	private const float MAX_ANGLE_INCREMENT = 5.0f;
+	public const float MAX_ANGLE_INCREMENT = 5.0f;
 
 	public IPlayerWeaponModifier Clone()
 	{
@@ -14,7 +14,7 @@ class RotationMoveModifier : IPlayerWeaponModifier
 	{
 	}
 
-	public void OnShoot(PlayerBullet playerBullet)
+	public void OnBulletEnable(PlayerBullet playerBullet)
 	{
 		CoroutineProcessor.ProcessModifier(this, playerBullet);
 	}
@@ -37,5 +37,17 @@ class RotationMoveModifier : IPlayerWeaponModifier
             playerBullet.Transform.Rotate(0.0f, 0.0f, angleIncrement * Time.deltaTime * playerBullet.BulletParameters.SpeedMultiplier, Space.Self);
 			yield return null;
 		}
+	}
+
+	public void OnPick(PlayerWeapon playerWeapon)
+	{
+	}
+
+	public void OnDrop(PlayerWeapon playerWeapon)
+	{
+	}
+
+	public void OnWeaponShoot(PlayerWeapon playerBullet)
+	{
 	}
 }
