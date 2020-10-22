@@ -37,6 +37,7 @@ public class Player : MonoBehaviour
 		get => Instance._collideWithDamageDealer;
 		set => Instance._collideWithDamageDealer = value;
 	}
+	public bool IsStaticAndNoShooting { get; set; } = false;
 
 	[SerializeField] private PlayerMovement _playerMovement = null;
 	[Space]
