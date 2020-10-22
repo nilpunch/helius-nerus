@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
         private set;
     }
 
-    public static event System.Action PlayerHelathChanged = delegate { };
+    public static event System.Action PlayerHealthChanged = delegate { };
     public static event System.Action PlayerTookDamage = delegate { };
     public static event System.Action PlayerBeforeDie = delegate { };
     public static event System.Action PlayerDie = delegate { };
@@ -32,6 +32,11 @@ public class Player : MonoBehaviour
 	{
 		get => Instance._weapons;
 	}
+    public bool IsStaticAndNoShooting
+    {
+        get;
+        set;
+    } = false;
 
 	[SerializeField] private PlayerMovement _playerMovement = null;
 	[Space]
@@ -46,14 +51,18 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
+        if (Instance != null)
+            Destroy(Instance.gameObject);
 		Instance = this;
-        _rigidbody2D = GetComponent<Rigidbody2D>();
+        DontDestroyOnLoad(gameObject);
 		_playerMovement.Init();
 		RestrartPlayer();
 	}
 
 	private void Update()
 	{
+        if (IsStaticAndNoShooting)
+            return;
 		_playerMovement.Update();
 	}
 
@@ -101,7 +110,7 @@ public class Player : MonoBehaviour
 		if (damage >= 0)
 		{
 			_playerParameters.CurrentHealth -= damage;
-			PlayerHelathChanged.Invoke();
+			PlayerHealthChanged.Invoke();
 		}
 
 		if (_playerParameters.CurrentHealth <= 0)
@@ -130,7 +139,7 @@ public class Player : MonoBehaviour
 		if (_playerParameters.CurrentHealth < _playerParameters.MaxHealth)
 		{
 			_playerParameters.CurrentHealth++;
-			PlayerHelathChanged.Invoke();
+			PlayerHealthChanged.Invoke();
 		}
 	}
 }

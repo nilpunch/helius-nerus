@@ -2,29 +2,40 @@
 
 public class LevelsChanger : MonoBehaviour
 {
-    [SerializeField] private GameObject[] _levels = null;
-
-    private GameObject _current = null;
-    private int _currentLevel = -1;
-
-    private void Update()
+    public static LevelsChanger Instance
     {
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            SpawnNextLevel();
-        }
+        get;
+        private set;
     }
+
+    private static int _currentLevel = -1;
+    [SerializeField] private GameObject[] _levels = null;
+    private GameObject _current = null;
+
+
+    private void Awake()
+    {
+        Instance = this;
+        SpawnNextLevel();
+    }
+
+    //private void Update()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.L))
+    //    {
+    //        SpawnNextLevel();
+    //    }
+    //}
 
     private void SpawnNextLevel()
     {
-        //if (_current != null)
-        //    Destroy(_current);
-
         ++_currentLevel;
         if (_currentLevel >= _levels.Length)
             _currentLevel = 0;
 
         _current = Instantiate(_levels[_currentLevel]);
+        //_current.transform.parent = transform.parent;
+        UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(_current.gameObject, UnityEngine.SceneManagement.SceneManager.GetSceneByBuildIndex((int)Scenes.INGAME));
     }
 
     public void ChangeLevel()
