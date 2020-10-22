@@ -8,7 +8,7 @@ public class StraightMoveModifier : IPlayerWeaponModifier
 		return (StraightMoveModifier)MemberwiseClone();
 	}
 
-	public void OnDestroy(PlayerBullet playerBullet)
+	public void OnBulletDestroy(PlayerBullet playerBullet)
 	{
 	}
 

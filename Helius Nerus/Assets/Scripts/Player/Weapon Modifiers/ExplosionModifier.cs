@@ -1,10 +1,10 @@
 ﻿using System.Collections;
 
-public class HomingModifier : IPlayerWeaponModifier
+public class ExplosionModifier : IPlayerWeaponModifier
 {
 	public IPlayerWeaponModifier Clone()
 	{
-		return (HomingModifier)MemberwiseClone();
+		return (ExplosionModifier)MemberwiseClone();
 	}
 
 	public void OnBulletDestroy(PlayerBullet playerBullet)
@@ -21,7 +21,7 @@ public class HomingModifier : IPlayerWeaponModifier
 
 	public IEnumerator OnProc(PlayerBullet playerBullet)
 	{
-        yield break;
+		yield break;
 	}
 
 	public void OnPick(PlayerWeapon playerWeapon)
