@@ -35,6 +35,7 @@ public class LevelsChanger : MonoBehaviour
 
         _current = Instantiate(_levels[_currentLevel]);
         //_current.transform.parent = transform.parent;
+
         UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(_current.gameObject, UnityEngine.SceneManagement.SceneManager.GetSceneByBuildIndex((int)Scenes.INGAME));
     }
 
