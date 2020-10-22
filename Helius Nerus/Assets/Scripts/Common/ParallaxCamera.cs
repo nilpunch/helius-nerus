@@ -34,7 +34,6 @@ public class ParallaxCamera : MonoBehaviour
 	}
 
 	[SerializeField] private float _parallaxCoefficient = 1.0f;
-    [SerializeField] private Camera _camera = null;
 	private float _translationCoefficient;
 	private Transform _cameraTransform;
 	private Vector2 _cameraSize;
@@ -47,12 +46,13 @@ public class ParallaxCamera : MonoBehaviour
 	{
 		_sceneInstance = this;
         
+		Camera _cameraMain = Camera.main;
 
 		_translationCoefficient = 1f - 1f / _parallaxCoefficient;
 
-		_cameraTransform = _camera.transform;
-		_cameraSize.y = _camera.orthographicSize * 2f;
-		_cameraSize.x = _cameraSize.y * _camera.aspect;
+		_cameraTransform = _cameraMain.transform;
+		_cameraSize.y = _cameraMain.orthographicSize * 2f;
+		_cameraSize.x = _cameraSize.y * _cameraMain.aspect;
 
 		_cameraBoundary.x = _cameraTransform.position.x - _cameraSize.x / 2f;
 		_cameraBoundary.y = _cameraTransform.position.y - _cameraSize.y / 2f;
