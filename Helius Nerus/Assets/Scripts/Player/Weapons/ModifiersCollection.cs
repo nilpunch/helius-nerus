@@ -7,9 +7,7 @@ public enum ModifierType
 	StraightMoveModifier,
 	HomingModifier,
 	RotationMoveModifier,
-	RicochetModifier,
-	ExplosionModifier,
-	SplitInTwoModifier,
+	DoubleShootModifier
 }
 
 public class ModifiersCollection

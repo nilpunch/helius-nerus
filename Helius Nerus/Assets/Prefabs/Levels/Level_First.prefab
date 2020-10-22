@@ -142,9 +142,9 @@ MonoBehaviour:
     _maxEnemiesAmount: 100
   _enemiesPacksNew:
   - {fileID: 11400000, guid: 2cd4ef7a8fdb2a44c93c87094e7b7489, type: 2}
-  _money: 10
-  _moneyPerSecond: 2
-  _moneySpendingLimit: 80
+  _money: 0
+  _moneyPerSecond: 3
+  _moneySpendingLimit: 50
   _playerDamageReward: 10
 --- !u!1 &5358465952583763555
 GameObject:

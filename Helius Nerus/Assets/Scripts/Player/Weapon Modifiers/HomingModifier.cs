@@ -7,7 +7,7 @@ public class HomingModifier : IPlayerWeaponModifier
 		return (HomingModifier)MemberwiseClone();
 	}
 
-	public void OnBulletDestroy(PlayerBullet playerBullet)
+	public void OnDestroy(PlayerBullet playerBullet)
 	{
 	}
 
