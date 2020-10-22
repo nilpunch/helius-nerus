@@ -37,6 +37,8 @@ public class Player : MonoBehaviour
         get;
         set;
     } = false;
+	public static bool CollideWithDamageDealers { get => Instance._collideWithDamageDealers; set => Instance._collideWithDamageDealers = value; }
+
 
 	[SerializeField] private PlayerMovement _playerMovement = null;
 	[Space]
@@ -45,7 +47,9 @@ public class Player : MonoBehaviour
 	[SerializeField] private ArtifactType[] _startArtifacts = null;
     [SerializeField] private Rigidbody2D _rigidbody2D = null;
     [SerializeField] private SpriteRenderer _renderer = null;
-	
+
+	private bool _collideWithDamageDealers = true;
+
 	private List<IPlayerArtifact> _artifacts = new List<IPlayerArtifact>();
     private PlayerParameters _playerParameters = null;
 
@@ -64,6 +68,14 @@ public class Player : MonoBehaviour
         if (IsStaticAndNoShooting)
             return;
 		_playerMovement.Update();
+	}
+
+	private void OnDestroy()
+	{
+		for (int i = 0; i < _artifacts.Count; ++i)
+		{
+			_artifacts[i].OnDrop();
+		}
 	}
 
 	private void RestrartPlayer()
@@ -89,7 +101,7 @@ public class Player : MonoBehaviour
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
 		IDealDamageToPlayer dealDamageToPlayer = (collision.gameObject.GetComponent(typeof(IDealDamageToPlayer)) as IDealDamageToPlayer);
-		if (dealDamageToPlayer != null)
+		if (dealDamageToPlayer != null && _collideWithDamageDealers)
 		{
 			TakeDamage(dealDamageToPlayer.GetMyDamage());
 			return;

@@ -130,7 +130,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1008073855733766935}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 94cbc0d18d69f9645b328a1035834316, type: 3}
   m_Name: 
@@ -146,10 +146,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5c564458f61da7e4391d9ef115003882, type: 2}
   - {fileID: 11400000, guid: 66d2a420af1598e45941216e3ad83d3e, type: 2}
   - {fileID: 11400000, guid: 372afe2968d79a749aca188fa1556b8d, type: 2}
-  _money: 0
-  _moneyPerSecond: 10
+  _money: 10
+  _moneyPerSecond: 6
   _moneySpendingLimit: 1000
-  _playerDamageReward: 100
+  _playerDamageReward: 15
 --- !u!1 &1008073855964565727
 GameObject:
   m_ObjectHideFlags: 0

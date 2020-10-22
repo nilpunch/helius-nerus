@@ -29,6 +29,7 @@ public class PlayerLevelStartAnimation : MonoBehaviour
             yield return null;
         }
 
+		EnemiesSpawner.InstanceOnScene.enabled = true;
         Player.Instance.IsStaticAndNoShooting = false;
     }
 

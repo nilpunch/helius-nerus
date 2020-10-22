@@ -154,7 +154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11b6ecf31d0cd274e932314646733c0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _parallaxCoefficient: 1
+  _parallaxCoefficient: 1.5
   _camera: {fileID: 915299923}
 --- !u!81 &915299922
 AudioListener:

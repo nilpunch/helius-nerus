@@ -17,7 +17,7 @@ public class WallsPlacer
         float screenWidth = ParallaxCamera.ParallaxSize.x / 2;
 
         _bottomWall.position = new Vector3(0.0f, -screenHeight - 2, 0.0f);
-        _topWall.position = new Vector3(0.0f, screenWidth + 5, 0.0f); // Spawning space
+        _topWall.position = new Vector3(0.0f, screenHeight + 5, 0.0f); // Spawning space
         _bottomWall.localScale = _topWall.localScale = new Vector3(2 * screenWidth + 6, 1.0f, 1.0f);
 
         _leftWall.transform.position = new Vector3(-screenWidth - 3, 0.0f, 0.0f);

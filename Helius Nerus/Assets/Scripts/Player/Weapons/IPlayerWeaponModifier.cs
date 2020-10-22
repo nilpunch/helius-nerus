@@ -7,7 +7,7 @@ public interface IPlayerWeaponModifier
 	void OnBulletEnable(PlayerBullet playerBullet);
 	void OnWeaponShoot(PlayerWeapon playerBullet);
 	void OnHit(PlayerBullet playerBullet, Enemy enemy);
-    void OnDestroy(PlayerBullet playerBullet);
+    void OnBulletDestroy(PlayerBullet playerBullet);
 	IEnumerator OnProc(PlayerBullet playerBullet);
 	IPlayerWeaponModifier Clone();
 }

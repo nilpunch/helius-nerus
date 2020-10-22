@@ -20,4 +20,4 @@ MonoBehaviour:
   _bulletSpeed: 5
   _bulletDamage: 1
   _damageMult: 0.2
-  _bulletSize: 0.4
+  _bulletSize: 0.3

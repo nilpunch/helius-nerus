@@ -197,7 +197,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _parametersSO: {fileID: 11400000, guid: 354c5930de643ef44952cd42cf32af35, type: 2}
-  _startModifiers: 0000000002000000
+  _startModifiers: 000000000500000005000000
   _player: {fileID: 7712765479933993709}
 --- !u!1 &7712765481556008221
 GameObject:
@@ -242,6 +242,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3b0786a01e680b4cbad23411de12c9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _parametersSO: {fileID: 11400000, guid: 28b40de09a94db54bbe1f39f2d5986df, type: 2}
-  _startModifiers: 0000000002000000
+  _parametersSO: {fileID: 11400000, guid: 354c5930de643ef44952cd42cf32af35, type: 2}
+  _startModifiers: 000000000500000005000000
   _player: {fileID: 7712765479933993709}
