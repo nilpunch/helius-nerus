@@ -11,6 +11,7 @@ public class PlayerWeapon : MonoBehaviour
 	[Tooltip("СО свойств пушки стартовых")]
     [SerializeField] private PlayerWeaponsParametrs _parametersSO = null;
 	[SerializeField] private ModifierType[] _startModifiers = null;
+    [SerializeField] private Player _player = null;
 
 	private List<IPlayerWeaponModifier> _modifiers = new List<IPlayerWeaponModifier>();
 	private PlayerWeaponsParametrs _parameters;
@@ -32,7 +33,7 @@ public class PlayerWeapon : MonoBehaviour
 
     private void Update()
     {
-        if (Pause.Paused)
+        if (Pause.Paused || _player.IsStaticAndNoShooting)
             return;
 
         _reloadTime += Time.deltaTime;
