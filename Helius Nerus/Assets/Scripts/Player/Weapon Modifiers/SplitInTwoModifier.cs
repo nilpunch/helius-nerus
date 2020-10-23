@@ -9,7 +9,12 @@ public class SplitInTwoModifier : IPlayerWeaponModifier
 
 	private WaitForSeconds _waiter = new WaitForSeconds(COLLISION_DISABLE_TIME);
 
-	public IPlayerWeaponModifier Clone()
+    public string Description
+    {
+        get => "splitInTwoDescription";
+    }
+
+    public IPlayerWeaponModifier Clone()
 	{
 		return (SplitInTwoModifier)MemberwiseClone();
 	}

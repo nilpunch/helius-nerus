@@ -10,4 +10,8 @@ public interface IPlayerWeaponModifier
     void OnBulletDestroy(PlayerBullet playerBullet);
 	IEnumerator OnProc(PlayerBullet playerBullet);
 	IPlayerWeaponModifier Clone();
+    string Description
+    {
+        get;
+    }
 }

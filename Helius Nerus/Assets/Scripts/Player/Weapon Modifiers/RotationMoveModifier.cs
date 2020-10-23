@@ -5,7 +5,12 @@ class RotationMoveModifier : IPlayerWeaponModifier
 {
 	public const float MAX_ANGLE_INCREMENT = 5.0f;
 
-	public IPlayerWeaponModifier Clone()
+    public string Description
+    {
+        get => "rotationMoveDescription";
+    }
+
+    public IPlayerWeaponModifier Clone()
 	{
 		return (RotationMoveModifier)MemberwiseClone();
 	}

@@ -3,7 +3,11 @@ using UnityEngine;
 
 public class StraightMoveModifier : IPlayerWeaponModifier
 {
-	public IPlayerWeaponModifier Clone()
+    public string Description
+    {
+        get => "straightMoveDescription";
+    }
+    public IPlayerWeaponModifier Clone()
 	{
 		return (StraightMoveModifier)MemberwiseClone();
 	}

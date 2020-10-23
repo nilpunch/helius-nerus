@@ -2,7 +2,11 @@
 
 public class HomingModifier : IPlayerWeaponModifier
 {
-	public IPlayerWeaponModifier Clone()
+    public string Description
+    {
+        get => "homingDescription";
+    }
+    public IPlayerWeaponModifier Clone()
 	{
 		return (HomingModifier)MemberwiseClone();
 	}

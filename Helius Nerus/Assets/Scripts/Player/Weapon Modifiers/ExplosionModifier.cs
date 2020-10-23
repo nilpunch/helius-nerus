@@ -2,7 +2,11 @@
 
 public class ExplosionModifier : IPlayerWeaponModifier
 {
-	public IPlayerWeaponModifier Clone()
+    public string Description
+    {
+        get => "explosionDescription";
+    }
+    public IPlayerWeaponModifier Clone()
 	{
 		return (ExplosionModifier)MemberwiseClone();
 	}

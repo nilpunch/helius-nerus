@@ -22,8 +22,17 @@
     {
         PlayerWeaponsParametrs parametrs = EndLevelUpgradeCollection.Instance.GetRandomUpgrade();
         IPlayerWeaponModifier modifier = null;
-        int rand = UnityEngine.Random.Range(0, 2);
         modifier = ModifiersCollection.GetRandomWeaponModifier();
         return new ArtifactUpgradePair(parametrs, modifier);
+    }
+
+    public string Description
+    {
+        get
+        {
+            return LocalizationManager.Instance.GetLocalizedValue(_modifier.Description)
+                + "\n"
+                + LocalizationManager.Instance.GetLocalizedValue(_params.Description);
+        }
     }
 }

@@ -23,7 +23,10 @@ public class LocalizationManager : MonoBehaviour
         if (_instance == null)
             _instance = this;
         else
+        {
             Destroy(gameObject);
+            return;
+        }
         //Он понадобится во всех сценах
         DontDestroyOnLoad(gameObject);
 
@@ -79,7 +82,7 @@ public class LocalizationManager : MonoBehaviour
             {
                 #if UNITY_EDITOR
                 //Файла нету
-                Debug.LogWarning("Error - localization file with name " + fileName + " not exists! Loading English");
+                Debug.LogWarning("Warning - localization file with name " + fileName + " not exists! Loading English");
                 #endif
                 LoadLocalizedText("English.json");
                 return;
