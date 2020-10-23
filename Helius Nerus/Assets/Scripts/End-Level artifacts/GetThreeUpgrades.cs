@@ -18,7 +18,7 @@ public class GetThreeUpgrades : MonoBehaviour
         for (int i = 0; i < 3; ++i)
         {
             if (i != upgradeNum)
-                // return artifact to pool
+                ModifiersCollection.ReturnModifierToPool(upgrades[i].WeaponModifier);
                 continue;
         }
     }

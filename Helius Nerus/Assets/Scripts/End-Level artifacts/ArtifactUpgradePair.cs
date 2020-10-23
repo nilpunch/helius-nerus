@@ -22,7 +22,7 @@
     {
         PlayerWeaponsParametrs parametrs = EndLevelUpgradeCollection.Instance.GetRandomUpgrade();
         IPlayerWeaponModifier modifier = null;
-        modifier = ModifiersCollection.GetRandomWeaponModifier();
+        modifier = ModifiersCollection.GetRandomModifierFromPool();
         return new ArtifactUpgradePair(parametrs, modifier);
     }
 
