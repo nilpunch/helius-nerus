@@ -16,14 +16,14 @@ class RotationMoveModifier : IPlayerWeaponModifier
 
 	public void OnBulletEnable(PlayerBullet playerBullet)
 	{
-		CoroutineProcessor.ProcessModifier(this, playerBullet);
+		playerBullet.StartCoroutine(OnBulletProc(playerBullet));
 	}
 
 	public void OnHit(PlayerBullet playerBullet, Enemy enemy)
 	{
 	}
 
-	public IEnumerator OnProc(PlayerBullet playerBullet)
+	public IEnumerator OnBulletProc(PlayerBullet playerBullet)
 	{
 		float angleIncrement = Random.Range(-MAX_ANGLE_INCREMENT, MAX_ANGLE_INCREMENT);
 

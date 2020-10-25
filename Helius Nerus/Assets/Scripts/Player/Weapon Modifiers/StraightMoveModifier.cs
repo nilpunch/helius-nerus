@@ -14,14 +14,14 @@ public class StraightMoveModifier : IPlayerWeaponModifier
 
 	public void OnBulletEnable(PlayerBullet playerBullet)
 	{
-		CoroutineProcessor.ProcessModifier(this, playerBullet);
+		playerBullet.StartCoroutine(OnBulletProc(playerBullet));
 	}
 
 	public void OnHit(PlayerBullet playerBullet, Enemy enemy)
 	{
 	}
 
-	public IEnumerator OnProc(PlayerBullet playerBullet)
+	public IEnumerator OnBulletProc(PlayerBullet playerBullet)
 	{
 		while (playerBullet.gameObject.activeSelf)
 		{

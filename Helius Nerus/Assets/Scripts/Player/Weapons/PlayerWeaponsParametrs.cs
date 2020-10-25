@@ -8,7 +8,7 @@ public class PlayerWeaponsParametrs : ScriptableObject
     [Tooltip("Позиция точки выстрела или оффсет")]
     [SerializeField] private Vector2 _position = Vector2.zero;
     [Tooltip("Напрваление выстрела")]
-    [SerializeField] private Vector2 _direction = Vector2.up;
+    [SerializeField] private float _weaponAngle = 0f;
     [Tooltip("Количество выпускаемых в секунду пуль")]
     [SerializeField] private float _bulletsPerSec = 1f;
     [Tooltip("Количество выпускаемых за раз пуль")]
@@ -44,7 +44,7 @@ public class PlayerWeaponsParametrs : ScriptableObject
     }
 
     public Vector2 Position { get => _position; set => _position = value; }
-    public Vector2 Direction { get => _direction; set => _direction = value; }
+    public float WeaponAngle { get => _weaponAngle; set => _weaponAngle = value; }
     public float BPS { get => _bulletsPerSec; set => _bulletsPerSec = value; }
     public int BulletAmount { get => _bulletAmount; set => _bulletAmount = value; }
     public float SpreadAngle { get => _spreadAngleDegrees; set => _spreadAngleDegrees = value; }

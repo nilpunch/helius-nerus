@@ -43,8 +43,8 @@ public class SplitInTwoModifier : IPlayerWeaponModifier
 
 			rightBullet.ModifiersProcCount[ModifierType.SplitInTwoModifier] = playerBullet.ModifiersProcCount[ModifierType.SplitInTwoModifier];
 
-			CoroutineProcessor.ProcessModifier(this, leftBullet);
-			CoroutineProcessor.ProcessModifier(this, rightBullet);
+			CoroutineProcessor.Instance.StartCoroutine(OnBulletProc(leftBullet));
+			CoroutineProcessor.Instance.StartCoroutine(OnBulletProc(rightBullet));
 		}
 	}
 
@@ -64,7 +64,7 @@ public class SplitInTwoModifier : IPlayerWeaponModifier
 	{
 	}
 
-	public IEnumerator OnProc(PlayerBullet playerBullet)
+	public IEnumerator OnBulletProc(PlayerBullet playerBullet)
 	{
 		playerBullet.CollideWithEnemies = false;
 		yield return _waiter;

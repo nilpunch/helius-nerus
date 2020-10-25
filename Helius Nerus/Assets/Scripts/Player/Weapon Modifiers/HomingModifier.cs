@@ -19,11 +19,6 @@ public class HomingModifier : IPlayerWeaponModifier
 	{
 	}
 
-	public IEnumerator OnProc(PlayerBullet playerBullet)
-	{
-        yield break;
-	}
-
 	public void OnPick(PlayerWeapon playerWeapon)
 	{
 	}

@@ -26,7 +26,7 @@ class InvincibilityArtifact : IPlayerArtifact
 
 	private void Player_PlayerTookDamage()
 	{
-		CoroutineProcessor.ProcessArtifact(this);
+		CoroutineProcessor.Instance.StartCoroutine(OnProc());
 	}
 
 	public IEnumerator OnProc()
@@ -39,7 +39,10 @@ class InvincibilityArtifact : IPlayerArtifact
 		while (invinsibilityLeft > 0f)
 		{
 			if (Pause.Paused)
+			{
 				yield return null;
+				continue;
+			}
 
 			invinsibilityLeft -= Time.deltaTime;
 			if (invinsibilityLeft < effectToggleTime)

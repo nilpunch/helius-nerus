@@ -35,11 +35,11 @@ public class RicochetModifier : IPlayerWeaponModifier
 			playerBullet.ModifiersProcCount[ModifierType.RicochetModifier] -= 1;
 			playerBullet.BulletParameters.Durability += 1;
 			playerBullet.Transform.Rotate(0f, 0f, Random.Range(0f, 360f));
-			CoroutineProcessor.ProcessModifier(this, playerBullet);
+			CoroutineProcessor.Instance.StartCoroutine(OnBulletProc(playerBullet));
 		}
 	}
 
-	public IEnumerator OnProc(PlayerBullet playerBullet)
+	public IEnumerator OnBulletProc(PlayerBullet playerBullet)
 	{
 		playerBullet.CollideWithEnemies = false;
 		yield return _waiter;

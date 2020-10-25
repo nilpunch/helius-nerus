@@ -8,6 +8,11 @@ public class PlayerWeapon : MonoBehaviour
 		get => _parameters;
 	}
 
+	public bool IsNoSooting
+	{
+		get => _player.IsNoShooting;
+	}
+
 	[Tooltip("СО свойств пушки стартовых")]
     [SerializeField] private PlayerWeaponsParametrs _parametersSO = null;
 	[SerializeField] private ModifierType[] _startModifiers = null;
@@ -27,13 +32,14 @@ public class PlayerWeapon : MonoBehaviour
 		foreach (ModifierType modifierType in _startModifiers)
 		{
 			IPlayerWeaponModifier weaponModifier = ModifiersCollection.GetModifierByEnum(modifierType);
+			weaponModifier.OnPick(this);
 			_modifiers.Add(weaponModifier);
 		}
 	}
 
     private void Update()
     {
-        if (Pause.Paused || _player.IsStaticAndNoShooting)
+        if (Pause.Paused || _player.IsNoShooting)
             return;
 
         _reloadTime += Time.deltaTime;
@@ -71,7 +77,7 @@ public class PlayerWeapon : MonoBehaviour
 			pBullet.Transform.position = _transform.position;
 			pBullet.Transform.position += (Vector3)_parameters.Position;
 			pBullet.Transform.localScale = Vector3.one * _parameters.BulletSize;
-			pBullet.Transform.localEulerAngles = new Vector3(0f, 0f, Vector2.Angle(Vector2.up, _parameters.Direction) + (_angleStep * (i - _halfBulletAmount)));
+			pBullet.Transform.localEulerAngles = new Vector3(0f, 0f, _parameters.WeaponAngle + (_angleStep * (i - _halfBulletAmount)));
 
 			pBullet.OnBulletEnable();
         }

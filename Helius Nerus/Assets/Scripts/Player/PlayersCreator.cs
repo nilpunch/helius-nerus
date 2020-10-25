@@ -21,7 +21,9 @@ public class PlayersCreator : MonoBehaviour
         //    Destroy(_currentPlayer);
 
         _currentPlayer = Instantiate(_playerShips[_currentPlayerIndex]);
-        _currentPlayer.IsStaticAndNoShooting = true;
+        _currentPlayer.IsStatic = true;
+        _currentPlayer.IsNoShooting = true;
+		_currentPlayer.RestrartPlayer();
     }
 
 #if UNITY_EDITOR

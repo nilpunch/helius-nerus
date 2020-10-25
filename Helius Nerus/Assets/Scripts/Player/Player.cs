@@ -32,11 +32,16 @@ public class Player : MonoBehaviour
 	{
 		get => Instance._weapons;
 	}
-    public bool IsStaticAndNoShooting
+    public bool IsStatic
     {
         get;
         set;
     } = false;
+	public bool IsNoShooting
+	{
+		get;
+		set;
+	} = false;
 	public static bool CollideWithDamageDealers { get => Instance._collideWithDamageDealers; set => Instance._collideWithDamageDealers = value; }
 
 
@@ -65,7 +70,7 @@ public class Player : MonoBehaviour
 
 	private void Update()
 	{
-        if (IsStaticAndNoShooting)
+        if (IsStatic)
             return;
 		_playerMovement.Update();
 	}
@@ -78,7 +83,7 @@ public class Player : MonoBehaviour
 		}
 	}
 
-	private void RestrartPlayer()
+	public void RestrartPlayer()
     {
 		_playerParameters = _playerParametersSO.Clone();
 		_playerParameters.CurrentHealth = _playerParameters.MaxHealth;
