@@ -7,7 +7,12 @@ public class RicochetModifier : IPlayerWeaponModifier
 
 	private WaitForSeconds _waiter = new WaitForSeconds(COLLISION_DISABLE_TIME);
 
-	public IPlayerWeaponModifier Clone()
+    public string Description
+    {
+        get => "ricochetDescription";
+    }
+
+    public IPlayerWeaponModifier Clone()
 	{
 		return (RicochetModifier)MemberwiseClone();
 	}

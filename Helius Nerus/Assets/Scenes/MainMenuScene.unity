@@ -123,6 +123,49 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &310989631
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 310989633}
+  - component: {fileID: 310989632}
+  m_Layer: 0
+  m_Name: Localization
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &310989632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 310989631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb6e45496772a3b4fad5980d7ae12797, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &310989633
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 310989631}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &374731905
 GameObject:
   m_ObjectHideFlags: 0
@@ -282,7 +325,13 @@ MonoBehaviour:
     _upgrades:
     - {fileID: 6721912683290490941, guid: 25f65f4c45bb91340a2eb26ec1363f39, type: 3}
   _endLevelUpgradeCollection:
-    _upgrades: []
+    _upgrades:
+    - {fileID: 11400000, guid: 1294ac4bd18be754b8edeb463b7683ba, type: 2}
+    - {fileID: 11400000, guid: 5a985a651abcdfa43bf7c664655139bd, type: 2}
+    - {fileID: 11400000, guid: c6902650eedf15e4f9f7511ae1d02209, type: 2}
+    - {fileID: 11400000, guid: 3ffa11ae2e3ae764ab49920ccf9f6140, type: 2}
+    - {fileID: 11400000, guid: 9ef2b10c98c41da4ea6cc9821192847e, type: 2}
+    - {fileID: 11400000, guid: 521aef3ffd562cb4481ad87a18cd3b14, type: 2}
 --- !u!4 &922788664
 Transform:
   m_ObjectHideFlags: 0

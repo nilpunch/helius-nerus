@@ -23,20 +23,8 @@ public class PlayerWeaponsParametrs : ScriptableObject
 	[SerializeField] private float _damageMult = 1f;
 	[Tooltip("Размер пули")]
     [SerializeField] private float _bulletSize = 1f;
-
-	/*  Не поянл зачем этот чанк кода, закомментил и всё работает :\  */
-    //public PlayerWeaponsParametrs(float reloadTime, int bulletAmount, float spreadAngle, float bulletSize, float bulletDamage, float bulletSpeed)
-    //{
-    //    _position = Vector2.zero;
-    //    _direction = Vector2.up;
-    //    _reloadTime = reloadTime;
-    //    _reloadTimeCap = DEFAULT_RELOAD_TIME_CAP;
-    //    _bulletAmount = bulletAmount;
-    //    _spreadAngleDegrees = spreadAngle;
-    //    _bulletDamage = bulletDamage;
-    //    _bulletSize = bulletSize;
-    //    _bulletSpeed = bulletSpeed;
-    //}
+    [Tooltip("КОД описания для экрана апгрейдов")]
+    [SerializeField] private string _description = "";
 
     public PlayerWeaponsParametrs Clone()
     {
@@ -52,6 +40,7 @@ public class PlayerWeaponsParametrs : ScriptableObject
     public float BulletDamage { get => _bulletDamage; set => _bulletDamage = value; }
 	public float DamageMult { get => _damageMult; set => _damageMult = value; }
     public float BulletSize { get => _bulletSize; set => _bulletSize = value; }
+    public string Description { get => _description; }
 
 	public void ApplyModifier(PlayerWeaponsParametrs mod)
     {
@@ -63,5 +52,6 @@ public class PlayerWeaponsParametrs : ScriptableObject
         _bulletSpeed += mod._bulletSpeed;
         _bulletSize += mod._bulletSize;
         _bulletDamage += mod._bulletDamage;
+        _damageMult += mod._damageMult;
     }
 }

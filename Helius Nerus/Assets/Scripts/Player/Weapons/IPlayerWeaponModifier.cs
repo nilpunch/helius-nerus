@@ -7,4 +7,8 @@
 	void OnHit(PlayerBullet playerBullet, Enemy enemy);
     void OnBulletDestroy(PlayerBullet playerBullet);
 	IPlayerWeaponModifier Clone();
+    string Description
+    {
+        get;
+    }
 }
