@@ -1,13 +1,18 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class SpreyModifier : IPlayerWeaponModifier
+public class SprayModifier : IPlayerWeaponModifier
 {
 	public const float WEAPON_MOVE_TIME = 1f;
 
-	public IPlayerWeaponModifier Clone()
+    public string Description
+    {
+        get => "sprayDescription";
+    }
+
+    public IPlayerWeaponModifier Clone()
 	{
-		return (SpreyModifier)MemberwiseClone();
+		return (SprayModifier)MemberwiseClone();
 	}
 
 	public void OnBulletDestroy(PlayerBullet playerBullet)

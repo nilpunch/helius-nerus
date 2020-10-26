@@ -10,7 +10,7 @@ public enum ModifierType
 	RicochetModifier,
 	ExplosionModifier,
 	SplitInTwoModifier,
-	SpreyModifier,
+	SprayModifier,
 }
 
 public class ModifiersCollection
