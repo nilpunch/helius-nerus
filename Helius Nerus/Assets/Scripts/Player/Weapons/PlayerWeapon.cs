@@ -43,10 +43,10 @@ public class PlayerWeapon : MonoBehaviour
         if (Pause.Paused || _player.IsNoShooting)
             return;
 
-        _reloadTime += Time.deltaTime;
-        if (_reloadTime >= 1f / _parameters.BPS)
+        _reloadTime -= Time.deltaTime;
+		if (_reloadTime <= 0f )
         {
-            _reloadTime = 0.0f;
+            _reloadTime = (1f / _parameters.BPS) + _reloadTime;
             Shoot();
         }
     }
