@@ -5,8 +5,8 @@ using UnityEngine;
 [Serializable]
 public class WeaponModifierContainer : GenericContainer<WeaponArtifactIconDesc, ModifierType, IPlayerWeaponModifier>
 {
-    private List<Type> _artifactTypes = null;
-    private List<IPlayerWeaponModifier> _artifacts = null;
+    private List<Type> _artifactTypes = new List<Type>();
+    private List<IPlayerWeaponModifier> _artifacts = new List<IPlayerWeaponModifier>();
 
     public override WeaponArtifactIconDesc GetValueByKey(ModifierType key)
     {
@@ -18,7 +18,7 @@ public class WeaponModifierContainer : GenericContainer<WeaponArtifactIconDesc, 
         return null;
     }
 
-    protected override IPlayerWeaponModifier GetArtifact(ModifierType key)
+    public override IPlayerWeaponModifier GetArtifact(ModifierType key)
     {
         return _artifacts[(int)key].Clone();
     }

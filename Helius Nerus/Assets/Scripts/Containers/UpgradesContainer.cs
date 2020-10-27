@@ -13,7 +13,7 @@ public class UpgradesContainer : GenericContainer<StatUpgradeIconDesc, PlayerWea
         return null;
     }
 
-    protected override PlayerWeaponsParametrs GetArtifact(PlayerWeaponsParametrs key)
+    public override PlayerWeaponsParametrs GetArtifact(PlayerWeaponsParametrs key)
     {
         return key;
     }

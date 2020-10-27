@@ -2,37 +2,50 @@
 {
     public IPlayerWeaponModifier WeaponModifier
     {
-        get => _modifier;
+        get => WeaponModifierContainer.Instance.GetArtifact(_modifierID.Modifier);
     }
     public PlayerWeaponsParametrs WeaponsParametrs
     {
-        get => _params;
+        get => _paramsID.Modifier;
+    }
+    public UnityEngine.Sprite ModifierIcon
+    {
+        get => _modifierID.Icon;
+    }
+    public UnityEngine.Sprite StatUpgradeIcon
+    {
+        get => _paramsID.Icon;
+    }
+    public WeaponArtifactIconDesc ModifierID
+    {
+        get => _modifierID;
     }
 
-    private IPlayerWeaponModifier _modifier = null;
-    private PlayerWeaponsParametrs _params;
 
-    public ArtifactUpgradePair(PlayerWeaponsParametrs playerWeaponsParametrs, IPlayerWeaponModifier modifier)
+    private WeaponArtifactIconDesc _modifierID;
+    private StatUpgradeIconDesc _paramsID;
+
+    public ArtifactUpgradePair(StatUpgradeIconDesc playerWeaponsParametrs, WeaponArtifactIconDesc modifier)
     {
-        _params = playerWeaponsParametrs.Clone();
-        _modifier = modifier.Clone();
+        _paramsID = playerWeaponsParametrs;
+        _modifierID = modifier;
     }
 
     public static ArtifactUpgradePair CreateRandomPair()
     {
-        PlayerWeaponsParametrs parametrs = EndLevelUpgradeCollection.Instance.GetRandomUpgrade();
-        IPlayerWeaponModifier modifier = null;
-        modifier = ModifiersCollection.GetRandomModifierFromPool();
-        return new ArtifactUpgradePair(parametrs, modifier);
+        WeaponArtifactIconDesc modifierID = WeaponModifierContainer.Instance.GetRandomUnlockedModifier();
+        StatUpgradeIconDesc paramsID = UpgradesContainer.Instance.GetTotallyRandom();
+
+        return new ArtifactUpgradePair(paramsID, modifierID);
     }
 
     public string Description
     {
         get
         {
-            return LocalizationManager.Instance.GetLocalizedValue(_modifier.Description)
+            return LocalizationManager.Instance.GetLocalizedValue(_modifierID.Description)
                 + "\n"
-                + LocalizationManager.Instance.GetLocalizedValue(_params.Description);
+                + LocalizationManager.Instance.GetLocalizedValue(_paramsID.Description);
         }
     }
 }

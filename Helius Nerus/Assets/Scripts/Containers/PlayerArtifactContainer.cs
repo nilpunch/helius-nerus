@@ -5,8 +5,8 @@ using UnityEngine;
 [Serializable]
 public class PlayerArtifactContainer : GenericContainer<PlayerArtifactIconDesc, ArtifactType, IPlayerArtifact>
 {
-    private List<Type> _artifactTypes = null;
-    private List<IPlayerArtifact> _artifacts = null;
+    private List<Type> _artifactTypes = new List<Type>();
+    private List<IPlayerArtifact> _artifacts = new List<IPlayerArtifact>();
 
     public override PlayerArtifactIconDesc GetValueByKey(ArtifactType key)
     {
@@ -18,7 +18,7 @@ public class PlayerArtifactContainer : GenericContainer<PlayerArtifactIconDesc, 
         return null;
     }
 
-    protected override IPlayerArtifact GetArtifact(ArtifactType key)
+    public override IPlayerArtifact GetArtifact(ArtifactType key)
     {
         return _artifacts[(int)key].Clone();
     }

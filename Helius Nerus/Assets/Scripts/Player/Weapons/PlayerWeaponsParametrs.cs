@@ -23,8 +23,6 @@ public class PlayerWeaponsParametrs : ScriptableObject
 	[SerializeField] private float _damageMult = 1f;
 	[Tooltip("Размер пули")]
     [SerializeField] private float _bulletSize = 1f;
-    [Tooltip("КОД описания для экрана апгрейдов")]
-    [SerializeField] private string _description = "";
 
     public PlayerWeaponsParametrs Clone()
     {
@@ -40,7 +38,6 @@ public class PlayerWeaponsParametrs : ScriptableObject
     public float BulletDamage { get => _bulletDamage; set => _bulletDamage = value; }
 	public float DamageMult { get => _damageMult; set => _damageMult = value; }
     public float BulletSize { get => _bulletSize; set => _bulletSize = value; }
-    public string Description { get => _description; }
 
 	public void ApplyModifier(PlayerWeaponsParametrs mod)
     {

@@ -97,7 +97,8 @@ public class Player : MonoBehaviour
 
 		foreach (ArtifactType artifactType in _startArtifacts)
 		{
-			IPlayerArtifact artifact = ArtifactsCollection.GetArtifactByEnum(artifactType);
+			//IPlayerArtifact artifact = ArtifactsCollection.GetArtifactByEnum(artifactType);
+			IPlayerArtifact artifact = PlayerArtifactContainer.Instance.GetArtifact(artifactType);
 			artifact.OnPick();
 			_artifacts.Add(artifact);
 		}

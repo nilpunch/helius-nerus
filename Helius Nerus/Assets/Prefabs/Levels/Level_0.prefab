@@ -144,7 +144,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2cd4ef7a8fdb2a44c93c87094e7b7489, type: 2}
   _money: 5
   _moneyPerSecond: 2
-  _moneySpendingLimit: 100
+  _moneySpendingLimit: 70
   _playerDamageReward: 5
 --- !u!1 &5358465952583763555
 GameObject:

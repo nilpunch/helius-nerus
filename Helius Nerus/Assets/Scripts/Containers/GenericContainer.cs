@@ -13,8 +13,8 @@ public abstract class GenericContainer <TValue, TKey, TMod> where TValue : IconD
     [SerializeField] protected List<int> _initialUnlockedValues = null;
 
     // need sorted container?
-    protected List<int> _lockedValues = null; // unsorted
-    protected List<int> _unlockedAvailableValues = null; // unsorted
+    protected List<int> _lockedValues = new List<int>(); // unsorted
+    protected List<int> _unlockedAvailableValues = new List<int>(); // unsorted
 
     public void Init()
     {
@@ -33,7 +33,7 @@ public abstract class GenericContainer <TValue, TKey, TMod> where TValue : IconD
     }
 
     protected abstract void PreCookTypes();
-    protected abstract TMod GetArtifact(TKey key);
+    public abstract TMod GetArtifact(TKey key);
 
     public abstract TValue GetValueByKey(TKey key);
 
@@ -71,6 +71,14 @@ public abstract class GenericContainer <TValue, TKey, TMod> where TValue : IconD
     public void ReturnUnlockedMod(TValue value)
     {
         _unlockedAvailableValues.Add(_allModifiers.IndexOf(value));
+    }
+    
+    public TValue GetTotallyRandom()
+    {
+        int rand = UnityEngine.Random.Range(0, _allModifiers.Count);
+        // ICloneable value part?
+        TValue value = _allModifiers[rand];
+        return value;
     }
     // Save and load list of unlocked modifiers
 }

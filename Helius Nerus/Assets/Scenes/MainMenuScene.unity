@@ -332,6 +332,29 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 3ffa11ae2e3ae764ab49920ccf9f6140, type: 2}
     - {fileID: 11400000, guid: 9ef2b10c98c41da4ea6cc9821192847e, type: 2}
     - {fileID: 11400000, guid: 521aef3ffd562cb4481ad87a18cd3b14, type: 2}
+  _playerArtifactContainer:
+    _allModifiers:
+    - {fileID: 11400000, guid: 7af6c92b0bdf80f4597a7edb59fc97d0, type: 2}
+    _initialUnlockedValues: 01000000
+  _weaponModifierContainer:
+    _allModifiers:
+    - {fileID: 11400000, guid: 9df1e61c5be61da44810559da6201b7a, type: 2}
+    - {fileID: 11400000, guid: ccff69c8e42d64d4fb26124510e72278, type: 2}
+    - {fileID: 11400000, guid: 568305dd675c33045b7ffb02bbaa8cbe, type: 2}
+    - {fileID: 11400000, guid: 7c79f1c929bde62489f3edf5b49a6beb, type: 2}
+    - {fileID: 11400000, guid: e1fe54243e376fb49a2fd053cac913f8, type: 2}
+    - {fileID: 11400000, guid: b74d76bc799fd1b4fa41ad959a586ecf, type: 2}
+    - {fileID: 11400000, guid: 9f414c843b1ad4b468480708203bc68c, type: 2}
+    _initialUnlockedValues: 000000000100000002000000030000000400000005000000
+  _upgradesContainer:
+    _allModifiers:
+    - {fileID: 11400000, guid: f487ba16cce8c0849b6de6697b82b4d5, type: 2}
+    - {fileID: 11400000, guid: 185d3534bf790014680743259e53d590, type: 2}
+    - {fileID: 11400000, guid: 5e2f92a9b04d919448b41ab1f9dde389, type: 2}
+    - {fileID: 11400000, guid: ae0e6c8d715e3bc448234cdc9e065f99, type: 2}
+    - {fileID: 11400000, guid: ca04e69147e401a44a1a1b3373fe30b7, type: 2}
+    - {fileID: 11400000, guid: eb318302ca5c1df47a75a99c1f34499d, type: 2}
+    _initialUnlockedValues: 000000000100000002000000030000000400000005000000
 --- !u!4 &922788664
 Transform:
   m_ObjectHideFlags: 0

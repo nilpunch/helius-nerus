@@ -31,7 +31,8 @@ public class PlayerWeapon : MonoBehaviour
 
 		foreach (ModifierType modifierType in _startModifiers)
 		{
-			IPlayerWeaponModifier weaponModifier = ModifiersCollection.GetModifierByEnum(modifierType);
+            //IPlayerWeaponModifier weaponModifier = ModifiersCollection.GetModifierByEnum(modifierType);
+            IPlayerWeaponModifier weaponModifier = WeaponModifierContainer.Instance.GetArtifact(modifierType);
 			weaponModifier.OnPick(this);
 			_modifiers.Add(weaponModifier);
 		}

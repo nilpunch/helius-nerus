@@ -18,7 +18,8 @@ public class GetThreeUpgrades : MonoBehaviour
         for (int i = 0; i < 3; ++i)
         {
             if (i != upgradeNum)
-                ModifiersCollection.ReturnModifierToPool(upgrades[i].WeaponModifier);
+                WeaponModifierContainer.Instance.ReturnUnlockedMod(upgrades[i].ModifierID);
+                //ModifiersCollection.ReturnModifierToPool(upgrades[i].WeaponModifier);
                 continue;
         }
     }
