@@ -125,7 +125,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _stats:
     _FullHealth: 2
-    _pointsForKill: 10
+    _pointsForKill: 100
     _damageOnContact: 1
     _dropChance: 0.02
   _moveProcessor:

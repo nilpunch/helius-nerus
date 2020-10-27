@@ -42,6 +42,7 @@ public class Enemy : MonoBehaviour, IReturnableToPool, IDealDamageToPlayer
 
     private void Die()
     {
+        ScoreCounter.IncrementScore(_stats.PointsForKill);
         _isDead = true;
         float drop = Random.Range(0.0f, 1.0f);
         if (drop <= _stats.DropChance)

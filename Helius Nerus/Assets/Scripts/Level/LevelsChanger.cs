@@ -19,14 +19,6 @@ public class LevelsChanger : MonoBehaviour
         SpawnNextLevel();
     }
 
-    //private void Update()
-    //{
-    //    if (Input.GetKeyDown(KeyCode.L))
-    //    {
-    //        SpawnNextLevel();
-    //    }
-    //}
-
     private void SpawnNextLevel()
     {
         ++_currentLevel;
@@ -34,7 +26,6 @@ public class LevelsChanger : MonoBehaviour
             _currentLevel = 0;
 
         _current = Instantiate(_levels[_currentLevel]);
-        //_current.transform.parent = transform.parent;
 
         UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(_current.gameObject, UnityEngine.SceneManagement.SceneManager.GetSceneByBuildIndex((int)Scenes.INGAME));
     }
