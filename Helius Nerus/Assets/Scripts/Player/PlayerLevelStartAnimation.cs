@@ -24,6 +24,11 @@ public class PlayerLevelStartAnimation : MonoBehaviour
 
         while (timeElapsed <= 2)
         {
+            if (Pause.Paused)
+            {
+                yield return null;
+                continue;
+            }
             transform.position += new Vector3(0.0f, Time.deltaTime, 0.0f);
             timeElapsed += Time.deltaTime;
             yield return null;
@@ -50,6 +55,11 @@ public class PlayerLevelStartAnimation : MonoBehaviour
 
         while (timeElapsed <= 2)
         {
+            if (Pause.Paused)
+            {
+                yield return null;
+                continue;
+            }
             transform.position += new Vector3(0.0f, Time.deltaTime * 2, 0.0f);
             timeElapsed += Time.deltaTime;
             yield return null;
