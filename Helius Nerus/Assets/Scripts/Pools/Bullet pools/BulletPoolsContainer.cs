@@ -43,6 +43,14 @@ public class BulletPoolsContainer : MonoBehaviour
     {
         _pools[(int)type].ReturnObjectToPool(go);
     }
+
+    public void ClearAllBullets()
+    {
+        foreach (BulletPool bulletPool in _pools)
+        {
+            bulletPool.ClearScreenBullets();
+        }
+    }
 }
 
 public class BulletPool
@@ -50,6 +58,9 @@ public class BulletPool
     private GameObject _prefab = null;
     private Transform _transform = null;
     private Queue<GameObject> _pool = new Queue<GameObject>();
+
+    // Use another collection?
+    private List<GameObject> _activeBullets = new List<GameObject>();
 
     public BulletPool(GameObject prefab, Transform transform)
     {
@@ -77,6 +88,9 @@ public class BulletPool
             go = _pool.Dequeue();
             go.SetActive(true);
             go.transform.parent = null;
+
+            _activeBullets.Add(go);
+
             return go;
         }
         else
@@ -90,7 +104,17 @@ public class BulletPool
     {
         go.transform.parent = _transform;
         go.SetActive(false);
+        _activeBullets.Remove(go);
         _pool.Enqueue(go);
+    }
+
+    public void ClearScreenBullets()
+    {
+        while (_activeBullets.Count > 0)
+        {
+            ReturnObjectToPool(_activeBullets[0]);
+        }
+        _activeBullets.Clear();
     }
 }
 

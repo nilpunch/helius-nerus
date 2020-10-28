@@ -17,6 +17,9 @@ namespace HNUI
             //Pause.PauseGame(); //?
             Player.Instance.IsStatic = true;
             Player.Instance.IsNoShooting = true;
+
+            BulletPoolsContainer.Instance.ClearAllBullets();
+
             _winScreenGO.SetActive(true);
 
             // Temporary
