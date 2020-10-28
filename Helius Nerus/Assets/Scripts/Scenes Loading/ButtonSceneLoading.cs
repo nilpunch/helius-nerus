@@ -1,11 +1,14 @@
 ﻿using UnityEngine;
 
-public class ButtonSceneLoading : MonoBehaviour
+namespace HNUI
 {
-    [SerializeField] private Scenes _sceneToLoad = Scenes.INGAME;
-
-    public void OnClick()
+    public class ButtonSceneLoading : MonoBehaviour
     {
-        TransitionScene.Instance.LoadUnloadScene((int)_sceneToLoad);
+        [SerializeField] private Scenes _sceneToLoad = Scenes.INGAME;
+
+        public void OnClick()
+        {
+            TransitionScene.Instance.LoadUnloadScene((int)_sceneToLoad);
+        }
     }
 }

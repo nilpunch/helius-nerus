@@ -6,6 +6,7 @@ public class LevelBoss
     [SerializeField] private GameObject _boss = null;
 
     public static event System.Action BossDied = delegate { };
+    public static event System.Action FinalBossDied = delegate { };
 
     public void Init()
     {
@@ -25,8 +26,20 @@ public class LevelBoss
         {
             // counts as dead
             // call method
-            BossDied.Invoke();
+            LaunchBossDie();
             return;
+        }
+    }
+
+    private void LaunchBossDie()
+    {
+        if (LevelsChanger.Instance.IsLastLevel)
+        {
+            FinalBossDied.Invoke();
+        }
+        else
+        {
+            BossDied.Invoke();
         }
     }
 

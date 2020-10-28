@@ -1,18 +1,28 @@
 ﻿using UnityEngine;
 using TMPro;
 
-[RequireComponent(typeof(TextMeshProUGUI))]
-public class LocalizedText : MonoBehaviour
+namespace HNUI
 {
-    [Tooltip("Поле с ключем для текста в транслите")]
-    [SerializeField] private string _key = "";
-
-    // Start is called before the first frame update
-    void Start()
+    [RequireComponent(typeof(TextMeshProUGUI))]
+    public class LocalizedText : MonoBehaviour
     {
-        //Подсасываем текст компоненту
-        TextMeshProUGUI text = GetComponent<TextMeshProUGUI>();
-        //И вставляем текст из локализатора
-        text.text = LocalizationManager.Instance.GetLocalizedValue(_key);
+        [Tooltip("Вводить код локализатора прямо в текст")]
+        [SerializeField] private TextMeshProUGUI _text = null;
+        [Tooltip("Альтернативно ввести код подсказки сюда")]
+        [SerializeField] private string _key = "";
+
+        // Start is called before the first frame update
+        void Awake()
+        {
+            if (_key != null && _key != "")
+            {
+                _text.text = LocalizationManager.Instance.GetLocalizedValue(_key);
+            }
+            else
+            {
+                _text.text = LocalizationManager.Instance.GetLocalizedValue(_text.text);
+            }
+        }
     }
 }
+

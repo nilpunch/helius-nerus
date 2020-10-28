@@ -7,9 +7,14 @@ public class LevelsChanger : MonoBehaviour
         get;
         private set;
     }
+    public bool IsLastLevel
+    {
+        get => _currentLevel == _maximalUnlockedLevel;
+    }
 
     private static int _currentLevel = -1;
     [SerializeField] private GameObject[] _levels = null;
+    private int _maximalUnlockedLevel = 0;
     private GameObject _current = null;
 
 
@@ -17,6 +22,25 @@ public class LevelsChanger : MonoBehaviour
     {
         Instance = this;
         SpawnNextLevel();
+        _maximalUnlockedLevel = SaveableData.Instance.MaximalUnlockedLevel;
+
+        Player.PlayerDie += Player_PlayerDie;
+        LevelBoss.FinalBossDied += LevelBoss_FinalBossDied;
+    }
+
+    private void LevelBoss_FinalBossDied()
+    {
+        Reset();
+    }
+
+    private void Player_PlayerDie()
+    {
+        Reset();
+    }
+
+    private void Reset()
+    {
+        _currentLevel = -1;
     }
 
     private void SpawnNextLevel()
@@ -33,5 +57,11 @@ public class LevelsChanger : MonoBehaviour
     public void ChangeLevel()
     {
         SpawnNextLevel();
+    }
+
+    private void OnDestroy()
+    {
+        Player.PlayerDie -= Player_PlayerDie;
+        LevelBoss.FinalBossDied -= LevelBoss_FinalBossDied;
     }
 }

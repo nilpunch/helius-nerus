@@ -13,6 +13,7 @@
 
     public static void Reset()
     {
+        SaveableData.Instance.AddTotalScore(_score / 100); // here?
         _score = 0;
     }
 
