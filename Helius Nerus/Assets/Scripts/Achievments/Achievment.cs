@@ -51,6 +51,7 @@ public class Achievment
 #endif
             return;
         }
+
         Type objectType = Type.GetType(_eventClass);
         if (objectType == null)
         {
@@ -59,6 +60,7 @@ public class Achievment
 #endif
             return;
         }
+
         _objectEventInfo = objectType.GetEvent(_eventName);
         if (_objectEventInfo == null)
         {
@@ -67,10 +69,12 @@ public class Achievment
 #endif
             return;
         }
+
         Type objectEventHandlerType = _objectEventInfo.EventHandlerType;
-        MethodInfo mi = this.GetType().GetMethod("OnEventHappened");
+        MethodInfo mi = this.GetType().GetMethod("AchievmentHappened");
         _del = Delegate.CreateDelegate(objectEventHandlerType, this, mi);
         _objectEventInfo.AddEventHandler(this, _del);
+
         _subscribed = true;
     }
 
