@@ -55,7 +55,7 @@ public class Player : MonoBehaviour
 
 	private bool _collideWithDamageDealers = true;
 
-	private List<IPlayerArtifact> _artifacts = new List<IPlayerArtifact>();
+	private List<PlayerArtifact> _artifacts = new List<PlayerArtifact>();
     private PlayerParameters _playerParameters = null;
 
     private void Awake()
@@ -98,7 +98,7 @@ public class Player : MonoBehaviour
 		foreach (ArtifactType artifactType in _startArtifacts)
 		{
 			//IPlayerArtifact artifact = ArtifactsCollection.GetArtifactByEnum(artifactType);
-			IPlayerArtifact artifact = PlayerArtifactContainer.Instance.GetArtifact(artifactType);
+			PlayerArtifact artifact = PlayerArtifactContainer.Instance.GetArtifact(artifactType);
 			artifact.OnPick();
 			_artifacts.Add(artifact);
 		}

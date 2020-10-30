@@ -1,37 +1,9 @@
 ﻿using System.Collections;
 
-public class HomingModifier : IPlayerWeaponModifier
+public class HomingModifier : PlayerWeaponModifier
 {
-    public string Description
-    {
-        get => "homingDescription";
-    }
-    public IPlayerWeaponModifier Clone()
+    public override PlayerWeaponModifier Clone()
 	{
 		return (HomingModifier)MemberwiseClone();
-	}
-
-	public void OnBulletDestroy(PlayerBullet playerBullet)
-	{
-	}
-
-	public void OnBulletEnable(PlayerBullet playerBullet)
-	{
-	}
-
-	public void OnHit(PlayerBullet playerBullet, Enemy enemy)
-	{
-	}
-
-	public void OnPick(PlayerWeapon playerWeapon)
-	{
-	}
-
-	public void OnDrop(PlayerWeapon playerWeapon)
-	{
-	}
-
-	public void OnWeaponShoot(PlayerWeapon playerBullet)
-	{
 	}
 }

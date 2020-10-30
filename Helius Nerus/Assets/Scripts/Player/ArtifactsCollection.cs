@@ -15,17 +15,17 @@ public class ArtifactsCollection
 	{
 		return Instance._artifactsTypes[(int)type];
 	}
-	public static IPlayerArtifact GetArtifactByEnum(ArtifactType type)
+	public static PlayerArtifact GetArtifactByEnum(ArtifactType type)
 	{
 		return Instance._artifacts[(int)type].Clone();
 	}
-	public IPlayerArtifact this[ArtifactType type]
+	public PlayerArtifact this[ArtifactType type]
 	{
 		get => _artifacts[(int)type].Clone();
 	}
 
 	private List<Type> _artifactsTypes = new List<Type>();
-	private List<IPlayerArtifact> _artifacts = new List<IPlayerArtifact>();
+	private List<PlayerArtifact> _artifacts = new List<PlayerArtifact>();
 
 
 	public void Init()
@@ -58,7 +58,7 @@ public class ArtifactsCollection
 			}
 #endif
 			_artifactsTypes.Add(ctype);
-			_artifacts.Add((IPlayerArtifact)Activator.CreateInstance(ctype));
+			_artifacts.Add((PlayerArtifact)Activator.CreateInstance(ctype));
 		}
 	}
 }

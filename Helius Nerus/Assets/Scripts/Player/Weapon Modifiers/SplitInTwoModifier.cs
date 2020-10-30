@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class SplitInTwoModifier : IPlayerWeaponModifier
+public class SplitInTwoModifier : PlayerWeaponModifier
 {
 	public const float COLLISION_DISABLE_TIME = 0.1f;
 	public const float DAMAGE_REDUСTION_COEFFICIENT = 2.0f;
@@ -9,17 +9,12 @@ public class SplitInTwoModifier : IPlayerWeaponModifier
 
 	private WaitForSeconds _waiter = new WaitForSeconds(COLLISION_DISABLE_TIME);
 
-    public string Description
-    {
-        get => "splitInTwoDescription";
-    }
-
-    public IPlayerWeaponModifier Clone()
+    public override PlayerWeaponModifier Clone()
 	{
 		return (SplitInTwoModifier)MemberwiseClone();
 	}
 
-	public void OnBulletDestroy(PlayerBullet playerBullet)
+	public override void OnBulletDestroy(PlayerBullet playerBullet)
 	{
 		if (playerBullet.ModifiersProcCount[ModifierType.SplitInTwoModifier] > 0)
 		{
@@ -32,7 +27,7 @@ public class SplitInTwoModifier : IPlayerWeaponModifier
 			leftBullet.BulletParameters.SpeedMultiplier = playerBullet.BulletParameters.SpeedMultiplier;
 			leftBullet.BulletParameters.Damage = playerBullet.BulletParameters.Damage / DAMAGE_REDUСTION_COEFFICIENT;
 			leftBullet.Transform.position = playerBullet.Transform.position;
-			leftBullet.Transform.localScale = Vector3.one * playerBullet.transform.localScale.x;
+			leftBullet.Transform.localScale = playerBullet.transform.localScale;
 			leftBullet.Transform.localEulerAngles = new Vector3(0f, 0f, playerBullet.Transform.localEulerAngles.z - SPLIT_ANGLE);
 			leftBullet.OnBulletEnable();
 
@@ -42,7 +37,7 @@ public class SplitInTwoModifier : IPlayerWeaponModifier
 			rightBullet.BulletParameters.SpeedMultiplier = playerBullet.BulletParameters.SpeedMultiplier;
 			rightBullet.BulletParameters.Damage = playerBullet.BulletParameters.Damage / DAMAGE_REDUСTION_COEFFICIENT;
 			rightBullet.Transform.position = playerBullet.Transform.position;
-			rightBullet.Transform.localScale = Vector3.one * playerBullet.transform.localScale.x;
+			rightBullet.Transform.localScale = playerBullet.transform.localScale;
 			rightBullet.Transform.localEulerAngles = new Vector3(0f, 0f, playerBullet.Transform.localEulerAngles.z + SPLIT_ANGLE);
 			rightBullet.OnBulletEnable();
 
@@ -53,7 +48,7 @@ public class SplitInTwoModifier : IPlayerWeaponModifier
 		}
 	}
 
-	public void OnBulletEnable(PlayerBullet playerBullet)
+	public override void OnBulletEnable(PlayerBullet playerBullet)
 	{
 		if (playerBullet.ModifiersProcCount.ContainsKey(ModifierType.SplitInTwoModifier) == false)
 		{
@@ -65,26 +60,10 @@ public class SplitInTwoModifier : IPlayerWeaponModifier
 		}
 	}
 
-	public void OnHit(PlayerBullet playerBullet, Enemy enemy)
-	{
-	}
-
 	public IEnumerator OnBulletProc(PlayerBullet playerBullet)
 	{
 		playerBullet.CollideWithEnemies = false;
 		yield return _waiter;
 		playerBullet.CollideWithEnemies = true;
-	}
-
-	public void OnPick(PlayerWeapon playerWeapon)
-	{
-	}
-
-	public void OnDrop(PlayerWeapon playerWeapon)
-	{
-	}
-
-	public void OnWeaponShoot(PlayerWeapon playerBullet)
-	{
 	}
 }

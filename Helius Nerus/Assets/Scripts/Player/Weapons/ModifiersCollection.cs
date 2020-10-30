@@ -17,7 +17,7 @@ public class ModifiersCollection
 {
     public static ModifiersCollection Instance { get; private set; } = null;
 
-    public static IPlayerWeaponModifier GetRandomWeaponModifier()
+    public static PlayerWeaponModifier GetRandomWeaponModifier()
     {
         int rand = UnityEngine.Random.Range(0, Instance._modifiers.Count);
         return Instance._modifiers[rand].Clone();
@@ -26,7 +26,7 @@ public class ModifiersCollection
     {
         return Instance._modifiersTypes[(int)type];
     }
-    public static IPlayerWeaponModifier GetModifierByEnum(ModifierType type)
+    public static PlayerWeaponModifier GetModifierByEnum(ModifierType type)
     {
         return Instance._modifiers[(int)type].Clone();
     }
@@ -36,28 +36,28 @@ public class ModifiersCollection
         Instance._unlockedModifiers.Add(modifierType);
         Instance._availableDuringRunModifiers.Add(GetModifierByEnum(modifierType));
     }
-    public static IPlayerWeaponModifier GetRandomModifierFromPool()
+    public static PlayerWeaponModifier GetRandomModifierFromPool()
     {
         int rand = UnityEngine.Random.Range(0, Instance._availableDuringRunModifiers.Count);
-        IPlayerWeaponModifier result = Instance._availableDuringRunModifiers[rand].Clone();
+        PlayerWeaponModifier result = Instance._availableDuringRunModifiers[rand].Clone();
         Instance._availableDuringRunModifiers.RemoveAt(rand);
         return result;
     }
-    public static void ReturnModifierToPool(IPlayerWeaponModifier modifier)
+    public static void ReturnModifierToPool(PlayerWeaponModifier modifier)
     {
         Instance._availableDuringRunModifiers.Add(modifier);
     }
 
-    public IPlayerWeaponModifier this[ModifierType type]
+    public PlayerWeaponModifier this[ModifierType type]
     {
         get => _modifiers[(int)type].Clone();
     }
 
     private List<Type> _modifiersTypes = new List<Type>();
-    private List<IPlayerWeaponModifier> _modifiers = new List<IPlayerWeaponModifier>();
+    private List<PlayerWeaponModifier> _modifiers = new List<PlayerWeaponModifier>();
 
     private List<ModifierType> _unlockedModifiers = new List<ModifierType>();
-    private List<IPlayerWeaponModifier> _availableDuringRunModifiers = new List<IPlayerWeaponModifier>();
+    private List<PlayerWeaponModifier> _availableDuringRunModifiers = new List<PlayerWeaponModifier>();
 
     public void Init()
     {
@@ -88,7 +88,7 @@ public class ModifiersCollection
             }
 #endif
             _modifiersTypes.Add(ctype);
-            _modifiers.Add((IPlayerWeaponModifier)Activator.CreateInstance(ctype));
+            _modifiers.Add((PlayerWeaponModifier)Activator.CreateInstance(ctype));
         }
     }
 

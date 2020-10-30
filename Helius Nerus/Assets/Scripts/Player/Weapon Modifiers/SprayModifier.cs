@@ -1,44 +1,18 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class SprayModifier : IPlayerWeaponModifier
+public class SprayModifier : PlayerWeaponModifier
 {
 	public const float WEAPON_MOVE_TIME = 1f;
-
-    public string Description
-    {
-        get => "sprayDescription";
-    }
-
-    public IPlayerWeaponModifier Clone()
+	
+    public override PlayerWeaponModifier Clone()
 	{
 		return (SprayModifier)MemberwiseClone();
 	}
 
-	public void OnBulletDestroy(PlayerBullet playerBullet)
-	{
-	}
-
-	public void OnBulletEnable(PlayerBullet playerBullet)
-	{
-	}
-
-	public void OnDrop(PlayerWeapon playerWeapon)
-	{
-	}
-
-	public void OnHit(PlayerBullet playerBullet, Enemy enemy)
-	{
-	}
-
-	public void OnPick(PlayerWeapon playerWeapon)
+	public override void OnPick(PlayerWeapon playerWeapon)
 	{
 		playerWeapon.StartCoroutine(OnWeaponProc(playerWeapon));
-	}
-
-	public IEnumerator OnBulletProc(PlayerBullet playerBullet)
-	{
-		yield break;
 	}
 
 	public IEnumerator OnWeaponProc(PlayerWeapon playerWeapon)
@@ -88,9 +62,5 @@ public class SprayModifier : IPlayerWeaponModifier
 			playerWeapon.WeaponParameters.WeaponAngle = startWeaponAngle + offsetAngle;
 			yield return null;
 		}
-	}
-
-	public void OnWeaponShoot(PlayerWeapon playerWeapon)
-	{
 	}
 }

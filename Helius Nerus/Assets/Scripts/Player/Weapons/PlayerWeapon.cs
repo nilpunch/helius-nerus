@@ -18,7 +18,7 @@ public class PlayerWeapon : MonoBehaviour
 	[SerializeField] private ModifierType[] _startModifiers = null;
     [SerializeField] private Player _player = null;
 
-	private List<IPlayerWeaponModifier> _modifiers = new List<IPlayerWeaponModifier>();
+	private List<PlayerWeaponModifier> _modifiers = new List<PlayerWeaponModifier>();
 	private PlayerWeaponsParametrs _parameters;
     private Transform _transform;
 
@@ -32,7 +32,7 @@ public class PlayerWeapon : MonoBehaviour
 		foreach (ModifierType modifierType in _startModifiers)
 		{
             //IPlayerWeaponModifier weaponModifier = ModifiersCollection.GetModifierByEnum(modifierType);
-            IPlayerWeaponModifier weaponModifier = WeaponModifierContainer.Instance.GetArtifact(modifierType);
+            PlayerWeaponModifier weaponModifier = WeaponModifierContainer.Instance.GetArtifact(modifierType);
 			weaponModifier.OnPick(this);
 			_modifiers.Add(weaponModifier);
 		}
@@ -89,7 +89,7 @@ public class PlayerWeapon : MonoBehaviour
 		}
     }
 
-    public void AddModifier(IPlayerWeaponModifier modifier)
+    public void AddModifier(PlayerWeaponModifier modifier)
     {
 		modifier.OnPick(this);
 		_modifiers.Add(modifier);

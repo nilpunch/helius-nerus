@@ -1,25 +1,25 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-class InvincibilityArtifact : IPlayerArtifact
+class InvincibilityArtifact : PlayerArtifact
 {
 	private const float EFFECT_TIME_SCALE = 1.1f;
 
 	private SpriteRenderer _renderer;
 
-	public IPlayerArtifact Clone()
+	public override PlayerArtifact Clone()
 	{
 		return (InvincibilityArtifact)this.MemberwiseClone();
 	}
 
-	public void OnPick()
+	public override void OnPick()
 	{
 		Player.PlayerTookDamage += Player_PlayerTookDamage;
         // Мне не нравится эта строка. Лучше уже кэшануть и в свойство
         _renderer = Player.SpriteRenderer;
 	}
 
-	public void OnDrop()
+	public override void OnDrop()
 	{
 		Player.PlayerTookDamage -= Player_PlayerTookDamage;
 	}

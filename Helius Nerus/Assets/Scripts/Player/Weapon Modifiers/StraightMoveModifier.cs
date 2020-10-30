@@ -1,28 +1,16 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class StraightMoveModifier : IPlayerWeaponModifier
+public class StraightMoveModifier : PlayerWeaponModifier
 {
-    public string Description
-    {
-        get => "straightMoveDescription";
-    }
-    public IPlayerWeaponModifier Clone()
+    public override PlayerWeaponModifier Clone()
 	{
 		return (StraightMoveModifier)MemberwiseClone();
 	}
 
-	public void OnBulletDestroy(PlayerBullet playerBullet)
-	{
-	}
-
-	public void OnBulletEnable(PlayerBullet playerBullet)
+	public override void OnBulletEnable(PlayerBullet playerBullet)
 	{
 		playerBullet.StartCoroutine(OnBulletProc(playerBullet));
-	}
-
-	public void OnHit(PlayerBullet playerBullet, Enemy enemy)
-	{
 	}
 
 	public IEnumerator OnBulletProc(PlayerBullet playerBullet)
@@ -37,17 +25,5 @@ public class StraightMoveModifier : IPlayerWeaponModifier
             playerBullet.Transform.Translate(Vector3.up * Time.deltaTime * playerBullet.BulletParameters.SpeedMultiplier, Space.Self);
 			yield return null;
 		}
-	}
-
-	public void OnPick(PlayerWeapon playerWeapon)
-	{
-	}
-
-	public void OnDrop(PlayerWeapon playerWeapon)
-	{
-	}
-
-	public void OnWeaponShoot(PlayerWeapon playerBullet)
-	{
 	}
 }

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Enemy : MonoBehaviour, IReturnableToPool, IDealDamageToPlayer
+public class Enemy : MonoBehaviour, IReturnableToPool, IDealDamageToPlayer, ITakeDamageFromPlayer
 {
     [SerializeField] private EnemyStats _stats = null;
     [SerializeField] private CommandsProcessor<MoveCommandScriptableObject> _moveProcessor = new CommandsProcessor<MoveCommandScriptableObject>();

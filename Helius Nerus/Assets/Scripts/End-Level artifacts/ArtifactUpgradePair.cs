@@ -1,6 +1,6 @@
 ﻿public class ArtifactUpgradePair
 {
-    public IPlayerWeaponModifier WeaponModifier
+    public PlayerWeaponModifier WeaponModifier
     {
         get => WeaponModifierContainer.Instance.GetArtifact(_modifierID.Modifier);
     }

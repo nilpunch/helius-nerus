@@ -1,27 +1,19 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class RicochetModifier : IPlayerWeaponModifier
+public class RicochetModifier : PlayerWeaponModifier
 {
 	public const float COLLISION_DISABLE_TIME = 0.1f;
+	public const float RICOCHET_ANGLE = 90f;
 
 	private WaitForSeconds _waiter = new WaitForSeconds(COLLISION_DISABLE_TIME);
 
-    public string Description
-    {
-        get => "ricochetDescription";
-    }
-
-    public IPlayerWeaponModifier Clone()
+    public override PlayerWeaponModifier Clone()
 	{
 		return (RicochetModifier)MemberwiseClone();
 	}
 
-	public void OnBulletDestroy(PlayerBullet playerBullet)
-	{
-	}
-
-	public void OnBulletEnable(PlayerBullet playerBullet)
+	public override void OnBulletEnable(PlayerBullet playerBullet)
 	{
 		if (playerBullet.ModifiersProcCount.ContainsKey(ModifierType.RicochetModifier) == false)
 		{
@@ -33,13 +25,13 @@ public class RicochetModifier : IPlayerWeaponModifier
 		}
 	}
 
-	public void OnHit(PlayerBullet playerBullet, Enemy enemy)
+	public override void OnHit(PlayerBullet playerBullet, GameObject target)
 	{
 		if (playerBullet.ModifiersProcCount[ModifierType.RicochetModifier] > 0)
 		{
 			playerBullet.ModifiersProcCount[ModifierType.RicochetModifier] -= 1;
 			playerBullet.BulletParameters.Durability += 1;
-			playerBullet.Transform.Rotate(0f, 0f, Random.Range(0f, 360f));
+			playerBullet.Transform.Rotate(0f, 0f, Random.Range(-RICOCHET_ANGLE, RICOCHET_ANGLE));
 			CoroutineProcessor.Instance.StartCoroutine(OnBulletProc(playerBullet));
 		}
 	}
@@ -49,17 +41,5 @@ public class RicochetModifier : IPlayerWeaponModifier
 		playerBullet.CollideWithEnemies = false;
 		yield return _waiter;
 		playerBullet.CollideWithEnemies = true;
-	}
-
-	public void OnPick(PlayerWeapon playerWeapon)
-	{
-	}
-
-	public void OnDrop(PlayerWeapon playerWeapon)
-	{
-	}
-
-	public void OnWeaponShoot(PlayerWeapon playerBullet)
-	{
 	}
 }

@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public class PlayerArtifactContainer : GenericContainer<PlayerArtifactIconDesc, ArtifactType, IPlayerArtifact>
+public class PlayerArtifactContainer : GenericContainer<PlayerArtifactIconDesc, ArtifactType, PlayerArtifact>
 {
     private List<Type> _artifactTypes = new List<Type>();
-    private List<IPlayerArtifact> _artifacts = new List<IPlayerArtifact>();
+    private List<PlayerArtifact> _artifacts = new List<PlayerArtifact>();
 
     public override PlayerArtifactIconDesc GetValueByKey(ArtifactType key)
     {
@@ -18,7 +18,7 @@ public class PlayerArtifactContainer : GenericContainer<PlayerArtifactIconDesc, 
         return null;
     }
 
-    public override IPlayerArtifact GetArtifact(ArtifactType key)
+    public override PlayerArtifact GetArtifact(ArtifactType key)
     {
         return _artifacts[(int)key].Clone();
     }
@@ -38,7 +38,7 @@ public class PlayerArtifactContainer : GenericContainer<PlayerArtifactIconDesc, 
             }
 #endif
             _artifactTypes.Add(ctype);
-            _artifacts.Add((IPlayerArtifact)Activator.CreateInstance(ctype));
+            _artifacts.Add((PlayerArtifact)Activator.CreateInstance(ctype));
         }
     }
 }

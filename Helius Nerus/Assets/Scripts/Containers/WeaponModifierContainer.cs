@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public class WeaponModifierContainer : GenericContainer<WeaponArtifactIconDesc, ModifierType, IPlayerWeaponModifier>
+public class WeaponModifierContainer : GenericContainer<WeaponArtifactIconDesc, ModifierType, PlayerWeaponModifier>
 {
     private List<Type> _artifactTypes = new List<Type>();
-    private List<IPlayerWeaponModifier> _artifacts = new List<IPlayerWeaponModifier>();
+    private List<PlayerWeaponModifier> _artifacts = new List<PlayerWeaponModifier>();
 
     public override WeaponArtifactIconDesc GetValueByKey(ModifierType key)
     {
@@ -18,7 +18,7 @@ public class WeaponModifierContainer : GenericContainer<WeaponArtifactIconDesc, 
         return null;
     }
 
-    public override IPlayerWeaponModifier GetArtifact(ModifierType key)
+    public override PlayerWeaponModifier GetArtifact(ModifierType key)
     {
         return _artifacts[(int)key].Clone();
     }
@@ -38,7 +38,7 @@ public class WeaponModifierContainer : GenericContainer<WeaponArtifactIconDesc, 
             }
 #endif
             _artifactTypes.Add(ctype);
-            _artifacts.Add((IPlayerWeaponModifier)Activator.CreateInstance(ctype));
+            _artifacts.Add((PlayerWeaponModifier)Activator.CreateInstance(ctype));
         }
     }
 }
