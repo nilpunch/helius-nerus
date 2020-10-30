@@ -88,9 +88,12 @@ public class Achievment
         }
     }
 
-    private void AchievmentHappened()
+    public void AchievmentHappened()
     {
         _wasTriggered = true;
+#if UNITY_EDITOR
+		Debug.Log(_achievementName);
+#endif
         Unsubscribe();
-    }
+	}
 }
