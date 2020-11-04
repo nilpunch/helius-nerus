@@ -154,7 +154,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _loadingScreen: {fileID: 1309460253}
   _progressBar: {fileID: 1184561586}
-  _cameraGO: {fileID: 992566991}
 --- !u!4 &797738605
 Transform:
   m_ObjectHideFlags: 0
