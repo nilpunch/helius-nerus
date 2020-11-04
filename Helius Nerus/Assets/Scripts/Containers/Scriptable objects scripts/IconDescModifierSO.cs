@@ -2,6 +2,10 @@
 
 public abstract class IconDescModifierSO <Type> : ScriptableObject
 {
+    [SerializeField] protected string _description;
+    [SerializeField] protected Sprite _icon;
+    [SerializeField] protected Type _modifier;
+
     public string Description
     {
         get => _description;
@@ -14,7 +18,4 @@ public abstract class IconDescModifierSO <Type> : ScriptableObject
     {
         get => _modifier;
     }
-    [SerializeField] protected string _description;
-    [SerializeField] protected Sprite _icon;
-    [SerializeField] protected Type _modifier;
 }

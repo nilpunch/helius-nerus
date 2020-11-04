@@ -4,18 +4,30 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Player : MonoBehaviour
 {
-	public static Player Instance
-    {
-        get;
-        private set;
-    }
-
     public static event System.Action PlayerHealthChanged = delegate { };
     public static event System.Action PlayerTookDamage = delegate { };
     public static event System.Action PlayerBeforeDie = delegate { };
     public static event System.Action PlayerDie = delegate { };
     public static event System.Action PlayerResurrection = delegate { };
 
+	[SerializeField] private PlayerMovement _playerMovement = null;
+	[Space]
+	[SerializeField] private PlayerParameters _playerParametersSO = null;
+    [SerializeField] private PlayerWeapon[] _weapons = null;
+	[SerializeField] private ArtifactType[] _startArtifacts = null;
+    [SerializeField] private Rigidbody2D _rigidbody2D = null;
+    [SerializeField] private SpriteRenderer _renderer = null;
+
+	private bool _collideWithDamageDealers = true;
+
+	private List<PlayerArtifact> _artifacts = new List<PlayerArtifact>();
+    private PlayerParameters _playerParameters = null;
+
+	public static Player Instance
+    {
+        get;
+        private set;
+    }
     public static PlayerParameters PlayerParameters
     {
         get => Instance._playerParameters;
@@ -42,21 +54,11 @@ public class Player : MonoBehaviour
 		get;
 		set;
 	} = false;
-	public static bool CollideWithDamageDealers { get => Instance._collideWithDamageDealers; set => Instance._collideWithDamageDealers = value; }
-
-
-	[SerializeField] private PlayerMovement _playerMovement = null;
-	[Space]
-	[SerializeField] private PlayerParameters _playerParametersSO = null;
-    [SerializeField] private PlayerWeapon[] _weapons = null;
-	[SerializeField] private ArtifactType[] _startArtifacts = null;
-    [SerializeField] private Rigidbody2D _rigidbody2D = null;
-    [SerializeField] private SpriteRenderer _renderer = null;
-
-	private bool _collideWithDamageDealers = true;
-
-	private List<PlayerArtifact> _artifacts = new List<PlayerArtifact>();
-    private PlayerParameters _playerParameters = null;
+	public static bool CollideWithDamageDealers
+    {
+        get => Instance._collideWithDamageDealers;
+        set => Instance._collideWithDamageDealers = value;
+    }
 
     private void Awake()
     {

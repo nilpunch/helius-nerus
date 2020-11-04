@@ -6,16 +6,17 @@ using UnityEngine.Networking;
 public class LocalizationManager : MonoBehaviour
 {
     //Синглтон
-    public static LocalizationManager Instance => _instance;
     private static LocalizationManager _instance;
 
-    public bool IsReady => _isReady;
     //Словарик с ключем-переводом
     private Dictionary<string, string> _localizedText;
     //Если текст не найдет
     private string _missingTextString = "Missing text in translation: ";
     //Датчик готовности
     private bool _isReady = false;
+
+    public static LocalizationManager Instance => _instance;
+    public bool IsReady => _isReady;
 
     //Синглтон
     private void Awake()

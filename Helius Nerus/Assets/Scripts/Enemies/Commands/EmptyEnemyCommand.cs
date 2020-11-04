@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 // Do Nothing Command
 class EmptyEnemyCommand : IEnemyCommand

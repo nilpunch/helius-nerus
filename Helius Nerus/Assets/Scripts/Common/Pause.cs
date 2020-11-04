@@ -6,12 +6,17 @@ public class Pause
 {
     public static event System.Action GamePaused = delegate { };
     public static event System.Action GameUnpaused = delegate { };
-	public static bool Paused { get; private set; } = false;
     private static Pause _instance;
 
     [SerializeField] private UnityEngine.UI.Image _fadeImage = null;
     [SerializeField] private float _fadeSeconds = 1;
     [SerializeField] private float _fadeValue = 0.5f;
+
+	public static bool Paused
+    {
+        get;
+        private set;
+    } = false;
 
     public void Init()
     {

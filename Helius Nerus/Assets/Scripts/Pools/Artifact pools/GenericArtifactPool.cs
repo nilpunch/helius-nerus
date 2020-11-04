@@ -1,14 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+﻿using System.Collections.Generic;
 
 public class GenericArtifactPool<T>
 {
-    public int PoolCount => _items.Count;
-
     private T[] _initialItems = null;
     private List<T> _items = new List<T>();
+
+    public int PoolCount => _items.Count;
 
 	public void Initialise(T[] items)
 	{

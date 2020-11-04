@@ -1,6 +1,7 @@
 ﻿public class EnemiesInSceneCounter
 {
     public static event System.Action LastEnemyDied = delegate { };
+
 	public int AmountOfEnemies { get; private set; } = 0;
 
     private bool _spawnerFinished = false;

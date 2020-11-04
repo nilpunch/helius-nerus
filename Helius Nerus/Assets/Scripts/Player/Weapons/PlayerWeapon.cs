@@ -3,15 +3,6 @@ using UnityEngine;
 
 public class PlayerWeapon : MonoBehaviour
 {
-	public PlayerWeaponsParametrs WeaponParameters
-	{
-		get => _parameters;
-	}
-
-	public bool IsNoSooting
-	{
-		get => _player.IsNoShooting;
-	}
 
 	[Tooltip("СО свойств пушки стартовых")]
     [SerializeField] private PlayerWeaponsParametrs _parametersSO = null;
@@ -21,8 +12,17 @@ public class PlayerWeapon : MonoBehaviour
 	private List<PlayerWeaponModifier> _modifiers = new List<PlayerWeaponModifier>();
 	private PlayerWeaponsParametrs _parameters;
     private Transform _transform;
-
 	private float _reloadTime = 0.0f;
+
+	public PlayerWeaponsParametrs WeaponParameters
+	{
+		get => _parameters;
+	}
+
+	public bool IsNoSooting
+	{
+		get => _player.IsNoShooting;
+	}
 
 	private void Awake()
 	{

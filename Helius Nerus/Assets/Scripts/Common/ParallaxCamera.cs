@@ -4,6 +4,15 @@ public class ParallaxCamera : MonoBehaviour
 {
 	private static ParallaxCamera _sceneInstance = null;
 
+	[SerializeField] private float _parallaxCoefficient = 1.0f;
+    [SerializeField] private Camera _camera = null;
+	private float _translationCoefficient;
+	private Transform _cameraTransform;
+	private Vector2 _cameraSize;
+	private Vector2 _parallaxSize;
+	private Rect _cameraBoundary;
+	private Rect _parallaxBoundary;
+
 	static public float ParallaxCoefficient
 	{
 		get => _sceneInstance._parallaxCoefficient;
@@ -33,14 +42,6 @@ public class ParallaxCamera : MonoBehaviour
 		get => _sceneInstance._parallaxSize;
 	}
 
-	[SerializeField] private float _parallaxCoefficient = 1.0f;
-    [SerializeField] private Camera _camera = null;
-	private float _translationCoefficient;
-	private Transform _cameraTransform;
-	private Vector2 _cameraSize;
-	private Vector2 _parallaxSize;
-	private Rect _cameraBoundary;
-	private Rect _parallaxBoundary;
 
 
 	private void Awake()

@@ -2,6 +2,11 @@
 
 public class BasicEnemyBullet : MonoBehaviour, IBulletMovement, IDealDamageToPlayer, IReturnableToPool
 {
+    [SerializeField] protected int _damage = 1;
+
+    protected float _speedMultiplier = 1.0f;
+    protected Transform _transform = null;
+
     public float SpeedMultiplier
     {
         set => _speedMultiplier = value;
@@ -12,11 +17,6 @@ public class BasicEnemyBullet : MonoBehaviour, IBulletMovement, IDealDamageToPla
         get => _damage;
         set => _damage = value;
     }
-
-    [SerializeField] protected int _damage = 1;
-
-    protected float _speedMultiplier = 1.0f;
-    protected Transform _transform = null;
 
     protected virtual void Awake()
     {

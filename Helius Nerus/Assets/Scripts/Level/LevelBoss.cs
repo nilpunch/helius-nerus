@@ -3,10 +3,10 @@
 [System.Serializable]
 public class LevelBoss
 {
-    [SerializeField] private GameObject _boss = null;
-
     public static event System.Action BossDied = delegate { };
     public static event System.Action FinalBossDied = delegate { };
+
+    [SerializeField] private GameObject _boss = null;
 
     public void Init()
     {

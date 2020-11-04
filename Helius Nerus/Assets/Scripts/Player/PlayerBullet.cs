@@ -3,6 +3,12 @@ using UnityEngine;
 
 public class PlayerBullet : MonoBehaviour, IReturnableToPool
 {
+	private PlayerBulletParameters _bulletParameters = new PlayerBulletParameters();
+	private Transform _transform = null;
+
+	private List<PlayerWeaponModifier> _modifiers = new List<PlayerWeaponModifier>();
+	private Dictionary<ModifierType, int> _procedModifiers = new Dictionary<ModifierType, int>();
+
 	public PlayerBulletParameters BulletParameters
 	{
 		get => _bulletParameters;
@@ -20,12 +26,6 @@ public class PlayerBullet : MonoBehaviour, IReturnableToPool
 		get => _modifiers;
 	}
 	public bool CollideWithEnemies { get; set; } = true;
-
-	private PlayerBulletParameters _bulletParameters = new PlayerBulletParameters();
-	private Transform _transform = null;
-
-	private List<PlayerWeaponModifier> _modifiers = new List<PlayerWeaponModifier>();
-	private Dictionary<ModifierType, int> _procedModifiers = new Dictionary<ModifierType, int>();
 
 	private void Awake()
 	{

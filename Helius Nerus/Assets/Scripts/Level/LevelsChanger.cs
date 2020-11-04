@@ -2,6 +2,14 @@
 
 public class LevelsChanger : MonoBehaviour
 {
+
+    private static int _currentLevel = -1;
+
+    [SerializeField] private GameObject[] _levels = null;
+
+    private int _maximalUnlockedLevel = 0;
+    private GameObject _current = null;
+
     public static LevelsChanger Instance
     {
         get;
@@ -11,12 +19,6 @@ public class LevelsChanger : MonoBehaviour
     {
         get => _currentLevel == _maximalUnlockedLevel;
     }
-
-    private static int _currentLevel = -1;
-    [SerializeField] private GameObject[] _levels = null;
-    private int _maximalUnlockedLevel = 0;
-    private GameObject _current = null;
-
 
     private void Awake()
     {

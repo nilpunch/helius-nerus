@@ -2,7 +2,7 @@
 
 public class EnemiesSpawner : MonoBehaviour
 {
-	public static EnemiesSpawner InstanceOnScene { get; private set; }
+	public static event System.Action MoneyRunOut = delegate { };
 
 	[Tooltip("Параметры контроллируемого рандома")]
 	[SerializeField] private EnemiseSpawnerControlledRandom _controlledRandom = null;
@@ -18,13 +18,13 @@ public class EnemiesSpawner : MonoBehaviour
 	[Tooltip("Сумма, получаемая за нанесение урона игроку")]
 	[SerializeField] private float _playerDamageReward = 100;
 
-	public static event System.Action MoneyRunOut = delegate { };
-
 	private float _screenWidth;
 
 	private int _nextPackIndex;
 	private float _currentMoneySpent = 0;
 	private Transform _transform;
+
+	public static EnemiesSpawner InstanceOnScene { get; private set; }
 
 	private void Awake()
 	{

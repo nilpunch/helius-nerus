@@ -5,6 +5,10 @@ using UnityEngine.Networking;
 
 public class SaveableData : MonoBehaviour
 {
+    private ScoreCounter _score = new ScoreCounter();
+
+    private AllSaveableFields _allSaveableFields = new AllSaveableFields();
+
     public static SaveableData Instance
     {
         get;
@@ -15,10 +19,6 @@ public class SaveableData : MonoBehaviour
     {
         get => _allSaveableFields._maximalUnlockedLevel;
     }
-    private ScoreCounter _score = new ScoreCounter();
-
-    private AllSaveableFields _allSaveableFields = new AllSaveableFields();
-
 
     private void Awake()
     {

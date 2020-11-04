@@ -2,15 +2,15 @@
 
 public class MouseMoveInput : IMoveInput
 {
-	public Vector2 Direction { get; private set; }
-	public float Thrust { get; private set; }
-
 	private float _sqrThrustRadius = 1f;
 	private Transform _radiusOrigin = null;
 	private float _minThrust = 0f;
 	private float _noThrustDistance = 0f;
 
 	private Camera _main = null;
+
+	public Vector2 Direction { get; private set; }
+	public float Thrust { get; private set; }
 
 	public MouseMoveInput(Transform origin, MouseMoveSettings mouseMoveSettings)
 	{

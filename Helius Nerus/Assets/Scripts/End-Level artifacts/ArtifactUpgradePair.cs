@@ -1,5 +1,8 @@
 ﻿public class ArtifactUpgradePair
 {
+    private WeaponArtifactIconDesc _modifierID;
+    private StatUpgradeIconDesc _paramsID;
+
     public PlayerWeaponModifier WeaponModifier
     {
         get => WeaponModifierContainer.Instance.GetArtifact(_modifierID.Modifier);
@@ -20,10 +23,15 @@
     {
         get => _modifierID;
     }
-
-
-    private WeaponArtifactIconDesc _modifierID;
-    private StatUpgradeIconDesc _paramsID;
+    public string Description
+    {
+        get
+        {
+            return LocalizationManager.Instance.GetLocalizedValue(_modifierID.Description)
+                + "\n"
+                + LocalizationManager.Instance.GetLocalizedValue(_paramsID.Description);
+        }
+    }
 
     public ArtifactUpgradePair(StatUpgradeIconDesc playerWeaponsParametrs, WeaponArtifactIconDesc modifier)
     {
@@ -39,13 +47,4 @@
         return new ArtifactUpgradePair(paramsID, modifierID);
     }
 
-    public string Description
-    {
-        get
-        {
-            return LocalizationManager.Instance.GetLocalizedValue(_modifierID.Description)
-                + "\n"
-                + LocalizationManager.Instance.GetLocalizedValue(_paramsID.Description);
-        }
-    }
 }

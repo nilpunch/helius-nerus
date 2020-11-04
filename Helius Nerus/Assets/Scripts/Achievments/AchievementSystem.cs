@@ -3,14 +3,14 @@ using UnityEngine;
 
 public class AchievementSystem : MonoBehaviour
 {
+    private static AchievementSystem _instance = null;
+
+    [SerializeField] private List<Achievment> _achievments = null;
+
     public static AchievementSystem Instance
     {
         get => _instance;
     }
-
-    [SerializeField] private List<Achievment> _achievments = null;
-
-    private static AchievementSystem _instance = null;
 
     private void Awake()
     {

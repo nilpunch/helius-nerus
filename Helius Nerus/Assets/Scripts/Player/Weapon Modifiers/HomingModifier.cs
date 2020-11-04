@@ -1,6 +1,4 @@
-﻿using System.Collections;
-
-public class HomingModifier : PlayerWeaponModifier
+﻿public class HomingModifier : PlayerWeaponModifier
 {
     public override PlayerWeaponModifier Clone()
 	{

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-
-public class ExplosionModifier : PlayerWeaponModifier
+﻿public class ExplosionModifier : PlayerWeaponModifier
 {
     public override PlayerWeaponModifier Clone()
 	{

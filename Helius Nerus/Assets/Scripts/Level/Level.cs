@@ -2,17 +2,19 @@
 
 public class Level : MonoBehaviour
 {
-    public static EnemiesInSceneCounter EnemiesCounter
-    {
-        get => _instance._counter;
-    }
+    private static Level _instance;
 
     [SerializeField] private WallsPlacer _wallsPlacer = null;
     [SerializeField] private LevelBoss _levelBoss = null;
     [SerializeField] private LevelPortal _levelPortal = null;
     [SerializeField] private Pause _pause = null;
+
     private EnemiesInSceneCounter _counter = new EnemiesInSceneCounter();
-    private static Level _instance;
+
+    public static EnemiesInSceneCounter EnemiesCounter
+    {
+        get => _instance._counter;
+    }
 
     private void Awake()
     {
