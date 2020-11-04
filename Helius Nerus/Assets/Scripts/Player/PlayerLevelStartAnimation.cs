@@ -67,6 +67,6 @@ public class PlayerLevelStartAnimation : MonoBehaviour
 
         BulletPoolsContainer.Instance.ClearAllBullets();
 
-        TransitionScene.Instance.LoadUnloadScene((int)Scenes.UPGRADES);
+        TransitionScene.Instance.LoadUnloadScene((int)Scenes.INGAME);
     }
 }

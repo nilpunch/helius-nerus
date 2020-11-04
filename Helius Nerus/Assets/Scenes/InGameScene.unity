@@ -135,8 +135,11 @@ GameObject:
   - component: {fileID: 109639572}
   - component: {fileID: 109639571}
   - component: {fileID: 109639570}
+  - component: {fileID: 109639574}
+  - component: {fileID: 109639576}
+  - component: {fileID: 109639575}
   m_Layer: 5
-  m_Name: UICanvas
+  m_Name: InGameCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -224,6 +227,44 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &109639574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 109639569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca4e9b4c17a99fd448133fd69687deed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &109639575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 109639569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f053d0b58a39018419dd3163c48bf0c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _winScreenGO: {fileID: 2084974970}
+--- !u!114 &109639576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 109639569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc9ea0c7306df0f499c36ecfe85cd102, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _deathScreenGO: {fileID: 1874625199}
 --- !u!1 &318602865
 GameObject:
   m_ObjectHideFlags: 0
@@ -1033,7 +1074,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 7959
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -1619,7 +1660,6 @@ GameObject:
   - component: {fileID: 1874625200}
   - component: {fileID: 1874625202}
   - component: {fileID: 1874625201}
-  - component: {fileID: 1874625203}
   m_Layer: 5
   m_Name: DeathScreen
   m_TagString: Untagged
@@ -1687,19 +1727,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1874625199}
   m_CullTransparentMesh: 0
---- !u!114 &1874625203
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1874625199}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc9ea0c7306df0f499c36ecfe85cd102, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _deathScreenGO: {fileID: 1874625199}
 --- !u!1 &1982571694
 GameObject:
   m_ObjectHideFlags: 0
@@ -1757,7 +1784,6 @@ GameObject:
   - component: {fileID: 2084974971}
   - component: {fileID: 2084974974}
   - component: {fileID: 2084974973}
-  - component: {fileID: 2084974972}
   m_Layer: 5
   m_Name: WinScreen
   m_TagString: Untagged
@@ -1787,19 +1813,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2084974972
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2084974970}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f053d0b58a39018419dd3163c48bf0c3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _winScreenGO: {fileID: 2084974970}
 --- !u!114 &2084974973
 MonoBehaviour:
   m_ObjectHideFlags: 0

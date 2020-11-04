@@ -6,10 +6,12 @@ using UnityEngine.UI;
 
 public class TransitionScene : MonoBehaviour
 {
+    public static event System.Action<Scenes> NewSceneWasLoaded = delegate { };
+
     public static TransitionScene Instance;
     [SerializeField] private GameObject _loadingScreen = null;
     [SerializeField] private Image _progressBar = null;
-    [SerializeField] private GameObject _cameraGO = null;
+    //[SerializeField] private GameObject _cameraGO = null;
     private float _totalProgress;
     private int _newScene;
     private AsyncOperation _firstLoading;
@@ -30,14 +32,14 @@ public class TransitionScene : MonoBehaviour
     private void LoadOneScene(int newScene)
     {
         _scenesLoading.Add(SceneManager.LoadSceneAsync(newScene, LoadSceneMode.Additive));
-        _newScene = (int)newScene;
+        _newScene = newScene;
 
         StartCoroutine(GetOneSceneLoadProgress());
     }
 
     private IEnumerator GetOneSceneLoadProgress()
     {
-        _cameraGO.SetActive(true);
+        //_cameraGO.SetActive(true);
         _loadingScreen.SetActive(true);
 
         for (int i = 0; i < _scenesLoading.Count; ++i)
@@ -56,12 +58,14 @@ public class TransitionScene : MonoBehaviour
         }
 
         _loadingScreen.SetActive(false);
-        _cameraGO.SetActive(false);
+        //_cameraGO.SetActive(false);
         SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(_newScene));
 
         _scenesLoading.Clear();
         //destroy loading screen?
         Destroy(_loadingScreen);
+
+        NewSceneWasLoaded.Invoke(Scenes.MENU);
     }
 
     public void LoadUnloadScene(int newScene, int currentScene = -1)
@@ -77,7 +81,7 @@ public class TransitionScene : MonoBehaviour
 
     private IEnumerator WaitForLoadUnloadScene()
     {
-        _cameraGO.SetActive(true);
+        //_cameraGO.SetActive(true);
 
         for (int i = 0; i < _scenesLoading.Count; ++i)
         {
@@ -87,9 +91,11 @@ public class TransitionScene : MonoBehaviour
             }
         }
 
-        _cameraGO.SetActive(false);
+        //_cameraGO.SetActive(false);
 
         SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(_newScene));
         _scenesLoading.Clear();
+
+        NewSceneWasLoaded.Invoke((Scenes)_newScene);
     }
 }

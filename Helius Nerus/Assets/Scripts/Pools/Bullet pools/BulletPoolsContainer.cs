@@ -32,6 +32,13 @@ public class BulletPoolsContainer : MonoBehaviour
         {
             _pools.Add(new BulletPool(_bulletsPrefabs[i], _transform));
         }
+
+        TransitionScene.NewSceneWasLoaded += TransitionScene_NewSceneWasLoaded;
+    }
+
+    private void TransitionScene_NewSceneWasLoaded(Scenes obj)
+    {
+        ClearAllBullets();
     }
 
     public GameObject GetObjectFromPool(BulletTypes type)
@@ -50,6 +57,11 @@ public class BulletPoolsContainer : MonoBehaviour
         {
             bulletPool.ClearScreenBullets();
         }
+    }
+
+    private void OnDestroy()
+    {
+        TransitionScene.NewSceneWasLoaded -= TransitionScene_NewSceneWasLoaded;
     }
 }
 

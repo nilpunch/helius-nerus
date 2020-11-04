@@ -5,7 +5,7 @@ public class AchievementSystem : MonoBehaviour
 {
     private static AchievementSystem _instance = null;
 
-    [SerializeField] private List<Achievment> _achievments = null;
+    private List<Achievment> _achievments = new List<Achievment>();
 
     public static AchievementSystem Instance
     {

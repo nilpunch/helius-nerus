@@ -6,7 +6,7 @@ namespace HNUI
     {
         [SerializeField] private GameObject _winScreenGO = null;
 
-        private void Awake()
+        private void OnEnable()
         {
             LevelBoss.FinalBossDied += LevelBoss_FinalBossDied;
             _winScreenGO.SetActive(false);
@@ -28,9 +28,9 @@ namespace HNUI
             ScoreCounter.Reset(); // here??
         }
 
-        private void OnDestroy()
+        private void OnDisable()
         {
-            LevelBoss.FinalBossDied += LevelBoss_FinalBossDied;
+            LevelBoss.FinalBossDied -= LevelBoss_FinalBossDied;
         }
     }
 }
