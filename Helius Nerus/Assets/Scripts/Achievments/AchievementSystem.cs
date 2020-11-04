@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class AchievementSystem : MonoBehaviour
 {
@@ -7,7 +8,7 @@ public class AchievementSystem : MonoBehaviour
         get => _instance;
     }
 
-    [SerializeField] private Achievment[] _achievments = null;
+    [SerializeField] private List<Achievment> _achievments = null;
 
     private static AchievementSystem _instance = null;
 
@@ -21,12 +22,20 @@ public class AchievementSystem : MonoBehaviour
             return;
         }
         DontDestroyOnLoad(gameObject);
+
+        AddAchievementsHere();
+
         LoadAchievements();
 
         foreach (Achievment achievment in _achievments)
         {
             achievment.Init();
         }
+    }
+
+    private void AddAchievementsHere()
+    {
+        _achievments.Add(new DeathAchievement());
     }
 
     private void SaveAchievments()
