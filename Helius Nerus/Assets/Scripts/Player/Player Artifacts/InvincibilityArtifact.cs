@@ -38,13 +38,7 @@ class InvincibilityArtifact : PlayerArtifact
 		
 		while (invinsibilityLeft > 0f)
 		{
-			if (Pause.Paused)
-			{
-				yield return null;
-				continue;
-			}
-
-			invinsibilityLeft -= Time.deltaTime;
+			invinsibilityLeft -= TimeManager.PlayerDeltaTime;
 			if (invinsibilityLeft < effectToggleTime)
 			{
 				effectToggleTime = invinsibilityLeft / EFFECT_TIME_SCALE;

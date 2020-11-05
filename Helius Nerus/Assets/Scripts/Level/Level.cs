@@ -40,14 +40,7 @@ public class Level : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.P))
         {
-            if (Pause.Paused == false)
-            {
-                Pause.PauseGame();
-            }
-            else
-            {
-                Pause.UnauseGame();
-            }
+            Pause.TogglePause();
         }
     }
 #endif

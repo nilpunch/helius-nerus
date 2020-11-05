@@ -20,7 +20,7 @@ public class StraightShootWeaponCommand : WeaponCommand
 
 	public override void Tick(Transform transform)
 	{
-		_timeElapsed += Time.deltaTime * CommandData.TimeScale;
+		_timeElapsed += TimeManager.EnemyDeltaTime * CommandData.TimeScale;
 		if (_timeElapsed > CommandData.DelayBeforeShoot && _isShootedOnce == false)
 		{
 			_isShootedOnce = true;

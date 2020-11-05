@@ -17,12 +17,8 @@ public class StraightMoveModifier : PlayerWeaponModifier
 	{
 		while (playerBullet.gameObject.activeSelf)
 		{
-            if (Pause.Paused)
-            {
-                yield return null;
-                continue;
-            }
-            playerBullet.Transform.Translate(Vector3.up * Time.deltaTime * playerBullet.BulletParameters.SpeedMultiplier, Space.Self);
+            playerBullet.Transform.Translate(Vector3.up * 
+                playerBullet.BulletParameters.SpeedMultiplier * TimeManager.PlayerDeltaTime, Space.Self);
 			yield return null;
 		}
 	}

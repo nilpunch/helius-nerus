@@ -40,10 +40,10 @@ public class PlayerWeapon : MonoBehaviour
 
     private void Update()
     {
-        if (Pause.Paused || _player.IsNoShooting)
+        if (_player.IsNoShooting)
             return;
 
-        _reloadTime -= Time.deltaTime;
+        _reloadTime -= TimeManager.PlayerDeltaTime;
 		if (_reloadTime <= 0f )
         {
             _reloadTime = (1f / _parameters.BPS) + _reloadTime;

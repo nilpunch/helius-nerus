@@ -14,12 +14,12 @@ public class StraightBullet : MonoBehaviour
 
 	void Update()
     {
-		LiveTime -= Time.deltaTime;
+		LiveTime -= TimeManager.EnemyDeltaTime;
 		if (LiveTime <= 0f)
 		{
 			Destroy(gameObject);
 		}
 
-		_transform.position += _transform.up * Speed * Time.deltaTime;
+		_transform.position += _transform.up * Speed * TimeManager.EnemyDeltaTime;
     }
 }

@@ -23,10 +23,7 @@ public class BGRenderer : MonoBehaviour
 
     private void Update()
     {
-        if (Pause.Paused)
-            return;
-
-        _time += Time.deltaTime;
+        _time += TimeManager.AnimationDeltaTime;
         _renderer.material.SetTextureOffset("_MainTex", _time * _spriteMovementSpeed);
     }
 }

@@ -21,7 +21,8 @@ public class VerticalMoveCommand : MoveCommand
 
 	public override void Tick(Transform ship)
 	{
-		_timeElapsed += Time.deltaTime * CommandData.TimeScale;
-		ship.Translate(Vector3.down * CommandData.MovementMultiplier * Time.deltaTime * CommandData.TimeScale, Space.World);
+		_timeElapsed += TimeManager.EnemyDeltaTime * CommandData.TimeScale;
+		ship.Translate(Vector3.down * CommandData.MovementMultiplier * TimeManager.EnemyDeltaTime
+            * CommandData.TimeScale, Space.World);
 	}
 }

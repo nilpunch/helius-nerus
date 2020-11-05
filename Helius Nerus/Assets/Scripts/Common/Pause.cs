@@ -12,11 +12,7 @@ public class Pause
     [SerializeField] private float _fadeSeconds = 1;
     [SerializeField] private float _fadeValue = 0.5f;
 
-	public static bool Paused
-    {
-        get;
-        private set;
-    } = false;
+    private static bool _paused = false;
 
     public void Init()
     {
@@ -25,7 +21,9 @@ public class Pause
 
     public static void PauseGame()
     {
-		Paused = true;
+        TimeManager.PauseAll();
+
+        _paused = true;
 
         Color color = _instance._fadeImage.color;
         color.a = _instance._fadeValue;
@@ -34,9 +32,17 @@ public class Pause
         GamePaused.Invoke();
     }
 
-    public static void UnauseGame()
+    public static void UnpauseGame()
     {
         CoroutineProcessor.LaunchCoroutine(_instance.FadeOut());
+    }
+
+    public static void TogglePause()
+    {
+        if (_paused)
+            UnpauseGame();
+        else
+            PauseGame();
     }
 
     private IEnumerator FadeOut()
@@ -56,7 +62,9 @@ public class Pause
             yield return null;
         }
 
-        Paused = false;
+        TimeManager.UnauseAll();
+
+        _paused = false;
 
         // Launch unfade
 

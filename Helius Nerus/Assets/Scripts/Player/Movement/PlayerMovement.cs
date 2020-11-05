@@ -32,9 +32,6 @@ public class PlayerMovement
 
 	public void Update()
 	{
-        if (Pause.Paused)
-            return;
-
 		_moveInput.ReadInput();
 
 		float oldPosition = _transform.position.x;

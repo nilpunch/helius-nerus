@@ -48,12 +48,9 @@ public class EnemiesSpawner : MonoBehaviour
 
 	private void Update()
 	{
-		if (Pause.Paused)
-			return;
-
 		if (MoneyLimitNotReached())
 		{
-			_money += _moneyPerSecond * Time.deltaTime;
+			_money += _moneyPerSecond * TimeManager.EnemyDeltaTime;
 		}
 
 		while (_money > _enemiesPacksNew[_nextPackIndex].Cost)

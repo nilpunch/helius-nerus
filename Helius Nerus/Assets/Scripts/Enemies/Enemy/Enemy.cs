@@ -22,9 +22,6 @@ public class Enemy : MonoBehaviour, IReturnableToPool, IDealDamageToPlayer, ITak
 
     private void Update()
     {
-        if (Pause.Paused)
-            return;
-
         _moveProcessor.TickCommandThreads();
         _weaponProcessor.TickCommandThreads();
     }

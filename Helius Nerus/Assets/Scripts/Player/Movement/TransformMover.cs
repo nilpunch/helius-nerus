@@ -15,6 +15,7 @@ public class TransformMover
 
 	public void Tick()
 	{
-		_transform.Translate((Vector3)_moveInput.Direction * _moveInput.Thrust * _moveSettings.MoveSpeed * Time.deltaTime, Space.World);
+		_transform.Translate((Vector3)_moveInput.Direction * _moveInput.Thrust * 
+            _moveSettings.MoveSpeed * TimeManager.PlayerDeltaTime, Space.World);
 	}
 }

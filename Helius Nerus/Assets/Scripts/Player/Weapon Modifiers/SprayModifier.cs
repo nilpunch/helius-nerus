@@ -23,12 +23,6 @@ public class SprayModifier : PlayerWeaponModifier
 
 		while (true)
 		{
-			if (Pause.Paused)
-			{
-				yield return null;
-				continue;
-			}
-
 			if (playerWeapon.IsNoSooting)
 			{
 				playerWeapon.WeaponParameters.WeaponAngle = startWeaponAngle;
@@ -36,7 +30,8 @@ public class SprayModifier : PlayerWeaponModifier
 				continue;
 			}
 
-			float deltaAngle = playerWeapon.WeaponParameters.SpreadAngle * Time.deltaTime * WEAPON_MOVE_TIME;
+			float deltaAngle = playerWeapon.WeaponParameters.SpreadAngle * WEAPON_MOVE_TIME
+                * TimeManager.PlayerDeltaTime;
 			if (goBack == false)
 			{
 				if (offsetAngle < playerWeapon.WeaponParameters.SpreadAngle / 2f)

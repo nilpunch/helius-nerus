@@ -21,12 +21,8 @@ class RotationMoveModifier : PlayerWeaponModifier
 
 		while (playerBullet.gameObject.activeSelf)
 		{
-            if (Pause.Paused)
-            {
-                yield return null;
-                continue;
-            }
-            playerBullet.Transform.Rotate(0.0f, 0.0f, angleIncrement * Time.deltaTime * playerBullet.BulletParameters.SpeedMultiplier, Space.Self);
+            playerBullet.Transform.Rotate(0.0f, 0.0f, angleIncrement * 
+                playerBullet.BulletParameters.SpeedMultiplier * TimeManager.PlayerDeltaTime, Space.Self);
 			yield return null;
 		}
 	}
