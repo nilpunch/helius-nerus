@@ -1,10 +1,37 @@
 ﻿using System.Collections.Generic;
-using System.IO;
 using UnityEngine;
-using UnityEngine.Networking;
 
 public class SaveableData : MonoBehaviour
 {
+    // ALL DATA MODIFICATIONS SHOULD CALL SAVEDATA
+
+    [System.Serializable]
+    public class AllSaveableFields
+    {
+        public int _amountOfMoney = 0;
+        public int _maximalScore = 0;
+        public int _totalScore = 0;
+        public int _donatedToMonument = 0;
+        public int _maximalUnlockedLevel = 0;
+        public List<int> _unlockedArtifacts = new List<int>();
+        public List<int> _unlockedShips = new List<int>();
+        public List<int> _boughtShips = new List<int>();
+        public List<int> _openedWeaponModifiers = new List<int>();
+
+        public void SetDefault()
+        {
+            _amountOfMoney = 0;
+            _unlockedShips = new List<int>();
+            _boughtShips = new List<int>();
+            _maximalScore = 0;
+            _totalScore = 0;
+            _unlockedArtifacts = new List<int>();
+            _maximalUnlockedLevel = 0;
+            _openedWeaponModifiers = new List<int>();
+            _donatedToMonument = 0;
+        }
+    }
+
     private ScoreCounter _score = new ScoreCounter();
 
     private AllSaveableFields _allSaveableFields = new AllSaveableFields();
@@ -31,112 +58,75 @@ public class SaveableData : MonoBehaviour
         }
         DontDestroyOnLoad(gameObject);
 
-        // LoadData();
+        LoadData();
     }
+
+
     public void AddMaximalLevels(int amount)
     {
         // Boss has this property? 4 for all bosses, 1 for pre-last and 0 for final?
         _allSaveableFields._maximalUnlockedLevel += amount;
+        SaveData();
     }
     public void AddTotalScore(int amount)
     {
         _allSaveableFields._totalScore += amount;
+        SaveData();
     }
 
-    private void SaveDate()
-    {
-        string fileName = "SaveableData.cpl";
-        string filePath = Path.Combine(Application.persistentDataPath, fileName);
-        string dataAsJson = JsonUtility.ToJson(_allSaveableFields);
-
-        if (!string.IsNullOrEmpty(filePath))
-        {
 #if UNITY_EDITOR
-            Debug.LogError("Saveable data can't access data path!");
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            Debug.Log(JsonUtility.ToJson(_allSaveableFields));
+        }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            ResetData();
+        }
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            AddMaximalLevels(1);
+            AddTotalScore(1);
+            _allSaveableFields._unlockedShips.Add(1);
+        }
+    }
 #endif
-            return;
-        }
 
-        if (Application.isMobilePlatform) // android and so on
-        {
-            // idk, should work
-            File.WriteAllText(filePath, dataAsJson);
-        }
-        else // pc - editor in our case
-        {
-            File.WriteAllText(filePath, dataAsJson);
-        }
+    private void ResetData()
+    {
+        _allSaveableFields.SetDefault();
+        SaveData();
+    }
 
+    private void SaveData()
+    {
+        //      From documemtation:
+        // If the JSON representation is missing any fields, they will be given their default values 
+        // (i.e. a field of type T will have value default(T) - it will not be given any value specified as a field initializer
+        // , as the constructor for the object is not executed during deserialization).
+        PlayerPrefs.SetString("SaveableData", JsonUtility.ToJson(_allSaveableFields));
+        
+        // Нужно ли это прямо здесь или вынести куда-то типа закрытия приложения? Насколько сильно оно жрет
+
+        PlayerPrefs.Save();
     }
 
     private void LoadData()
     {
-        string fileName = "SaveableData.cpl";
-        string filePath = Path.Combine(Application.persistentDataPath, fileName);
-
-        string dataAsJson = "";
-        //Android
-        if (Application.platform == RuntimePlatform.Android)
+        if (PlayerPrefs.HasKey("SaveableData") == false)
         {
-            //Какая-то счтука, которая может читать на андроиде файлы
-            UnityWebRequest www = UnityWebRequest.Get(filePath);
-
-            //Читаем
-            www.SendWebRequest();
-
-            //error
-            if (www.isNetworkError || www.isHttpError)
-            {
-                return;
-            }
-            else
-            {
-                //not error
-                //Не знаю зачем, написали надо
-                while (!www.isDone) ;
-                //А тут текст получаем
-                dataAsJson = www.downloadHandler.text;
-            }
-
-        }
-        //PC (for now)
-        else
-        {
-            if (File.Exists(filePath))
-            {
-                //Прочитали текст
-                dataAsJson = File.ReadAllText(filePath);
-            }
-            else
-            {
 #if UNITY_EDITOR
-                //Файла нету
-                Debug.LogError("Error - can't acces saveable data file!");
+            Debug.Log("PlayerPrefs for SaveableData not exist!");
 #endif
-                return;
-            }
-        }
-        if (dataAsJson == "")
-        {
             _allSaveableFields = new AllSaveableFields();
+            _allSaveableFields.SetDefault();
+            SaveData();
+            return;
         }
-        else
-        {
-            _allSaveableFields = JsonUtility.FromJson<AllSaveableFields>(dataAsJson);
-        }
+        _allSaveableFields = JsonUtility.FromJson<AllSaveableFields>(PlayerPrefs.GetString("SaveableData"));
     }
-}
-
-[System.Serializable]
-public class AllSaveableFields
-{
-    public int _amountOfMoney = 0;
-    public List<int> _unlockedShips = new List<int>();
-    public List<int> _boughtShips = new List<int>();
-    public int _maximalScore = 0;
-    public int _totalScore = 0;
-    public List<int> _unlockedArtifacts = new List<int>();
-    public int _maximalUnlockedLevel = 0;
-    public List<int> _openedWeaponModifiers = new List<int>();
-    public int _donatedToMonument = 0;
 }
