@@ -21,6 +21,15 @@ public abstract class Achievment
         Subscribe();
     }
 
+    public void Reset()
+    {
+        if (_wasTriggered)
+        {
+            Unsubscribe();
+            _wasTriggered = false;
+        }
+    }
+
     protected abstract void Subscribe();
 
     protected abstract void Unsubscribe();

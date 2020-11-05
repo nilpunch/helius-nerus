@@ -6,7 +6,7 @@ public class SaveableData : MonoBehaviour
     // ALL DATA MODIFICATIONS SHOULD CALL SAVEDATA
 
     [System.Serializable]
-    public class AllSaveableFields
+    private class AllSaveableFields
     {
         public int _amountOfMoney = 0;
         public int _maximalScore = 0;
