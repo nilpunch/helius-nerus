@@ -5,7 +5,14 @@ using UnityEngine;
 public class Pause
 {
     public static event System.Action GamePaused = delegate { };
+    /// <summary>
+    /// Game WAS unpaused
+    /// </summary>
     public static event System.Action GameUnpaused = delegate { };
+    /// <summary>
+    /// Game started to unpause
+    /// </summary>
+    public static event System.Action GameUnpausing = delegate { };
     private static Pause _instance;
 
     [SerializeField] private UnityEngine.UI.Image _fadeImage = null;
@@ -35,6 +42,7 @@ public class Pause
     public static void UnpauseGame()
     {
         CoroutineProcessor.LaunchCoroutine(_instance.FadeOut());
+        GameUnpausing.Invoke();
     }
 
     public static void TogglePause()
@@ -52,7 +60,7 @@ public class Pause
 
         Color color;
 
-        while (timeElapsed <= _fadeSeconds)
+        while (timeElapsed <= _fadeSeconds) // = 3
         {
             timeElapsed += Time.deltaTime;
 
@@ -66,8 +74,7 @@ public class Pause
 
         _paused = false;
 
-        // Launch unfade
-
         GameUnpaused.Invoke();
+
     }
 }
