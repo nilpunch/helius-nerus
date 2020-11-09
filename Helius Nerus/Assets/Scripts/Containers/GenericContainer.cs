@@ -72,7 +72,17 @@ public abstract class GenericContainer <TValue, TKey, TMod> where TValue : IconD
     {
         _unlockedAvailableValues.Add(_allModifiers.IndexOf(value));
     }
-    
+    public void RemoveArtifactFromPoolIfExists(TKey key)
+    {
+        TValue value = GetValueByKey(key);
+        int num = _allModifiers.IndexOf(value);
+        if (_unlockedAvailableValues.Contains(num))
+        {
+            _unlockedAvailableValues.Remove(num);
+        }
+    }
+
+
     public TValue GetTotallyRandom()
     {
         int rand = UnityEngine.Random.Range(0, _allModifiers.Count);

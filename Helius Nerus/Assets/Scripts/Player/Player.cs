@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Text;
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -69,9 +70,6 @@ public class Player : MonoBehaviour
         get;
         set;
     } = false;
-    /// <summary>
-    /// Номер корабля для сохранений
-    /// </summary>
 
     private void Awake()
     {
@@ -85,6 +83,16 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+#if UNITY_EDITOR
+        if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            MidGameSaver.SavePlayerShip();
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha6))
+        {
+            MidGameSaver.LoadPlayerShip();
+        }
+#endif
         if (IsNotMoving)
             return;
         _playerMovement.Update();
@@ -175,6 +183,29 @@ public class Player : MonoBehaviour
             PlayerHealthChanged.Invoke();
         }
     }
+
+    public void LoadFromSavedData(int shipNumber, PlayerParameters parameters, string[] artifacts)
+    {
+        ShipNumber = shipNumber;
+        _playerParameters = parameters.Clone();
+
+        for (int i = 0; i < _artifacts.Count; ++i)
+        {
+            _artifacts[i].OnDrop();
+        }
+        _artifacts.Clear();
+
+        foreach (string s in artifacts)
+        {
+            ArtifactType artifactType = (ArtifactType)Enum.Parse(typeof(ArtifactType), s);
+
+            PlayerArtifact artifact = PlayerArtifactContainer.Instance.GetArtifact(artifactType);
+            PlayerArtifactContainer.Instance.RemoveArtifactFromPoolIfExists(artifactType);
+
+            artifact.OnPick();
+            _artifacts.Add(artifact);
+        }
+    }
 }
 
 public class MidGameSaver
@@ -182,52 +213,58 @@ public class MidGameSaver
     private class SavedData
     {
         public int _shipNumber;
-        public PlayerParameters _playerParameters;
-        public List<PlayerArtifact> _playerArtifacts;
-        public PlayerWeapon[] _playerWeapons;
-        public int _score;
-
-        public List<PlayerWeaponsParametrs> _playerWeaponsParametrs;
-
-        public List<string> _playerWeaponsModifiersValues;
+        public string _playerParametrs;
+        public string _playerArtifacts;
 
         public SavedData()
         {
-            _shipNumber = Player.ShipNumber;
-            _playerParameters = Player.PlayerParameters;
-            _playerArtifacts = Player.PlayerArtifacts;
-            _playerWeapons = Player.PlayerWeapons;
-            _score = ScoreCounter.Score;
+        }
 
-            foreach(PlayerWeapon playerWeapon in _playerWeapons)
-            {
-                _playerWeaponsParametrs.Add(playerWeapon.WeaponParameters);
-            }
+        public SavedData(int a)
+        {
+            _shipNumber = Player.ShipNumber;
+            _playerParametrs = JsonUtility.ToJson(Player.PlayerParameters);
 
             StringBuilder sb = new StringBuilder();
-            foreach(PlayerWeapon playerWeapon in _playerWeapons)
+            foreach (PlayerArtifact artifact in Player.PlayerArtifacts)
             {
-                // Мы каким-то образом получаем строки из параметра
-                foreach(PlayerWeaponModifier modifier in playerWeapon.WeaponModifiers)
-                {
-                    // Пока поставим тут ТуСтринг, потом я поговорю за параметры конст статик
-                    sb.Append(modifier.ToString());
-                    sb.Append(',');
-                }
-                _playerWeaponsModifiersValues.Add(sb.ToString());
-                sb.Clear();
-
-                // Потом делаем стринг.сплит и получаем массив строк
-                // Делаем Энам.Парсе и получаем наш массив энамов
-
-                // Сейм штуку надо сделать для артефактов корабля
+                sb.Append(artifact.MyEnumName);
+                sb.Append(',');
             }
+            _playerArtifacts = sb.ToString();
+            sb.Clear();
         }
     }
 
     public static void SavePlayerShip()
     {
-        SavedData data = new SavedData();
+        SavedData data = new SavedData(1);
         // ДЖсон ютилити туда сюда плейерпрефс блаблабла
+        string dataAsJson = JsonUtility.ToJson(data);
+
+
+        PlayerPrefs.SetString("PlayerShip", dataAsJson);
+#if UNITY_EDITOR
+        Debug.Log(dataAsJson);
+#endif
+    }
+
+    public static void LoadPlayerShip()
+    {
+        if (PlayerPrefs.HasKey("PlayerShip") == false)
+        {
+#if UNITY_EDITOR
+            Debug.Log("Player ship playerprefs not exist");
+#endif
+            return;
+        }
+        SavedData data = JsonUtility.FromJson<SavedData>(PlayerPrefs.GetString("PlayerShip"));
+
+        
+
+        //Player.Instance.LoadFromSavedData(data._shipNumber, parameters, data._playerArtifacts.Split(','));
+#if UNITY_EDITOR
+        Debug.Log("Yes");
+#endif
     }
 }

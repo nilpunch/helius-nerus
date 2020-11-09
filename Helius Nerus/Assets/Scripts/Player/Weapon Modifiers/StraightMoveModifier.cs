@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class StraightMoveModifier : PlayerWeaponModifier
 {
+    public override string MyEnumName => "StraightMoveModifier";
+
     public override PlayerWeaponModifier Clone()
 	{
 		return (StraightMoveModifier)MemberwiseClone();

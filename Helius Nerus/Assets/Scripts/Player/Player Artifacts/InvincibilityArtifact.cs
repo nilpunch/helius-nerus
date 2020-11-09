@@ -7,7 +7,9 @@ class InvincibilityArtifact : PlayerArtifact
 
 	private SpriteRenderer _renderer;
 
-	public override PlayerArtifact Clone()
+    public override string MyEnumName => "InvincibilityArtifact";
+
+    public override PlayerArtifact Clone()
 	{
 		return (InvincibilityArtifact)this.MemberwiseClone();
 	}

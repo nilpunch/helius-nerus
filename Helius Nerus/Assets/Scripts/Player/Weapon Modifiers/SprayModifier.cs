@@ -4,7 +4,9 @@ using UnityEngine;
 public class SprayModifier : PlayerWeaponModifier
 {
 	public const float WEAPON_MOVE_TIME = 1f;
-	
+
+    public override string MyEnumName => "SprayModifier";
+
     public override PlayerWeaponModifier Clone()
 	{
 		return (SprayModifier)MemberwiseClone();

@@ -8,6 +8,8 @@ public class RicochetModifier : PlayerWeaponModifier
 
 	private WaitForSeconds _waiter = new WaitForSeconds(COLLISION_DISABLE_TIME);
 
+    public override string MyEnumName => "RicochetModifier";
+
     public override PlayerWeaponModifier Clone()
 	{
 		return (RicochetModifier)MemberwiseClone();
