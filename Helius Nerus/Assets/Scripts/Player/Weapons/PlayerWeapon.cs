@@ -18,10 +18,14 @@ public class PlayerWeapon : MonoBehaviour
 	{
 		get => _parameters;
 	}
+    public List<PlayerWeaponModifier> WeaponModifiers
+    {
+        get => _modifiers;
+    }
 
 	public bool IsNoSooting
 	{
-		get => _player.IsNoShooting;
+		get => _player.IsNotShooting;
 	}
 
 	private void Awake()
@@ -40,7 +44,7 @@ public class PlayerWeapon : MonoBehaviour
 
     private void Update()
     {
-        if (_player.IsNoShooting)
+        if (_player.IsNotShooting)
             return;
 
         _reloadTime -= TimeManager.PlayerDeltaTime;

@@ -15,8 +15,8 @@ namespace HNUI
         private void LevelBoss_FinalBossDied()
         {
             //Pause.PauseGame(); //?
-            Player.Instance.IsStatic = true;
-            Player.Instance.IsNoShooting = true;
+            Player.Instance.IsNotMoving = true;
+            Player.Instance.IsNotShooting = true;
 
             BulletPoolsContainer.Instance.ClearAllBullets();
 

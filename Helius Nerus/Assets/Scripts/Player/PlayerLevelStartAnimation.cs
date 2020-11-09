@@ -30,8 +30,8 @@ public class PlayerLevelStartAnimation : MonoBehaviour
         }
 
 		EnemiesSpawner.InstanceOnScene.enabled = true;
-        Player.Instance.IsStatic = false;
-        Player.Instance.IsNoShooting = false;
+        Player.Instance.IsNotMoving = false;
+        Player.Instance.IsNotShooting = false;
     }
 
     public void EndLevelAnim()
@@ -42,8 +42,8 @@ public class PlayerLevelStartAnimation : MonoBehaviour
     private IEnumerator EndAnim()
     {
         Transform transform = Player.Instance.transform;
-        Player.Instance.IsStatic = true;
-        Player.Instance.IsNoShooting = true;
+        Player.Instance.IsNotMoving = true;
+        Player.Instance.IsNotShooting = true;
         //transform.position = new Vector3(0.0f, -ParallaxCamera.ParallaxSize.y / 2 - 1, 0.0f);
 
         float timeElapsed = 0.0f;

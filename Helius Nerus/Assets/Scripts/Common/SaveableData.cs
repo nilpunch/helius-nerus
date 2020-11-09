@@ -32,8 +32,10 @@ public class SaveableData : MonoBehaviour
         }
     }
 
-    private ScoreCounter _score = new ScoreCounter();
+    [Tooltip("Число, на которое делится счет для перевода в деньги")]
+    [SerializeField] private int _scoreDenominator = 100;
 
+    private ScoreCounter _score = new ScoreCounter();
     private AllSaveableFields _allSaveableFields = new AllSaveableFields();
 
     public static SaveableData Instance
@@ -68,9 +70,18 @@ public class SaveableData : MonoBehaviour
         _allSaveableFields._maximalUnlockedLevel += amount;
         SaveData();
     }
+
+    /// <summary>
+    /// Adds total score, also checks for maximal score and money
+    /// </summary>
+    /// <param name="amount">Количество очков полученных</param>
     public void AddTotalScore(int amount)
     {
         _allSaveableFields._totalScore += amount;
+        _allSaveableFields._amountOfMoney += amount / _scoreDenominator;
+        if (_allSaveableFields._maximalScore < amount)
+            _allSaveableFields._maximalScore = amount;
+
         SaveData();
     }
 

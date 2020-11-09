@@ -14,7 +14,7 @@
 
     public static void Reset()
     {
-        SaveableData.Instance.AddTotalScore(_score / 100); // here?
+        SaveableData.Instance.AddTotalScore(_score);
         _score = 0;
     }
 }
