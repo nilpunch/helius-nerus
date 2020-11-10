@@ -1,9 +1,7 @@
 ﻿using System.Collections.Generic;
-using System.Text;
 using System;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D))]
 public class Player : MonoBehaviour
 {
     public static event System.Action PlayerHealthChanged = delegate { };
@@ -86,11 +84,11 @@ public class Player : MonoBehaviour
 #if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.Alpha5))
         {
-            MidGameSaver.SavePlayerShip();
+            MidGameSaver.SaveGame();
         }
         if (Input.GetKeyDown(KeyCode.Alpha6))
         {
-            MidGameSaver.LoadPlayerShip();
+            MidGameSaver.LoadGame();
         }
 #endif
         if (IsNotMoving)
@@ -184,10 +182,17 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void LoadFromSavedData(int shipNumber, PlayerParameters parameters, string[] artifacts)
+    public void LoadFromSavedData(PlayerParameters parameters, string[] artifacts, List<string> weaponParams, List<string> weaponMods)
     {
-        ShipNumber = shipNumber;
-        _playerParameters = parameters.Clone();
+        if (weaponParams.Count != _weapons.Length)
+        {
+#if UNITY_EDITOR
+            Debug.LogError("Количество пушек в сохранении и на корабле не совпадает!");
+#endif
+            return;
+        }
+
+        _playerParameters = parameters;
 
         for (int i = 0; i < _artifacts.Count; ++i)
         {
@@ -197,6 +202,10 @@ public class Player : MonoBehaviour
 
         foreach (string s in artifacts)
         {
+#if UNITY_EDITOR
+            Debug.Log("Player artifact - " + s);
+#endif
+
             ArtifactType artifactType = (ArtifactType)Enum.Parse(typeof(ArtifactType), s);
 
             PlayerArtifact artifact = PlayerArtifactContainer.Instance.GetArtifact(artifactType);
@@ -205,66 +214,10 @@ public class Player : MonoBehaviour
             artifact.OnPick();
             _artifacts.Add(artifact);
         }
-    }
-}
 
-public class MidGameSaver
-{
-    private class SavedData
-    {
-        public int _shipNumber;
-        public string _playerParametrs;
-        public string _playerArtifacts;
-
-        public SavedData()
+        for (int i = 0; i < _weapons.Length; ++i)
         {
+            _weapons[i].LoadFromSavedData(weaponParams[i], weaponMods[i]);
         }
-
-        public SavedData(int a)
-        {
-            _shipNumber = Player.ShipNumber;
-            _playerParametrs = JsonUtility.ToJson(Player.PlayerParameters);
-
-            StringBuilder sb = new StringBuilder();
-            foreach (PlayerArtifact artifact in Player.PlayerArtifacts)
-            {
-                sb.Append(artifact.MyEnumName);
-                sb.Append(',');
-            }
-            _playerArtifacts = sb.ToString();
-            sb.Clear();
-        }
-    }
-
-    public static void SavePlayerShip()
-    {
-        SavedData data = new SavedData(1);
-        // ДЖсон ютилити туда сюда плейерпрефс блаблабла
-        string dataAsJson = JsonUtility.ToJson(data);
-
-
-        PlayerPrefs.SetString("PlayerShip", dataAsJson);
-#if UNITY_EDITOR
-        Debug.Log(dataAsJson);
-#endif
-    }
-
-    public static void LoadPlayerShip()
-    {
-        if (PlayerPrefs.HasKey("PlayerShip") == false)
-        {
-#if UNITY_EDITOR
-            Debug.Log("Player ship playerprefs not exist");
-#endif
-            return;
-        }
-        SavedData data = JsonUtility.FromJson<SavedData>(PlayerPrefs.GetString("PlayerShip"));
-
-        
-
-        //Player.Instance.LoadFromSavedData(data._shipNumber, parameters, data._playerArtifacts.Split(','));
-#if UNITY_EDITOR
-        Debug.Log("Yes");
-#endif
     }
 }

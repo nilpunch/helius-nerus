@@ -30,6 +30,9 @@ public class PlayerWeapon : MonoBehaviour
 
 	private void Awake()
 	{
+        if (_player == null)
+            _player = Player.Instance;
+
 		_parameters = _parametersSO.Clone();
 		_transform = transform;
 
@@ -108,5 +111,30 @@ public class PlayerWeapon : MonoBehaviour
     {
         _parameters.ApplyModifier(pair.WeaponsParametrs);
         _modifiers.Add(pair.WeaponModifier);
+    }
+
+    public void LoadFromSavedData(string parameters, string modifiers)
+    {
+        _parameters = PlayerWeaponsParametrs.DeserizliseFromString(parameters);
+
+        for (int i = 0; i < _modifiers.Count; ++i)
+        {
+            _modifiers[i].OnDrop(this);
+        }
+        _modifiers.Clear();
+
+        foreach (string s in modifiers.Split(','))
+        {
+#if UNITY_EDITOR
+            Debug.Log("Weapon mod - " + s);
+#endif
+
+            ModifierType modifierType = (ModifierType)System.Enum.Parse(typeof(ModifierType), s);
+
+            PlayerWeaponModifier modifier = WeaponModifierContainer.Instance.GetArtifact(modifierType);
+            WeaponModifierContainer.Instance.RemoveArtifactFromPoolIfExists(modifierType);
+            modifier.OnPick(this);
+            _modifiers.Add(modifier);
+        }
     }
 }

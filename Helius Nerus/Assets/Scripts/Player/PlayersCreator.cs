@@ -6,8 +6,15 @@ public class PlayersCreator : MonoBehaviour
     private Player _currentPlayer = null;
     private int _currentPlayerIndex = -1;
 
+    public static PlayersCreator Instance
+    {
+        get;
+        private set;
+    } = null;
+
     private void Awake()
     {
+        Instance = this;
         ChangePlayer();
     }
 
@@ -26,6 +33,12 @@ public class PlayersCreator : MonoBehaviour
 		_currentPlayer.RestartPlayer();
 
         Player.ShipNumber = _currentPlayerIndex;
+    }
+
+    public void LoadPlayerFromSave(int shipNumber)
+    {
+        _currentPlayerIndex = shipNumber - 1;
+        ChangePlayer();
     }
 
 #if UNITY_EDITOR

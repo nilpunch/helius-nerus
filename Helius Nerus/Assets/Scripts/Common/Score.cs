@@ -5,6 +5,7 @@
     public static int Score
     {
         get => _score;
+        set => _score = value;
     }
 
     public static void IncrementScore(int score)

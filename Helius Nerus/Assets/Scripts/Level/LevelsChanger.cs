@@ -2,9 +2,6 @@
 
 public class LevelsChanger : MonoBehaviour
 {
-
-    private static int _currentLevel = -1;
-
     [SerializeField] private GameObject[] _levels = null;
 
     private int _maximalUnlockedLevel = 0;
@@ -17,8 +14,13 @@ public class LevelsChanger : MonoBehaviour
     }
     public bool IsLastLevel
     {
-        get => _currentLevel == _maximalUnlockedLevel;
+        get => CurrentLevel == _maximalUnlockedLevel;
     }
+    public static int CurrentLevel
+    {
+        get;
+        set;
+    } = -1;
 
     private void Awake()
     {
@@ -42,16 +44,16 @@ public class LevelsChanger : MonoBehaviour
 
     private void Reset()
     {
-        _currentLevel = -1;
+        CurrentLevel = -1;
     }
 
     private void SpawnNextLevel()
     {
-        ++_currentLevel;
-        if (_currentLevel >= _levels.Length)
-            _currentLevel = 0;
+        ++CurrentLevel;
+        if (CurrentLevel >= _levels.Length)
+            CurrentLevel = 0;
 
-        _current = Instantiate(_levels[_currentLevel]);
+        _current = Instantiate(_levels[CurrentLevel]);
 
         UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(_current.gameObject, UnityEngine.SceneManagement.SceneManager.GetSceneByBuildIndex((int)Scenes.INGAME));
     }

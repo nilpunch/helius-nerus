@@ -1,9 +1,9 @@
 ﻿using System.Collections;
-using UnityEngine;
 
 public class SprayModifier : PlayerWeaponModifier
 {
 	public const float WEAPON_MOVE_TIME = 1f;
+    private UnityEngine.Coroutine _coroutine = null;
 
     public override string MyEnumName => "SprayModifier";
 
@@ -14,10 +14,16 @@ public class SprayModifier : PlayerWeaponModifier
 
 	public override void OnPick(PlayerWeapon playerWeapon)
 	{
-		playerWeapon.StartCoroutine(OnWeaponProc(playerWeapon));
+		_coroutine = playerWeapon.StartCoroutine(OnWeaponProc(playerWeapon));
 	}
 
-	public IEnumerator OnWeaponProc(PlayerWeapon playerWeapon)
+    public override void OnDrop(PlayerWeapon playerWeapon)
+    {
+        base.OnDrop(playerWeapon);
+        playerWeapon.StopCoroutine(_coroutine);
+    }
+
+    public IEnumerator OnWeaponProc(PlayerWeapon playerWeapon)
 	{
 		float startWeaponAngle = playerWeapon.WeaponParameters.WeaponAngle;
 		float offsetAngle = 0f;

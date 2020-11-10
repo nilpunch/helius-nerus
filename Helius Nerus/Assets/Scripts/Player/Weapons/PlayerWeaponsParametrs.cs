@@ -51,4 +51,54 @@ public class PlayerWeaponsParametrs : ScriptableObject
         _bulletDamage += mod._bulletDamage;
         _damageMult += mod._damageMult;
     }
+
+    public static PlayerWeaponsParametrs DeserizliseFromString(string s)
+    {
+        string[] parameters = s.Split(';');
+
+        PlayerWeaponsParametrs weaponsParametrs = PlayerWeaponsParametrs.CreateInstance<PlayerWeaponsParametrs>();
+        weaponsParametrs._position.x = float.Parse(parameters[0]);
+        weaponsParametrs._position.y = float.Parse(parameters[1]);
+
+        weaponsParametrs._weaponAngle = float.Parse(parameters[2]);
+        weaponsParametrs._bulletsPerSec = float.Parse(parameters[3]);
+
+        weaponsParametrs._bulletAmount = int.Parse(parameters[4]);
+
+        weaponsParametrs._spreadAngleDegrees = float.Parse(parameters[5]);
+        weaponsParametrs._bulletSpeed = float.Parse(parameters[6]);
+        weaponsParametrs._bulletDamage = float.Parse(parameters[7]);
+        weaponsParametrs._damageMult = float.Parse(parameters[8]);
+        weaponsParametrs._bulletSize = float.Parse(parameters[9]);
+
+        return weaponsParametrs;
+    }
+
+    public string SerializeToString()
+    {
+        System.Text.StringBuilder sb = new System.Text.StringBuilder();
+
+        sb.Append(_position.x);
+        sb.Append(';');
+        sb.Append(_position.y);
+        sb.Append(';');
+
+        sb.Append(_weaponAngle);
+        sb.Append(';');
+        sb.Append(_bulletsPerSec);
+        sb.Append(';');
+        sb.Append(_bulletAmount);
+        sb.Append(';');
+        sb.Append(_spreadAngleDegrees);
+        sb.Append(';');
+        sb.Append(_bulletSpeed);
+        sb.Append(';');
+        sb.Append(_bulletDamage);
+        sb.Append(';');
+        sb.Append(_damageMult);
+        sb.Append(';');
+        sb.Append(_bulletSize);
+
+        return sb.ToString();
+    }
 }
