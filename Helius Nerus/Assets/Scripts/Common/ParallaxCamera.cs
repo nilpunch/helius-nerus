@@ -6,48 +6,58 @@ public class ParallaxCamera : MonoBehaviour
 
 	[SerializeField] private float _parallaxCoefficient = 1.0f;
     [SerializeField] private Camera _camera = null;
+
 	private float _translationCoefficient;
 	private Transform _cameraTransform;
 	private Vector2 _cameraSize;
 	private Vector2 _parallaxSize;
 	private Rect _cameraBoundary;
 	private Rect _parallaxBoundary;
+	private Camera _cameraUI;
 
-	static public float ParallaxCoefficient
+	public static float ParallaxCoefficient
 	{
 		get => _sceneInstance._parallaxCoefficient;
 	}
-	static public float TranslationCoefficient
+	public static float TranslationCoefficient
 	{
 		get => _sceneInstance._translationCoefficient;
 	}
-	static public Transform CameraTransform
+	public static Transform CameraTransform
 	{
 		get => _sceneInstance._cameraTransform;
 	}
-	static public Vector2 CameraSize
+	public static Vector2 CameraSize
 	{
 		get => _sceneInstance._cameraSize;
 	}
-	static public Rect CameraBoundary
+	public static Rect CameraBoundary
 	{
 		get => _sceneInstance._cameraBoundary;
 	}
-	static public Rect ParallaxBoundary
+	public static Rect ParallaxBoundary
 	{
 		get => _sceneInstance._parallaxBoundary;
 	}
-	static public Vector2 ParallaxSize
+	public static Vector2 ParallaxSize
 	{
 		get => _sceneInstance._parallaxSize;
 	}
-
+	public static Camera CameraMain
+	{
+		get => _sceneInstance._camera;
+	}
+	public static Camera CameraUI
+	{
+		get => _sceneInstance._cameraUI;
+	}
 
 
 	private void Awake()
 	{
 		_sceneInstance = this;
-        
+
+		_cameraUI = GameObject.Find("UI Camera").GetComponent<Camera>();
 
 		_translationCoefficient = 1f - 1f / _parallaxCoefficient;
 

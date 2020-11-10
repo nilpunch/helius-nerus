@@ -2,6 +2,9 @@
 
 public class MouseMoveInput : IMoveInput
 {
+	public const float THRUST_RADIUS = 0.5f;
+	public const float MIN_THRUST = 0.1f;
+
 	private float _sqrThrustRadius = 1f;
 	private Transform _radiusOrigin = null;
 	private float _minThrust = 0f;
@@ -12,11 +15,11 @@ public class MouseMoveInput : IMoveInput
 	public Vector2 Direction { get; private set; }
 	public float Thrust { get; private set; }
 
-	public MouseMoveInput(Transform origin, MouseMoveSettings mouseMoveSettings)
+	public MouseMoveInput(Transform origin)
 	{
 		_radiusOrigin = origin;
-		_sqrThrustRadius = mouseMoveSettings.ThrustRadius;
-		_minThrust = mouseMoveSettings.MinThrust;
+		_sqrThrustRadius = THRUST_RADIUS;
+		_minThrust = MIN_THRUST;
 		_noThrustDistance = _minThrust * 0.001f;
 
 		_main = Camera.main;
@@ -24,7 +27,7 @@ public class MouseMoveInput : IMoveInput
 
 	public void ReadInput()
 	{
-		Vector2 directionedDistance = Camera.main.ScreenToWorldPoint(Input.mousePosition) - _radiusOrigin.position;
+		Vector2 directionedDistance = _main.ScreenToWorldPoint(Input.mousePosition) - _radiusOrigin.position;
 		float sqrDistance = directionedDistance.sqrMagnitude;
 		if (sqrDistance > _noThrustDistance)
 		{
@@ -35,5 +38,6 @@ public class MouseMoveInput : IMoveInput
 			Thrust = 0f;
 		}
 		Direction = directionedDistance.normalized;
+		Thrust *= TransformMover.DESCTOP_MAX_SPEED;
 	}
 }

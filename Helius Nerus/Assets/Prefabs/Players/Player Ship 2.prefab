@@ -139,12 +139,8 @@ MonoBehaviour:
   _playerMovement:
     _transform: {fileID: 7712765479933993680}
     _playerBoundaryOffset: 0
-    _moveParameters: {fileID: 11400000, guid: 53805507f627df3409ef3f0bbd6ec17c, type: 2}
-    _moveInputType: 0
-    _mouseMoveSettings: {fileID: 11400000, guid: 1be2ba190cdcefa48a59fc97d1d17ae7,
-      type: 2}
-    _keyboradMoveSettings: {fileID: 11400000, guid: 985673df7ed154c4ca10dbe25f6249df,
-      type: 2}
+    _sensivity: 1
+    _moveInputType: 2
   _playerParametersSO: {fileID: 11400000, guid: 8847d6c31c8cc2c44a6030268b244597,
     type: 2}
   _weapons:

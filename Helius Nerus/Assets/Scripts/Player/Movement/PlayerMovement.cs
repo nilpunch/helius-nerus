@@ -1,15 +1,14 @@
 ﻿using UnityEngine;
 
+public enum InputType { Keyboard, Mouse, StandartDrag };
+
 [System.Serializable]
 public class PlayerMovement
 {
 	[SerializeField] private Transform _transform = null;
 	[SerializeField] private float _playerBoundaryOffset = 0.0f;
-	[SerializeField] private MoveParameters _moveParameters = null;
-	[System.Serializable] public enum InputType { Keyboard, Mouse };
+	[SerializeField] private float _sensivity = 1.0f;
 	[SerializeField] private InputType _moveInputType = InputType.Mouse;
-	[SerializeField] private MouseMoveSettings _mouseMoveSettings = null;
-	[SerializeField] private KeyboardMoveSettings _keyboradMoveSettings = null;
 
 	private IMoveInput _moveInput = null;
 	private TransformMover _transformMover = null;
@@ -19,22 +18,24 @@ public class PlayerMovement
 		switch (_moveInputType)
 		{
 		case InputType.Keyboard:
-			_moveInput = new KeyboradMoveInput(_keyboradMoveSettings);
+			_moveInput = new KeyboradMoveInput();
 			break;
 
 		case InputType.Mouse:
-			_moveInput = new MouseMoveInput(_transform, _mouseMoveSettings);
+			_moveInput = new MouseMoveInput(_transform);
+			break;
+
+		case InputType.StandartDrag:
+			_moveInput = _transform.gameObject.AddComponent<StandartDragMoveInput>();
 			break;
 		}
 
-		_transformMover = new TransformMover(_moveInput, _transform, _moveParameters);
+		_transformMover = new TransformMover(_moveInput, _transform, _sensivity);
 	}
 
 	public void Update()
 	{
 		_moveInput.ReadInput();
-
-		float oldPosition = _transform.position.x;
 		_transformMover.Tick();
 
 		_transform.position = new Vector3(
