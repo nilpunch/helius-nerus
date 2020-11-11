@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class BulletPoolsContainer : MonoBehaviour
 {
-    [Tooltip("ДОЛЖНЫ ИДТИ В ТОМ ЖЕ ПОРЯДКЕ, ЧТО И ТИПЫ ДВИЖЕНИЙ В ПЕРЕЧИСЛЕНИИ")]
     [SerializeField] private GameObject[] _bulletsPrefabs = null;
     private List<BulletPool> _pools = new List<BulletPool>();
     private Transform _transform;

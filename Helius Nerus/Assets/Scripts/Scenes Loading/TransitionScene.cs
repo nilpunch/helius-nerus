@@ -81,8 +81,6 @@ public class TransitionScene : MonoBehaviour
 
     private IEnumerator WaitForLoadUnloadScene()
     {
-        //_cameraGO.SetActive(true);
-
         for (int i = 0; i < _scenesLoading.Count; ++i)
         {
             while (!_scenesLoading[i].isDone)
@@ -90,8 +88,6 @@ public class TransitionScene : MonoBehaviour
                 yield return null;
             }
         }
-
-        //_cameraGO.SetActive(false);
 
         SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(_newScene));
         _scenesLoading.Clear();

@@ -13,8 +13,8 @@ public abstract class GenericContainer <TValue, TKey, TMod> where TValue : IconD
     [SerializeField] protected List<int> _initialUnlockedValues = null;
 
     // need sorted container?
-    protected List<int> _lockedValues = new List<int>(); // unsorted
-    protected List<int> _unlockedAvailableValues = new List<int>(); // unsorted
+    protected List<int> _lockedValues = new List<int>(); 
+    protected List<int> _unlockedAvailableValues = new List<int>(); 
 
     public void Init()
     {

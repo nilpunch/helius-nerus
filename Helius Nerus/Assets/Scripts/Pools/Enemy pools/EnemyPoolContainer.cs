@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class EnemyPoolContainer : MonoBehaviour
 {
-    [Tooltip("ДОЛЖНЫ ИДТИ В ТОМ ЖЕ ПОРЯДКЕ, ЧТО И ТИПЫ РВАГВО В ПЕРЕЧИСЛЕНИИ")]
     [SerializeField] private GameObject[] _enemiesPrefabs = null;
     private List<EnemyPool> _pools = new List<EnemyPool>();
     private Transform _transform;

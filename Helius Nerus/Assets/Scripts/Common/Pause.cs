@@ -60,7 +60,7 @@ public class Pause
 
         Color color;
 
-        while (timeElapsed <= _fadeSeconds) // = 3
+        while (timeElapsed <= _fadeSeconds)
         {
             timeElapsed += Time.deltaTime;
 

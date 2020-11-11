@@ -6,10 +6,19 @@ namespace HNUI
     {
         [SerializeField] private TMPro.TextMeshProUGUI _scoreText = null;
 
-        // Update is called once per frame
-        void Update()
+        private void OnEnable()
+        {
+            ScoreCounter.ScoreWasUpdated += ScoreCounter_ScoreWasUpdated;
+        }
+
+        private void ScoreCounter_ScoreWasUpdated()
         {
             _scoreText.text = ScoreCounter.Score.ToString();
+        }
+
+        private void OnDisable()
+        {
+            ScoreCounter.ScoreWasUpdated -= ScoreCounter_ScoreWasUpdated;
         }
     }
 }

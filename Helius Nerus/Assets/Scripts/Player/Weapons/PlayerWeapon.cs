@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class PlayerWeapon : MonoBehaviour
 {
-
 	[Tooltip("СО свойств пушки стартовых")]
     [SerializeField] private PlayerWeaponsParametrs _parametersSO = null;
 	[SerializeField] private ModifierType[] _startModifiers = null;

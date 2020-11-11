@@ -1,5 +1,6 @@
 ﻿namespace HNUI
 {
+    // С этим надо что-то сделать
     public class HubCanvas : UICanvasMonobehaviour
     {
         public static HubCanvas Instance

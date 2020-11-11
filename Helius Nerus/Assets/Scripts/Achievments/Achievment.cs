@@ -2,7 +2,6 @@
 
 public abstract class Achievment
 {
-
     protected string _achievementName = "";
     protected string _achievementDescription = "";
     protected Sprite _sprite = null;
