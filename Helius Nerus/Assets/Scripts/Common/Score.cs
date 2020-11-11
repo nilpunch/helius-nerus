@@ -1,5 +1,7 @@
 ﻿public class ScoreCounter
 {
+    public static event System.Action<int> ScoreWasReseted = delegate { };
+
     private static int _score = 0;
 
     public static int Score
@@ -15,7 +17,7 @@
 
     public static void Reset()
     {
-        SaveableData.Instance.AddTotalScore(_score);
+        ScoreWasReseted.Invoke(_score);
         _score = 0;
     }
 }

@@ -61,8 +61,14 @@ public class SaveableData : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         LoadData();
+
+        ScoreCounter.ScoreWasReseted += ScoreCounter_ScoreWasReseted;
     }
 
+    private void ScoreCounter_ScoreWasReseted(int score)
+    {
+        AddTotalScore(score);
+    }
 
     public void AddMaximalLevels(int amount)
     {
@@ -75,7 +81,7 @@ public class SaveableData : MonoBehaviour
     /// Adds total score, also checks for maximal score and money
     /// </summary>
     /// <param name="amount">Количество очков полученных</param>
-    public void AddTotalScore(int amount)
+    private void AddTotalScore(int amount)
     {
         _allSaveableFields._totalScore += amount;
         _allSaveableFields._amountOfMoney += amount / _scoreDenominator;
@@ -123,7 +129,7 @@ public class SaveableData : MonoBehaviour
         
         // Нужно ли это прямо здесь или вынести куда-то типа закрытия приложения? Насколько сильно оно жрет
 
-        PlayerPrefs.Save();
+        //PlayerPrefs.Save();
     }
 
     private void LoadData()

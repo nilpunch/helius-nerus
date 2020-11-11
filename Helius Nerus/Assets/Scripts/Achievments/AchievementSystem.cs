@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-// Не нужен монобех больше
 public class AchievementSystem : MonoBehaviour
 {
     private class AchievementsSaving
