@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class AchievementSystem : MonoBehaviour
@@ -70,6 +70,11 @@ public class AchievementSystem : MonoBehaviour
 
     private void AddAchievementsHere()
     {
+        /// DON'T REMOVE THIS LINE!
+        _achievments.Add(new FirstResurrectionAchievement());
+
+        /// Auto-generated achievements go here (up)
+
         _achievments.Add(new DeathAchievement());
     }
 
