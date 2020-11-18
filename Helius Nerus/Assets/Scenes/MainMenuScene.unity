@@ -973,7 +973,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f46217fd20ede1e4e87deff49b2ab77c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _joystickCanvas: {fileID: 570286321}
+  Canvas: {fileID: 570286321}
   _buttonTransform: {fileID: 498043935}
   _baseTransform: {fileID: 1186106226}
   _maxDistance: 100

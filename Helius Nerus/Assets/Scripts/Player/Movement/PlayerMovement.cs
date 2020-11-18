@@ -27,7 +27,7 @@ public class PlayerMovement
 
             case InputType.FloatingJoystick:
                 FloatingJoystick.Activate();
-                _moveInput = FloatingJoystick.Instance;
+                _moveInput = (IMoveInput)FloatingJoystick.Instance;
                 break;
         }
 

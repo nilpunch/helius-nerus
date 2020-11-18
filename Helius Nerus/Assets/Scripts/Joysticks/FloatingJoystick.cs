@@ -1,9 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class FloatingJoystick : MonoBehaviour, IDragHandler, IPointerDownHandler, IPointerUpHandler, IMoveInput
+public class FloatingJoystick : InputCanvas<FloatingJoystick>, IDragHandler, IPointerDownHandler, IPointerUpHandler, IMoveInput
 {
-    [SerializeField] private Canvas _joystickCanvas = null;
     [SerializeField] private RectTransform _buttonTransform = null;
     [SerializeField] private RectTransform _baseTransform = null;
     [SerializeField] private float _maxDistance = 5.0f;
@@ -22,35 +21,12 @@ public class FloatingJoystick : MonoBehaviour, IDragHandler, IPointerDownHandler
         private set;
     }
 
-    public static FloatingJoystick Instance
-    {
-        get;
-        private set;
-    } = null;
+	protected override string InputType
+	{
+		get => "FloatingJoystick";
+	}
 
-    private void Awake()
-    {
-        Instance = this;
-        Deactivate();
-    }
-
-    private void OnEnable()
-    {
-        if (PlayerPrefs.GetString("InputType") != "FloatingJoystick")
-            Deactivate();
-    }
-
-    public static void Activate()
-    {
-        Instance._joystickCanvas.enabled = true;
-    }
-
-    public static void Deactivate()
-    {
-        Instance._joystickCanvas.enabled = false;
-    }
-
-    public void OnDrag(PointerEventData eventData)
+	public void OnDrag(PointerEventData eventData)
     {
         SetButtonPosition(eventData.position);
     }
