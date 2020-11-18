@@ -13,4 +13,16 @@ public static class Vector3Extensions
             result.z = z.Value;
         return result;
     }
+
+    public static Vector2 ClampInBorders(this Vector2 vector, float border)
+    {
+        float length = vector.magnitude;
+        if (length > border)
+        {
+            float delta = length / border;
+            vector.x /= delta;
+            vector.y /= delta;
+        }
+        return vector;
+    }
 }
