@@ -59,9 +59,10 @@ public class FloatingJoystick : MonoBehaviour, IDragHandler, IPointerDownHandler
     {
         Direction = _direction.normalized;
         Thrust = _direction.magnitude / _maxDistance;
-    }
+		Thrust *= TransformMover.DESCTOP_MAX_SPEED;
+	}
 
-    private void SetButtonPosition(Vector2 position)
+	private void SetButtonPosition(Vector2 position)
     {
         _direction = position - _baseTransform.anchoredPosition;
         _direction = _direction.ClampInBorders(_maxDistance);
