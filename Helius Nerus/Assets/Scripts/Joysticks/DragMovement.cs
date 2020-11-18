@@ -4,13 +4,7 @@ using UnityEngine.EventSystems;
 public class DragMovement : InputCanvas<DragMovement>, IPointerUpHandler, IPointerDownHandler, IDragHandler, IMoveInput
 {
 	private Vector2 _startPosition = Vector2.zero;
-
-	private Transform _transform;
-
-	public static void InitWithTransform(Transform transform)
-	{
-		((DragMovement)Instance)._transform = transform;
-	}
+	private Vector2 _delta = Vector2.zero;
 
 	protected override string InputType
     {
@@ -29,15 +23,15 @@ public class DragMovement : InputCanvas<DragMovement>, IPointerUpHandler, IPoint
 
 	public void OnDrag(PointerEventData eventData)
 	{
-		Vector2 delta = -(_startPosition - eventData.position) / Screen.height * ParallaxCamera.CameraUI.orthographicSize * 2f;
-		delta.x *= ParallaxCamera.ParallaxCoefficient;
-		_transform.Translate(delta);
+		_delta -= (_startPosition - eventData.position) / Screen.height * ParallaxCamera.CameraUI.orthographicSize * 2f;
 		_startPosition = eventData.position;
 	}
 
 	public void Tick(Transform transform)
 	{
-		 
+		_delta.x *= ParallaxCamera.ParallaxCoefficient;
+		transform.Translate(_delta);
+		_delta = Vector2.zero;
 	}
 
 	public void ReadInput()

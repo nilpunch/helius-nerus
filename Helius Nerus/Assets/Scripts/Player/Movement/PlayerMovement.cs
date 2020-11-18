@@ -34,7 +34,6 @@ public class PlayerMovement
             case InputType.DragMovement:
                 DragMovement.Activate();
                 _moveInput = (IMoveInput)DragMovement.Instance;
-				DragMovement.InitWithTransform(_transform);
                 break;
 
             case InputType.FloatingJoystick:
