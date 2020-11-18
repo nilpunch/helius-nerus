@@ -4,7 +4,7 @@ public enum InputType
 {
     Keyboard,
     Mouse,
-    StandartDrag,
+    DragMovement,
     FloatingJoystick,
     FixedJoystick,
 };
@@ -30,6 +30,11 @@ public class PlayerMovement
 
             case InputType.Mouse:
                 _moveInput = new MouseMoveInput(_transform);
+                break;
+
+            case InputType.DragMovement:
+                DragMovement.Activate();
+                _moveInput = (IMoveInput)DragMovement.Instance;
                 break;
 
             case InputType.FloatingJoystick:

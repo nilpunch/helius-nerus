@@ -186,7 +186,7 @@ MonoBehaviour:
     _transform: {fileID: 7596673631766323376}
     _playerBoundaryOffset: 0
     _sensivity: 1
-    _moveInputType: 4
+    _moveInputType: 2
   _playerParametersSO: {fileID: 11400000, guid: 8847d6c31c8cc2c44a6030268b244597,
     type: 2}
   _weapons:
