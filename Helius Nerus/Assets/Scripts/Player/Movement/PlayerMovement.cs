@@ -25,11 +25,6 @@ public class PlayerMovement
                 _moveInput = new MouseMoveInput(_transform);
                 break;
 
-            case InputType.StandartDrag:
-                //WIP, not working
-                _moveInput = _transform.gameObject.AddComponent<StandartDragMoveInput>();
-                break;
-
             case InputType.FloatingJoystick:
                 FloatingJoystick.Activate();
                 _moveInput = FloatingJoystick.Instance;

@@ -38,6 +38,5 @@ public class MouseMoveInput : IMoveInput
 			Thrust = 0f;
 		}
 		Direction = directionedDistance.normalized;
-		Thrust *= TransformMover.DESCTOP_MAX_SPEED;
 	}
 }

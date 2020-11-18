@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class FloatingJoystick : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDragHandler, IMoveInput
+public class FloatingJoystick : MonoBehaviour, IDragHandler, IPointerDownHandler, IPointerUpHandler, IMoveInput
 {
     [SerializeField] private Canvas _joystickCanvas = null;
     [SerializeField] private RectTransform _buttonTransform = null;
@@ -50,20 +50,9 @@ public class FloatingJoystick : MonoBehaviour, IDragHandler, IEndDragHandler, IB
         Instance._joystickCanvas.enabled = false;
     }
 
-    public void OnBeginDrag(PointerEventData eventData)
-    {
-        _baseTransform.anchoredPosition = eventData.position;
-    }
-
     public void OnDrag(PointerEventData eventData)
     {
         SetButtonPosition(eventData.position);
-    }
-
-    public void OnEndDrag(PointerEventData eventData)
-    {
-        _buttonTransform.anchoredPosition = Vector2.zero;
-        _direction = Vector2.zero;
     }
 
     public void ReadInput()
@@ -78,4 +67,15 @@ public class FloatingJoystick : MonoBehaviour, IDragHandler, IEndDragHandler, IB
         _direction = _direction.ClampInBorders(_maxDistance);
         _buttonTransform.anchoredPosition = _direction;
     }
+
+	public void OnPointerDown(PointerEventData eventData)
+	{
+		_baseTransform.anchoredPosition = eventData.position;
+	}
+
+	public void OnPointerUp(PointerEventData eventData)
+	{
+		_buttonTransform.anchoredPosition = Vector2.zero;
+		_direction = Vector2.zero;
+	}
 }

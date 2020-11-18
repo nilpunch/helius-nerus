@@ -2,7 +2,7 @@
 
 public class TransformMover
 {
-	public const float DESCTOP_MAX_SPEED = 7f;
+	public const float DESCTOP_MAX_SPEED = 6f;
 
 	private readonly IMoveInput _moveInput;
 	private readonly Transform _transform;
@@ -17,7 +17,7 @@ public class TransformMover
 
 	public void Tick()
 	{
-		_transform.Translate((Vector3)_moveInput.Direction * _moveInput.Thrust *
+		_transform.Translate((Vector3)_moveInput.Direction * _moveInput.Thrust * DESCTOP_MAX_SPEED *
             _sensivity * TimeManager.PlayerDeltaTime, Space.World);
 	}
 }
