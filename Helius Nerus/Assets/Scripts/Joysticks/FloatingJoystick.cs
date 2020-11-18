@@ -1,11 +1,54 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class FloatingJoystick : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDragHandler
+public class FloatingJoystick : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDragHandler, IMoveInput
 {
+    [SerializeField] private Canvas _joystickCanvas = null;
     [SerializeField] private RectTransform _buttonTransform = null;
     [SerializeField] private RectTransform _baseTransform = null;
     [SerializeField] private float _maxDistance = 5.0f;
+
+    private Vector2 _direction;
+
+    public Vector2 Direction
+    {
+        get;
+        private set;
+    }
+
+    public float Thrust
+    {
+        get;
+        private set;
+    }
+
+    public static FloatingJoystick Instance
+    {
+        get;
+        private set;
+    } = null;
+
+    private void Awake()
+    {
+        Instance = this;
+        Deactivate();
+    }
+
+    private void OnEnable()
+    {
+        if (PlayerPrefs.GetString("InputType") != "FloatingJoystick")
+            Deactivate();
+    }
+
+    public static void Activate()
+    {
+        Instance._joystickCanvas.enabled = true;
+    }
+
+    public static void Deactivate()
+    {
+        Instance._joystickCanvas.enabled = false;
+    }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
@@ -20,11 +63,19 @@ public class FloatingJoystick : MonoBehaviour, IDragHandler, IEndDragHandler, IB
     public void OnEndDrag(PointerEventData eventData)
     {
         _buttonTransform.anchoredPosition = Vector2.zero;
+        _direction = Vector2.zero;
+    }
+
+    public void ReadInput()
+    {
+        Direction = _direction.normalized;
+        Thrust = _direction.magnitude / _maxDistance;
     }
 
     private void SetButtonPosition(Vector2 position)
     {
-        Vector2 direction = position - _baseTransform.anchoredPosition;
-        _buttonTransform.anchoredPosition = direction.ClampInBorders(_maxDistance);
+        _direction = position - _baseTransform.anchoredPosition;
+        _direction = _direction.ClampInBorders(_maxDistance);
+        _buttonTransform.anchoredPosition = _direction;
     }
 }
