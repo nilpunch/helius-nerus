@@ -16,7 +16,7 @@ namespace HNUI
 
         public void ResumeGame()
         {
-            MidGameSaver.LoadGame();
+            MidGameSaver.Instance.LoadGame();
         }
     }
 }

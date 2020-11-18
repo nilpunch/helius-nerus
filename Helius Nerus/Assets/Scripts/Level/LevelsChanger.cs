@@ -2,6 +2,8 @@
 
 public class LevelsChanger : MonoBehaviour
 {
+    public static event System.Action LevelSpawn = delegate { };
+
     [SerializeField] private GameObject[] _levels = null;
 
     private int _maximalUnlockedLevel = 0;
@@ -32,7 +34,7 @@ public class LevelsChanger : MonoBehaviour
         LevelBoss.FinalBossDied += LevelBoss_FinalBossDied;
     }
 
-    private void LevelBoss_FinalBossDied()
+    private void LevelBoss_FinalBossDied(int a)
     {
         Reset();
     }
@@ -56,6 +58,8 @@ public class LevelsChanger : MonoBehaviour
         _current = Instantiate(_levels[CurrentLevel]);
 
         UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(_current.gameObject, UnityEngine.SceneManagement.SceneManager.GetSceneByBuildIndex((int)Scenes.INGAME));
+
+        LevelSpawn.Invoke();
     }
 
     public void ChangeLevel()

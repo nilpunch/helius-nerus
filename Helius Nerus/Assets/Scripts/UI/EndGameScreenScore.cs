@@ -8,7 +8,7 @@ namespace HNUI
 
         private void OnEnable()
         {
-            _text.text = LocalizationManager.Instance.GetLocalizedValue("scoredCode") + ScoreCounter.Score;
+            _text.text = LocalizationManager.Instance.GetLocalizedValue("scoredCode") + ScoreCounter.Instance.Score;
         }
     }
 }

@@ -2,6 +2,8 @@
 
 public class Enemy : MonoBehaviour, IReturnableToPool, IDealDamageToPlayer, ITakeDamageFromPlayer
 {
+    public static event System.Action<int> EnemyDie = delegate { };
+
     [SerializeField] private EnemyStats _stats = null;
     [SerializeField] private CommandsProcessor<MoveCommandScriptableObject> _moveProcessor = new CommandsProcessor<MoveCommandScriptableObject>();
     [SerializeField] private CommandsProcessor<WeaponCommandScriptableObject> _weaponProcessor = new CommandsProcessor<WeaponCommandScriptableObject>();
@@ -39,7 +41,8 @@ public class Enemy : MonoBehaviour, IReturnableToPool, IDealDamageToPlayer, ITak
 
     private void Die()
     {
-        ScoreCounter.IncrementScore(_stats.PointsForKill);
+        EnemyDie.Invoke(_stats.PointsForKill);
+
         _isDead = true;
         float drop = Random.Range(0.0f, 1.0f);
         if (drop <= _stats.DropChance)

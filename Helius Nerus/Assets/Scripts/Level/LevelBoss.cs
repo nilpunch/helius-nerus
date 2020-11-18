@@ -4,7 +4,7 @@
 public class LevelBoss
 {
     public static event System.Action BossDied = delegate { };
-    public static event System.Action FinalBossDied = delegate { };
+    public static event System.Action<int> FinalBossDied = delegate { };
 
     [SerializeField] private GameObject _boss = null;
 
@@ -35,7 +35,8 @@ public class LevelBoss
     {
         if (LevelsChanger.Instance.IsLastLevel)
         {
-            FinalBossDied.Invoke();
+            // get levels counter from last boss
+            FinalBossDied.Invoke(1);
         }
         else
         {

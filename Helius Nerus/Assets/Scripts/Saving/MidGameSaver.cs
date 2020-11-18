@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class MidGameSaver
 {
+    public static MidGameSaver Instance
+    {
+        get;
+        private set;
+    } = null;
+
     public static bool MidGameSaveExists
     {
         get => PlayerPrefs.HasKey("MidGameSave");
@@ -31,7 +37,7 @@ public class MidGameSaver
         {
             // common
             _levelNumber = LevelsChanger.CurrentLevel;
-            _currentScore = ScoreCounter.Score;
+            _currentScore = ScoreCounter.Instance.Score;
 
             // player
             _shipNumber = Player.ShipNumber;
@@ -51,7 +57,7 @@ public class MidGameSaver
             for (int i = 0; i < Player.PlayerWeapons.Length; ++i)
             {
                 // params
-                _weaponParams.Add(Player.PlayerWeapons[i].WeaponParameters.SerializeToString()); 
+                _weaponParams.Add(Player.PlayerWeapons[i].WeaponParameters.SerializeToString());
                 // modifiers
                 foreach (PlayerWeaponModifier modifier in Player.PlayerWeapons[i].WeaponModifiers)
                 {
@@ -65,21 +71,71 @@ public class MidGameSaver
         }
     }
 
-    public static void SaveGame()
+    public MidGameSaver()
+    {
+        Player.PlayerDie += Player_PlayerDie;
+        LevelsChanger.LevelSpawn += LevelsChanger_LevelSpawn;
+        LevelBoss.FinalBossDied += LevelBoss_FinalBossDied;
+    }
+
+    private void Unsubscribe()
+    {
+        Player.PlayerDie -= Player_PlayerDie;
+        LevelsChanger.LevelSpawn -= LevelsChanger_LevelSpawn;
+        LevelBoss.FinalBossDied -= LevelBoss_FinalBossDied;
+    }
+
+    public static void Initialize()
+    {
+        if (Instance == null)
+            Instance = new MidGameSaver();
+    }
+
+    public static void Cleanup()
+    {
+        if (Instance != null)
+            Instance.Unsubscribe();
+    }
+
+    private void LevelBoss_FinalBossDied(int a)
+    {
+        // We ended the game, so we erase the save
+        DeleteSave();
+#if UNITY_EDITOR
+        Debug.Log("Save was erased - end of game");
+#endif
+    }
+
+    private void LevelsChanger_LevelSpawn()
+    {
+        // New level started, we save the game
+        SaveGame();
+#if UNITY_EDITOR
+        Debug.Log("Game was saved!");
+#endif
+    }
+
+    private void Player_PlayerDie()
+    {
+        //Player died, so we erase the save
+        DeleteSave();
+#if UNITY_EDITOR
+        Debug.Log("Save was erased - player died");
+#endif
+    }
+
+    public void SaveGame()
     {
         SavedData data = new SavedData(1);
         // ДЖсон ютилити туда сюда плейерпрефс блаблабла
         string dataAsJson = JsonUtility.ToJson(data);
 
         PlayerPrefs.SetString("MidGameSave", dataAsJson);
-#if UNITY_EDITOR
-        Debug.Log(dataAsJson);
-#endif
 
         PlayerPrefs.Save();
     }
 
-    public static void LoadGame()
+    public void LoadGame()
     {
         if (PlayerPrefs.HasKey("MidGameSave") == false)
         {
@@ -91,7 +147,7 @@ public class MidGameSaver
         SavedData data = JsonUtility.FromJson<SavedData>(PlayerPrefs.GetString("MidGameSave"));
 
         // score
-        ScoreCounter.Score = data._currentScore;
+        ScoreCounter.Instance.Score = data._currentScore;
 
         PlayersCreator.Instance.LoadPlayerFromSave(data._shipNumber);
 
@@ -102,7 +158,7 @@ public class MidGameSaver
         LevelsChanger.CurrentLevel = data._levelNumber - 1;
     }
 
-    public static void DeleteSave()
+    public void DeleteSave()
     {
         PlayerPrefs.DeleteKey("MidGameSave");
     }

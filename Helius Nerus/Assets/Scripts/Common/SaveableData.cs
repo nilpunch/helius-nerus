@@ -35,7 +35,6 @@ public class SaveableData : MonoBehaviour
     [Tooltip("Число, на которое делится счет для перевода в деньги")]
     [SerializeField] private int _scoreDenominator = 100;
 
-    private ScoreCounter _score = new ScoreCounter();
     private AllSaveableFields _allSaveableFields = new AllSaveableFields();
 
     public static SaveableData Instance
@@ -63,6 +62,12 @@ public class SaveableData : MonoBehaviour
         LoadData();
 
         ScoreCounter.ScoreWasReseted += ScoreCounter_ScoreWasReseted;
+        LevelBoss.FinalBossDied += LevelBoss_FinalBossDied;
+    }
+
+    private void LevelBoss_FinalBossDied(int obj)
+    {
+        AddMaximalLevels(obj);
     }
 
     private void ScoreCounter_ScoreWasReseted(int score)
@@ -70,7 +75,7 @@ public class SaveableData : MonoBehaviour
         AddTotalScore(score);
     }
 
-    public void AddMaximalLevels(int amount)
+    private void AddMaximalLevels(int amount)
     {
         // Boss has this property? 4 for all bosses, 1 for pre-last and 0 for final?
         _allSaveableFields._maximalUnlockedLevel += amount;
@@ -102,13 +107,6 @@ public class SaveableData : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
         {
             ResetData();
-        }
-
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            AddMaximalLevels(1);
-            AddTotalScore(1);
-            _allSaveableFields._unlockedShips.Add(1);
         }
     }
 #endif

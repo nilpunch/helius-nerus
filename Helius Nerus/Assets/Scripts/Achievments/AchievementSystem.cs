@@ -82,7 +82,7 @@ public class AchievementSystem : MonoBehaviour
     {
         _achievementsSaving.UpdateInfo(_achievments);
         PlayerPrefs.SetString("AchievementsData", JsonUtility.ToJson(_achievementsSaving));
-        PlayerPrefs.Save();
+        //PlayerPrefs.Save();
         return;
     }
 

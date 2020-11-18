@@ -20,8 +20,6 @@ namespace HNUI
             //Pause.PauseGame();
 
             _deathScreenGO.SetActive(true);            
-
-            ScoreCounter.Reset(); // here??
         }
 
         private void OnDisable()

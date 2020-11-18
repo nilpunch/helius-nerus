@@ -81,16 +81,6 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-#if UNITY_EDITOR
-        if (Input.GetKeyDown(KeyCode.Alpha5))
-        {
-            MidGameSaver.SaveGame();
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha6))
-        {
-            MidGameSaver.LoadGame();
-        }
-#endif
         if (IsNotMoving)
             return;
         _playerMovement.Update();

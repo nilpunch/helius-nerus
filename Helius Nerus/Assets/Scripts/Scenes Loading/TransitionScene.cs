@@ -17,7 +17,7 @@ public class TransitionScene : MonoBehaviour
     private AsyncOperation _firstLoading;
     private List<AsyncOperation> _scenesLoading = new List<AsyncOperation>();
 
-    private void Awake()
+    private IEnumerator Start()
     {
         DontDestroyOnLoad(gameObject);
 
@@ -27,6 +27,8 @@ public class TransitionScene : MonoBehaviour
             Destroy(gameObject);
 
         LoadOneScene((int)Scenes.MENU);
+
+        yield break;
     }
 
     private void LoadOneScene(int newScene)

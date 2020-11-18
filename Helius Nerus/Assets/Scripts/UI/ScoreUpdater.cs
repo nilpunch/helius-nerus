@@ -13,7 +13,7 @@ namespace HNUI
 
         private void ScoreCounter_ScoreWasUpdated()
         {
-            _scoreText.text = ScoreCounter.Score.ToString();
+            _scoreText.text = ScoreCounter.Instance.Score.ToString();
         }
 
         private void OnDisable()

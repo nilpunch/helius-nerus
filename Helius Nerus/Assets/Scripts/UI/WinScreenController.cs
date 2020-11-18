@@ -12,7 +12,7 @@ namespace HNUI
             _winScreenGO.SetActive(false);
         }
 
-        private void LevelBoss_FinalBossDied()
+        private void LevelBoss_FinalBossDied(int a)
         {
             //Pause.PauseGame(); //?
             Player.Instance.IsNotMoving = true;
@@ -22,10 +22,6 @@ namespace HNUI
 
             _winScreenGO.SetActive(true);
 
-            // Temporary
-            SaveableData.Instance.AddMaximalLevels(1);
-
-            ScoreCounter.Reset(); // here??
         }
 
         private void OnDisable()
