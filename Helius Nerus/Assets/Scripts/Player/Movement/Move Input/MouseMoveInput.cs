@@ -38,6 +38,11 @@ public class MouseMoveInput : IMoveInput
 			Thrust = 0f;
 		}
 		Direction = directionedDistance.normalized;
-		Thrust *= TransformMover.DESCTOP_MAX_SPEED;
+		Thrust *= 7f;
+	}
+
+	public void Tick(Transform transform)
+	{
+		transform.Translate((Vector3)Direction * Thrust * TimeManager.PlayerDeltaTime, Space.World);
 	}
 }

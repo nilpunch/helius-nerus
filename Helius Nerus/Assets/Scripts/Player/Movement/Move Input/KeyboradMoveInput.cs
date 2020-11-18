@@ -15,7 +15,12 @@ class KeyboradMoveInput : IMoveInput
 		Vector2 axis = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 		Direction = axis.normalized;
 		Thrust = Mathf.Clamp01(axis.magnitude);
-		Thrust *= TransformMover.DESCTOP_MAX_SPEED;
+		Thrust *= 7f;
+	}
+
+	public void Tick(Transform transform)
+	{
+		transform.Translate((Vector3)Direction * Thrust * TimeManager.PlayerDeltaTime, Space.World);
 	}
 }
 

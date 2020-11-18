@@ -1,61 +1,47 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class DragMovement : InputCanvas<DragMovement>, IDragHandler, IPointerDownHandler, IPointerUpHandler, IMoveInput
+public class DragMovement : InputCanvas<DragMovement>, IPointerUpHandler, IPointerDownHandler, IDragHandler, IMoveInput
 {
-    private Vector2 _clickPosition;
+	private Vector2 _startPosition = Vector2.zero;
 
-    private Vector2 _direction;
-    public Vector2 Direction
-    {
-        get;
-        private set;
-    }
+	private Transform _transform;
 
-    public float Thrust
-    {
-        get;
-        private set;
-    }
+	public static void InitWithTransform(Transform transform)
+	{
+		((DragMovement)Instance)._transform = transform;
+	}
 
-    protected override string InputType
+	protected override string InputType
     {
         get => "DragMovement";
     }
 
-    public void OnDrag(PointerEventData eventData)
+	public void OnPointerDown(PointerEventData eventData)
+	{
+		_startPosition = eventData.position;
+	}
+
+	public void OnPointerUp(PointerEventData eventData)
     {
-        _direction = eventData.position - _clickPosition;
-        _clickPosition = eventData.position;
-    }
+		_startPosition = eventData.position;
+	}
 
-    public void ReadInput()
-    {
-        //_direction = ParallaxCamera.CameraUI.ScreenToWorldPoint(new Vector3(Screen.width / 2 + _direction.x,
-        //    Screen.height / 2 + _direction.y, 0));
+	public void OnDrag(PointerEventData eventData)
+	{
+		Vector2 delta = -(_startPosition - eventData.position) / Screen.height * ParallaxCamera.CameraUI.orthographicSize * 2f;
+		delta.x *= ParallaxCamera.ParallaxCoefficient;
+		_transform.Translate(delta);
+		_startPosition = eventData.position;
+	}
 
-        Direction = _direction.normalized;
-        // mag  -lenght in pixels
-        // height - height, so we got like percentage of screen after division
-        // then multiply by camera size
-        Thrust = _direction.magnitude / Screen.height * ParallaxCamera.CameraUI.orthographicSize * 2;
-        //Thrust = _direction.magnitude;
+	public void Tick(Transform transform)
+	{
+		 
+	}
 
+	public void ReadInput()
+	{
 
-        Thrust *= TransformMover.DESCTOP_MAX_SPEED;
-
-        _direction = Vector2.zero;
-        //Thrust *= TransformMover.DESCTOP_MAX_SPEED;
-    }
-
-
-    public void OnPointerDown(PointerEventData eventData)
-    {
-        _clickPosition = eventData.position;
-    }
-
-    public void OnPointerUp(PointerEventData eventData)
-    {
-        _direction = Vector2.zero;
-    }
+	}
 }

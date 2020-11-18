@@ -34,7 +34,7 @@ public class FloatingJoystick : InputCanvas<FloatingJoystick>, IDragHandler, IPo
     {
         Direction = _direction.normalized;
         Thrust = _direction.magnitude / _maxDistance;
-		Thrust *= TransformMover.DESCTOP_MAX_SPEED;
+		Thrust *= 7f;
 	}
 
 	private void SetButtonPosition(Vector2 position)
@@ -53,5 +53,10 @@ public class FloatingJoystick : InputCanvas<FloatingJoystick>, IDragHandler, IPo
 	{
 		_buttonTransform.anchoredPosition = Vector2.zero;
 		_direction = Vector2.zero;
+	}
+
+	public void Tick(Transform transform)
+	{
+		transform.Translate((Vector3)Direction * Thrust * TimeManager.PlayerDeltaTime, Space.World);
 	}
 }

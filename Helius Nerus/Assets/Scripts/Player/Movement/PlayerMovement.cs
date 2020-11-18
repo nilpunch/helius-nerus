@@ -18,7 +18,6 @@ public class PlayerMovement
     [SerializeField] private InputType _moveInputType = InputType.Mouse;
 
     private IMoveInput _moveInput = null;
-    private TransformMover _transformMover = null;
 
     public void Init()
     {
@@ -35,6 +34,7 @@ public class PlayerMovement
             case InputType.DragMovement:
                 DragMovement.Activate();
                 _moveInput = (IMoveInput)DragMovement.Instance;
+				DragMovement.InitWithTransform(_transform);
                 break;
 
             case InputType.FloatingJoystick:
@@ -49,14 +49,12 @@ public class PlayerMovement
         }
 
         PlayerPrefs.SetString("InputType", _moveInputType.ToString());
-
-        _transformMover = new TransformMover(_moveInput, _transform, _sensivity);
     }
 
     public void Update()
     {
         _moveInput.ReadInput();
-        _transformMover.Tick();
+		_moveInput.Tick(_transform);
 
         _transform.position = new Vector3(
             Mathf.Clamp(_transform.position.x, ParallaxCamera.ParallaxBoundary.xMin + _playerBoundaryOffset, ParallaxCamera.ParallaxBoundary.xMax - _playerBoundaryOffset),
