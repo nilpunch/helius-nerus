@@ -1,6 +1,13 @@
 ﻿using UnityEngine;
 
-public enum InputType { Keyboard, Mouse, StandartDrag, FloatingJoystick };
+public enum InputType
+{
+    Keyboard,
+    Mouse,
+    StandartDrag,
+    FloatingJoystick,
+    FixedJoystick,
+};
 
 [System.Serializable]
 public class PlayerMovement
@@ -28,6 +35,11 @@ public class PlayerMovement
             case InputType.FloatingJoystick:
                 FloatingJoystick.Activate();
                 _moveInput = (IMoveInput)FloatingJoystick.Instance;
+                break;
+
+            case InputType.FixedJoystick:
+                FixedJoystick.Activate();
+                _moveInput = (IMoveInput)FixedJoystick.Instance;
                 break;
         }
 

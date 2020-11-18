@@ -101,27 +101,18 @@ public class MidGameSaver
     {
         // We ended the game, so we erase the save
         DeleteSave();
-#if UNITY_EDITOR
-        Debug.Log("Save was erased - end of game");
-#endif
     }
 
     private void LevelsChanger_LevelSpawn()
     {
         // New level started, we save the game
         SaveGame();
-#if UNITY_EDITOR
-        Debug.Log("Game was saved!");
-#endif
     }
 
     private void Player_PlayerDie()
     {
         //Player died, so we erase the save
         DeleteSave();
-#if UNITY_EDITOR
-        Debug.Log("Save was erased - player died");
-#endif
     }
 
     public void SaveGame()

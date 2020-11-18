@@ -8,7 +8,6 @@ public class FloatingJoystick : InputCanvas<FloatingJoystick>, IDragHandler, IPo
     [SerializeField] private float _maxDistance = 5.0f;
 
     private Vector2 _direction;
-
     public Vector2 Direction
     {
         get;

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AchievementSystem : MonoBehaviour
+public class AchievementSystem
 {
     private class AchievementsSaving
     {
@@ -17,47 +17,25 @@ public class AchievementSystem : MonoBehaviour
         }
     }
 
-    private static AchievementSystem _instance = null;
-
     private List<Achievment> _achievments = new List<Achievment>();
     private AchievementsSaving _achievementsSaving = new AchievementsSaving();
 
     public static AchievementSystem Instance
     {
-        get => _instance;
-    }
+        get;
+        private set;
+    } = null;
 
-    private void Awake()
+    public static void Initialize()
     {
-        if (_instance == null)
-            _instance = this;
-        else
+        if (Instance == null)
         {
-            Destroy(gameObject);
-            return;
-        }
-        DontDestroyOnLoad(gameObject);
+            Instance = new AchievementSystem();
 
-        AddAchievementsHere();
-
-        LoadAchievements();
-    }
-
-#if UNITY_EDITOR
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            SaveAchievments();
-            Debug.Log(PlayerPrefs.GetString("AchievementsData"));
-        }
-
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            ResetAchievements();
+            Instance.AddAchievementsHere();
+            Instance.LoadAchievements();
         }
     }
-#endif
 
     private void ResetAchievements()
     {

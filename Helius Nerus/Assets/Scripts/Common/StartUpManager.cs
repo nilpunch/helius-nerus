@@ -2,11 +2,13 @@
 
 public class StartUpManager : MonoBehaviour
 {
-    private void Awake()
+    private System.Collections.IEnumerator Start()
     {
         MidGameSaver.Initialize();
         ScoreCounter.Initialize();
+        AchievementSystem.Initialize();
 
         Destroy(gameObject);
+        yield break;
     }
 }
