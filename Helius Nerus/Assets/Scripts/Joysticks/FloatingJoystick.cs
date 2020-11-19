@@ -51,7 +51,7 @@ public class FloatingJoystick : InputCanvas<FloatingJoystick>, IDragHandler, IPo
 
 	public void OnPointerUp(PointerEventData eventData)
 	{
-		_buttonTransform.anchoredPosition = Vector2.zero;
+        _buttonTransform.anchoredPosition = Vector2.zero;
 		_direction = Vector2.zero;
 	}
 

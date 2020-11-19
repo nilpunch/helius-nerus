@@ -22,6 +22,8 @@ namespace HNUI
             {
                 _text.text = LocalizationManager.Instance.GetLocalizedValue(_text.text);
             }
+
+            Destroy(this);
         }
     }
 }

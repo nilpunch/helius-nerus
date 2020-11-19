@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using DG.Tweening;
 
 public class StartUpManager : MonoBehaviour
 {
@@ -7,6 +8,8 @@ public class StartUpManager : MonoBehaviour
         MidGameSaver.Initialize();
         ScoreCounter.Initialize();
         AchievementSystem.Initialize();
+
+        DOTween.Init();
 
         Destroy(gameObject);
         yield break;

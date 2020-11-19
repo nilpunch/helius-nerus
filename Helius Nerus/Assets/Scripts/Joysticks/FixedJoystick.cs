@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class FixedJoystick : InputCanvas<FixedJoystick>, IDragHandler, IPointerUpHandler, IMoveInput
+public class FixedJoystick : InputCanvas<FixedJoystick>, IDragHandler, IPointerUpHandler, IPointerDownHandler, IMoveInput
 {
     [SerializeField] private RectTransform _buttonTransform = null;
     [SerializeField] private RectTransform _baseTransform = null;
@@ -50,6 +50,12 @@ public class FixedJoystick : InputCanvas<FixedJoystick>, IDragHandler, IPointerU
         _buttonTransform.anchoredPosition = _direction;
     }
 
+    // Без дауна почему-то не прокал ап
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        return;
+    }
+
     public void OnPointerUp(PointerEventData eventData)
     {
         _buttonTransform.anchoredPosition = Vector2.zero;
@@ -60,4 +66,5 @@ public class FixedJoystick : InputCanvas<FixedJoystick>, IDragHandler, IPointerU
 	{
 		transform.Translate((Vector3)Direction * Thrust * TimeManager.PlayerDeltaTime, Space.World);
 	}
+
 }
