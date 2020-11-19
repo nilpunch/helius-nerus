@@ -7,17 +7,16 @@ namespace HNUI
     {
         public string ControlType
         {
-            get => _controlType;
+            get => _inputType.ToString();
         }
 
-        [SerializeField] private string _controlType = "DragMovement";
-        [SerializeField] private int _myNum = 0;
+        [SerializeField] private InputType _inputType = InputType.DragMovement;
 
         [SerializeField] private ControlTypeChanger _controlTypeChanger = null;
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            _controlTypeChanger.ChangeControlType(_myNum);
+            _controlTypeChanger.ChangeControlType((int)_inputType);
         }
     }
 }

@@ -2,11 +2,11 @@
 
 public enum InputType
 {
+    DragMovement = 0,
+    FixedJoystick = 1,
+    FloatingJoystick = 2,
     Keyboard,
     Mouse,
-    DragMovement,
-    FloatingJoystick,
-    FixedJoystick,
 };
 
 [System.Serializable]
@@ -21,6 +21,15 @@ public class PlayerMovement
 
     public void Init()
     {
+        if (PlayerPrefs.HasKey("ControlType"))
+        {
+            _moveInputType = (InputType)System.Enum.Parse(typeof(InputType), PlayerPrefs.GetString("ControlType"));
+        }
+        if (PlayerPrefs.HasKey("Sensitivity"))
+        {
+            _sensivity = PlayerPrefs.GetFloat("Sensitivity");
+        }
+
         switch (_moveInputType)
         {
             case InputType.Keyboard:
@@ -53,7 +62,7 @@ public class PlayerMovement
     public void Update()
     {
         _moveInput.ReadInput();
-		_moveInput.Tick(_transform);
+		_moveInput.Tick(_transform, _sensivity);
 
         _transform.position = new Vector3(
             Mathf.Clamp(_transform.position.x, ParallaxCamera.ParallaxBoundary.xMin + _playerBoundaryOffset, ParallaxCamera.ParallaxBoundary.xMax - _playerBoundaryOffset),

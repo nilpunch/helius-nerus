@@ -3,5 +3,5 @@
 public interface IMoveInput
 {
 	void ReadInput();
-	void Tick(Transform transform);
+	void Tick(Transform transform, float sensitivity);
 }

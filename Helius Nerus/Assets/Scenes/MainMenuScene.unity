@@ -1358,8 +1358,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff39e1ee3984c454b85e649788706b28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _controlType: DragMovement
-  _myNum: 0
+  _inputType: 0
   _controlTypeChanger: {fileID: 1826971620}
 --- !u!114 &493586341
 MonoBehaviour:
@@ -3677,8 +3676,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff39e1ee3984c454b85e649788706b28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _controlType: FloatingJoystick
-  _myNum: 2
+  _inputType: 2
   _controlTypeChanger: {fileID: 1826971620}
 --- !u!114 &1159224364
 MonoBehaviour:
@@ -4284,8 +4282,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff39e1ee3984c454b85e649788706b28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _controlType: FixedJoystick
-  _myNum: 1
+  _inputType: 1
   _controlTypeChanger: {fileID: 1826971620}
 --- !u!114 &1203924643
 MonoBehaviour:
@@ -6133,6 +6130,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1979616501}
   - component: {fileID: 1979616502}
+  - component: {fileID: 1979616503}
   m_Layer: 5
   m_Name: SenditivitySlider
   m_TagString: Untagged
@@ -6211,7 +6209,32 @@ MonoBehaviour:
   m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1979616503}
+        m_TargetAssemblyTypeName: HNUI.SensitivitySlider, Assembly-CSharp
+        m_MethodName: SliderValueChanged
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1979616503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1979616500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e19181f82db371478010849aed6ee0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _slider: {fileID: 1979616502}
 --- !u!1 &1980779635
 GameObject:
   m_ObjectHideFlags: 0

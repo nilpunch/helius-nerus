@@ -18,9 +18,9 @@ class KeyboradMoveInput : IMoveInput
 		Thrust *= 7f;
 	}
 
-	public void Tick(Transform transform)
+	public void Tick(Transform transform, float sens)
 	{
-		transform.Translate((Vector3)Direction * Thrust * TimeManager.PlayerDeltaTime, Space.World);
+		transform.Translate((Vector3)Direction * Thrust * TimeManager.PlayerDeltaTime  * sens, Space.World);
 	}
 }
 

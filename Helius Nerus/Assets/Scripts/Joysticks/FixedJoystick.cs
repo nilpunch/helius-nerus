@@ -62,9 +62,9 @@ public class FixedJoystick : InputCanvas<FixedJoystick>, IDragHandler, IPointerU
         _direction = Vector2.zero;
     }
 
-	public void Tick(Transform transform)
+	public void Tick(Transform transform, float sens)
 	{
-		transform.Translate((Vector3)Direction * Thrust * TimeManager.PlayerDeltaTime, Space.World);
+		transform.Translate((Vector3)Direction * Thrust * TimeManager.PlayerDeltaTime * sens, Space.World);
 	}
 
 }

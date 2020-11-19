@@ -27,10 +27,10 @@ public class DragMovement : InputCanvas<DragMovement>, IPointerUpHandler, IPoint
 		_startPosition = eventData.position;
 	}
 
-	public void Tick(Transform transform)
+	public void Tick(Transform transform, float sens)
 	{
 		_delta.x *= ParallaxCamera.ParallaxCoefficient;
-		transform.Translate(_delta);
+		transform.Translate(_delta * sens);
 		_delta = Vector2.zero;
 	}
 
