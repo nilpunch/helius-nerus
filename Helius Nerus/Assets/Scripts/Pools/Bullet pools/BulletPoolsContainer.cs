@@ -35,6 +35,27 @@ public class BulletPoolsContainer : MonoBehaviour
         TransitionScene.NewSceneWasLoaded += TransitionScene_NewSceneWasLoaded;
     }
 
+    private void OnEnable()
+    {
+        Player.PlayerDie += Player_PlayerDie;
+        LevelBoss.FinalBossDied += LevelBoss_FinalBossDied;
+    }
+
+    private void LevelBoss_FinalBossDied(int obj)
+    {
+        ClearAllBullets();
+    }
+
+    private void OnDisable()
+    {
+        Player.PlayerDie -= Player_PlayerDie;
+    }
+
+    private void Player_PlayerDie()
+    {
+        ClearAllBullets();
+    }
+
     private void TransitionScene_NewSceneWasLoaded(Scenes obj)
     {
         ClearAllBullets();

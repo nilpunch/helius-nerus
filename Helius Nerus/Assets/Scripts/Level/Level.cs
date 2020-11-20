@@ -7,7 +7,6 @@ public class Level : MonoBehaviour
     [SerializeField] private WallsPlacer _wallsPlacer = null;
     [SerializeField] private LevelBoss _levelBoss = null;
     [SerializeField] private LevelPortal _levelPortal = null;
-    [SerializeField] private Pause _pause = null;
 
     private EnemiesInSceneCounter _counter = new EnemiesInSceneCounter();
 
@@ -26,7 +25,6 @@ public class Level : MonoBehaviour
         _wallsPlacer.Init();
         _levelBoss.Init();
         _levelPortal.Init();
-        _pause.Init();
     }
 
     private void OnDestroy()

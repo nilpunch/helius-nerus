@@ -8,6 +8,7 @@ public class StartUpManager : MonoBehaviour
         MidGameSaver.Initialize();
         ScoreCounter.Initialize();
         AchievementSystem.Initialize();
+        Pause.Initialize();
 
         DOTween.Init();
 

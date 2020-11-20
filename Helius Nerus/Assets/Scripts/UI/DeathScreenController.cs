@@ -14,7 +14,7 @@ namespace HNUI
 
         private void Player_PlayerDie()
         {
-            BulletPoolsContainer.Instance.ClearAllBullets();
+            //BulletPoolsContainer.Instance.ClearAllBullets();
 
             // Pause game
             //Pause.PauseGame();

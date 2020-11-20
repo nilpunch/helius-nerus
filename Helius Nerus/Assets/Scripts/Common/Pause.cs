@@ -13,68 +13,63 @@ public class Pause
     /// Game started to unpause
     /// </summary>
     public static event System.Action GameUnpausing = delegate { };
-    private static Pause _instance;
 
-    [SerializeField] private UnityEngine.UI.Image _fadeImage = null;
-    [SerializeField] private float _fadeSeconds = 1;
-    [SerializeField] private float _fadeValue = 0.5f;
+    private bool _paused = false;
 
-    private static bool _paused = false;
-
-    public void Init()
+    public static Pause Instance
     {
-        _instance = this;
+        get;
+        private set;
+    } = null;
+    public static float UnpauseDuration
+    {
+        get => 3.0f;
+    }
+
+    public static void Initialize()
+    {
+        if (Instance == null)
+        {
+            Instance = new Pause();
+        }
     }
 
     public static void PauseGame()
     {
         TimeManager.PauseAll();
 
-        _paused = true;
-
-        Color color = _instance._fadeImage.color;
-        color.a = _instance._fadeValue;
-        _instance._fadeImage.color = color;
+        Instance._paused = true;
 
         GamePaused.Invoke();
     }
 
     public static void UnpauseGame()
     {
-        CoroutineProcessor.LaunchCoroutine(_instance.FadeOut());
         GameUnpausing.Invoke();
+        CoroutineProcessor.LaunchCoroutine(Instance.UnpauseCounter());
     }
 
-    public static void TogglePause()
-    {
-        if (_paused)
-            UnpauseGame();
-        else
-            PauseGame();
-    }
-
-    private IEnumerator FadeOut()
+    private IEnumerator UnpauseCounter()
     {
         float timeElapsed = 0.0f;
-        float fadePerSeconds = (0 - _fadeImage.color.a) / _fadeSeconds;
-
-        Color color;
-
-        while (timeElapsed <= _fadeSeconds)
+        while (timeElapsed <= UnpauseDuration)
         {
             timeElapsed += Time.deltaTime;
-
-            color = _fadeImage.color;
-            color.a += fadePerSeconds * Time.deltaTime;
-            _fadeImage.color = color;
             yield return null;
         }
 
-        TimeManager.UnauseAll();
+        TimeManager.UnpauseAll();
 
         _paused = false;
 
         GameUnpaused.Invoke();
+    }
 
+    public static void TogglePause()
+    {
+        if (Instance._paused)
+            UnpauseGame();
+        else
+            PauseGame();
     }
 }

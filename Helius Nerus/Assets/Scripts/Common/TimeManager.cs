@@ -72,7 +72,7 @@ public static class TimeManager
         _uiTimeScale = 0;
     }
 
-    public static void UnauseAll()
+    public static void UnpauseAll()
     {
         _enemyTimeScale = 1.0f;
         _playerTimeScale = 1.0f;
