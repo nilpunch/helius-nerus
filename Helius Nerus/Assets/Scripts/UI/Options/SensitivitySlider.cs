@@ -15,6 +15,11 @@ namespace HNUI
 
         public void SliderValueChanged(float sens)
         {
+			if (Mathf.Abs(sens - 1f) < 0.03)
+			{
+				sens = 1.0f;
+				_slider.value = 1.0f;
+			}
             PlayerPrefs.SetFloat("Sensitivity", sens);
         }
     }

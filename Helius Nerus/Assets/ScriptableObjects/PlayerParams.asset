@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0458c2c955eae7847a2b256a76b8de8a, type: 3}
   m_Name: PlayerParams
   m_EditorClassIdentifier: 
-  _maxHealth: 8
+  _maxHealth: 100
   _invinsibilityTime: 1
   _bombsAmount: 1
   _maxBombs: 2

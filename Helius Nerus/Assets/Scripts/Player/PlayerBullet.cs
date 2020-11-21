@@ -7,7 +7,6 @@ public class PlayerBullet : MonoBehaviour, IReturnableToPool
 	private Transform _transform = null;
 
 	private List<PlayerWeaponModifier> _modifiers = new List<PlayerWeaponModifier>();
-	private Dictionary<ModifierType, int> _procedModifiers = new Dictionary<ModifierType, int>();
 
 	public PlayerBulletParameters BulletParameters
 	{
@@ -16,10 +15,6 @@ public class PlayerBullet : MonoBehaviour, IReturnableToPool
 	public Transform Transform
 	{
 		get => _transform;
-	}
-	public Dictionary<ModifierType, int> ModifiersProcCount
-	{
-		get => _procedModifiers;
 	}
 	public List<PlayerWeaponModifier> Modifiers
 	{
@@ -60,7 +55,6 @@ public class PlayerBullet : MonoBehaviour, IReturnableToPool
 	{
 		BulletParameters.Durability = 1;
 		CollideWithEnemies = false;
-		_procedModifiers.Clear();
 		BulletPoolsContainer.Instance.ReturnObjectToPool(BulletTypes.PlayerBullet, gameObject);
 	}
 
