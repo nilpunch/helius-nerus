@@ -210,4 +210,10 @@ public class Player : MonoBehaviour
             _weapons[i].LoadFromSavedData(weaponParams[i], weaponMods[i]);
         }
     }
+
+    public void SimulateDie()
+    {
+        PlayerDie.Invoke();
+        gameObject.SetActive(false);
+    }
 }

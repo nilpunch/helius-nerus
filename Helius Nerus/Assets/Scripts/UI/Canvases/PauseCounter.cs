@@ -6,6 +6,7 @@ namespace HNUI
     public class PauseCounter : MonoBehaviour
     {
         [SerializeField] private TMPro.TextMeshProUGUI _text = null;
+        [SerializeField] private Canvas _pauseCanvas = null;
 
         private void OnEnable()
         {
@@ -20,15 +21,17 @@ namespace HNUI
         private IEnumerator CounterAnimation()
         {
             float timeElapsed = 0.0f;
-            _text.gameObject.SetActive(true);
+
+            _text.enabled = true;
+            _pauseCanvas.enabled = false;
+
             while (timeElapsed <= 3.0f)
             {
-                // АААА Я не понимаю реально в чем дело
                 timeElapsed += Time.deltaTime;
                 _text.text = Mathf.Ceil(3.0f - timeElapsed).ToString();
                 yield return null;
             }
-            _text.gameObject.SetActive(false);
+            _text.enabled = false;
         }
 
         private void OnDisable()

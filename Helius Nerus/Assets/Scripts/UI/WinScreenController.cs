@@ -21,7 +21,6 @@ namespace HNUI
             BulletPoolsContainer.Instance.ClearAllBullets();
 
             _winScreenGO.SetActive(true);
-
         }
 
         private void OnDisable()
