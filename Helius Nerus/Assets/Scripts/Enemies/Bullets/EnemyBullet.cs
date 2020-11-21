@@ -1,11 +1,16 @@
 ﻿using UnityEngine;
 
-public class BasicEnemyBullet : MonoBehaviour, IBulletMovement, IDealDamageToPlayer, IReturnableToPool
+public class EnemyBullet : MonoBehaviour, IBulletMovement, IDealDamageToPlayer, IReturnableToPool
 {
     [SerializeField] protected int _damage = 1;
 
     protected float _speedMultiplier = 1.0f;
     protected Transform _transform = null;
+
+	public Transform Transform
+	{
+		get => _transform;
+	}
 
     public float SpeedMultiplier
     {

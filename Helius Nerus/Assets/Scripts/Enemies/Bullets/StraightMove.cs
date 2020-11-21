@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class StraightMove : BasicEnemyBullet
+public class StraightMove : EnemyBullet
 {
     private void Update()
     {

@@ -5,6 +5,7 @@ public class EnemyPoolContainer : MonoBehaviour
 {
     [SerializeField] private GameObject[] _enemiesPrefabs = null;
     private List<EnemyPool> _pools = new List<EnemyPool>();
+	private List<GameObject> _allInstantiatedEnemies = new List<GameObject>();
     private Transform _transform;
 
     public static EnemyPoolContainer Instance
@@ -42,6 +43,16 @@ public class EnemyPoolContainer : MonoBehaviour
     {
         _pools[(int)type].ReturnObjectToPool(go);
     }
+
+	public void RegisterNewInstance(GameObject go)
+	{
+		_allInstantiatedEnemies.Add(go);
+	}
+
+	public List<GameObject> GetAllEnemies()
+	{
+		return _allInstantiatedEnemies;
+	}
 }
 
 public class EnemyPool
@@ -65,6 +76,7 @@ public class EnemyPool
             go.transform.parent = _transform;
             go.SetActive(false);
             _pool.Enqueue(go);
+			EnemyPoolContainer.Instance.RegisterNewInstance(go);
         }
     }
 
