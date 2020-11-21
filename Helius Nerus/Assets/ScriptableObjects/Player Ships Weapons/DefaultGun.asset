@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: DefaultGun
   m_EditorClassIdentifier: 
   _position: {x: 0, y: 0}
-  _direction: {x: 0, y: 1}
+  _weaponAngle: 0
   _bulletsPerSec: 2
   _bulletAmount: 1
   _spreadAngleDegrees: 30
   _bulletSpeed: 8
   _bulletDamage: 1
   _damageMult: 1
-  _bulletSize: 0.3
+  _bulletSize: 1

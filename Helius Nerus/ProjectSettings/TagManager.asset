@@ -50,3 +50,6 @@ TagManager:
   - name: Bullets
     uniqueID: 3748561883
     locked: 0
+  - name: Player Hit Box
+    uniqueID: 3847044317
+    locked: 0
