@@ -16,4 +16,4 @@ MonoBehaviour:
   - _position: {x: 0, y: 0}
     _type: 1
   _width: 1.32
-  _cost: 20
+  _cost: 200

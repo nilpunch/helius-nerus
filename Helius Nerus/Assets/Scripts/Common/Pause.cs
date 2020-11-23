@@ -26,6 +26,16 @@ public class Pause
         get => 3.0f;
     }
 
+    public Pause()
+    {
+        TransitionScene.NewSceneWasLoaded += TransitionScene_NewSceneWasLoaded;
+    }
+
+    private void TransitionScene_NewSceneWasLoaded(Scenes obj)
+    {
+        InstantUnpause();
+    }
+
     public static void Initialize()
     {
         if (Instance == null)
@@ -47,6 +57,16 @@ public class Pause
     {
         GameUnpausing.Invoke();
         CoroutineProcessor.LaunchCoroutine(Instance.UnpauseCounter());
+    }
+    
+    public static void InstantUnpause()
+    {
+       // GameUnpausing.Invoke();
+        TimeManager.UnpauseAll();
+
+        Instance._paused = false;
+
+        GameUnpaused.Invoke();
     }
 
     private IEnumerator UnpauseCounter()

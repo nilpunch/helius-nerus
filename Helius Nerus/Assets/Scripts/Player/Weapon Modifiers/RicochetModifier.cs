@@ -6,11 +6,11 @@ public class RicochetModifier : PlayerWeaponModifier
 	public const float COLLISION_DISABLE_TIME = 0.1f;
 	public const float RICOCHET_ANGLE = 90f;
 
-	private WaitForSeconds _waiter = new WaitForSeconds(COLLISION_DISABLE_TIME);
+	private WaitForSeconds _waiter = new WaitForSeconds(COLLISION_DISABLE_TIME); 
 
-	public override string MyEnumName => "RicochetModifier";
+    public override ModifierType MyEnumValue => ModifierType.RicochetModifier;
 
-	public override PlayerWeaponModifier Clone()
+    public override PlayerWeaponModifier Clone()
 	{
 		return (RicochetModifier)MemberwiseClone();
 	}

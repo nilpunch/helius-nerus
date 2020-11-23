@@ -92,7 +92,7 @@ public class BulletPool
     private Queue<GameObject> _pool = new Queue<GameObject>();
 
     // Use another collection?
-    private List<GameObject> _activeBullets = new List<GameObject>();
+    private List<GameObject> _registeredBullets = new List<GameObject>();
 
     public BulletPool(GameObject prefab, Transform transform)
     {
@@ -109,6 +109,7 @@ public class BulletPool
             go.transform.parent = _transform;
             go.SetActive(false);
             _pool.Enqueue(go);
+            _registeredBullets.Add(go);
         }
     }
 
@@ -121,7 +122,7 @@ public class BulletPool
             go.SetActive(true);
             go.transform.parent = null;
 
-            _activeBullets.Add(go);
+            //_registeredBullets.Add(go);
 
             return go;
         }
@@ -136,17 +137,18 @@ public class BulletPool
     {
         go.transform.parent = _transform;
         go.SetActive(false);
-        _activeBullets.Remove(go);
+        //_registeredBullets.Remove(go);
         _pool.Enqueue(go);
     }
 
     public void ClearScreenBullets()
     {
-        while (_activeBullets.Count > 0)
+        foreach(GameObject go in _registeredBullets)
         {
-            ReturnObjectToPool(_activeBullets[0]);
+            if (go.activeSelf == true)
+                ReturnObjectToPool(go);
         }
-        _activeBullets.Clear();
+        //_registeredBullets.Clear();
     }
 }
 

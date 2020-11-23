@@ -9,15 +9,17 @@ namespace HNUI
         private void OnEnable()
         {
             Player.PlayerDie += Player_PlayerDie;
+            TransitionScene.NewSceneWasLoaded += TransitionScene_NewSceneWasLoaded;
+            _deathScreenGO.SetActive(false);
+        }
+
+        private void TransitionScene_NewSceneWasLoaded(Scenes obj)
+        {
             _deathScreenGO.SetActive(false);
         }
 
         private void Player_PlayerDie()
-        {
-            //BulletPoolsContainer.Instance.ClearAllBullets();
-
-            // Pause game
-            //Pause.PauseGame();
+        { 
 
             _deathScreenGO.SetActive(true);            
         }
@@ -25,6 +27,7 @@ namespace HNUI
         private void OnDisable()
         {
             Player.PlayerDie -= Player_PlayerDie;
+            TransitionScene.NewSceneWasLoaded -= TransitionScene_NewSceneWasLoaded;
         }
     }
 }

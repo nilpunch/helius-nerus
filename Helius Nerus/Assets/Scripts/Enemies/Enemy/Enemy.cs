@@ -22,6 +22,21 @@ public class Enemy : MonoBehaviour, IReturnableToPool, IDealDamageToPlayer, ITak
         _stats.Reset();
     }
 
+    private void OnEnable()
+    {
+        Player.PlayerDie += Player_PlayerDie;
+    }
+
+    private void OnDisable()
+    {
+        Player.PlayerDie -= Player_PlayerDie;
+    }
+
+    private void Player_PlayerDie()
+    {
+        ReturnMeToPool();
+    }
+
     private void Update()
     {
         _moveProcessor.TickCommandThreads();

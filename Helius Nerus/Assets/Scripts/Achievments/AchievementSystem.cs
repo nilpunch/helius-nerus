@@ -56,7 +56,7 @@ public class AchievementSystem
         _achievments.Add(new DeathAchievement());
     }
 
-    private void SaveAchievments()
+    public void SaveAchievments()
     {
         _achievementsSaving.UpdateInfo(_achievments);
         PlayerPrefs.SetString("AchievementsData", JsonUtility.ToJson(_achievementsSaving));
@@ -95,5 +95,4 @@ public class AchievementSystem
         }
         return;
     }
-
 }

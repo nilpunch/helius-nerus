@@ -61,7 +61,7 @@ public class MidGameSaver
                 // modifiers
                 foreach (PlayerWeaponModifier modifier in Player.PlayerWeapons[i].WeaponModifiers)
                 {
-                    sb.Append(modifier.MyEnumName);
+                    sb.Append(modifier.MyEnumValue.ToString());
                     sb.Append(',');
                 }
                 sb.Remove(sb.Length - 1, 1);

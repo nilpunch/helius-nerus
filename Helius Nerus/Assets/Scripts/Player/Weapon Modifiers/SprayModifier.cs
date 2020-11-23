@@ -5,7 +5,7 @@ public class SprayModifier : PlayerWeaponModifier
 	public const float WEAPON_MOVE_TIME = 1f;
     private UnityEngine.Coroutine _coroutine = null;
 
-    public override string MyEnumName => "SprayModifier";
+    public override ModifierType MyEnumValue => ModifierType.SprayModifier;
 
     public override PlayerWeaponModifier Clone()
 	{

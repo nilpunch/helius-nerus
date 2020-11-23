@@ -9,9 +9,9 @@ public class SplitInTwoModifier : PlayerWeaponModifier
 
 	private WaitForSeconds _waiter = new WaitForSeconds(COLLISION_DISABLE_TIME);
 
-	public override string MyEnumName => "SplitInTwoModifier";
+    public override ModifierType MyEnumValue => ModifierType.SplitInTwoModifier;
 
-	public override PlayerWeaponModifier Clone()
+    public override PlayerWeaponModifier Clone()
 	{
 		return (SplitInTwoModifier)MemberwiseClone();
 	}

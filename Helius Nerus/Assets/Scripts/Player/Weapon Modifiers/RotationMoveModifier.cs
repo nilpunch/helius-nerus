@@ -5,7 +5,7 @@ class RotationMoveModifier : PlayerWeaponModifier
 {
 	public const float MAX_ANGLE_INCREMENT = 5.0f;
 
-    public override string MyEnumName => "RotationMoveModifier";
+    public override ModifierType MyEnumValue => ModifierType.RotationMoveModifier;
 
     public override PlayerWeaponModifier Clone()
 	{

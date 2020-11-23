@@ -21,11 +21,13 @@
         {
             if (obj == Scenes.HUB)
             {
-                Instance._canvas.enabled = true;
+                //Instance._canvas.enabled = true;
+                gameObject.SetActive(true);
             }
             else
             {
-                Instance._canvas.enabled = false;
+                //Instance._canvas.enabled = false;
+                gameObject.SetActive(false);
             }
         }
 

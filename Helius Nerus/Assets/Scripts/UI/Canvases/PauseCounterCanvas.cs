@@ -15,12 +15,18 @@
         {
             base.Awake();
             Instance = this;            
+            TransitionScene.NewSceneWasLoaded += TransitionScene_NewSceneWasLoaded;
         }
 
         private void OnEnable()
         {
-            TransitionScene.NewSceneWasLoaded += TransitionScene_NewSceneWasLoaded;
             Pause.GamePaused += Pause_GamePaused;
+            Pause.GameUnpaused += Pause_GameUnpaused;
+        }
+
+        private void Pause_GameUnpaused()
+        {
+            _pauseCanvas.enabled = false;
         }
 
         private void Pause_GamePaused()
@@ -32,18 +38,25 @@
         {
             if (obj == Scenes.INGAME)
             {
-                Instance._canvas.enabled = true;
+                //Instance._canvas.enabled = true;
+                gameObject.SetActive(true);
             }
             else
             {
-                Instance._canvas.enabled = false;
+                //Instance._canvas.enabled = false;
+                gameObject.SetActive(false);
             }
         }
 
         private void OnDisable()
         {
-            TransitionScene.NewSceneWasLoaded -= TransitionScene_NewSceneWasLoaded;
             Pause.GamePaused -= Pause_GamePaused;
+            Pause.GameUnpaused -= Pause_GameUnpaused;
+        }
+
+        private void OnDestroy()
+        {
+            TransitionScene.NewSceneWasLoaded -= TransitionScene_NewSceneWasLoaded;
         }
     }
 }

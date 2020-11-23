@@ -142,9 +142,9 @@ MonoBehaviour:
     _maxEnemiesAmount: 100
   _enemiesPacksNew:
   - {fileID: 11400000, guid: 2cd4ef7a8fdb2a44c93c87094e7b7489, type: 2}
-  _money: 20
-  _moneyPerSecond: 2
-  _moneySpendingLimit: 20
+  _money: 50
+  _moneyPerSecond: 50
+  _moneySpendingLimit: 500
   _playerDamageReward: 5
 --- !u!1 &5358465952583763555
 GameObject:
@@ -176,7 +176,7 @@ Transform:
   m_LocalPosition: {x: 0, y: -5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 5358465953164640448}
+  m_Father: {fileID: 5358465953492330148}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &5358465952583763559
@@ -453,7 +453,6 @@ Transform:
   - {fileID: 5358465952347917740}
   - {fileID: 5358465953492330148}
   - {fileID: 5358465953445286090}
-  - {fileID: 5358465952583763556}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -542,6 +541,7 @@ Transform:
   - {fileID: 5358465952625164171}
   - {fileID: 5358465952806605505}
   - {fileID: 5358465952100849013}
+  - {fileID: 5358465952583763556}
   m_Father: {fileID: 5358465953164640448}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

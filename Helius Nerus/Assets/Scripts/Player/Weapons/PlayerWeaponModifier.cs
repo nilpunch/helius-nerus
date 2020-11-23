@@ -2,12 +2,12 @@
 
 public abstract class PlayerWeaponModifier
 {
-    public abstract string MyEnumName
+    public abstract ModifierType MyEnumValue
     {
         get;
     }
 
-	public virtual void OnPick(PlayerWeapon playerWeapon) { }
+    public virtual void OnPick(PlayerWeapon playerWeapon) { }
 	public virtual void OnDrop(PlayerWeapon playerWeapon) { }
 	public virtual void OnBulletEnable(PlayerBullet playerBullet) { }
 	public virtual void OnWeaponShoot(PlayerWeapon playerWeapon) { }

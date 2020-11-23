@@ -7,9 +7,10 @@ public class HomingModifier : PlayerWeaponModifier
 	public const float MIN_TIME_SEARCH = 0.5f;
 	public const float HOMING_COEFFICIENT = 50f;
 
-    public override string MyEnumName => "HomingModifier";
+    private WaitForSeconds _waitTime = new WaitForSeconds(MIN_TIME_SEARCH);
 
-	private WaitForSeconds _waitTime = new WaitForSeconds(MIN_TIME_SEARCH);
+    public override ModifierType MyEnumValue => ModifierType.HomingModifier;
+
 
     public override PlayerWeaponModifier Clone()
 	{

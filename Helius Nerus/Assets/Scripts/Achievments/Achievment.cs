@@ -40,5 +40,6 @@ public abstract class Achievment
         Debug.Log(_achievementName);
 #endif
         Unsubscribe();
+        AchievementSystem.Instance.SaveAchievments();
     }
 }
