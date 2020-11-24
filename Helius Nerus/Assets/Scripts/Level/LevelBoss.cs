@@ -26,17 +26,29 @@ public class LevelBoss
         {
             // counts as dead
             // call method
-            LaunchBossDie();
+            LaunchBossDie(0);
             return;
         }
+
+        // spawn boss
+        GameObject boss = GameObject.Instantiate(_boss);
+        // subscribe to boss die
+        Boss.BossDied += Boss_BossDied;
     }
 
-    private void LaunchBossDie()
+    private void Boss_BossDied(int obj)
     {
+        LaunchBossDie(obj);
+    }
+
+    private void LaunchBossDie(int amn)
+    {
+        Boss.BossDied -= Boss_BossDied;
+
         if (LevelsChanger.Instance.IsLastLevel)
         {
             // get levels counter from last boss
-            FinalBossDied.Invoke(1);
+            FinalBossDied.Invoke(amn);
         }
         else
         {
