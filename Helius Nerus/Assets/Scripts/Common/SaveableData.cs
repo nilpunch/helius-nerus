@@ -26,7 +26,7 @@ public class SaveableData : MonoBehaviour
             _maximalScore = 0;
             _totalScore = 0;
             _unlockedArtifacts = new List<int>();
-            _maximalUnlockedLevel = 0;
+            _maximalUnlockedLevel = 2;
             _openedWeaponModifiers = new List<int>();
             _donatedToMonument = 0;
         }

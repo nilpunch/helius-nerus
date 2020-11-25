@@ -9,6 +9,7 @@ namespace HNUI
         private void OnEnable()
         {
             ScoreCounter.ScoreWasUpdated += ScoreCounter_ScoreWasUpdated;
+            _scoreText.text = ScoreCounter.Instance.Score.ToString();
         }
 
         private void ScoreCounter_ScoreWasUpdated()
