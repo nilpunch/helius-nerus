@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class PlayerLevelStartAnimation : MonoBehaviour
 {
+	public static event System.Action AnimationEnded = delegate { };
+
     public static PlayerLevelStartAnimation Instance
     {
         get;
@@ -57,6 +59,6 @@ public class PlayerLevelStartAnimation : MonoBehaviour
 
         BulletPoolsContainer.Instance.ClearAllBullets();
 
-        TransitionScene.Instance.LoadUnloadScene((int)Scenes.INGAME);
-    }
+		AnimationEnded.Invoke();
+	}
 }
