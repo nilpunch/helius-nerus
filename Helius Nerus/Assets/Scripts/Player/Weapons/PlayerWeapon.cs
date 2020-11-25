@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 
 public class PlayerWeapon : MonoBehaviour
@@ -135,5 +136,21 @@ public class PlayerWeapon : MonoBehaviour
             modifier.OnPick(this);
             _modifiers.Add(modifier);
         }
+    }
+}
+
+public static class GetWeaponDescription
+{
+    public static string GetDescription(PlayerWeapon weapon)
+    {
+        StringBuilder sb = new StringBuilder();
+
+        foreach (PlayerWeaponModifier modifier in weapon.WeaponModifiers)
+        {
+            sb.Append(LocalizationManager.Instance.GetLocalizedValue(
+                WeaponModifierContainer.Instance.GetValueByKey(modifier.MyEnumValue).Description));
+            sb.Append(System.Environment.NewLine);
+        }
+        return sb.ToString();
     }
 }

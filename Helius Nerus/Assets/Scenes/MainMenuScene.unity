@@ -5514,6 +5514,8 @@ GameObject:
   - component: {fileID: 1206272564}
   - component: {fileID: 1206272563}
   - component: {fileID: 1206272562}
+  - component: {fileID: 1206272568}
+  - component: {fileID: 1206272567}
   m_Layer: 5
   m_Name: AchievementCanvas
   m_TagString: Untagged
@@ -5592,7 +5594,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_TargetDisplay: 0
 --- !u!224 &1206272566
 RectTransform:
@@ -5614,6 +5616,34 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1206272567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1206272561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 500b1b9b58a0ccc4595bf72fafae55c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _achievementPopUp: {fileID: 1206272568}
+--- !u!114 &1206272568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1206272561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04e1619dff7416f4288a908e1c28135c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rectTransform: {fileID: 1932432382}
+  _image: {fileID: 1725538587}
+  _achievementName: {fileID: 1489348755}
 --- !u!1 &1237105648
 GameObject:
   m_ObjectHideFlags: 0
