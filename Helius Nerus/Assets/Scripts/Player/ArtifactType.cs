@@ -5,4 +5,5 @@
     IncreaseHPAndHealArtifact,
     BerserkerArtifact,
     FullHPRewardArtifact,
+    ResurrectArtifact,
 }

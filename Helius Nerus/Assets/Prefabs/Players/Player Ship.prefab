@@ -275,7 +275,7 @@ MonoBehaviour:
   _weapons:
   - {fileID: 7596673631862553504}
   - {fileID: 7596673631352266619}
-  _startArtifacts: 00000000
+  _startArtifacts: 05000000
   _rigidbody2D: {fileID: 7596673631766323342}
   _renderer: {fileID: 7596673631766323377}
 --- !u!1 &7596673631862553506

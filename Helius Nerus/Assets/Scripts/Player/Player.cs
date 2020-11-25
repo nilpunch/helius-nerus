@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public static event System.Action PlayerHealthChanged = delegate { };
-    public static event System.Action PlayerTookDamage = delegate { };
-    public static event System.Action PlayerBeforeDie = delegate { };
-    public static event System.Action PlayerDie = delegate { };
-    public static event System.Action PlayerResurrection = delegate { };
+    public static event Action PlayerHealthChanged = delegate { };
+    public static event Action PlayerTookDamage = delegate { };
+    public static event Action PlayerBeforeDie = delegate { };
+    public static event Action PlayerDie = delegate { };
+    public static event Action PlayerResurrection = delegate { };
 
     [SerializeField] private PlayerMovement _playerMovement = null;
     [Space]
