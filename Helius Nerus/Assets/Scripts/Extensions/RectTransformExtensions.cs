@@ -9,4 +9,9 @@ public static class RectTransformExtensions
 
 		return rect1.Overlaps(rect2);
 	}
+
+	public static Rect GetHelathyRect(this RectTransform rectTransform)
+	{
+		return new Rect(rectTransform.position.x, rectTransform.position.y, rectTransform.rect.width, rectTransform.rect.height);
+	}
 }

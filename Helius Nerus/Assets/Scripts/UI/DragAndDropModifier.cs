@@ -57,6 +57,7 @@ namespace HNUI
 		public void OnBeginDrag(PointerEventData eventData)
 		{
 			_wasDragged = true;
+			_transform.position = eventData.position;
 		}
 
 		public void OnDrag(PointerEventData eventData)

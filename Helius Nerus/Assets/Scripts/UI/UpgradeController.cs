@@ -25,7 +25,7 @@ namespace HNUI
 		{
 			for (int i = 0; i < _weapons.Length; ++i)
 			{
-				if (_weapons[i].RectTransform.Overlaps(droppedModifier.RectTransform))
+				if (_weapons[i].RectTransform.GetHelathyRect().Contains(droppedModifier.RectTransform.position))
 				{ 
 					ApplyModifier(_weapons[i], droppedModifier);
 					return;
