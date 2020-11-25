@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23fbf06da4f08a74998d525507190916, type: 3}
   m_Name: UsedResurrectArtifact
   m_EditorClassIdentifier: 
-  _description: 
-  _icon: {fileID: 0}
-  _modifier: 0
+  _description: usedResurrectArtifactDesc
+  _icon: {fileID: 21300000, guid: c9547e02d82c72e45b5f883c2416c527, type: 3}
+  _modifier: 6

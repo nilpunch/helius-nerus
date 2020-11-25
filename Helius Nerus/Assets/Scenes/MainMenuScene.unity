@@ -3508,6 +3508,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 6435a6a6efbd7684f9a2ed22dcf28695, type: 2}
     - {fileID: 11400000, guid: faea3ad21ce9a424a87caddf41cddb33, type: 2}
     - {fileID: 11400000, guid: 2ad22ecdecc87c24ca38301e30bd91ca, type: 2}
+    - {fileID: 11400000, guid: 1037d6de0fad50b4aa0da80384603106, type: 2}
     _initialUnlockedValues: 0100000002000000030000000400000005000000
   _weaponModifierContainer:
     _allModifiers:
