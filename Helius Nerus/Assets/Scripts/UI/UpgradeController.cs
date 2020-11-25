@@ -8,27 +8,32 @@ namespace HNUI
 	{
 		public static event System.Action ModifierApplyed = delegate { };
 
-		[SerializeField] private DragModifier[] _modifiers = null;
+		[SerializeField] private DragAndDropModifier[] _modifiers = null;
 		[SerializeField] private WeaponDragTarget[] _weapons = null;
 
 		private void Awake()
 		{
-			DragModifier.ModifierDropped += DragModifier_ModifierDropped;
+			DragAndDropModifier.ModifierDropped += DragModifier_ModifierDropped;
 		}
 
-		private void DragModifier_ModifierDropped(DragModifier droppedModifier)
+		private void OnDestroy()
+		{
+			DragAndDropModifier.ModifierDropped -= DragModifier_ModifierDropped;
+		}
+
+		private void DragModifier_ModifierDropped(DragAndDropModifier droppedModifier)
 		{
 			for (int i = 0; i < _weapons.Length; ++i)
-			{	
-				if (droppedModifier.RectTransform.rect.Overlaps(_weapons[i].RectTransform.rect))
-				{
+			{
+				if (_weapons[i].RectTransform.Overlaps(droppedModifier.RectTransform))
+				{ 
 					ApplyModifier(_weapons[i], droppedModifier);
 					return;
 				}
-			}	
+			}
 		}
 
-		private void ApplyModifier(WeaponDragTarget weapon, DragModifier droppedModifier)
+		private void ApplyModifier(WeaponDragTarget weapon, DragAndDropModifier droppedModifier)
 		{
 			weapon.ApplyModifier(droppedModifier.RelatedUpgradePair);
 

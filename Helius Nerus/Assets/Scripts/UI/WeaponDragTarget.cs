@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WeaponDragTarget : MonoBehaviour
 {
-	[SerializeField] private RectTransform _transform;
+	[SerializeField] private RectTransform _transform = null;
 
 	public PlayerWeapon RelatedWeapon { get; set; } = null;
 

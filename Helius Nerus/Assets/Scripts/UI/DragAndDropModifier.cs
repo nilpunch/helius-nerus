@@ -4,21 +4,21 @@ using UnityEngine.UI;
 
 namespace HNUI
 {
-	public class DragModifier : MonoBehaviour, IDragHandler, IBeginDragHandler, IPointerDownHandler, IPointerUpHandler
+	public class DragAndDropModifier : MonoBehaviour, IDragHandler, IBeginDragHandler, IPointerDownHandler, IEndDragHandler
 	{
-		public static event System.Action<DragModifier> ModifierDropped = delegate { };
-		public static event System.Action<DragModifier> SelectionChanged = delegate { };
-		private static DragModifier _selectedModifier = null;
+		public static event System.Action<DragAndDropModifier> ModifierDropped = delegate { };
+		public static event System.Action<DragAndDropModifier> SelectionChanged = delegate { };
+		private static DragAndDropModifier _selectedModifier = null;
 
-		[SerializeField] private RectTransform _transform;
-		[SerializeField] private Image _image;
+		[SerializeField] private RectTransform _transform = null;
+		[SerializeField] private Image _image = null;
 		
 
 		private ArtifactUpgradePair _relatedUpgrade = null;
 		private Vector2 _startPosition = Vector2.zero;
 		private bool _wasDragged = false;
 
-		public static DragModifier SelectedModifier
+		public static DragAndDropModifier SelectedModifier
 		{
 			get => _selectedModifier;
 			private set
@@ -69,7 +69,7 @@ namespace HNUI
 			SelectedModifier = this;
 		}
 
-		public void OnPointerUp(PointerEventData eventData)
+		public void OnEndDrag(PointerEventData eventData)
 		{
 			if (_wasDragged)
 			{

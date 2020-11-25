@@ -14,11 +14,11 @@ namespace HNUI
 		{
 			PlayerLevelStartAnimation.AnimationEnded += PlayerLevelStartAnimation_AnimationEnded;
 			UpgradeController.ModifierApplyed += UpgradeController_ModifierApplyed;
-			DragModifier.SelectionChanged += DragModifier_SelectionChanged;
+			DragAndDropModifier.SelectionChanged += DragModifier_SelectionChanged;
 			gameObject.SetActive(false);
 		}
 
-		private void DragModifier_SelectionChanged(DragModifier obj)
+		private void DragModifier_SelectionChanged(DragAndDropModifier obj)
 		{
 			if (obj == null)
 			{
@@ -56,7 +56,5 @@ namespace HNUI
 			UpgradeController.ModifierApplyed -= UpgradeController_ModifierApplyed;
 			PlayerLevelStartAnimation.AnimationEnded -= PlayerLevelStartAnimation_AnimationEnded;
 		}
-
-
 	}
 }
