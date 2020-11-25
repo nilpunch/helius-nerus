@@ -50,7 +50,12 @@ public class EnemyPoolContainer : MonoBehaviour
 		_allRegisteredEnemies.Add(go);
 	}
 
-	public List<GameObject> GetAllEnemies()
+    public void UnregisterNewInstance(GameObject go)
+    {
+        _allRegisteredEnemies.Remove(go);
+    }
+
+    public List<GameObject> GetAllEnemies()
 	{
 		return _allRegisteredEnemies;
 	}

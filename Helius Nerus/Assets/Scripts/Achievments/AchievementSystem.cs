@@ -34,6 +34,9 @@ public class AchievementSystem
 
             Instance.AddAchievementsHere();
             Instance.LoadAchievements();
+
+            // Temp test
+            //Instance.ResetAchievements();
         }
     }
 

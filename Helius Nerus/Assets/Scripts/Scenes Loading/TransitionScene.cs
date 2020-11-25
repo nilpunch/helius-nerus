@@ -96,4 +96,9 @@ public class TransitionScene : MonoBehaviour
 
         NewSceneWasLoaded.Invoke((Scenes)_newScene);
     }
+
+    public int GetActiveScene()
+    {
+        return SceneManager.GetActiveScene().buildIndex;
+    }
 }

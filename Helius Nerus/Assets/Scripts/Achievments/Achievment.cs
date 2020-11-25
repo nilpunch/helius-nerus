@@ -2,6 +2,8 @@
 
 public abstract class Achievment
 {
+    public static event System.Action<Achievment> AchievementHappen = delegate { };
+
     protected string _achievementName = "";
     protected string _achievementDescription = "";
     protected Sprite _sprite = null;
@@ -11,6 +13,15 @@ public abstract class Achievment
     {
         get => _wasTriggered;
     }
+    public string Name
+    {
+        get => _achievementName;
+    }
+    public Sprite Sprite
+    {
+        get => _sprite;
+    }
+
 
     public virtual void Init(bool wasTriggered = false)
     {
@@ -27,6 +38,7 @@ public abstract class Achievment
             Unsubscribe();
             _wasTriggered = false;
         }
+        Init();
     }
 
     protected abstract void Subscribe();
@@ -41,5 +53,7 @@ public abstract class Achievment
 #endif
         Unsubscribe();
         AchievementSystem.Instance.SaveAchievments();
+
+        AchievementHappen.Invoke(this);
     }
 }

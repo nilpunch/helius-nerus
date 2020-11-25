@@ -2,7 +2,7 @@
 using UnityEngine;
 
 public abstract class Boss : MonoBehaviour, IDealDamageToPlayer, ITakeDamageFromPlayer
-{
+{    
     public static event System.Action<int> BossDied = delegate { };
 
     [SerializeField] protected Collider2D _collider = null;
@@ -17,6 +17,7 @@ public abstract class Boss : MonoBehaviour, IDealDamageToPlayer, ITakeDamageFrom
     protected float _health = 100;
     protected BossPhase[] _phases = new BossPhase[3];
     protected int _currentPhase = 0;
+    protected Transform _transform = null;
 
     protected WaitForSeconds _waitForSeconds = null;
 
@@ -34,18 +35,39 @@ public abstract class Boss : MonoBehaviour, IDealDamageToPlayer, ITakeDamageFrom
     protected void Awake()
     {
         Instance = this;
+        _transform = transform;
         _waitForSeconds = new WaitForSeconds(_delayBeforeFirstAction);
 
         _health = _maxHealth;
         _collider.enabled = false;
 
+        _transform.position = new Vector3(0.0f, ParallaxCamera.ParallaxSize.y / 2 + 1, 0.0f);
+
+        EnemyPoolContainer.Instance.RegisterNewInstance(gameObject);
+
         StartCoroutine(LaunchBoss());
+
+        Player.PlayerDie += Player_PlayerDie;
+    }
+
+    private void Player_PlayerDie()
+    {
+        gameObject.SetActive(false);
     }
 
     private IEnumerator LaunchBoss()
     {
         // Вставить сюда выползание босса на экран
-        yield return _waitForSeconds;
+        float timeElapsed = 0.0f;
+        Vector3 startPos = _transform.position;
+        Vector3 endPos = startPos + new Vector3(0.0f, -2.0f, 0.0f);
+        while (timeElapsed <= _delayBeforeFirstAction)
+        {
+            timeElapsed += TimeManager.EnemyDeltaTime;
+            _transform.position = Vector3.Lerp(startPos, endPos, timeElapsed / _delayBeforeFirstAction);
+            yield return null;
+        }
+        //yield return _waitForSeconds;
         SetupPhases();
         _collider.enabled = true;
         _phases[0].StartPhase();
@@ -55,6 +77,8 @@ public abstract class Boss : MonoBehaviour, IDealDamageToPlayer, ITakeDamageFrom
 
     protected void OnDestroy()
     {
+        EnemyPoolContainer.Instance.UnregisterNewInstance(gameObject);
+        Player.PlayerDie -= Player_PlayerDie;
         Instance = null;
     }
 
