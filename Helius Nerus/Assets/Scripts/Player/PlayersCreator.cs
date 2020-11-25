@@ -18,11 +18,22 @@ public class PlayersCreator : MonoBehaviour
         ChangePlayer();
     }
 
-    public void ChangePlayer()
+    public void ChangePlayer(bool next = true)
     {
-        _currentPlayerIndex++;
-        if (_currentPlayerIndex >= _playerShips.Length)
-            _currentPlayerIndex = 0;
+        if (next)
+        {
+            _currentPlayerIndex++;
+            if (_currentPlayerIndex >= _playerShips.Length)
+                _currentPlayerIndex = 0;
+        }
+        else
+        {
+            _currentPlayerIndex--;
+            if (_currentPlayerIndex < 0)
+            {
+                _currentPlayerIndex = _playerShips.Length - 1;
+            }
+        }
 
         //if (_currentPlayer != null)
         //    Destroy(_currentPlayer);
@@ -30,7 +41,7 @@ public class PlayersCreator : MonoBehaviour
         _currentPlayer = Instantiate(_playerShips[_currentPlayerIndex]);
         _currentPlayer.IsNotMoving = true;
         _currentPlayer.IsNotShooting = true;
-		_currentPlayer.RestartPlayer();
+        _currentPlayer.RestartPlayer();
 
         Player.ShipNumber = _currentPlayerIndex;
     }

@@ -81,12 +81,6 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-#if UNITY_EDITOR
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            Debug.Log(GetWeaponDescription.GetDescription(_weapons[0]));
-        }
-#endif
         if (IsNotMoving)
             return;
         _playerMovement.Update();

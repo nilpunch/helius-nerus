@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerWeapon : MonoBehaviour
 {
+    public static event System.Action<PlayerWeapon, ArtifactUpgradePair> ModifierApply = delegate { };
+
 	[Tooltip("СО свойств пушки стартовых")]
     [SerializeField] private PlayerWeaponsParametrs _parametersSO = null;
 	[SerializeField] private ModifierType[] _startModifiers = null;
@@ -111,6 +113,7 @@ public class PlayerWeapon : MonoBehaviour
     {
         _parameters.ApplyModifier(pair.WeaponsParametrs);
         _modifiers.Add(pair.WeaponModifier);
+        ModifierApply.Invoke(this, pair);
     }
 
     public void LoadFromSavedData(string parameters, string modifiers)
@@ -137,10 +140,7 @@ public class PlayerWeapon : MonoBehaviour
             _modifiers.Add(modifier);
         }
     }
-}
 
-public static class GetWeaponDescription
-{
     public static string GetDescription(PlayerWeapon weapon)
     {
         StringBuilder sb = new StringBuilder();
