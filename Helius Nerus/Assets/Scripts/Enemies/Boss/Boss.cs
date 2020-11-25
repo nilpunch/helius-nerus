@@ -1,9 +1,8 @@
 ﻿using System.Collections;
 using UnityEngine;
-using DG.Tweening;
 
 public abstract class Boss : MonoBehaviour, IDealDamageToPlayer, ITakeDamageFromPlayer
-{
+{    
     public static event System.Action<int> BossDied = delegate { };
 
     [SerializeField] protected Collider2D _collider = null;
@@ -47,6 +46,13 @@ public abstract class Boss : MonoBehaviour, IDealDamageToPlayer, ITakeDamageFrom
         EnemyPoolContainer.Instance.RegisterNewInstance(gameObject);
 
         StartCoroutine(LaunchBoss());
+
+        Player.PlayerDie += Player_PlayerDie;
+    }
+
+    private void Player_PlayerDie()
+    {
+        gameObject.SetActive(false);
     }
 
     private IEnumerator LaunchBoss()
@@ -72,6 +78,7 @@ public abstract class Boss : MonoBehaviour, IDealDamageToPlayer, ITakeDamageFrom
     protected void OnDestroy()
     {
         EnemyPoolContainer.Instance.UnregisterNewInstance(gameObject);
+        Player.PlayerDie -= Player_PlayerDie;
         Instance = null;
     }
 

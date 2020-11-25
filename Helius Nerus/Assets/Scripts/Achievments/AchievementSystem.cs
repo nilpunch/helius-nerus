@@ -33,10 +33,10 @@ public class AchievementSystem
             Instance = new AchievementSystem();
 
             Instance.AddAchievementsHere();
-            //Instance.LoadAchievements();
+            Instance.LoadAchievements();
 
             // Temp test
-            Instance.ResetAchievements();
+            //Instance.ResetAchievements();
         }
     }
 
