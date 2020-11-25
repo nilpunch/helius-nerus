@@ -2,4 +2,7 @@
 {
 	InvincibilityArtifact,
     DoubleModifierArtifact,
+    IncreaseHPAndHealArtifact,
+    BerserkerArtifact,
+    FullHPRewardArtifact,
 }

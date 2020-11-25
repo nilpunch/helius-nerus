@@ -60,7 +60,7 @@ public class ScoreCounter
             Instance.Unsubscribe();
     }
 
-    private void IncrementScore(int score)
+    public void IncrementScore(int score)
     {
         _score += score;
         ScoreWasUpdated.Invoke();

@@ -109,11 +109,12 @@ public class PlayerWeapon : MonoBehaviour
 		_parameters = parameters.Clone();
     }
 
-    public void ApplyPair(ArtifactUpgradePair pair)
+    public void ApplyPair(ArtifactUpgradePair pair, bool artifacted = false)
     {
         _parameters.ApplyModifier(pair.WeaponsParametrs);
         _modifiers.Add(pair.WeaponModifier);
-        ModifierApply.Invoke(this, pair);
+        if (artifacted == false)
+            ModifierApply.Invoke(this, pair);
     }
 
     public void LoadFromSavedData(string parameters, string modifiers)

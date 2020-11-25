@@ -16,9 +16,9 @@
     {
         foreach (PlayerWeapon weapon in Player.PlayerWeapons)
         {
-            if (weapon.Equals(obj) == false)
+            if (object.ReferenceEquals(weapon, obj) == false)
             {
-                weapon.ApplyPair(pair);
+                weapon.ApplyPair(pair, true);
             }
         }
     }
