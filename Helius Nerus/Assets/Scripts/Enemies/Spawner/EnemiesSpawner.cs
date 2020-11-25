@@ -39,12 +39,20 @@ public class EnemiesSpawner : MonoBehaviour
 		System.Array.Sort(_enemiesPacksNew, (pack1, pack2) => pack1.Cost - pack2.Cost);
 
 		SelectNextPack();
+
+        Player.PlayerDie += Player_PlayerDie;
 	}
 
-	private void OnDestroy()
+    private void Player_PlayerDie()
+    {
+        gameObject.SetActive(false);
+    }
+
+    private void OnDestroy()
 	{
 		Player.PlayerTookDamage -= Player_PlayerTookDamage;
-	}
+        Player.PlayerDie -= Player_PlayerDie;
+    }
 
 	private void Update()
 	{
