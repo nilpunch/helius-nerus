@@ -6,4 +6,5 @@
     BerserkerArtifact,
     FullHPRewardArtifact,
     ResurrectArtifact,
+    UsedResurrectArtifact,
 }

@@ -4,6 +4,7 @@ using UnityEngine;
 public abstract class Boss : MonoBehaviour, IDealDamageToPlayer, ITakeDamageFromPlayer
 {    
     public static event System.Action<int> BossDied = delegate { };
+    public static event System.Action BossFightBegins = delegate { };
 
     [SerializeField] protected Collider2D _collider = null;
     [SerializeField] protected float _maxHealth = 100;
@@ -26,10 +27,16 @@ public abstract class Boss : MonoBehaviour, IDealDamageToPlayer, ITakeDamageFrom
         get;
         private set;
     } = null;
+
     public float Health
     {
         get => _health;
     }
+    public float HPPercentage
+    {
+        get => _health / _maxHealth;
+    }
+
     public int Damage { get; set; } = 1;
 
     protected void Awake()
@@ -71,6 +78,8 @@ public abstract class Boss : MonoBehaviour, IDealDamageToPlayer, ITakeDamageFrom
         SetupPhases();
         _collider.enabled = true;
         _phases[0].StartPhase();
+
+        BossFightBegins.Invoke();
     }
 
     protected abstract void SetupPhases();

@@ -19,6 +19,7 @@
         //remove art
         OnDrop();
         Player.PlayerArtifacts.Remove(this);
+        Player.Instance.AddArtifact(PlayerArtifactContainer.Instance.GetArtifact(ArtifactType.UsedResurrectArtifact));
     }
 
     public override void OnDrop()

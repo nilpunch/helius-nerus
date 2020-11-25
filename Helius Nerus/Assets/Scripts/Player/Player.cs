@@ -10,6 +10,9 @@ public class Player : MonoBehaviour
     public static event Action PlayerDie = delegate { };
     public static event Action PlayerResurrection = delegate { };
 
+    // for artifacts ui
+    public static event Action PlayerArtifactsChanged = delegate { };
+
     [SerializeField] private PlayerMovement _playerMovement = null;
     [Space]
     [SerializeField] private PlayerParameters _playerParametersSO = null;
@@ -215,5 +218,12 @@ public class Player : MonoBehaviour
     {
         PlayerDie.Invoke();
         gameObject.SetActive(false);
+    }
+
+    public void AddArtifact(PlayerArtifact artifact)
+    {
+        _artifacts.Add(artifact);
+        artifact.OnPick();
+        PlayerArtifactsChanged.Invoke();
     }
 }
