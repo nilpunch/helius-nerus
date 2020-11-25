@@ -12,6 +12,6 @@ public static class RectTransformExtensions
 
 	public static Rect GetHelathyRect(this RectTransform rectTransform)
 	{
-		return new Rect(rectTransform.position.x, rectTransform.position.y, rectTransform.rect.width, rectTransform.rect.height);
+		return new Rect(rectTransform.position.x - rectTransform.rect.width / 2f, rectTransform.position.y - rectTransform.rect.height / 2f, rectTransform.rect.width, rectTransform.rect.height);
 	}
 }
