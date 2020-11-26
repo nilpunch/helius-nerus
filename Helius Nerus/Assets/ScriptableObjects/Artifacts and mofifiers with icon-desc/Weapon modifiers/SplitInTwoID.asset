@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: SplitInTwoID
   m_EditorClassIdentifier: 
   _description: splitInTwoDescription
-  _icon: {fileID: 21300000, guid: c9547e02d82c72e45b5f883c2416c527, type: 3}
+  _icon: {fileID: 21300000, guid: 1ea34e6d2139f4343ba63d5de9b1df8d, type: 3}
   _modifier: 5

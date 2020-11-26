@@ -9,7 +9,7 @@ namespace HNUI
 		public static event System.Action ModifierApplyed = delegate { };
 
 		[SerializeField] private DragAndDropModifier[] _modifiers = null;
-		[SerializeField] private WeaponDragTarget[] _weapons = null;
+		[SerializeField] private WeaponDropTarget[] _weapons = null;
 
 		private void Awake()
 		{
@@ -25,26 +25,60 @@ namespace HNUI
 		{
 			for (int i = 0; i < _weapons.Length; ++i)
 			{
+				if (ReferenceEquals(_weapons[i].AttachedModifyer, droppedModifier))
+				{
+					_weapons[i].DetachModifier();
+				}
+			}
+
+			for (int i = 0; i < _weapons.Length; ++i)
+			{
 				if (_weapons[i].RectTransform.GetHelathyRect().Contains(droppedModifier.RectTransform.position))
 				{ 
 					ApplyModifier(_weapons[i], droppedModifier);
 					return;
 				}
 			}
+			droppedModifier.ResetPosition();
 		}
 
-		private void ApplyModifier(WeaponDragTarget weapon, DragAndDropModifier droppedModifier)
+		private void ApplyModifier(WeaponDropTarget weapon, DragAndDropModifier droppedModifier)
 		{
-			weapon.ApplyModifier(droppedModifier.RelatedUpgradePair);
+			weapon.AttachModifyer(droppedModifier);
 
-			for (int j = 0; j < _modifiers.Length; ++j)
+			for (int i = 0; i < _weapons.Length; ++i)
 			{
-				if (ReferenceEquals(_modifiers[j], droppedModifier) == false)
+				if (_weapons[i].AttachedModifyer == null)
 				{
-					WeaponModifierContainer.Instance.ReturnUnlockedMod(_modifiers[j].RelatedUpgradePair.ModifierID);
+					return;
 				}
 			}
 
+			for (int i = 0; i < _modifiers.Length; ++i)
+			{
+				bool modifierNotUsed = true;
+
+				for (int j = 0; j < _weapons.Length; ++j)
+				{
+					if (ReferenceEquals(_modifiers[i].RelatedUpgradePair, _weapons[j].AttachedModifyer.RelatedUpgradePair) == true)
+					{
+						modifierNotUsed = false;
+						break;
+					}
+				}
+
+				if (modifierNotUsed)
+				{
+					WeaponModifierContainer.Instance.ReturnUnlockedMod(_modifiers[i].RelatedUpgradePair.ModifierID);
+				}
+			}
+
+			for (int i = 0; i < _weapons.Length; ++i)
+			{
+				_weapons[i].ApplyModifier();
+			}
+
+			DragAndDropModifier.ResetSelection();
 			ModifierApplyed.Invoke();
 			TransitionScene.Instance.LoadUnloadScene((int)Scenes.INGAME);
 		}

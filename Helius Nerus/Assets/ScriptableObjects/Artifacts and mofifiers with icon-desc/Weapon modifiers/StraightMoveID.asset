@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: StraightMoveID
   m_EditorClassIdentifier: 
   _description: straightMoveDescription
-  _icon: {fileID: 21300000, guid: c9547e02d82c72e45b5f883c2416c527, type: 3}
+  _icon: {fileID: 21300000, guid: 412660b0ad0df734a86d970f05cf065e, type: 3}
   _modifier: 0

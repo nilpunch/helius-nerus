@@ -2,6 +2,8 @@
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
+using DG.Tweening;
+
 namespace HNUI
 {
 	public class DragAndDropModifier : MonoBehaviour, IDragHandler, IBeginDragHandler, IPointerDownHandler, IEndDragHandler
@@ -12,7 +14,6 @@ namespace HNUI
 
 		[SerializeField] private RectTransform _transform = null;
 		[SerializeField] private Image _image = null;
-		
 
 		private ArtifactUpgradePair _relatedUpgrade = null;
 		private Vector2 _startPosition = Vector2.zero;
@@ -54,9 +55,16 @@ namespace HNUI
 			_image.sprite = upgradePair.ModifierIcon;
 		}
 
+		public void ResetPosition()
+		{
+			_transform.DOKill();
+			_transform.DOAnchorPos(_startPosition, 0.5f).SetEase<Tween>(Ease.OutCubic);
+		}
+
 		public void OnBeginDrag(PointerEventData eventData)
 		{
 			_wasDragged = true;
+			_transform.DOKill();
 			_transform.position = eventData.position;
 		}
 
@@ -75,7 +83,6 @@ namespace HNUI
 			if (_wasDragged)
 			{
 				ModifierDropped.Invoke(this);
-				_transform.anchoredPosition = _startPosition;
 				_wasDragged = false;
 			}
 		}
