@@ -2,6 +2,8 @@
 {
     public override string MyEnumName => "FullHPRewardArtifact";
 
+    public override ArtifactType MyEnum => ArtifactType.FullHPRewardArtifact;
+
     public override PlayerArtifact Clone()
     {
         return (FullHPRewardArtifact)this.MemberwiseClone();

@@ -4,6 +4,7 @@ using UnityEngine;
 public abstract class Boss : MonoBehaviour, IDealDamageToPlayer, ITakeDamageFromPlayer
 {    
     public static event System.Action<int> BossDied = delegate { };
+    public static event System.Action BossTakeDamage = delegate { };
     public static event System.Action BossFightBegins = delegate { };
 
     [SerializeField] protected Collider2D _collider = null;
@@ -115,6 +116,8 @@ public abstract class Boss : MonoBehaviour, IDealDamageToPlayer, ITakeDamageFrom
 
             return;
         }
+
+        BossTakeDamage.Invoke();
 
         if (_health / _maxHealth < _healthPercentageForPhases[_currentPhase])
         {

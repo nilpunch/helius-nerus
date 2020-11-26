@@ -2,6 +2,8 @@
 {
     public override string MyEnumName => "ResurrectArtifact";
 
+    public override ArtifactType MyEnum => ArtifactType.ResurrectArtifact;
+
     public override PlayerArtifact Clone()
     {
         return (ResurrectArtifact)this.MemberwiseClone();

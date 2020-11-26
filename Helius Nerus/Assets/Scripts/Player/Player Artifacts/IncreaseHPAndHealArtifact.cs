@@ -2,6 +2,8 @@
 {
     public override string MyEnumName => "IncreaseHPAndHealArtifact";
 
+    public override ArtifactType MyEnum => ArtifactType.IncreaseHPAndHealArtifact;
+
     public override PlayerArtifact Clone()
     {
         return (IncreaseHPAndHealArtifact)this.MemberwiseClone();
