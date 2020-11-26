@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: BerserkerArtifact
   m_EditorClassIdentifier: 
   _description: berserkerArtifactDesc
-  _icon: {fileID: 21300000, guid: c9547e02d82c72e45b5f883c2416c527, type: 3}
+  _icon: {fileID: 21300000, guid: 2b3716d86c9f13e45a92bee29283b65a, type: 3}
   _modifier: 3

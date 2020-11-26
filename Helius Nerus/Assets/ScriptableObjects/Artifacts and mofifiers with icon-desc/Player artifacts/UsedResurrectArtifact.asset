@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: UsedResurrectArtifact
   m_EditorClassIdentifier: 
   _description: usedResurrectArtifactDesc
-  _icon: {fileID: 21300000, guid: c9547e02d82c72e45b5f883c2416c527, type: 3}
+  _icon: {fileID: 21300000, guid: a92e23e45e45c6f458c5ba8466c04cde, type: 3}
   _modifier: 6

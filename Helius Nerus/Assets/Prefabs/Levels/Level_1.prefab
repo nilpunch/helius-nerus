@@ -656,6 +656,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d3dbd8bfee18a345ab5ba0da8a18715, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bgImage: {fileID: 2800000, guid: 9fc9bc1488692a14ca2167177f6c75e8, type: 3}
+  _bgImage: {fileID: 2800000, guid: ad0e39a3717807041a6e8b92258d0dda, type: 3}
   _spriteMovementSpeed: {x: 0, y: 0.1}
   _renderer: {fileID: 1008073857027498162}
