@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: RicochetID
   m_EditorClassIdentifier: 
   _description: ricochetDescription
-  _icon: {fileID: 21300000, guid: c9547e02d82c72e45b5f883c2416c527, type: 3}
+  _icon: {fileID: 21300000, guid: dc6ca88a5d26547408fb770e1bd47854, type: 3}
   _modifier: 3
