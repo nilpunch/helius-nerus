@@ -2,6 +2,8 @@
 {
     public override string MyEnumName => "DoubleModifierArtifact";
 
+    public override ArtifactType MyEnum => ArtifactType.DoubleModifierArtifact;
+
     public override PlayerArtifact Clone()
     {
         return (PlayerArtifact)this.MemberwiseClone();

@@ -9,6 +9,8 @@ class InvincibilityArtifact : PlayerArtifact
 
     public override string MyEnumName => "InvincibilityArtifact";
 
+    public override ArtifactType MyEnum => ArtifactType.InvincibilityArtifact;
+
     public override PlayerArtifact Clone()
 	{
 		return (InvincibilityArtifact)this.MemberwiseClone();

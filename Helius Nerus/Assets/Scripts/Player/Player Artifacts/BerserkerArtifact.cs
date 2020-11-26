@@ -2,6 +2,8 @@
 {
     public override string MyEnumName => "BerserkerArtifact";
 
+    public override ArtifactType MyEnum => ArtifactType.BerserkerArtifact;
+
     public override PlayerArtifact Clone()
     {
         return (BerserkerArtifact)this.MemberwiseClone();
