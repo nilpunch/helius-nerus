@@ -2,6 +2,8 @@
 
 public class PlayersCreator : MonoBehaviour
 {
+    public static event System.Action PlayerShipChanged = delegate { };
+
     [SerializeField] private Player[] _playerShips = null;
     private Player _currentPlayer = null;
     private int _currentPlayerIndex = -1;
@@ -44,6 +46,7 @@ public class PlayersCreator : MonoBehaviour
         _currentPlayer.RestartPlayer();
 
         Player.ShipNumber = _currentPlayerIndex;
+        PlayerShipChanged.Invoke();
     }
 
     public void LoadPlayerFromSave(int shipNumber)

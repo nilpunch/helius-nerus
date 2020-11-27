@@ -325,7 +325,7 @@ MonoBehaviour:
   _levelPortal:
     _portalPrefab: {fileID: 4669225526803828734, guid: a15f2affa416a2a45932f1bf401addc9,
       type: 3}
-    _portalOffset: 1
+    _portalOffset: 1.5
     _transform: {fileID: 3077946257260529423}
 --- !u!1 &3077946257501555300
 GameObject:

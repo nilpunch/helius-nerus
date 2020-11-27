@@ -17,6 +17,10 @@
     private void Player_PlayerBeforeDie()
     {
         Player.PlayerParameters.CurrentHealth = 1;
+
+        // Вариант:
+        Player.PlayerParameters.MaxHealth = 1;
+        // Не нравится - уберешь
         // unsub?
         //remove art
         OnDrop();

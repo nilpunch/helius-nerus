@@ -136,6 +136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cfcf21431488fe489642a83fdceaf9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _shipDescription: resurrectShipDescription
   _playerMovement:
     _transform: {fileID: 7712765479933993680}
     _playerBoundaryOffset: 0
@@ -146,7 +147,7 @@ MonoBehaviour:
   _weapons:
   - {fileID: 7712765479992965568}
   - {fileID: 7712765481556008219}
-  _startArtifacts: 00000000
+  _startArtifacts: 0000000005000000
   _rigidbody2D: {fileID: 7712765479933993710}
   _renderer: {fileID: 7712765479933993681}
 --- !u!1 &7712765479992965570

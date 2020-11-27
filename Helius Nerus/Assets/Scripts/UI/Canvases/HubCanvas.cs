@@ -3,6 +3,8 @@
     // С этим надо что-то сделать
     public class HubCanvas : UICanvasMonobehaviour
     {
+        [UnityEngine.SerializeField] private TMPro.TextMeshProUGUI _shipDescrText = null;
+
         public static HubCanvas Instance
         {
             get;
@@ -15,6 +17,23 @@
             Instance = this;
 
             TransitionScene.NewSceneWasLoaded += TransitionScene_NewSceneWasLoaded;
+        }
+
+        private void OnEnable()
+        {
+            PlayersCreator.PlayerShipChanged += PlayersCreator_PlayerShipChanged;
+            if (Player.Instance != null)
+                _shipDescrText.text = LocalizationManager.Instance.GetLocalizedValue(Player.ShipDescription);
+        }
+
+        private void OnDisable()
+        {
+            PlayersCreator.PlayerShipChanged -= PlayersCreator_PlayerShipChanged;
+        }
+
+        private void PlayersCreator_PlayerShipChanged()
+        {
+            _shipDescrText.text = LocalizationManager.Instance.GetLocalizedValue(Player.ShipDescription);
         }
 
         private void TransitionScene_NewSceneWasLoaded(Scenes obj)

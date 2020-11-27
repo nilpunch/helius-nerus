@@ -265,6 +265,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cfcf21431488fe489642a83fdceaf9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _shipDescription: berserkerShipDescription
   _playerMovement:
     _transform: {fileID: 7596673631766323376}
     _playerBoundaryOffset: 0.5
@@ -275,7 +276,7 @@ MonoBehaviour:
   _weapons:
   - {fileID: 7596673631862553504}
   - {fileID: 7596673631352266619}
-  _startArtifacts: 05000000
+  _startArtifacts: 0000000003000000
   _rigidbody2D: {fileID: 7596673631766323342}
   _renderer: {fileID: 7596673631766323377}
 --- !u!1 &7596673631862553506

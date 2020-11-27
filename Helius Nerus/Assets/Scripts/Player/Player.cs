@@ -13,6 +13,8 @@ public class Player : MonoBehaviour
     // for artifacts ui
     public static event Action PlayerArtifactsChanged = delegate { };
 
+    [SerializeField] private string _shipDescription = null;
+    [Space]
     [SerializeField] private PlayerMovement _playerMovement = null;
     [Space]
     [SerializeField] private PlayerParameters _playerParametersSO = null;
@@ -61,6 +63,12 @@ public class Player : MonoBehaviour
         get;
         set;
     } = 0;
+    public static string ShipDescription
+    {
+        get => Instance._shipDescription;
+    }
+
+
     public bool IsNotMoving
     {
         get;
@@ -158,6 +166,7 @@ public class Player : MonoBehaviour
             {
                 PlayerTookDamage.Invoke();
                 PlayerResurrection.Invoke();
+                PlayerHealthChanged.Invoke();
             }
         }
         else
@@ -172,6 +181,10 @@ public class Player : MonoBehaviour
         {
             _playerParameters.CurrentHealth++;
             PlayerHealthChanged.Invoke();
+        }
+        else
+        {
+            ScoreCounter.Instance.IncrementScore(1000);
         }
     }
 

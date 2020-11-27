@@ -31,7 +31,7 @@ public class EnemiesSpawner : MonoBehaviour
 		// На каждой новой сцене (при гарантии что спаунер 1) глобальная ссылка будет перезаписываться на необходимую
 		InstanceOnScene = this;
 		_transform = transform;
-		_transform.position = new Vector3(0.0f, ParallaxCamera.ParallaxSize.y / 2 + 1, 0.0f);
+		_transform.position = new Vector3(0.0f, ParallaxCamera.ParallaxSize.y / 2, 0.0f);
 		_screenWidth = ParallaxCamera.ParallaxSize.x / 2;
 
 		Player.PlayerTookDamage += Player_PlayerTookDamage;
