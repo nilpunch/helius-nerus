@@ -23,6 +23,7 @@ public class EnemiesSpawner : MonoBehaviour
 	private int _nextPackIndex;
 	private float _currentMoneySpent = 0;
 	private Transform _transform;
+	private float _moneyPerSecondMultyplier = 1f;
 
 	public static EnemiesSpawner InstanceOnScene { get; private set; }
 
@@ -50,7 +51,11 @@ public class EnemiesSpawner : MonoBehaviour
 	{
 		if (Level.EnemiesCounter.AmountOfEnemies == 0 && MoneyLimitNotReached())
 		{
-			_money = _enemiesPacksNew[_nextPackIndex].Cost;
+			_moneyPerSecondMultyplier = 5f;
+		}
+		else
+		{
+			_moneyPerSecondMultyplier = 1f;
 		}
 	}
 
@@ -69,7 +74,7 @@ public class EnemiesSpawner : MonoBehaviour
 	{
 		if (MoneyLimitNotReached())
 		{
-			_money += _moneyPerSecond * TimeManager.EnemyDeltaTime;
+			_money += _moneyPerSecond * TimeManager.EnemyDeltaTime * _moneyPerSecondMultyplier;
 		}
 
 		while (_money > _enemiesPacksNew[_nextPackIndex].Cost)

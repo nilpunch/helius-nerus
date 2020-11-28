@@ -10,19 +10,33 @@ public class EnemyNarwhal : Enemy
 	[SerializeField] float _homingFactor = 20f;
 	[SerializeField] float _burstDistance = 1f;
 	[SerializeField] float _burstDuration = 0.5f;
+	[SerializeField] float _burstDelay = 1f;
 
-	//private float _timeElapsed = 0f;
+	private float _timeElapsed = 0f;
 	private bool _inBurst = false;
 
 	public override void Enabled()
 	{
 		_inBurst = false;
+		_timeElapsed = 0f;
+		_transform.DOKill();
+	}
+
+	public override void Disabled()
+	{
+		_transform.DOKill();
 	}
 
 	public override void OnUpdate()
 	{
-		if (Player.Instance.gameObject.activeSelf && _inBurst == false)
+		if (_inBurst == false)
 		{
+			_timeElapsed += TimeManager.EnemyDeltaTime;
+		}
+
+		if (Player.Instance.gameObject.activeSelf && _inBurst == false && _timeElapsed >= _burstDelay)
+		{
+
 			Vector3 direction = _transform.position - Player.Instance.transform.position;
 			direction.Normalize();
 			float rotation = Vector3.Cross(direction, _transform.up).z;
@@ -36,6 +50,7 @@ public class EnemyNarwhal : Enemy
 			{
 				homingCoefficient = 0f;
 				_inBurst = true;
+				_timeElapsed = 0f;
 				_transform.DOMove(_transform.position + _transform.up * _burstDistance, _burstDuration)
 						  .SetEase<Tween>(Ease.OutQuad)
 						  .OnComplete<Tween>(() => _inBurst = false);
@@ -46,11 +61,9 @@ public class EnemyNarwhal : Enemy
 				Mathf.Sign(rotation) * homingCoefficient * TimeManager.PlayerDeltaTime);
 		}
 
-		
+
 
 		//_transform.Translate(Vector3.up * _speed * TimeManager.EnemyDeltaTime, Space.Self);
-
-		//_timeElapsed += TimeManager.EnemyDeltaTime;
 
 		//if (_timeElapsed >= _reloadTime)
 		//{

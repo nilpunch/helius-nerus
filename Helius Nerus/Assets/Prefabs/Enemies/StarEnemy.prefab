@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 445486766643980032}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 1.55, y: 4.63, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -147,9 +147,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _stats:
-    _FullHealth: 1
+    _FullHealth: 14
     _pointsForKill: 10
     _damageOnContact: 1
     _dropChance: 0.02
-    _speedMultiplyer: 1
   _type: 8
+  _bulletType: 2
+  _transform: {fileID: 445486766643980035}
+  _bulletsAmount: 8
+  _bulletsSpeed: 5
+  _travelTime: 2
+  _travelDistance: 2

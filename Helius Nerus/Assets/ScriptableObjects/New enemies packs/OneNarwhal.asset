@@ -16,5 +16,5 @@ MonoBehaviour:
   - _position: {x: 0, y: 0}
     _rotation: 180
     _type: 7
-  _width: 1.32
+  _width: 1
   _cost: 150

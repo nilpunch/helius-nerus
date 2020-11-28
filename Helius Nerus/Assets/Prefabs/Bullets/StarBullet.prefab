@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -7252614850314312810}
   - component: {fileID: 7168096196110718543}
   m_Layer: 11
-  m_Name: AngelBullet
+  m_Name: StarBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damage: 1
-  _bulletType: 0
+  _bulletType: 2
 --- !u!61 &7168096196110718543
 BoxCollider2D:
   m_ObjectHideFlags: 0

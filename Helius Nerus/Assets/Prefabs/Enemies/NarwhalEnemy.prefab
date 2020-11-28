@@ -127,9 +127,10 @@ MonoBehaviour:
   _type: 7
   _bulletType: 3
   _transform: {fileID: 445486766643980035}
-  _homingFactor: 70
-  _burstDistance: 2.5
+  _homingFactor: 90
+  _burstDistance: 4
   _burstDuration: 0.8
+  _burstDelay: 0.3
 --- !u!61 &4827202176476485249
 BoxCollider2D:
   m_ObjectHideFlags: 0

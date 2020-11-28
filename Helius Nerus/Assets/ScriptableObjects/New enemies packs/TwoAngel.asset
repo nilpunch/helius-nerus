@@ -10,10 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1339e1ece3d2ea24cab4501c79d5527a, type: 3}
-  m_Name: OneTriangle
+  m_Name: TwoAngel
   m_EditorClassIdentifier: 
   _enemies:
-  - _position: {x: 0, y: 0}
-    _type: 2
-  _width: 1.32
-  _cost: 300
+  - _position: {x: -1, y: 0}
+    _rotation: 0
+    _type: 4
+  - _position: {x: 1, y: 0}
+    _rotation: 0
+    _type: 4
+  _width: 2
+  _cost: 100

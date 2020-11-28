@@ -10,12 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1339e1ece3d2ea24cab4501c79d5527a, type: 3}
-  m_Name: TwoCircles
+  m_Name: OneStar
   m_EditorClassIdentifier: 
   _enemies:
-  - _position: {x: -1, y: 0}
-    _type: 1
-  - _position: {x: 1, y: 0}
-    _type: 1
-  _width: 2.32
-  _cost: 400
+  - _position: {x: 0, y: -3}
+    _rotation: 180
+    _type: 8
+  _width: 0.5
+  _cost: 100
