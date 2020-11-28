@@ -1,89 +1,90 @@
 ﻿using UnityEngine;
 
+[System.Serializable]
 public class Enemy : MonoBehaviour, IReturnableToPool, IDealDamageToPlayer, ITakeDamageFromPlayer
 {
-    public static event System.Action<int> EnemyDie = delegate { };
+	public static event System.Action<int> EnemyDie = delegate { };
 
-    [SerializeField] private EnemyStats _stats = null;
-    [SerializeField] private CommandsProcessor<MoveCommandScriptableObject> _moveProcessor = new CommandsProcessor<MoveCommandScriptableObject>();
-    [SerializeField] private CommandsProcessor<WeaponCommandScriptableObject> _weaponProcessor = new CommandsProcessor<WeaponCommandScriptableObject>();
-    [SerializeField] private EnemyTypes _type = EnemyTypes.SquareEnemy;
+	[SerializeField] private EnemyStats _stats = null;
+	[SerializeField] private EnemyTypes _type = EnemyTypes.SquareEnemy;
 
-    private bool _isDead = false;
+	private bool _isDead = false;
 
-    public int Damage
-    {
-        get => _stats.DamageOnContact;
-        set => _stats.DamageOnContact = value;
-    }
+	public int Damage
+	{
+		get => _stats.DamageOnContact;
+		set => _stats.DamageOnContact = value;
+	}
 
-    private void Awake()
-    {
-        _stats.Reset();
-    }
+	private void Awake()
+	{
+		_stats.Reset();
+	}
 
-    private void OnEnable()
-    {
-        Player.PlayerDie += Player_PlayerDie;
-    }
+	private void OnEnable()
+	{
+		Player.PlayerDie += Player_PlayerDie;
+	}
 
-    private void OnDisable()
-    {
-        Player.PlayerDie -= Player_PlayerDie;
-    }
+	private void OnDisable()
+	{
+		Player.PlayerDie -= Player_PlayerDie;
+	}
 
-    private void Player_PlayerDie()
-    {
-        ReturnMeToPool();
-    }
+	private void Player_PlayerDie()
+	{
+		ReturnMeToPool();
+	}
 
-    private void Update()
-    {
-        _moveProcessor.TickCommandThreads();
-        _weaponProcessor.TickCommandThreads();
-    }
+	private void Update()
+	{
+		OnUpdate();
+	}
 
-    public void TakeDamage(float damage)
-    {
-        if (_isDead)
-            return;
+	public virtual void OnUpdate() { }
 
-        if (_stats.TakeDamage(damage) == true)
-        {
-            Die();
-        }
-    }
+	public void TakeDamage(float damage)
+	{
+		if (_isDead)
+			return;
 
-    private void Die()
-    {
-        EnemyDie.Invoke(_stats.PointsForKill);
+		if (_stats.TakeDamage(damage) == true)
+		{
+			Die();
+		}
+	}
 
-        _isDead = true;
-        float drop = Random.Range(0.0f, 1.0f);
-        if (drop <= _stats.DropChance)
-        {
-            UpgrageCollection.Instance.GetRandomUpgrade().transform.position = transform.position;
-        }
-        ReturnMeToPool();
-    }
+	private void Die()
+	{
+		EnemyDie.Invoke(_stats.PointsForKill);
 
-    public void Reset()
-    {
-        _moveProcessor.Initialize(transform);
-        _weaponProcessor.Initialize(transform);
-        _stats.Reset();
-        _isDead = false;
-        Level.EnemiesCounter.IncrementEnemies();
-    }
+		_isDead = true;
+		float drop = Random.Range(0.0f, 1.0f);
+		if (drop <= _stats.DropChance)
+		{
+			UpgrageCollection.Instance.GetRandomUpgrade().transform.position = transform.position;
+		}
+		ReturnMeToPool();
+	}
 
-    public void ReturnMeToPool()
-    {
-        Level.EnemiesCounter.DectrementEnemies();
-        EnemyPoolContainer.Instance.ReturnObjectToPool(_type, gameObject);
-    }
+	public virtual void OnReset() { }
 
-    public int GetMyDamage()
-    {
-        return Damage;
-    }
+	public void Reset()
+	{
+		OnReset();
+		_stats.Reset();
+		_isDead = false;
+		Level.EnemiesCounter.IncrementEnemies();
+	}
+
+	public void ReturnMeToPool()
+	{
+		Level.EnemiesCounter.DectrementEnemies();
+		EnemyPoolContainer.Instance.ReturnObjectToPool(_type, gameObject);
+	}
+
+	public int GetMyDamage()
+	{
+		return Damage;
+	}
 }
