@@ -76,6 +76,7 @@ namespace HNUI
 			for (int i = 0; i < _weapons.Length; ++i)
 			{
 				_weapons[i].ApplyModifier();
+				_weapons[i].DetachModifier();
 			}
 
 			DragAndDropModifier.ResetSelection();
