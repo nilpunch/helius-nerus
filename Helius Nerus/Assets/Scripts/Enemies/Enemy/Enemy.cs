@@ -10,6 +10,8 @@ public class Enemy : MonoBehaviour, IReturnableToPool, IDealDamageToPlayer, ITak
 
 	private bool _isDead = false;
 
+	public EnemyStats EnemyStats => _stats;
+
 	public int Damage
 	{
 		get => _stats.DamageOnContact;
@@ -24,12 +26,18 @@ public class Enemy : MonoBehaviour, IReturnableToPool, IDealDamageToPlayer, ITak
 	private void OnEnable()
 	{
 		Player.PlayerDie += Player_PlayerDie;
+		Enabled();
 	}
+
+	public virtual void Enabled() { }
 
 	private void OnDisable()
 	{
 		Player.PlayerDie -= Player_PlayerDie;
+		Disabled();
 	}
+
+	public virtual void Disabled() { }
 
 	private void Player_PlayerDie()
 	{

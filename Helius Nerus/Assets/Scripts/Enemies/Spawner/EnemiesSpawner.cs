@@ -39,11 +39,22 @@ public class EnemiesSpawner : MonoBehaviour
 		System.Array.Sort(_enemiesPacksNew, (pack1, pack2) => pack1.Cost - pack2.Cost);
 
 		SelectNextPack();
+		_money = _enemiesPacksNew[_nextPackIndex].Cost;
 
         Player.PlayerDie += Player_PlayerDie;
+
+		EnemiesInSceneCounter.EnemyCountChanged += EnemiesInSceneCounter_EnemyCountChanged;
 	}
 
-    private void Player_PlayerDie()
+	private void EnemiesInSceneCounter_EnemyCountChanged()
+	{
+		if (Level.EnemiesCounter.AmountOfEnemies == 0 && MoneyLimitNotReached())
+		{
+			_money = _enemiesPacksNew[_nextPackIndex].Cost;
+		}
+	}
+
+	private void Player_PlayerDie()
     {
         gameObject.SetActive(false);
     }
@@ -97,6 +108,7 @@ public class EnemiesSpawner : MonoBehaviour
 			newEnemy = EnemyPoolContainer.Instance.GetObjectFromPool(nextNewPack.Enemies[i].Type);
 			newEnemy.transform.parent = _transform;
 			newEnemy.transform.localPosition = nextNewPack.Enemies[i].Position + new Vector2(randomOffset, 0);
+			newEnemy.transform.localEulerAngles = new Vector3(0f, 0f, nextNewPack.Enemies[i].Rotation);
 		}
 	}
 

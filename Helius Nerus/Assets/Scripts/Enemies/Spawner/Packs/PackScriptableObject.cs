@@ -19,6 +19,7 @@ public class PackScriptableObject : ScriptableObject
 public class EnemyInPack
 {
     [SerializeField] private Vector2 _position = Vector2.zero;
+	[SerializeField] private float _rotation = 0f;
     [SerializeField] private EnemyTypes _type = EnemyTypes.SquareEnemy;
     public Vector2 Position
     {
@@ -28,4 +29,8 @@ public class EnemyInPack
     {
         get => _type;
     }
+	public float Rotation
+	{
+		get => _rotation;
+	}
 }

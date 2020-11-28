@@ -1,6 +1,7 @@
 ﻿public class EnemiesInSceneCounter
 {
     public static event System.Action LastEnemyDied = delegate { };
+	public static event System.Action EnemyCountChanged = delegate { };
 
 	public int AmountOfEnemies { get; private set; } = 0;
 
@@ -20,12 +21,14 @@
     public void IncrementEnemies()
     {
         ++AmountOfEnemies;
-    }
+		EnemyCountChanged.Invoke();
+	}
 
     public void DectrementEnemies()
     {
         --AmountOfEnemies;
-        if (AmountOfEnemies == 0 && _spawnerFinished)
+		EnemyCountChanged.Invoke();
+		if (AmountOfEnemies == 0 && _spawnerFinished)
         {
             LastEnemyDied.Invoke();
         }

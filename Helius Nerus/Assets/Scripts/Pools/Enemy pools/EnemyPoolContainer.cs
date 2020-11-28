@@ -95,7 +95,7 @@ public class EnemyPool
             go.SetActive(true);
             // Re-enable processor
             // Reset hp
-            go.GetComponent<EnemyOnCommands>().Reset();
+            go.GetComponent<Enemy>().Reset();
             return go;
         }
         else
@@ -118,10 +118,10 @@ public enum EnemyTypes
     SquareEnemy,
     RoundEnemy,
     TriangleEnemy,
-	ColonyEnemy,
-	BuffedColonyEnemy,
 	AngelEnemy,
 	BuffedAngelEnemy,
+	ColonyEnemy,
+	BuffedColonyEnemy,
 	NarwhalEnemy,
 	StarEnemy
 }

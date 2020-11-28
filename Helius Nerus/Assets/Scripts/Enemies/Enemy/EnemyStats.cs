@@ -14,7 +14,7 @@ public class EnemyStats
     [Range(0.0f, 1.0f)]
     private float _dropChance = 0.02f;
 
-    private float _health;
+	private float _health;
 
     public int PointsForKill
     {
