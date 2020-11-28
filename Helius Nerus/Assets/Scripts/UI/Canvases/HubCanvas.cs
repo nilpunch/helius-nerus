@@ -4,6 +4,7 @@
     public class HubCanvas : UICanvasMonobehaviour
     {
         [UnityEngine.SerializeField] private TMPro.TextMeshProUGUI _shipDescrText = null;
+        [UnityEngine.SerializeField] private UnityEngine.UI.Image _shipImage = null;
 
         public static HubCanvas Instance
         {
@@ -23,7 +24,7 @@
         {
             PlayersCreator.PlayerShipChanged += PlayersCreator_PlayerShipChanged;
             if (Player.Instance != null)
-                _shipDescrText.text = LocalizationManager.Instance.GetLocalizedValue(Player.ShipDescription);
+                PlayersCreator_PlayerShipChanged();
         }
 
         private void OnDisable()
@@ -34,6 +35,8 @@
         private void PlayersCreator_PlayerShipChanged()
         {
             _shipDescrText.text = LocalizationManager.Instance.GetLocalizedValue(Player.ShipDescription);
+            _shipImage.sprite = Player.SpriteRenderer.sprite;  
+            _shipImage.color = Player.SpriteRenderer.color;  
         }
 
         private void TransitionScene_NewSceneWasLoaded(Scenes obj)
