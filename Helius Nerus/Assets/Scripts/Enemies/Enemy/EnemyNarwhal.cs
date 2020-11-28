@@ -37,7 +37,7 @@ public class EnemyNarwhal : Enemy
 				homingCoefficient = 0f;
 				_inBurst = true;
 				_transform.DOMove(_transform.position + _transform.up * _burstDistance, _burstDuration)
-						  .SetEase<Tween>(Ease.OutExpo)
+						  .SetEase<Tween>(Ease.OutQuad)
 						  .OnComplete<Tween>(() => _inBurst = false);
 				return;
 			}
