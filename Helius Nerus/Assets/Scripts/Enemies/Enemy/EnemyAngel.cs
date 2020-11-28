@@ -7,20 +7,14 @@ public class EnemyAngel : Enemy
 	[SerializeField] Transform _transform = null;
 	[SerializeField] float _homingFactor = 20f;
 	[SerializeField] float _speed = 1f;
+	[SerializeField] float _reloadTime = 1f;
+	[SerializeField] float _bulletSpeedMultiplyer = 1f;
 
-	private Coroutine _coroutine = null;
+	private float _timeElapsed = 0f;
 
 	public override void Enabled()
 	{
-		
-	}
-
-	public override void Disabled()
-	{
-		if (_coroutine != null)
-		{
-			StopCoroutine(_coroutine);
-		}
+		_timeElapsed = 0f;
 	}
 
 	public override void OnUpdate()
@@ -38,6 +32,18 @@ public class EnemyAngel : Enemy
 		}
 
 		_transform.Translate(Vector3.up * _speed * TimeManager.EnemyDeltaTime, Space.Self);
+
+		_timeElapsed += TimeManager.EnemyDeltaTime;
+
+		if (_timeElapsed >= _reloadTime)
+		{
+			_timeElapsed = 0f;
+			GameObject bullet = BulletPoolsContainer.Instance.GetObjectFromPool(BulletType);
+			(bullet.GetComponent(typeof(IBulletMovement)) as IBulletMovement).SpeedMultiplier = _bulletSpeedMultiplyer;
+			bullet.transform.position = _transform.position;
+			bullet.transform.localScale = 1f * Vector3.one;
+			bullet.transform.localEulerAngles = _transform.localEulerAngles;
+		}
 	}
 
 	public override void OnReset()

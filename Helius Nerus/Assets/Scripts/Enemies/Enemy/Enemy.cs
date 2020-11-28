@@ -7,8 +7,11 @@ public class Enemy : MonoBehaviour, IReturnableToPool, IDealDamageToPlayer, ITak
 
 	[SerializeField] private EnemyStats _stats = null;
 	[SerializeField] private EnemyTypes _type = EnemyTypes.SquareEnemy;
+	[SerializeField] private BulletTypes _bulletType = BulletTypes.AngelBullet;
 
 	private bool _isDead = false;
+
+	public BulletTypes BulletType => _bulletType;
 
 	public EnemyStats EnemyStats => _stats;
 

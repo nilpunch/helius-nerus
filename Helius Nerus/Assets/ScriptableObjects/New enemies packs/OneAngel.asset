@@ -15,6 +15,6 @@ MonoBehaviour:
   _enemies:
   - _position: {x: 0, y: 0}
     _rotation: 180
-    _type: 5
+    _type: 3
   _width: 0.32
   _cost: 100

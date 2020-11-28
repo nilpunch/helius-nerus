@@ -3,6 +3,7 @@
 public class EnemyBullet : MonoBehaviour, IBulletMovement, IDealDamageToPlayer, IReturnableToPool
 {
     [SerializeField] protected int _damage = 1;
+	[SerializeField] protected BulletTypes _bulletType = BulletTypes.AngelBullet;
 
     protected float _speedMultiplier = 1.0f;
     protected Transform _transform = null;
@@ -30,7 +31,7 @@ public class EnemyBullet : MonoBehaviour, IBulletMovement, IDealDamageToPlayer, 
 
     public void ReturnMeToPool()
     {
-        BulletPoolsContainer.Instance.ReturnObjectToPool(BulletTypes.StraightMove, gameObject);
+        BulletPoolsContainer.Instance.ReturnObjectToPool(_bulletType, gameObject);
     }
 
     public int GetMyDamage()

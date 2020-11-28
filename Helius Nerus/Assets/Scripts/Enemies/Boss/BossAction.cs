@@ -60,7 +60,7 @@ public abstract class BossAction
     }
 
     protected static void Shoot(int bulletAmount = 1, float spreadAngle = 10f, float bulletSpeed = 7f, 
-                                BulletTypes bulletType = BulletTypes.StraightMove,
+                                BulletTypes bulletType = BulletTypes.AngelBullet,
                                 Vector3? position = null, float bulletSize = 0.3f,
                                 Vector2? direction = null)
     {

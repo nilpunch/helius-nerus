@@ -5,7 +5,7 @@ using UnityEngine;
 public class WeaponCommandData
 {
     [Tooltip("Энам с типом выпускаемой пули")]
-    [SerializeField] private BulletTypes _bulletType = BulletTypes.StraightMove;
+    [SerializeField] private BulletTypes _bulletType = BulletTypes.AngelBullet;
 	[Tooltip("Задержка перед выстрелом")]
 	[SerializeField] private float _delayBeforeShoot = 0.0f;
 	[Tooltip("Задержка после выстрела")]

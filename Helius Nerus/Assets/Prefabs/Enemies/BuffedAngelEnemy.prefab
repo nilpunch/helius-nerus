@@ -101,7 +101,7 @@ PolygonCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.49422505, y: 0.76276284}
     oldSize: {x: 1, y: 1}
     newSize: {x: 0.64, y: 0.64}
     adaptiveTilingThreshold: 0.5
@@ -152,6 +152,9 @@ MonoBehaviour:
     _damageOnContact: 1
     _dropChance: 0.1
   _type: 4
+  _bulletType: 0
   _transform: {fileID: 445486766643980035}
-  _homingFactor: 20
-  _speed: 1
+  _homingFactor: 30
+  _speed: 3
+  _reloadTime: 1
+  _bulletSpeedMultiplyer: 5

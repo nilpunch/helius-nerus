@@ -154,6 +154,11 @@ public class BulletPool
 
 public enum BulletTypes
 {
-    StraightMove,
+    AngelBullet,
     PlayerBullet,
+	StarBullet,
+	NarwhalBullet,
+	BossSpikeBullet,
+	BossBubbleBullet,
+	BossBombBullet,
 }
