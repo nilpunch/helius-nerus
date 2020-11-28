@@ -65,7 +65,7 @@ public abstract class GenericContainer <TValue, TKey, TMod> where TValue : IconD
         int rand = UnityEngine.Random.Range(0, _unlockedAvailableValues.Count);
         // ICloneable value part?
         TValue value = _allModifiers[ _unlockedAvailableValues[rand] ];
-        _unlockedAvailableValues.Remove(rand);
+        _unlockedAvailableValues.RemoveAt(rand);
         return value;
     }
     public void ReturnUnlockedMod(TValue value)

@@ -27,8 +27,8 @@
     {
         get
         {
-            return LocalizationManager.Instance.GetLocalizedValue(_modifierID.Description)
-                + "\n"
+            return LocalizationManager.Instance.GetLocalizedValue(_modifierID.Description) + "\n"
+				+ "AND\n"
                 + LocalizationManager.Instance.GetLocalizedValue(_paramsID.Description);
         }
     }

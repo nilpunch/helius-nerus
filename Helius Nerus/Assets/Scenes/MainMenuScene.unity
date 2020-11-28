@@ -1970,7 +1970,8 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 7c79f1c929bde62489f3edf5b49a6beb, type: 2}
     - {fileID: 11400000, guid: e1fe54243e376fb49a2fd053cac913f8, type: 2}
     - {fileID: 11400000, guid: b74d76bc799fd1b4fa41ad959a586ecf, type: 2}
-    _initialUnlockedValues: 0100000002000000030000000400000005000000
+    - {fileID: 11400000, guid: 9df1e61c5be61da44810559da6201b7a, type: 2}
+    _initialUnlockedValues: 00000000010000000200000003000000040000000500000006000000
   _upgradesContainer:
     _allModifiers:
     - {fileID: 11400000, guid: f487ba16cce8c0849b6de6697b82b4d5, type: 2}
