@@ -15,7 +15,27 @@ namespace HNUI
 			PlayerLevelStartAnimation.AnimationEnded += PlayerLevelStartAnimation_AnimationEnded;
 			UpgradeController.ModifierApplyed += UpgradeController_ModifierApplyed;
 			DragAndDropModifier.SelectionChanged += DragModifier_SelectionChanged;
+			WeaponDropTarget.WeaponSelected += WeaponDropTarget_WeaponSelected;
 			gameObject.SetActive(false);
+		}
+
+		private void WeaponDropTarget_WeaponSelected(PlayerWeapon obj)
+		{
+			if (obj == null)
+			{
+				_bigChoseHint.gameObject.SetActive(true);
+				_upgradeName.gameObject.SetActive(false);
+				_upgradeDesc.gameObject.SetActive(false);
+			}
+			else
+			{
+				_bigChoseHint.gameObject.SetActive(false);
+				_upgradeName.gameObject.SetActive(true);
+				_upgradeDesc.gameObject.SetActive(true);
+
+				_upgradeName.text = "Selected Weapon Modifiers";
+				_upgradeDesc.text = PlayerWeapon.GetDescription(obj);
+			}
 		}
 
 		private void DragModifier_SelectionChanged(DragAndDropModifier obj)

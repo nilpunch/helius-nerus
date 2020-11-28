@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using DG.Tweening;
+using UnityEngine.EventSystems;
 
 namespace HNUI
 {
-	public class WeaponDropTarget : MonoBehaviour
+	public class WeaponDropTarget : MonoBehaviour, IPointerDownHandler
 	{
+		public static event System.Action<PlayerWeapon> WeaponSelected = delegate { };
+
 		[SerializeField] private RectTransform _transform = null;
 
 		public PlayerWeapon RelatedWeapon { get; set; } = null;
@@ -41,6 +44,11 @@ namespace HNUI
 		public void ApplyModifier()
 		{
 			RelatedWeapon.ApplyPair(AttachedModifyer.RelatedUpgradePair);
+		}
+
+		void IPointerDownHandler.OnPointerDown(PointerEventData eventData)
+		{
+			WeaponSelected.Invoke(RelatedWeapon);
 		}
 	}
 }
