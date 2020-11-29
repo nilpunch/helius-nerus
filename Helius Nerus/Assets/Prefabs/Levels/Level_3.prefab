@@ -382,7 +382,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5c564458f61da7e4391d9ef115003882, type: 2}
   _money: 0
   _moneyPerSecond: 75
-  _moneySpendingLimit: 1000
+  _moneySpendingLimit: 2000
   _playerDamageReward: 50
 --- !u!1 &3077946257794791493
 GameObject:

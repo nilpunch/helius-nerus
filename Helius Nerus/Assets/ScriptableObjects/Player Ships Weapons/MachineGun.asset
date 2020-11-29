@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: MachineGun
   m_EditorClassIdentifier: 
   _position: {x: 0, y: 0}
-  _direction: {x: 0, y: 1}
+  _weaponAngle: 0
   _bulletsPerSec: 50
   _bulletAmount: 1
   _spreadAngleDegrees: 30
   _bulletSpeed: 10
   _bulletDamage: 1
   _damageMult: 0.04
-  _bulletSize: 0.2
+  _bulletSize: 0.8

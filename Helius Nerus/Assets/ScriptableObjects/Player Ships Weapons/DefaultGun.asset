@@ -16,7 +16,7 @@ MonoBehaviour:
   _weaponAngle: 0
   _bulletsPerSec: 2
   _bulletAmount: 1
-  _spreadAngleDegrees: 30
+  _spreadAngleDegrees: 45
   _bulletSpeed: 8
   _bulletDamage: 1
   _damageMult: 1

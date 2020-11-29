@@ -126,7 +126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _parametersSO: {fileID: 11400000, guid: 28b40de09a94db54bbe1f39f2d5986df, type: 2}
-  _startModifiers: 0000000001000000
+  _startModifiers: 00000000
   _player: {fileID: 7596673631766323341}
 --- !u!1 &7596673631766323379
 GameObject:
@@ -229,7 +229,7 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.03}
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.046
 --- !u!50 &7596673631766323342
@@ -265,7 +265,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cfcf21431488fe489642a83fdceaf9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _shipDescription: berserkerShipDescription
+  _shipDescription: resurrectShipDescription
   _playerMovement:
     _transform: {fileID: 7596673631766323376}
     _playerBoundaryOffset: 0.5
@@ -276,7 +276,7 @@ MonoBehaviour:
   _weapons:
   - {fileID: 7596673631862553504}
   - {fileID: 7596673631352266619}
-  _startArtifacts: 0000000003000000
+  _startArtifacts: 0000000005000000
   _rigidbody2D: {fileID: 7596673631766323342}
   _renderer: {fileID: 7596673631766323377}
 --- !u!1 &7596673631862553506
@@ -323,5 +323,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _parametersSO: {fileID: 11400000, guid: 28b40de09a94db54bbe1f39f2d5986df, type: 2}
-  _startModifiers: 0000000001000000
+  _startModifiers: 00000000
   _player: {fileID: 7596673631766323341}

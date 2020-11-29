@@ -23,7 +23,7 @@
     {
         for (int i = 0; i < Player.PlayerWeapons.Length; ++i)
         {
-            Player.PlayerWeapons[i].WeaponParameters.BPS *= 1.2f;
+            Player.PlayerWeapons[i].WeaponParameters.BPS *= 1.4f;
         }
     }
 }

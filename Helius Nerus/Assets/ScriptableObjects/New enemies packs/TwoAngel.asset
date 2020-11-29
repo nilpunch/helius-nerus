@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemies:
   - _position: {x: -1, y: 0}
-    _rotation: 0
-    _type: 4
+    _rotation: 180
+    _type: 3
   - _position: {x: 1, y: 0}
-    _rotation: 0
-    _type: 4
+    _rotation: 180
+    _type: 3
   _width: 2
-  _cost: 100
+  _cost: 75

@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: SpreadGun
   m_EditorClassIdentifier: 
   _position: {x: 0, y: 0}
-  _direction: {x: 0, y: 1}
+  _weaponAngle: 0
   _bulletsPerSec: 1
   _bulletAmount: 5
   _spreadAngleDegrees: 45
   _bulletSpeed: 5
   _bulletDamage: 1
-  _damageMult: 0.2
-  _bulletSize: 0.3
+  _damageMult: 0.3
+  _bulletSize: 1

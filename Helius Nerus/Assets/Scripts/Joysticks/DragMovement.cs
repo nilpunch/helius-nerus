@@ -14,6 +14,7 @@ public class DragMovement : InputCanvas<DragMovement>, IPointerUpHandler, IPoint
 	public void OnPointerDown(PointerEventData eventData)
 	{
 		_startPosition = eventData.position;
+		_delta = Vector2.zero;
 	}
 
 	public void OnPointerUp(PointerEventData eventData)
