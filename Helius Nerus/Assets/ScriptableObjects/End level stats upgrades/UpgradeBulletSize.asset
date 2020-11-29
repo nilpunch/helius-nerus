@@ -13,12 +13,11 @@ MonoBehaviour:
   m_Name: UpgradeBulletSize
   m_EditorClassIdentifier: 
   _position: {x: 0, y: 0}
-  _direction: {x: 0, y: 0}
+  _weaponAngle: 0
   _bulletsPerSec: 0
   _bulletAmount: 0
   _spreadAngleDegrees: 0
   _bulletSpeed: 0
   _bulletDamage: 0
   _damageMult: 0
-  _bulletSize: 1
-  _description: bulletSizeUpgrade
+  _bulletSize: 0.3

@@ -35,9 +35,10 @@ public class PlayerLevelStartAnimation : MonoBehaviour
 		EnemiesSpawner.InstanceOnScene.enabled = true;
         Player.Instance.IsNotMoving = false;
         Player.Instance.IsNotShooting = false;
-    }
+		Player.CollideWithDamageDealers = true;
+	}
 
-    public void EndLevelAnim()
+	public void EndLevelAnim()
     {
         StartCoroutine(EndAnim());
     }
@@ -47,6 +48,7 @@ public class PlayerLevelStartAnimation : MonoBehaviour
         Transform transform = Player.Instance.transform;
         Player.Instance.IsNotMoving = true;
         Player.Instance.IsNotShooting = true;
+		Player.CollideWithDamageDealers = false;
 		//transform.position = new Vector3(0.0f, -ParallaxCamera.ParallaxSize.y / 2 - 1, 0.0f);
 
 
@@ -58,7 +60,6 @@ public class PlayerLevelStartAnimation : MonoBehaviour
 							  .WaitForCompletion();
 
         BulletPoolsContainer.Instance.ClearAllBullets();
-
 		AnimationEnded.Invoke();
 		yield break;
 	}
