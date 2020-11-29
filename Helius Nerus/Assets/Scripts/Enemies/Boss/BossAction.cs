@@ -114,7 +114,7 @@ public class MoveLeftBossAction : BossAction
             if (shootTimeElapsed > _shootTime)
             {
                 shootTimeElapsed = 0.0f;
-                Shoot();
+                Shoot(bulletType: BulletTypes.BossSpikeBullet);
             }
             Boss.Instance.gameObject.transform.position = Vector3.Lerp(startPos, finalPos, timeElapsed / _moveTime);
             yield return null;
@@ -143,13 +143,13 @@ public class MoveRightBossAction : BossAction
             if (shootTimeElapsed > _shootTime)
             {
                 shootTimeElapsed = 0.0f;
-                Shoot();
+                Shoot(bulletType: BulletTypes.BossSpikeBullet);
             }
             Boss.Instance.gameObject.transform.position = Vector3.Lerp(startPos, finalPos, timeElapsed / _moveTime);
             yield return null;
         }
 
-        Shoot();
+        Shoot(bulletType: BulletTypes.BossSpikeBullet);
 
         NotifyBossPhase();
         yield break;
@@ -176,7 +176,7 @@ public class MoveUpAndDownWithShotgun : BossAction
             if (shootTimeElapsed > _shootTime)
             {
                 shootTimeElapsed = 0.0f;
-                Shoot(bulletAmount: 8, spreadAngle: 55, bulletSize: 0.2f);
+                Shoot(bulletAmount: 8, spreadAngle: 55);
             }
             Boss.Instance.gameObject.transform.position = Vector3.Lerp(startPos, finalPosTop, timeElapsed / _moveTime);
             yield return null;
@@ -189,7 +189,7 @@ public class MoveUpAndDownWithShotgun : BossAction
             if (shootTimeElapsed > _shootTime)
             {
                 shootTimeElapsed = 0.0f;
-                Shoot(bulletAmount: 8, spreadAngle: 55, bulletSize: 0.2f);
+                Shoot(bulletAmount: 8, spreadAngle: 55);
             }
             Boss.Instance.gameObject.transform.position = Vector3.Lerp(finalPosTop, finalPosBot, timeElapsed / _moveTime);
             yield return null;
@@ -202,7 +202,7 @@ public class MoveUpAndDownWithShotgun : BossAction
             if (shootTimeElapsed > _shootTime)
             {
                 shootTimeElapsed = 0.0f;
-                Shoot(bulletAmount: 8, spreadAngle: 55, bulletSize: 0.2f);
+                Shoot(bulletAmount: 8, spreadAngle: 55, bulletSize: 1f);
             }
             Boss.Instance.gameObject.transform.position = Vector3.Lerp(finalPosBot, startPos, timeElapsed / _moveTime);
             yield return null;
@@ -232,7 +232,7 @@ public class StayStillAndSpray : BossAction
             if (shootTimeElapsed > _shootTime)
             {
                 shootTimeElapsed = 0.0f;
-                Shoot(direction: new Vector2(angle, -1), bulletSize: 0.1f);
+                Shoot(direction: new Vector2(angle, -1));
             }
             yield return null;
         }
