@@ -143,7 +143,7 @@ MonoBehaviour:
   _enemiesPacksNew:
   - {fileID: 11400000, guid: c2a83f7f404e9bd4c94981abdc141d0b, type: 2}
   - {fileID: 11400000, guid: 2cd4ef7a8fdb2a44c93c87094e7b7489, type: 2}
-  - {fileID: 11400000, guid: 5c564458f61da7e4391d9ef115003882, type: 2}
+  - {fileID: 11400000, guid: eb54092f78d5c934d89fa763c451aabe, type: 2}
   _money: 50
   _moneyPerSecond: 25
   _moneySpendingLimit: 1000
@@ -435,7 +435,7 @@ GameObject:
   - component: {fileID: 5358465953164640448}
   - component: {fileID: 5358465953164640463}
   m_Layer: 0
-  m_Name: Level_0
+  m_Name: Level_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -141,6 +141,7 @@ MonoBehaviour:
     _mainStripLength: 0.2
     _maxEnemiesAmount: 100
   _enemiesPacksNew:
+  - {fileID: 11400000, guid: 2cd4ef7a8fdb2a44c93c87094e7b7489, type: 2}
   - {fileID: 11400000, guid: eb54092f78d5c934d89fa763c451aabe, type: 2}
   _money: 50
   _moneyPerSecond: 25

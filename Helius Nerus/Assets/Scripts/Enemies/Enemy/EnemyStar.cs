@@ -12,9 +12,17 @@ public class EnemyStar : Enemy
 	private bool _isMoving = false;
 	private bool _clockwise = true;
 
+	public override void OnReset()
+	{
+		_transform.DOKill();
+		_isMoving = false;
+		_clockwise = Random.Range(0, 2) == 0 ? true : false;
+	}
+
 	public override void Enabled()
 	{
 		_transform.DOKill();
+		_isMoving = false;
 		_clockwise = Random.Range(0, 2) == 0 ? true : false;
 	}
 

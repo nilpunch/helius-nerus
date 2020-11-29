@@ -27,13 +27,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3077946256647680453}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: -0.70710677, z: 0.70710677, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children: []
   m_Father: {fileID: 3077946256803698437}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -270, y: 90, z: -90}
 --- !u!33 &3077946256647680448
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -109,7 +109,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d3dbd8bfee18a345ab5ba0da8a18715, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bgImage: {fileID: 2800000, guid: 9fc9bc1488692a14ca2167177f6c75e8, type: 3}
+  _bgImage: {fileID: 2800000, guid: ad0e39a3717807041a6e8b92258d0dda, type: 3}
   _spriteMovementSpeed: {x: 0, y: 0.1}
   _renderer: {fileID: 3077946256647680449}
 --- !u!1 &3077946256766132588
@@ -321,7 +321,7 @@ MonoBehaviour:
     _leftWall: {fileID: 3077946258327442106}
     _rightWall: {fileID: 3077946257807851947}
   _levelBoss:
-    _boss: {fileID: 0}
+    _boss: {fileID: 7841737464753580370, guid: 84eb962c555b8904699c2e00955faa53, type: 3}
   _levelPortal:
     _portalPrefab: {fileID: 4669225526803828734, guid: a15f2affa416a2a45932f1bf401addc9,
       type: 3}
@@ -376,6 +376,8 @@ MonoBehaviour:
     _mainStripLength: 0.2
     _maxEnemiesAmount: 100
   _enemiesPacksNew:
+  - {fileID: 11400000, guid: c2a83f7f404e9bd4c94981abdc141d0b, type: 2}
+  - {fileID: 11400000, guid: ac0dc5566b9c25e49b3b0300a4f6bb9a, type: 2}
   - {fileID: 11400000, guid: c2a83f7f404e9bd4c94981abdc141d0b, type: 2}
   - {fileID: 11400000, guid: 5c564458f61da7e4391d9ef115003882, type: 2}
   _money: 0

@@ -143,6 +143,8 @@ MonoBehaviour:
   _enemiesPacksNew:
   - {fileID: 11400000, guid: 2cd4ef7a8fdb2a44c93c87094e7b7489, type: 2}
   - {fileID: 11400000, guid: c2a83f7f404e9bd4c94981abdc141d0b, type: 2}
+  - {fileID: 11400000, guid: eb54092f78d5c934d89fa763c451aabe, type: 2}
+  - {fileID: 11400000, guid: 5c564458f61da7e4391d9ef115003882, type: 2}
   _money: 10
   _moneyPerSecond: 50
   _moneySpendingLimit: 750
@@ -475,7 +477,7 @@ MonoBehaviour:
     _leftWall: {fileID: 1008073855477515209}
     _rightWall: {fileID: 1008073855964565720}
   _levelBoss:
-    _boss: {fileID: 7841737464753580370, guid: 84eb962c555b8904699c2e00955faa53, type: 3}
+    _boss: {fileID: 0}
   _levelPortal:
     _portalPrefab: {fileID: 4669225526803828734, guid: a15f2affa416a2a45932f1bf401addc9,
       type: 3}
