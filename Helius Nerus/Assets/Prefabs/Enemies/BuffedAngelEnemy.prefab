@@ -146,6 +146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a10cc76ebf40604ebdc3cba5239dc1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _spriteRenderer: {fileID: 445486766643980036}
   _stats:
     _FullHealth: 16
     _pointsForKill: 30

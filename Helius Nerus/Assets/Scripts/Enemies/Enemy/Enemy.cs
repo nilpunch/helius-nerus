@@ -1,10 +1,13 @@
 ﻿using UnityEngine;
 
+using DG.Tweening;
+
 [System.Serializable]
 public class Enemy : MonoBehaviour, IReturnableToPool, IDealDamageToPlayer, ITakeDamageFromPlayer
 {
 	public static event System.Action<int> EnemyDie = delegate { };
 
+	[SerializeField] private SpriteRenderer _spriteRenderer = null;
 	[SerializeField] private EnemyStats _stats = null;
 	[SerializeField] private EnemyTypes _type = EnemyTypes.SquareEnemy;
 	[SerializeField] private BulletTypes _bulletType = BulletTypes.AngelBullet;
@@ -58,6 +61,10 @@ public class Enemy : MonoBehaviour, IReturnableToPool, IDealDamageToPlayer, ITak
 	{
 		if (_isDead)
 			return;
+
+		_spriteRenderer.DOKill();
+		_spriteRenderer.color = Color.red;
+		_spriteRenderer.DOColor(Color.white, 0.2f).SetEase<Tween>(Ease.OutCubic);
 
 		if (_stats.TakeDamage(damage) == true)
 		{

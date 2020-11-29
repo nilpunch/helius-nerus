@@ -51,7 +51,7 @@ public class EnemiesSpawner : MonoBehaviour
 	{
 		if (Level.EnemiesCounter.AmountOfEnemies == 0 && MoneyLimitNotReached())
 		{
-			_moneyPerSecondMultyplier = 5f;
+			_moneyPerSecondMultyplier = 3f;
 		}
 		else
 		{

@@ -119,11 +119,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b27917415c609ae4eab19d71f49f02bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _spriteRenderer: {fileID: 445486766643980036}
   _stats:
     _FullHealth: 8
     _pointsForKill: 50
     _damageOnContact: 1
-    _dropChance: 0.02
+    _dropChance: 0.05
   _type: 7
   _bulletType: 3
   _transform: {fileID: 445486766643980035}
