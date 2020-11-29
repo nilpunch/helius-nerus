@@ -157,8 +157,8 @@ public enum BulletTypes
     AngelBullet,
     PlayerBullet,
 	StarBullet,
-	NarwhalBullet,
 	BossSpikeBullet,
-	BossBubbleBullet,
 	BossBombBullet,
+	NarwhalBullet,
+	BossBubbleBullet,
 }

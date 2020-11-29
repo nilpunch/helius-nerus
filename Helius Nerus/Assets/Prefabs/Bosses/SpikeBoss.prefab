@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6833566055434554128}
   - component: {fileID: 8711907543902311397}
   m_Layer: 8
-  m_Name: TestBoss
+  m_Name: SpikeBoss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -129,7 +129,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.64, y: 0.64}
+  m_Size: {x: 0.85035473, y: 0.85035473}
   m_EdgeRadius: 0
 --- !u!50 &8711907543902311397
 Rigidbody2D:

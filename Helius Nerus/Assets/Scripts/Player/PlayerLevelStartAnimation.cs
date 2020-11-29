@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using DG.Tweening;
+using System.Collections;
 using UnityEngine;
 
 public class PlayerLevelStartAnimation : MonoBehaviour
@@ -46,19 +47,19 @@ public class PlayerLevelStartAnimation : MonoBehaviour
         Transform transform = Player.Instance.transform;
         Player.Instance.IsNotMoving = true;
         Player.Instance.IsNotShooting = true;
-        //transform.position = new Vector3(0.0f, -ParallaxCamera.ParallaxSize.y / 2 - 1, 0.0f);
+		//transform.position = new Vector3(0.0f, -ParallaxCamera.ParallaxSize.y / 2 - 1, 0.0f);
 
-        float timeElapsed = 0.0f;
 
-        while (timeElapsed <= 2)
-        {
-            transform.position += new Vector3(0.0f, 2 * TimeManager.AnimationDeltaTime, 0.0f);
-            timeElapsed += TimeManager.AnimationDeltaTime;
-            yield return null;
-        }
+		//yield return transform.DOMove(transform.position.With(y:transform.position.y - 2f), 0.5f)
+		//					  .SetEase<Tween>(Ease.OutSine)
+		//					  .WaitForCompletion();
+		yield return transform.DOMove(transform.position.With(y: ParallaxCamera.CameraBoundary.yMax + 2f), 2f)
+							  .SetEase<Tween>(Ease.InBack)
+							  .WaitForCompletion();
 
         BulletPoolsContainer.Instance.ClearAllBullets();
 
 		AnimationEnded.Invoke();
+		yield break;
 	}
 }
