@@ -70,6 +70,7 @@ public static class TimeManager
         _playerTimeScale = 0;
         _animationTimeScale = 0;
         _uiTimeScale = 0;
+        DG.Tweening.DOTween.timeScale = 0;
     }
 
     public static void UnpauseAll()
@@ -78,5 +79,6 @@ public static class TimeManager
         _playerTimeScale = 1.0f;
         _animationTimeScale = 1.0f;
         _uiTimeScale = 1.0f;
+        DG.Tweening.DOTween.timeScale = 1.0f;
     }
 }

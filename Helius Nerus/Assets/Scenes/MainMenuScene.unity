@@ -429,7 +429,6 @@ MonoBehaviour:
   - {fileID: 445486766643980032, guid: bda0ab0fff5a0a245b50eecd361e14bd, type: 3}
   - {fileID: 445486766643980032, guid: 6ab1e0c268e94fb4f8bf478e16cd79e7, type: 3}
   - {fileID: 445486766643980032, guid: c83c290950d28dd4f9450ed21e9bfd2a, type: 3}
-  - {fileID: 68944011656762575, guid: 0db1f455a80f6e4428e7f22328edd071, type: 3}
 --- !u!4 &426188628
 Transform:
   m_ObjectHideFlags: 0
@@ -4961,6 +4960,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26bfa370e85772441812767e55401335, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _forceTutorial: 0
   _text: {fileID: 1302776404}
   _toHubText: toHubCode
   _tutorialText: tutorialCode

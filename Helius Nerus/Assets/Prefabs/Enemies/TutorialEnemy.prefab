@@ -150,6 +150,6 @@ MonoBehaviour:
     _FullHealth: 10
     _pointsForKill: 10
     _damageOnContact: 0
-    _dropChance: 1
+    _dropChance: 0
   _type: 3
   _bulletType: 0

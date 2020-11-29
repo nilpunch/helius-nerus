@@ -57,8 +57,16 @@ public class Pause
     {
         GameUnpausing.Invoke();
         CoroutineProcessor.LaunchCoroutine(Instance.UnpauseCounter());
+
+        Pause.GamePaused += Pause_GamePaused;
     }
-    
+
+    private static void Pause_GamePaused()
+    {
+        CoroutineProcessor.Instance.StopCoroutine(Instance.UnpauseCounter());
+        Pause.GamePaused -= Pause_GamePaused;
+    }
+
     public static void InstantUnpause()
     {
        // GameUnpausing.Invoke();
@@ -83,6 +91,8 @@ public class Pause
         _paused = false;
 
         GameUnpaused.Invoke();
+
+        Pause.GamePaused -= Pause_GamePaused;
     }
 
     public static void TogglePause()

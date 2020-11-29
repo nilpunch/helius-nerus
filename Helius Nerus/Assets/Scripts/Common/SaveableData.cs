@@ -26,7 +26,7 @@ public class SaveableData : MonoBehaviour
             _maximalScore = 0;
             _totalScore = 0;
             _unlockedArtifacts = new List<int>();
-            _maximalUnlockedLevel = 2;
+            _maximalUnlockedLevel = 3;
             _openedWeaponModifiers = new List<int>();
             _donatedToMonument = 0;
         }
@@ -60,6 +60,8 @@ public class SaveableData : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         LoadData();
+
+        ResetData();
 
         ScoreCounter.ScoreWasReseted += ScoreCounter_ScoreWasReseted;
         LevelBoss.FinalBossDied += LevelBoss_FinalBossDied;

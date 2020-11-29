@@ -4,6 +4,8 @@ namespace HNUI
 {
     public class MainMenuTutorialButton : MonoBehaviour
     {
+        [SerializeField] private bool _forceTutorial = false;
+
         [SerializeField] private TMPro.TextMeshProUGUI _text = null;
         [SerializeField] private string _toHubText = "";
         [SerializeField] private string _tutorialText = "";
@@ -12,7 +14,7 @@ namespace HNUI
 
         private void OnEnable()
         {
-            if (PlayerPrefs.HasKey("Tutorial") == false)
+            if (PlayerPrefs.HasKey("Tutorial") == false || _forceTutorial)
             {
                 ChangeButton(Scenes.TUTORIAL, _tutorialText);
             }

@@ -19,4 +19,13 @@ public class GamePauserOnPause : MonoBehaviour
                 Pause.UnpauseGame();
         }
     }
+
+    private void OnApplicationFocus(bool focus)
+    {
+        if (focus == false)
+        {
+            if (TransitionScene.Instance.GetActiveScene() == (int)Scenes.INGAME)
+                Pause.PauseGame();
+        }
+    }
 }
