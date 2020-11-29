@@ -14,11 +14,8 @@ public class LevelPortal
 
     private void LevelBoss_BossDied()
     {
-        float screenHeight = ParallaxCamera.ParallaxSize.y / 2;
-        GameObject portal = GameObject.Instantiate(_portalPrefab);
-        portal.transform.parent = _transform;
-        portal.transform.position = new Vector3(0.0f, screenHeight - _portalOffset, 0.0f);
-    }
+		PlayerLevelStartAnimation.Instance.EndLevelAnim();
+	}
 
     public void Cleanup()
     {

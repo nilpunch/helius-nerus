@@ -124,7 +124,7 @@ public class PlayerWeapon : MonoBehaviour
         for (int i = 0; i < _modifiers.Count; ++i)
         {
             _modifiers[i].OnDrop(this);
-        }
+		}
         _modifiers.Clear();
 
         foreach (string s in modifiers.Split(','))

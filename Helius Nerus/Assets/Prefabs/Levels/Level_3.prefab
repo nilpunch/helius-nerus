@@ -323,8 +323,7 @@ MonoBehaviour:
   _levelBoss:
     _boss: {fileID: 7841737464753580370, guid: 280b508b32414464fa0d27a2ddf75649, type: 3}
   _levelPortal:
-    _portalPrefab: {fileID: 4669225526803828734, guid: a15f2affa416a2a45932f1bf401addc9,
-      type: 3}
+    _portalPrefab: {fileID: 0}
     _portalOffset: 1.5
     _transform: {fileID: 3077946257260529423}
 --- !u!1 &3077946257501555300
@@ -381,7 +380,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c2a83f7f404e9bd4c94981abdc141d0b, type: 2}
   - {fileID: 11400000, guid: 5c564458f61da7e4391d9ef115003882, type: 2}
   _money: 0
-  _moneyPerSecond: 75
+  _moneyPerSecond: 45
   _moneySpendingLimit: 2000
   _playerDamageReward: 50
 --- !u!1 &3077946257794791493

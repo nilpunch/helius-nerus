@@ -16,10 +16,10 @@
 
     private void Player_PlayerBeforeDie()
     {
-        Player.PlayerParameters.CurrentHealth = 1;
+        Player.PlayerParameters.CurrentHealth = Player.PlayerParameters.MaxHealth;
 
         // Вариант:
-        Player.PlayerParameters.MaxHealth = 1;
+        //Player.PlayerParameters.MaxHealth = 1;
         // Не нравится - уберешь
         // unsub?
         //remove art

@@ -48,9 +48,13 @@ public abstract class GenericContainer <TValue, TKey, TMod> where TValue : IconD
     // Locked functions
     public TValue GetRandomLockedModifier()
     {
-        int rand = UnityEngine.Random.Range(0, _lockedValues.Count);
-        // ICloneable value part?
-        TValue value = _allModifiers[ _lockedValues[rand] ];
+		if (_lockedValues.Count == 0)
+			return _allModifiers[0];
+
+		int rand = UnityEngine.Random.Range(0, _lockedValues.Count);
+
+		// ICloneable value part?
+		TValue value = _allModifiers[ _lockedValues[rand] ];
         _lockedValues.Remove(rand);
         return value;
     }
@@ -62,9 +66,21 @@ public abstract class GenericContainer <TValue, TKey, TMod> where TValue : IconD
     // Unlocked functions
     public TValue GetRandomUnlockedModifier()
     {
-        int rand = UnityEngine.Random.Range(0, _unlockedAvailableValues.Count);
-        // ICloneable value part?
-        TValue value = _allModifiers[ _unlockedAvailableValues[rand] ];
+		if (_unlockedAvailableValues.Count == 0)
+		{
+#if UNITY_EDITOR
+			Debug.Log("Wtf");
+#endif
+			return _allModifiers[0];
+		}
+
+		int rand = UnityEngine.Random.Range(0, _unlockedAvailableValues.Count);
+
+#if UNITY_EDITOR
+		Debug.Log("geted");
+#endif
+		// ICloneable value part?
+		TValue value = _allModifiers[ _unlockedAvailableValues[rand] ];
         _unlockedAvailableValues.RemoveAt(rand);
         return value;
     }

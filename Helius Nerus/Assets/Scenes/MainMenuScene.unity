@@ -2042,7 +2042,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: faea3ad21ce9a424a87caddf41cddb33, type: 2}
     - {fileID: 11400000, guid: 2ad22ecdecc87c24ca38301e30bd91ca, type: 2}
     - {fileID: 11400000, guid: 1037d6de0fad50b4aa0da80384603106, type: 2}
-    _initialUnlockedValues: 0100000002000000030000000400000005000000
+    _initialUnlockedValues: 0000000001000000020000000300000004000000
   _weaponModifierContainer:
     _allModifiers:
     - {fileID: 11400000, guid: 9f414c843b1ad4b468480708203bc68c, type: 2}
@@ -4475,7 +4475,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 200, y: -50}
+  m_AnchoredPosition: {x: 200, y: -50.00006}
   m_SizeDelta: {x: 400, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1979616500
