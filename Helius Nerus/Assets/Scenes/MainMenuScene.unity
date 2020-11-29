@@ -429,6 +429,7 @@ MonoBehaviour:
   - {fileID: 445486766643980032, guid: bda0ab0fff5a0a245b50eecd361e14bd, type: 3}
   - {fileID: 445486766643980032, guid: 6ab1e0c268e94fb4f8bf478e16cd79e7, type: 3}
   - {fileID: 445486766643980032, guid: c83c290950d28dd4f9450ed21e9bfd2a, type: 3}
+  - {fileID: 68944011656762575, guid: 0db1f455a80f6e4428e7f22328edd071, type: 3}
 --- !u!4 &426188628
 Transform:
   m_ObjectHideFlags: 0
@@ -3279,7 +3280,6 @@ GameObject:
   - component: {fileID: 1302776402}
   - component: {fileID: 1302776405}
   - component: {fileID: 1302776404}
-  - component: {fileID: 1302776403}
   m_Layer: 5
   m_Name: ToHubButtonText
   m_TagString: Untagged
@@ -3306,20 +3306,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1302776403
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1302776401}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a885bf97508867408bb91431c5fc656, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _text: {fileID: 1302776404}
-  _key: 
 --- !u!114 &1302776404
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4914,7 +4900,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1994160832}
-        m_TargetAssemblyTypeName: HNUI.ButtonSceneLoading, Assembly-CSharp
+        m_TargetAssemblyTypeName: HNUI.MainMenuTutorialButton, Assembly-CSharp
         m_MethodName: OnClick
         m_Mode: 1
         m_Arguments:
@@ -4972,10 +4958,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1994160827}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0e36be9714edd841add3f375d188aa4, type: 3}
+  m_Script: {fileID: 11500000, guid: 26bfa370e85772441812767e55401335, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sceneToLoad: 2
+  _text: {fileID: 1302776404}
+  _toHubText: toHubCode
+  _tutorialText: tutorialCode
 --- !u!1 &1999294726
 GameObject:
   m_ObjectHideFlags: 0

@@ -90,8 +90,8 @@ public class Enemy : MonoBehaviour, IReturnableToPool, IDealDamageToPlayer, ITak
 
 	public void ReturnMeToPool()
 	{
-		Level.EnemiesCounter.DectrementEnemies();
 		EnemyPoolContainer.Instance.ReturnObjectToPool(_type, gameObject);
+		Level.EnemiesCounter.DectrementEnemies();
 	}
 
 	public int GetMyDamage()

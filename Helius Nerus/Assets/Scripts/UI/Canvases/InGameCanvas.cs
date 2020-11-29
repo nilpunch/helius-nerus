@@ -18,7 +18,7 @@
 
         private void TransitionScene_NewSceneWasLoaded(Scenes obj)
         {
-            if (obj == Scenes.INGAME)
+            if (obj == Scenes.INGAME || obj == Scenes.TUTORIAL)
             {
                 //Instance._canvas.enabled = true;
                 gameObject.SetActive(true);

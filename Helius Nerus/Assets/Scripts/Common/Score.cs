@@ -66,7 +66,7 @@ public class ScoreCounter
         ScoreWasUpdated.Invoke();
     }
 
-    private void Reset()
+    public void Reset()
     {
         ScoreWasReseted.Invoke(_score);
         _score = 0;

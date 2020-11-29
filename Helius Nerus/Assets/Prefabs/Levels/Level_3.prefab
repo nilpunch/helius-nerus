@@ -280,7 +280,7 @@ GameObject:
   - component: {fileID: 3077946257260529423}
   - component: {fileID: 3077946257260529408}
   m_Layer: 0
-  m_Name: Level_2
+  m_Name: Level_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -378,7 +378,6 @@ MonoBehaviour:
   _enemiesPacksNew:
   - {fileID: 11400000, guid: c2a83f7f404e9bd4c94981abdc141d0b, type: 2}
   - {fileID: 11400000, guid: 5c564458f61da7e4391d9ef115003882, type: 2}
-  - {fileID: 11400000, guid: 66d2a420af1598e45941216e3ad83d3e, type: 2}
   _money: 0
   _moneyPerSecond: 75
   _moneySpendingLimit: 1000
